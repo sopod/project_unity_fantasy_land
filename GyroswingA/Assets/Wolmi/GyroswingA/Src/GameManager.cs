@@ -15,6 +15,18 @@ public enum GameMode
     Hard
 }
 
+public struct StageMovementValue
+{
+    public Vector3 swingPosCur;
+    public bool isSwingRight;
+    public float swingAngleCur;
+    public bool isSpiningCW;
+    public float spinAngleCur;
+    public Vector3 stageUpDir;
+    public bool isSwinging;
+    public bool isTurning;
+    public bool isSpining;
+}
 
 
 public class GameManager : MonoBehaviour
@@ -23,7 +35,7 @@ public class GameManager : MonoBehaviour
     GameMode mode;
 
     [SerializeField] MachineController machine;
-    [SerializeField] PlayerController player;
+    [SerializeField] public PlayerController player;
     [SerializeField] UIController ui;
     [SerializeField] EnemySpawner enemySpawner;
 
@@ -70,6 +82,8 @@ public class GameManager : MonoBehaviour
 
 
     public bool IsMachineStopped { get { return machine.IsStopped(); } }
+
+    public Vector3 GetCenterPosOfPlayer { get { return player.centerOfCreature.transform.position; } }
 
     static GameManager instance;
     public static GameManager Instance
@@ -120,7 +134,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < enemySpawnPositions.Length; i++)
         {
             GameObject e = enemySpawner.SpawnRandomEnemy();
-            e.GetComponent<EnemyController>().SetCreature(stage, playerMoveSpeed, playerRotateSpeed, playerJumpPower, machine.Radius, machineSpinSpeed, isSpiningCW);
+            e.GetComponent<EnemyController>().SetEnemy(stage, player.gameObject, playerMoveSpeed, playerRotateSpeed, playerJumpPower, machine.Radius, machineSpinSpeed, isSpiningCW);
         }
     }
     void StartInGame()
@@ -213,19 +227,16 @@ public class GameManager : MonoBehaviour
         return 0;
     }
 
-    public void MoveCreaturesAlongStage(Vector3 swingPosCur, bool isSwingRight, float swingAngleCur, bool isSpiningCW,
-        float spinAngleCur, Vector3 stageUpDir,
-        bool isSwinging, bool isTurning, bool isSpining)
+    public void MoveCreaturesAlongStage(StageMovementValue values)
     {
-        player.MoveAlongStage(swingPosCur, isSwingRight, swingAngleCur, isSpiningCW, spinAngleCur, stageUpDir,
-            isSwinging, isTurning, isSpining);
+        player.MoveAlongStage(values);
 
         for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
         {
-            enemySpawner.spawnedEnemies[i].GetComponent<EnemyController>().MoveAlongStage(swingPosCur, isSwingRight, swingAngleCur, isSpiningCW, spinAngleCur, stageUpDir,
-                isSwinging, isTurning, isSpining);
+            enemySpawner.spawnedEnemies[i].GetComponent<EnemyController>().SetValuesThenMove(values);
         }
     }
+
     void ChangeGameState(State state)
     {
         this.state = state;

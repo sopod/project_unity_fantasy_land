@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 2706288346238717747}
   - component: {fileID: 2706288346238717751}
   - component: {fileID: 2706288346238717749}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,6 +219,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0df2781fbbdfe4cb76f3c363d0b2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
   stageLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -228,8 +234,11 @@ MonoBehaviour:
   platformLayer:
     serializedVersion: 2
     m_Bits: 256
-  stage: {fileID: 0}
   centerOfCreature: {fileID: 2706288346238717748}
+  isFlying: 0
+  isJumping: 0
+  isOnStage: 0
+  isOnPlatform: 0
 --- !u!1 &2706288346238717738
 GameObject:
   m_ObjectHideFlags: 0

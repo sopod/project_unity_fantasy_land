@@ -6,6 +6,6 @@ public class Rotate : MonoBehaviour
 {
     void Update()
     {
-        transform.Rotate(Vector3.right, 1.0f* Time.deltaTime);
+        transform.Rotate(Vector3.up, 3.0f* Time.deltaTime);
     }
 }

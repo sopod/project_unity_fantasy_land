@@ -47,6 +47,7 @@ MonoBehaviour:
   player: {fileID: 0}
   ui: {fileID: 0}
   enemySpawner: {fileID: 0}
+  stage: {fileID: 0}
   enemyPrefabs:
   - {fileID: 996637022871439470, guid: 291791d1958a2214ebdeaf7d1b19929f, type: 3}
   - {fileID: 703162010401085044, guid: ed9f5b8272a0f3a4f8e8918bcd5535f1, type: 3}

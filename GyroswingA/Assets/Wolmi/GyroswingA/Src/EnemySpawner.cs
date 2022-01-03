@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject e = GameObject.Instantiate(enemyPrefabs[idx], Vector3.zero, Quaternion.identity, this.transform);
+            GameObject e = Instantiate(enemyPrefabs[idx], Vector3.zero, Quaternion.identity, this.transform);
             e.SetActive(false);
             enemyQueues[idx].Enqueue(e);
         }
@@ -70,12 +70,13 @@ public class EnemySpawner : MonoBehaviour
         }
 
         GameObject e = enemyQueues[idx].Dequeue();
-        e.SetActive(true);
-        e.transform.SetParent(null);
-        
+        e.transform.SetParent(null); 
+
         SetEnemyPosition(e);
         
         spawnedEnemies.Add(e);
+
+        e.SetActive(true);
 
         return e;
     }
@@ -116,6 +117,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         e.transform.position = enemySpawnPositions[i].transform.position;
+        e.GetComponent<EnemyController>().orgPos = enemySpawnPositions[i].transform.position;
         isPositionTaken[i] = true;
     }
 

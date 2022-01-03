@@ -27,6 +27,8 @@ public class MachineController : MovingThings
 
     Vector3 _swingPosCur;
     Vector3 _upDirBeforeSpin;
+
+    StageMovementValue values;
     
     public float Radius { get { return swingRadius; } }
 
@@ -51,7 +53,8 @@ public class MachineController : MovingThings
             if (isSwinging)
                 ChangeDirection();
 
-            //GameManager.Instance.MoveCreaturesAlongStage(_swingPosCur, _isSwingRight, _swingAngleCur, isSpiningCW, _spinAngleCur, _upDirBeforeSpin, isSwinging, isTurning, isSpining);
+            SetMoveValues();
+            GameManager.Instance.MoveCreaturesAlongStage(values);
 
             // if (IsStopped())  back to the original position
         }
@@ -60,8 +63,8 @@ public class MachineController : MovingThings
     public void SetMachine(float swingSpeed, float swingAngleMax, float spinSpeed, bool isSpiningCW,
         bool isSwinging, bool isTurning, bool isSpining)
     {
-        stage.GetComponent<BoxCollider>().center = new Vector3(0.0f , 0.22f, 0.0f);
-        stage.GetComponent<BoxCollider>().size = new Vector3(10.0f , 0.4f, 10.0f);
+        //stage.GetComponent<BoxCollider>().center = new Vector3(0.0f , 0.22f, 0.0f);
+        //stage.GetComponent<BoxCollider>().size = new Vector3(10.0f , 0.4f, 10.0f);
 
         originPositionOfStage = stage.transform.position;
         swingRadius = (swingBar.transform.position.y - stage.transform.position.y);
@@ -197,6 +200,19 @@ public class MachineController : MovingThings
             _isSwingRight = !_isSwingRight;
             _changeDir = false;
         }
+    }
+
+    void SetMoveValues()
+    {
+        values.swingPosCur = _swingPosCur;
+        values.isSwingRight = _isSwingRight;
+        values.swingAngleCur = _swingAngleCur;
+        values.isSpiningCW = isSpiningCW;
+        values.spinAngleCur = _spinAngleCur;
+        values.stageUpDir = _upDirBeforeSpin;
+        values.isSwinging = isSwinging;
+        values.isTurning = isTurning;
+        values.isSpining = isSpining;
     }
     
     void OnDrawGizmos()

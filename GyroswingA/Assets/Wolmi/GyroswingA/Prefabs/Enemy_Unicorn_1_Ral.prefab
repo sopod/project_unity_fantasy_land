@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 7142733152277218490}
   - component: {fileID: -1040142954123801551}
   - component: {fileID: 7212745989528157446}
+  - component: {fileID: -6212877883929175288}
   m_Layer: 9
   m_Name: Enemy_Unicorn_1_Ral
   m_TagString: Untagged
@@ -312,12 +313,34 @@ MonoBehaviour:
   platformLayer:
     serializedVersion: 2
     m_Bits: 256
-  stage: {fileID: 0}
   centerOfCreature: {fileID: 1145377053931454716}
   isFlying: 0
   isJumping: 0
   isOnStage: 0
   isOnPlatform: 0
+  orgPos: {x: 0, y: 0, z: 0}
+--- !u!195 &-6212877883929175288
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145053884062027376}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1145075126875691194
 GameObject:
   m_ObjectHideFlags: 0
