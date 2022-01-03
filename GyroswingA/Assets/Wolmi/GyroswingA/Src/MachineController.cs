@@ -51,14 +51,13 @@ public class MachineController : MovingThings
             if (isSwinging)
                 ChangeDirection();
 
-            GameManager.Instance.MovePlayerAlongStage(_swingPosCur, _isSwingRight, _swingAngleCur, isSpiningCW, _spinAngleCur, _upDirBeforeSpin,
-                isSwinging, isTurning, isSpining);
+            //GameManager.Instance.MoveCreaturesAlongStage(_swingPosCur, _isSwingRight, _swingAngleCur, isSpiningCW, _spinAngleCur, _upDirBeforeSpin, isSwinging, isTurning, isSpining);
 
             // if (IsStopped())  back to the original position
         }
     }
 
-    public void InitMachine(float swingSpeed, float swingAngleMax, float spinSpeed, bool isSpiningCW,
+    public void SetMachine(float swingSpeed, float swingAngleMax, float spinSpeed, bool isSpiningCW,
         bool isSwinging, bool isTurning, bool isSpining)
     {
         stage.GetComponent<BoxCollider>().center = new Vector3(0.0f , 0.22f, 0.0f);

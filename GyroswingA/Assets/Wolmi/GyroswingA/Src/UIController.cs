@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour
     float secondsMax;
     int monsterMax;
 
-    public void InitUI(int secondsMax, int enemyMax)
+    public void SetUI(int secondsMax, int enemyMax)
     {
         UIEventMaker maker = new UIEventMaker();
         maker.MakeUIObjectWork(pauseButton);

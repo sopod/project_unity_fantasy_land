@@ -229,7 +229,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   stage: {fileID: 0}
-  centerOfPlayer: {fileID: 2706288346238717738}
+  centerOfCreature: {fileID: 2706288346238717748}
 --- !u!1 &2706288346238717738
 GameObject:
   m_ObjectHideFlags: 0

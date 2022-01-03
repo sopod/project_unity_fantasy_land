@@ -46,3 +46,23 @@ MonoBehaviour:
   machine: {fileID: 0}
   player: {fileID: 0}
   ui: {fileID: 0}
+  enemySpawner: {fileID: 0}
+  enemyPrefabs:
+  - {fileID: 996637022871439470, guid: 291791d1958a2214ebdeaf7d1b19929f, type: 3}
+  - {fileID: 703162010401085044, guid: ed9f5b8272a0f3a4f8e8918bcd5535f1, type: 3}
+  - {fileID: 6042312862370174544, guid: ecafaa800ee5b0a4885d20a677622613, type: 3}
+  - {fileID: 2499857846401108001, guid: dd3ab48c4a5a7d04e8c1007d2a78b598, type: 3}
+  - {fileID: 1145053884062027376, guid: 573b7f904307f9a4988955e3195279a2, type: 3}
+  - {fileID: 2349709601302349939, guid: 81455c4a701fce042a9e941430f7f6b4, type: 3}
+  enemySpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
