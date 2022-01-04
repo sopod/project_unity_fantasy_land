@@ -9,6 +9,7 @@ public class PlayerController : LivingCreatures
 {
     KeyManager key;
 
+
     private void Update()
     {
         if (!IsPaused())
@@ -19,6 +20,7 @@ public class PlayerController : LivingCreatures
                 TurnPlayer();
                 JumpPlayer();
 
+                Dash();
             }
         }
     }
@@ -34,20 +36,32 @@ public class PlayerController : LivingCreatures
         }
     }
 
+    void LateUpdate()
+    {
+    }
+
     public void SetPlayer(GameObject stage, KeyManager keyManager, float moveSpeed, float rotSpeed, float jumpPower,
-                        float machineRadius, float spinSpeed, bool isSpiningCW)
+        float machineRadius, float spinSpeed, bool isSpiningCW)
     {
         key = keyManager;
 
         SetCreature(stage, moveSpeed, rotSpeed, jumpPower, machineRadius, spinSpeed, isSpiningCW);
     }
 
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+            rb.AddForce(transform.forward * 1000.0f);
+    }
+
     void MovePlayer()
     {        
         //if (!_isJumping)
         {
-            rb.position += transform.forward * key.GetVerticalKey() * moveSpeed * Time.deltaTime;
+            //rb.velocity += transform.forward * key.GetVerticalKey() * moveSpeed * 10.0f * Time.deltaTime;
+            rb.position += transform.forward * key.GetVerticalKey() * moveSpeed * 0.8f * Time.deltaTime;
 
+            //transform.position += transform.forward * key.GetVerticalKey() * moveSpeed * Time.deltaTime;
 
             //Vector3 moveVec = transform.forward * key.GetVerticalKey();
             //moveVec.Normalize();
@@ -60,7 +74,7 @@ public class PlayerController : LivingCreatures
             //Vector3 moveVec = transform.forward * key.GetVerticalKey() * 200.0f * Time.fixedDeltaTime;
             //moveVec.y = rb.velocity.y;
             //rb.velocity = moveVec;
-            
+
             //Vector3 moveVec = transform.forward * key.GetVerticalKey();
             //moveVec.y = 0.0f;
             //moveVec.Normalize();
@@ -106,7 +120,7 @@ public class PlayerController : LivingCreatures
 
     public void MoveAlongStage(StageMovementValue values)
     {
-        if (isOnStage && !IsPaused() && !GameManager.Instance.IsMachineStopped)
+        if (!IsPaused() && !GameManager.Instance.IsMachineStopped)
         {
             Vector3 centerforTurn = (values.isSwingRight) ? Vector3.left : -Vector3.left;
             Vector3 centerforSpin = (values.isSpiningCW) ? values.stageUpDir : -values.stageUpDir;
@@ -115,27 +129,33 @@ public class PlayerController : LivingCreatures
             Quaternion turnQuat = new Quaternion();
             Quaternion spinQuat = new Quaternion();
 
+            // swing
             if (values.isSwinging)
                 resPos += values.swingPosCur;
 
+            // turn
             if (values.isTurning)
             {
-                turnQuat = Quaternion.AngleAxis(values.swingAngleCur, centerforTurn);
-                resPos = (turnQuat * (resPos - stage.transform.position) + stage.transform.position); //transform.RotateAround(stage.transform.position, Vector3.up, machineSpinSpeed * Time.fixedDeltaTime);
+                turnQuat = Quaternion.FromToRotation(transform.up, stage.transform.up);
+                
+                //turnQuat = Quaternion.AngleAxis(values.swingAngleCur, centerforTurn);
+                //resPos = (turnQuat * (resPos - stage.transform.position) + stage.transform.position); //transform.RotateAround(stage.transform.position, Vector3.up, machineSpinSpeed * Time.fixedDeltaTime);
             }
 
-            if (values.isSpining)
+            // spin
+            if (values.isSpining && isOnStage)
             {
                 spinQuat = Quaternion.AngleAxis(values.spinAngleCur, centerforSpin);
                 resPos = (spinQuat * (resPos - stage.transform.position) + stage.transform.position);
             }
 
             // apply
-            if (values.isSpining)
+            if (values.isSpining && isOnStage)
                 rb.rotation = spinQuat * rb.rotation;
-            if (values.isTurning)
-                rb.rotation = turnQuat * rb.rotation;
 
+            if (values.isTurning && Mathf.Abs(values.stageX - transform.rotation.eulerAngles.x) > 0.01f)
+                rb.rotation = turnQuat * rb.rotation;
+                
             rb.position = resPos;
         }
     }
@@ -146,7 +166,7 @@ public class PlayerController : LivingCreatures
         {
             Vector3 dir = GetDirectionFromStageToCreature();
 
-            rb.velocity += dir * machineRadius * (55.5f + _spinSpeedUp) * Mathf.Deg2Rad * Time.fixedDeltaTime;
+            rb.AddForce(dir * machineRadius * (55.5f + _spinSpeedUp) * Mathf.Deg2Rad * Time.fixedDeltaTime);
 
             //if (GameManager.Instance.IsRightSpin)
             //    rb.velocity += stage.transform.forward * machineRadius * (62.0f + _spinSpeedUp) * Mathf.Deg2Rad * Time.fixedDeltaTime;

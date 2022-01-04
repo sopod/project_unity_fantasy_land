@@ -36,6 +36,8 @@ public class MachineController : MovingThings
     {
         if (!IsPaused())
         {
+            values.prevStagePos = stage.transform.position;
+
             SetSwingAngleCur();
 
             if (isSwinging)
@@ -54,6 +56,7 @@ public class MachineController : MovingThings
                 ChangeDirection();
 
             SetMoveValues();
+            values.stageX = stage.transform.rotation.eulerAngles.x;
             GameManager.Instance.MoveCreaturesAlongStage(values);
 
             // if (IsStopped())  back to the original position
@@ -74,6 +77,7 @@ public class MachineController : MovingThings
         HoldMachine(isSwinging, isTurning, isSpining);
 
         swingPowerMinPercent = 0.3f; // min 30% will be same power 
+        values.prevStagePos = stage.transform.position;
 
         _changeDir = false;
         _isSwingRight = true;

@@ -67,7 +67,7 @@ void PixShader(Input input, inout SurfaceOutput o)
 					tex2D(_MainTex, input.uv_MainTex + delta.zy).a };
 
 	// Face Normal
-	float3 n = GetSurfaceNormal(smp4x, input.param.x);
+	float3 n = GetSurfaceNormal(smp4x, input.param.stageX);
 
 	// Bumpmap
 	float3 bump = UnpackNormal(tex2D(_BumpMap, input.uv2_FaceTex.xy)).xyz;

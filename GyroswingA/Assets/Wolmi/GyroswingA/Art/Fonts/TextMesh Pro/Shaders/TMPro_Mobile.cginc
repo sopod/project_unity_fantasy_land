@@ -83,10 +83,10 @@ pixel_t VertShader(vertex_t input)
     float4 underlayColor = _UnderlayColor;
     underlayColor.rgb *= underlayColor.a;
 
-    float x = -(_UnderlayOffsetX * _ScaleRatioC) * _GradientScale / _TextureWidth;
+    float stageX = -(_UnderlayOffsetX * _ScaleRatioC) * _GradientScale / _TextureWidth;
     float y = -(_UnderlayOffsetY * _ScaleRatioC) * _GradientScale / _TextureHeight;
 
-    output.texcoord2 = float4(input.texcoord0 + float2(x, y), input.color.a, 0);
+    output.texcoord2 = float4(input.texcoord0 + float2(stageX, y), input.color.a, 0);
     output.underlayColor = underlayColor;
     #endif
 
@@ -105,7 +105,7 @@ float4 PixShader(pixel_t input) : SV_Target
     #if (UNDERLAY_ON | UNDERLAY_INNER)
     float layerScale = scale;
     layerScale /= 1 + ((_UnderlaySoftness * _ScaleRatioC) * layerScale);
-    float layerBias = input.param.x * layerScale - .5 - ((_UnderlayDilate * _ScaleRatioC) * .5 * layerScale);
+    float layerBias = input.param.stageX * layerScale - .5 - ((_UnderlayDilate * _ScaleRatioC) * .5 * layerScale);
     #endif
 
     scale /= 1 + (_OutlineSoftness * _ScaleRatioA * scale);
@@ -114,8 +114,8 @@ float4 PixShader(pixel_t input) : SV_Target
 
     #ifdef OUTLINE_ON
     float4 outlineColor = lerp(input.faceColor, input.outlineColor, sqrt(min(1.0, input.param.z * scale * 2)));
-    faceColor = lerp(outlineColor, input.faceColor, saturate((d - input.param.x - input.param.z) * scale + 0.5));
-    faceColor *= saturate((d - input.param.x + input.param.z) * scale + 0.5);
+    faceColor = lerp(outlineColor, input.faceColor, saturate((d - input.param.stageX - input.param.z) * scale + 0.5));
+    faceColor *= saturate((d - input.param.stageX + input.param.z) * scale + 0.5);
     #endif
 
     #if UNDERLAY_ON
@@ -124,7 +124,7 @@ float4 PixShader(pixel_t input) : SV_Target
     #endif
 
     #if UNDERLAY_INNER
-    float bias = input.param.x * scale - 0.5;
+    float bias = input.param.stageX * scale - 0.5;
     float sd = saturate(d * scale - bias - input.param.z);
     d = tex2D(_MainTex, input.texcoord2.xy).a * layerScale;
     faceColor += float4(_UnderlayColor.rgb * _UnderlayColor.a, _UnderlayColor.a) * (1 - saturate(d - layerBias)) * sd * (1 - faceColor.a);
@@ -142,7 +142,7 @@ float4 PixShader(pixel_t input) : SV_Target
     #if UNITY_UI_CLIP_RECT
     float2 maskZW = 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + (1 / scale));
     float2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * maskZW);
-    faceColor *= m.x * m.y;
+    faceColor *= m.stageX * m.y;
     #endif
 
     #if (UNDERLAY_ON | UNDERLAY_INNER)

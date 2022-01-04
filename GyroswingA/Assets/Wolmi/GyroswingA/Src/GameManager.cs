@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public enum State
 {
@@ -26,6 +28,8 @@ public struct StageMovementValue
     public bool isSwinging;
     public bool isTurning;
     public bool isSpining;
+    public Vector3 prevStagePos;
+    public float stageX;
 }
 
 

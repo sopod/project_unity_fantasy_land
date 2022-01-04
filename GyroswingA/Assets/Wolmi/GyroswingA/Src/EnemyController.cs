@@ -27,7 +27,7 @@ public class EnemyController : LivingCreatures
         {
             if (!IsStopped())
             {
-                agent.SetDestination(GetDestinationToPlayer());
+                //agent.SetDestination(GetDestinationToPlayer());
 
                 //AffectedBySpin();
 
@@ -53,11 +53,11 @@ public class EnemyController : LivingCreatures
         moveAlongStage = false;
         this.player = player;
 
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = moveSpeed;
-        agent.angularSpeed = rotSpeed;
-        agent.acceleration = 0.1f;
-        agent.radius = 1.0f;
+        //agent = GetComponent<NavMeshAgent>();
+        //agent.speed = moveSpeed;
+        //agent.angularSpeed = rotSpeed;
+        //agent.acceleration = 0.1f;
+        //agent.radius = 1.0f;
 
         SetCreature(stage, moveSpeed, rotSpeed, jumpPower, machineRadius, spinSpeed, isSpiningCW);
     }
