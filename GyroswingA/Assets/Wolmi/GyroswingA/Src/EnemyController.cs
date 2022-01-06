@@ -41,7 +41,7 @@ public class EnemyController : LivingCreatures
     {
         if (!IsPaused())
         {
-            //AffectedByGravity();
+            AffectedByGravity();
             //FreezeLocalVelocity();
         }
     }
@@ -78,7 +78,7 @@ public class EnemyController : LivingCreatures
 
     void AffectedByGravity()
     {
-        agent.velocity -= stage.transform.up * gravity * Time.fixedDeltaTime;
+        rb.velocity -= stage.transform.up * gravity * Time.fixedDeltaTime;
     }
 
     public void SetValuesThenMove(StageMovementValue values)

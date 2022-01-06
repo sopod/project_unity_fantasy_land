@@ -136,7 +136,7 @@ public class PlayerController : LivingCreatures
             // turn
             if (values.isTurning)
             {
-                turnQuat = Quaternion.FromToRotation(transform.up, stage.transform.up);
+                //turnQuat = Quaternion.FromToRotation(transform.up, stage.transform.up);
                 
                 //turnQuat = Quaternion.AngleAxis(values.swingAngleCur, centerforTurn);
                 //resPos = (turnQuat * (resPos - stage.transform.position) + stage.transform.position); //transform.RotateAround(stage.transform.position, Vector3.up, machineSpinSpeed * Time.fixedDeltaTime);
@@ -153,10 +153,15 @@ public class PlayerController : LivingCreatures
             if (values.isSpining && isOnStage)
                 rb.rotation = spinQuat * rb.rotation;
 
-            if (values.isTurning && Mathf.Abs(values.stageX - transform.rotation.eulerAngles.x) > 0.01f)
-                rb.rotation = turnQuat * rb.rotation;
                 
             rb.position = resPos;
+
+
+            if (values.isTurning)
+            {
+                turnQuat = Quaternion.FromToRotation(centerOfCreature.transform.up, stage.transform.up);
+                rb.rotation = turnQuat * rb.rotation;
+            }   
         }
     }
 
@@ -166,7 +171,7 @@ public class PlayerController : LivingCreatures
         {
             Vector3 dir = GetDirectionFromStageToCreature();
 
-            rb.AddForce(dir * machineRadius * (55.5f + _spinSpeedUp) * Mathf.Deg2Rad * Time.fixedDeltaTime);
+            rb.velocity += (dir * machineRadius * (55.5f + _spinSpeedUp) * Mathf.Deg2Rad * Time.fixedDeltaTime);
 
             //if (GameManager.Instance.IsRightSpin)
             //    rb.velocity += stage.transform.forward * machineRadius * (62.0f + _spinSpeedUp) * Mathf.Deg2Rad * Time.fixedDeltaTime;

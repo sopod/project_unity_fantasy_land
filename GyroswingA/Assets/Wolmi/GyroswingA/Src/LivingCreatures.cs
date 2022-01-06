@@ -89,7 +89,7 @@ public class LivingCreatures : MovingThings
 
     protected Vector3 GetDirectionFromStageToCreature()
     {
-        Vector3 centerPosOfCreature = centerOfCreature.transform.position; // GetComponent<Renderer>().bounds.center;
+        Vector3 centerPosOfCreature = centerOfCreature.GetComponent<Renderer>().bounds.center;
         Vector3 fromStageToCreature = centerPosOfCreature - stage.transform.position;
         float height = Vector3.Dot(fromStageToCreature, stage.transform.up.normalized);
 
@@ -99,6 +99,8 @@ public class LivingCreatures : MovingThings
         Debug.DrawRay(centerPosOfCreature, res, Color.red);
 
         return res;
+
+
     }
 
 

@@ -67,21 +67,21 @@ public class GameManager : MonoBehaviour
     bool isMachineTurning = true;
     bool isMachineSpining = true;
 
-    //[Range(0, 50)] public
+    [Range(0, 50)] public
     float machineSwingSpeed = 10.0f;
-    //[Range(0, 90)] public
+    [Range(0, 90)] public
     float machineSwingAngleMax = 30.0f;
-    //[Range(0, 50)] public
+    [Range(0, 50)] public
     float machineSpinSpeed = 10.0f;
     bool isSpiningCW = true;
 
     // player
-    //[Range(0, 5)] public
+    [Range(0, 5)] public
     float playerMoveSpeed = 2.0f;
-    //[Range(0, 150)] public
-    float playerRotateSpeed = 100.0f;
-    //[Range(0, 5)] public
-    float playerJumpPower = 3.0f;
+    [Range(0, 150)] public
+    float playerRotateSpeed = 40.0f;
+    [Range(0, 5)] public
+    float playerJumpPower = 5.0f;
     
 
 
