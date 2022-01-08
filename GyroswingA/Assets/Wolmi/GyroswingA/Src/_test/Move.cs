@@ -5,13 +5,13 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     Rigidbody rb;
-    KeyManager key;
+    KeyController key;
     [SerializeField] GameObject stage;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        key = new KeyManager();
+        key = new KeyController();
 
 
 

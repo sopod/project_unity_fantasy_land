@@ -60,7 +60,7 @@ public class PendulumMovement : MonoBehaviour
         {
             this.previousStatePosition = this.currentStatePosition;
             this.currentStatePosition = this.PendulumUpdate(this.currentStatePosition, this.dt);
-            //integrate(state, this.t, this.dt);
+            //integrate(BtState, this.t, this.dt);
             accumulator -= this.dt;
             this.t += this.dt;
         }
@@ -92,7 +92,7 @@ public class PendulumMovement : MonoBehaviour
     {
         this.currentVelocity = Vector3.zero;
 
-        // Set the transition state
+        // Set the transition BtState
         this.currentStatePosition = this.Bob.transform.position;
     }
 
@@ -108,7 +108,7 @@ public class PendulumMovement : MonoBehaviour
         // Put the bob back in the place we first saw it at in `Start()`
         this.Bob.transform.position = resetBobPosition;
 
-        // Set the transition state
+        // Set the transition BtState
         this.currentStatePosition = resetBobPosition;
     }
 

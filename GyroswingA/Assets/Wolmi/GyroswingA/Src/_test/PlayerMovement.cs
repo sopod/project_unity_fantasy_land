@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : Mover
 {
-    KeyManager key;
+    KeyController key;
     
     void Start()
     {
         Set();
-        key = new KeyManager();
+        key = new KeyController();
     }
 
     void Update()

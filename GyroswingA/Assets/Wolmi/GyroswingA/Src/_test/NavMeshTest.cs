@@ -12,7 +12,7 @@ public class NavMeshTest : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameManager.Instance.player.gameObject;
+        //player = GameManager.Instance.player.gameObject;
     }
 
     void Update()

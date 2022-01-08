@@ -43,6 +43,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957c6f20153d997419299b242d8cddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  stageLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  failZoneLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stagePoleLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   machine: {fileID: 0}
   player: {fileID: 0}
   ui: {fileID: 0}

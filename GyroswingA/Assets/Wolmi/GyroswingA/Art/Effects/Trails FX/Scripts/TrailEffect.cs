@@ -612,7 +612,7 @@ namespace TrailsFX {
             Mesh mesh = new Mesh();
             mesh.name = "TrailQuadMesh";
 
-            // Setup vertices
+            // SetBT vertices
             Vector3[] newVertices = new Vector3[4];
             float halfHeight = 0.5f;
             float halfWidth = 0.5f;
@@ -621,17 +621,17 @@ namespace TrailsFX {
             newVertices[2] = new Vector3(halfWidth, -halfHeight, 0);
             newVertices[3] = new Vector3(halfWidth, halfHeight, 0);
 
-            // Setup UVs
+            // SetBT UVs
             Vector2[] newUVs = new Vector2[newVertices.Length];
             newUVs[0] = new Vector2(0, 0);
             newUVs[1] = new Vector2(0, 1);
             newUVs[2] = new Vector2(1, 0);
             newUVs[3] = new Vector2(1, 1);
 
-            // Setup triangles
+            // SetBT triangles
             int[] newTriangles = new int[] { 0, 1, 2, 3, 2, 1 };
 
-            // Setup normals
+            // SetBT normals
             Vector3[] newNormals = new Vector3[newVertices.Length];
             for (int i = 0; i < newNormals.Length; i++) {
                 newNormals[i] = Vector3.forward;
