@@ -7,10 +7,19 @@ public class TimeController
     float startTime = 0.0f;
     float limitTime = 0.0f;
 
-    public bool IsFinished {
+    public bool IsFinished 
+    {
         get
         {
             return GetRemainingTime() <= 0.0f && limitTime != 0.0f && startTime != 0.0f;
+        }
+    }
+
+    public bool IsRunning
+    {
+        get
+        {
+            return startTime != 0.0f;
         }
     }
 

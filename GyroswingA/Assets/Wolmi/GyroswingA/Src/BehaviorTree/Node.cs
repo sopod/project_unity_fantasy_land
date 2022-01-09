@@ -13,6 +13,8 @@ public enum BT_State
 
 public class Node
 {
+    protected bool finishFlag;
+
     protected BT_State state;
     protected Node parent;
     protected List<Node> children;
@@ -20,6 +22,7 @@ public class Node
 
     public Node(BlackBoard bb)
     {
+        finishFlag = false;
         parent = null;
         children = new List<Node>();
         this.bb = bb;
@@ -27,17 +30,18 @@ public class Node
 
     public Node(BlackBoard bb, List<Node> nodes)
     {
+        finishFlag = false;
         parent = null;
         children = new List<Node>();
         this.bb = bb;
 
         for (int i = 0; i < nodes.Count; i++)
         {
-            AddNode(nodes[i]);
+            AttachChildNode(nodes[i]);
         }
     }
 
-    void AddNode(Node node)
+    protected void AttachChildNode(Node node)
     {
         // attach parent when added
         node.parent = this;
@@ -48,5 +52,23 @@ public class Node
     {
         return state;
     }
-    
+
+    public void SetFinishedFlag(bool isFinished)
+    {
+        finishFlag = isFinished;
+    }
+
+    protected void CheckFinishFlag()
+    {
+        if (finishFlag)
+        {
+            state = BT_State.Success;
+            finishFlag = false;
+        }
+        else
+        {
+            state = BT_State.Running;
+        }
+    }
+
 }

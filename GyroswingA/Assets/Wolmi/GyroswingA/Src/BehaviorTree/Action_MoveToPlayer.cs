@@ -21,9 +21,10 @@ public class Action_MoveToPlayer : Node
             
         }
 
-        bb.character.GetComponent<EnemyController>().StartMoveEnemy(EnemyMovement.MoveForward);
+        bb.character.GetComponent<EnemyController>().AddEnemyMovement(EnemyMovement.MoveForward, this);
 
-        return BT_State.Success;
+        CheckFinishFlag();
+        return state;
     }
     
 }

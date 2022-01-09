@@ -12,6 +12,8 @@ public class BlackBoard
     public float playerAttackRadius { get { return 0.3f; } }
     public float rayDistance { get { return 1.0f; } }
 
+    public bool movementsAllDone { get { return character.GetComponent<EnemyController>().movementsAllDone; } }
+
     public BlackBoard(GameObject monster)
     {
         character = monster;

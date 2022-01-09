@@ -108,7 +108,7 @@ public class LivingCreatures : MovingThings
         FreezeLocalXZRotation();
     }
 
-    protected void Move(float key)
+    public void Move(float key)
     {
         rb.position += transform.forward * key * moveSpeed * Time.deltaTime;
 
@@ -138,7 +138,7 @@ public class LivingCreatures : MovingThings
         //}
     }
 
-    protected void Turn(float key)
+    public void Turn(float key)
     {
         float angle = key * rotSpeed * Time.fixedDeltaTime;
         rb.rotation *= Quaternion.AngleAxis(angle, Vector3.up);
@@ -148,7 +148,7 @@ public class LivingCreatures : MovingThings
         //transform.localRotation *= Quaternion.AngleAxis(angle, Vector3.up);
     }
 
-    protected void Jump()
+    public void Jump()
     {
         if (isJumping) return;
 
@@ -158,7 +158,7 @@ public class LivingCreatures : MovingThings
         rb.AddForce(stage.transform.up * jumpPower, ForceMode.Impulse);
     }
 
-    protected void Dash()
+    public void Dash()
     {
         rb.AddForce(transform.forward * 1000.0f);
     }

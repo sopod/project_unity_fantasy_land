@@ -15,11 +15,11 @@ C:/ForGitHub/project_unity_gyroswing_a/GyroswingA
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-1576
+10778
 Successfully changed project path to: C:/ForGitHub/project_unity_gyroswing_a/GyroswingA
 C:/ForGitHub/project_unity_gyroswing_a/GyroswingA
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 72.12 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 70.68 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.24f1 (79c78de19888)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.24f1/Editor/Data/Resources/UnitySubsystems
@@ -35,76 +35,76 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.24f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.24f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.24f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56972
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56352
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.24f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001154 seconds.
+Registered in 0.001045 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 73.07 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 70.42 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.452 seconds
+- Completed reload, in  0.430 seconds
 Domain Reload Profiling:
-	ReloadAssembly (452ms)
-		BeginReloadAssembly (36ms)
+	ReloadAssembly (430ms)
+		BeginReloadAssembly (35ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (365ms)
+		EndReloadAssembly (347ms)
 			LoadAssemblies (34ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (100ms)
+			SetupTypeCache (95ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (19ms)
-			SetupLoadedEditorAssemblies (171ms)
+			SetupLoadedEditorAssemblies (161ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (73ms)
-				BeforeProcessingInitializeOnLoad (13ms)
-				ProcessInitializeOnLoadAttributes (60ms)
-				ProcessInitializeOnLoadMethodAttributes (21ms)
+				RefreshPlugins (70ms)
+				BeforeProcessingInitializeOnLoad (12ms)
+				ProcessInitializeOnLoadAttributes (56ms)
+				ProcessInitializeOnLoadMethodAttributes (20ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.003961 seconds.
+Registered in 0.003941 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.75 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.806 seconds
+- Completed reload, in  0.751 seconds
 Domain Reload Profiling:
-	ReloadAssembly (807ms)
-		BeginReloadAssembly (99ms)
+	ReloadAssembly (752ms)
+		BeginReloadAssembly (94ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (17ms)
-		EndReloadAssembly (663ms)
-			LoadAssemblies (65ms)
+			CreateAndSetChildDomain (15ms)
+		EndReloadAssembly (615ms)
+			LoadAssemblies (62ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (245ms)
+			SetupTypeCache (221ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (36ms)
-			SetupLoadedEditorAssemblies (251ms)
+			RebuildScriptCaches (33ms)
+			SetupLoadedEditorAssemblies (235ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (77ms)
-				ProcessInitializeOnLoadAttributes (157ms)
-				ProcessInitializeOnLoadMethodAttributes (8ms)
-				AfterProcessingInitializeOnLoad (4ms)
+				BeforeProcessingInitializeOnLoad (73ms)
+				ProcessInitializeOnLoadAttributes (147ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (3ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (5ms)
@@ -112,14 +112,14 @@ Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 1.18 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.74 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3212 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 129.8 MB.
+Unloading 3213 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 129.9 MB.
 System memory in use after: 130.0 MB.
 
-Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 3657.
-Total: 2.860600 ms (FindLiveObjects: 0.372700 ms CreateObjectMapping: 0.085500 ms MarkObjects: 2.297300 ms  DeleteObjects: 0.104100 ms)
+Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 3658.
+Total: 2.648000 ms (FindLiveObjects: 0.281900 ms CreateObjectMapping: 0.085700 ms MarkObjects: 2.180300 ms  DeleteObjects: 0.099500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -134,52 +134,402 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/Wolmi/GyroswingA/Prefabs/Gyroswing Machine.prefab
-  artifactKey: Guid(95f0d850e5685af408d24b59faf4f301) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Wolmi/GyroswingA/Prefabs/Gyroswing Machine.prefab using Guid(95f0d850e5685af408d24b59faf4f301) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0906deca11c7727ba59937b80bc449e8') in 0.203271 seconds 
-  Import took 0.218307 seconds .
+  path: Assets/Wolmi/GyroswingA/Src/BehaviorTree/Action_MoveToPlayer.cs
+  artifactKey: Guid(3d3f92ca2276aec4abf340883b866f06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/BehaviorTree/Action_MoveToPlayer.cs using Guid(3d3f92ca2276aec4abf340883b866f06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '392192f62c50ede6970cd71581675de8') in 0.050337 seconds 
+  Import took 0.054700 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 10.688869 seconds.
-  path: Assets/Wolmi/GyroswingA/Src/Base/Options.cs
-  artifactKey: Guid(b7e682191b9c41a4d883c2387028206c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Wolmi/GyroswingA/Src/Base/Options.cs using Guid(b7e682191b9c41a4d883c2387028206c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92ece1b887aa95c7b0eda255cee7c155') in 0.008644 seconds 
-  Import took 0.013387 seconds .
+  Time since last request: 0.000151 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/BehaviorTree/Action_Patrol.cs
+  artifactKey: Guid(c105e136958830748ac3ad578c7a6864) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/BehaviorTree/Action_Patrol.cs using Guid(c105e136958830748ac3ad578c7a6864) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48df303518e94b3cbade8dbc798eb477') in 0.006611 seconds 
+  Import took 0.010640 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.561269 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f521c3f0be317ef218634b2499c37c0f') in 0.007789 seconds 
+  Import took 0.012365 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 38.740038 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04b727f7b9bce59f957804390b380434') in 0.002286 seconds 
+  Import took 0.007187 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 14.413074 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0db98a79eb324a0e8fd1749389069f8f') in 0.002122 seconds 
+  Import took 0.007115 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.600232 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5319db95f88c52a9236c7f66bd874cc2') in 0.002300 seconds 
+  Import took 0.007099 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.385976 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d627e009f7fdede5fcc473d9ecc8610') in 0.002395 seconds 
+  Import took 0.007190 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 16.995249 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '767e16084625c2a6dc399d28fb9b9aa3') in 0.002426 seconds 
+  Import took 0.007146 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 38.339744 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad47ceb344f29eaffd42aa7c24e6ba93') in 0.002453 seconds 
+  Import took 0.007161 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 50.608492 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1bb61bf6e8dade695178cce6a5645391') in 0.002720 seconds 
+  Import took 0.009565 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.454800 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7ba9d157d4ecb5c0630ead6bff86b57') in 0.002233 seconds 
+  Import took 0.007122 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 69.500930 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c888d081bff384dfddae35b256db3958') in 0.002318 seconds 
+  Import took 0.006772 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 33.048832 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65b895e5d351d0672d4f15a1923b667b') in 0.002242 seconds 
+  Import took 0.006715 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.771399 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c123a9b6ecffa8f671b7e85ea59f08ea') in 0.002117 seconds 
+  Import took 0.006812 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 134.823970 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61a87c892733cfec507e0fe98eb5f546') in 0.002187 seconds 
+  Import took 0.007145 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.278825 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24a7e740daae25a222137e092181fec7') in 0.002598 seconds 
+  Import took 0.007919 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 16.774089 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f6869b40b0c7479915eddb2d23ddb85') in 0.002164 seconds 
+  Import took 0.006517 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 129.896355 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43359c5307d6e83b5ed22e183b70cddc') in 0.002504 seconds 
+  Import took 0.006981 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 29.303327 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb521bfd52bed202fb27c51bd9530783') in 0.002527 seconds 
+  Import took 0.007639 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.400916 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad88617ff9e935fae209088ed59428ba') in 0.002782 seconds 
+  Import took 0.007938 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.720431 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72307ec6c7ce50e5962930440b11280b') in 0.002178 seconds 
+  Import took 0.007017 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.336659 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '989882d321745fd0b21048d1764ccc55') in 0.002460 seconds 
+  Import took 0.007291 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.816171 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd5e61259fde9e64b62c93334f8edc509') in 0.002484 seconds 
+  Import took 0.007393 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.044570 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'baae48f17d79dcdccf08f4ae0dc2a7ca') in 0.002227 seconds 
+  Import took 0.006650 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.222501 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a545486d5934610e744938dbfd8a9ff') in 0.002204 seconds 
+  Import took 0.006554 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 88.241521 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6de7474aee643aea12684f09e38e809c') in 0.002171 seconds 
+  Import took 0.007126 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.468272 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '379f6a40cab5570c5b73890cdde7af88') in 0.002194 seconds 
+  Import took 0.007026 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.560174 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e14d41b0748630f847a0c1ebfbaa4b3') in 0.002240 seconds 
+  Import took 0.007192 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.623961 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b29d7ab4f9aa7d437e3db8d83915c75') in 0.002165 seconds 
+  Import took 0.006974 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.307620 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01cfbcbd21528921c55cf64e56d163a3') in 0.002224 seconds 
+  Import took 0.006613 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.004260 seconds.
+Registered in 0.006306 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.77 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.823 seconds
+- Completed reload, in  0.736 seconds
 Domain Reload Profiling:
-	ReloadAssembly (824ms)
-		BeginReloadAssembly (85ms)
+	ReloadAssembly (736ms)
+		BeginReloadAssembly (84ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (34ms)
-		EndReloadAssembly (688ms)
-			LoadAssemblies (77ms)
+			CreateAndSetChildDomain (30ms)
+		EndReloadAssembly (609ms)
+			LoadAssemblies (62ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (282ms)
+			SetupTypeCache (230ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (31ms)
-			SetupLoadedEditorAssemblies (228ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (224ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (67ms)
+				ProcessInitializeOnLoadAttributes (141ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.83 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.4 MB.
+System memory in use after: 127.6 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3660.
+Total: 2.572300 ms (FindLiveObjects: 0.293500 ms CreateObjectMapping: 0.085500 ms MarkObjects: 2.114100 ms  DeleteObjects: 0.078400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004220 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.80 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.752 seconds
+Domain Reload Profiling:
+	ReloadAssembly (752ms)
+		BeginReloadAssembly (88ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (29ms)
+		EndReloadAssembly (622ms)
+			LoadAssemblies (62ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (236ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (28ms)
+			SetupLoadedEditorAssemblies (227ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (63ms)
+				ProcessInitializeOnLoadAttributes (148ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.73 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.5 MB.
+System memory in use after: 127.7 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3662.
+Total: 2.967400 ms (FindLiveObjects: 0.303700 ms CreateObjectMapping: 0.074900 ms MarkObjects: 2.501600 ms  DeleteObjects: 0.086400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 72.482549 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc5b3bcf9b24b0b1709bdd7f56bb79cd') in 0.006634 seconds 
+  Import took 0.011434 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004130 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.11 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.717 seconds
+Domain Reload Profiling:
+	ReloadAssembly (718ms)
+		BeginReloadAssembly (91ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (31ms)
+		EndReloadAssembly (583ms)
+			LoadAssemblies (63ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (217ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (213ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (4ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (65ms)
-				ProcessInitializeOnLoadAttributes (146ms)
+				BeforeProcessingInitializeOnLoad (60ms)
+				ProcessInitializeOnLoadAttributes (137ms)
 				ProcessInitializeOnLoadMethodAttributes (7ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
@@ -189,70 +539,11 @@ Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 132.5 MB.
-System memory in use after: 132.7 MB.
+System memory in use before: 127.5 MB.
+System memory in use after: 127.7 MB.
 
-Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 3669.
-Total: 2.778800 ms (FindLiveObjects: 0.339800 ms CreateObjectMapping: 0.080900 ms MarkObjects: 2.274900 ms  DeleteObjects: 0.082400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004376 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.77 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.756 seconds
-Domain Reload Profiling:
-	ReloadAssembly (756ms)
-		BeginReloadAssembly (86ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (627ms)
-			LoadAssemblies (65ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (242ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (28ms)
-			SetupLoadedEditorAssemblies (224ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (3ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (64ms)
-				ProcessInitializeOnLoadAttributes (144ms)
-				ProcessInitializeOnLoadMethodAttributes (7ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.84 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 132.6 MB.
-System memory in use after: 132.8 MB.
-
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3671.
-Total: 3.054500 ms (FindLiveObjects: 0.359300 ms CreateObjectMapping: 0.092100 ms MarkObjects: 2.517800 ms  DeleteObjects: 0.083700 ms)
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3664.
+Total: 2.573900 ms (FindLiveObjects: 0.254000 ms CreateObjectMapping: 0.082900 ms MarkObjects: 2.151000 ms  DeleteObjects: 0.085100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -267,16 +558,281 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 551.703407 seconds.
-  path: Assets/Wolmi/GyroswingA/Src/Base/Options.cs
-  artifactKey: Guid(b7e682191b9c41a4d883c2387028206c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Wolmi/GyroswingA/Src/Base/Options.cs using Guid(b7e682191b9c41a4d883c2387028206c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b064e9e27ae503014bcc08e2789ef73') in 0.008218 seconds 
-  Import took 0.013328 seconds .
+  Time since last request: 200.394172 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93fb5b5a0b7d17a3a036fd244bfb7dcf') in 0.006214 seconds 
+  Import took 0.011189 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 80.228980 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e08c708a38b06202efc9df56ed3f9e14') in 0.002433 seconds 
+  Import took 0.007300 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.306810 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de96a73b8d95cc210a1e058895fea401') in 0.002325 seconds 
+  Import took 0.007276 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.394589 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8dfa413b529710d2618ccc29361fac8') in 0.002366 seconds 
+  Import took 0.006880 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.217072 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85efbba9d4b6ea638e770620cb6f6253') in 0.002544 seconds 
+  Import took 0.007066 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 19.789029 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3726040c296c5ea225bbcb701c1a217b') in 0.002274 seconds 
+  Import took 0.007111 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.366696 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e67bdeb3267cc6043e6a18acebbe6fe') in 0.002336 seconds 
+  Import took 0.007017 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 642.434044 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b7bc1386dabb5d3f66cecc293abd390') in 0.002509 seconds 
+  Import took 0.007440 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 518.377568 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c359ee3a7d2127efa18aa385dea3e039') in 0.002261 seconds 
+  Import took 0.007444 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.250630 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df9b6a0a3b61669c98d0d70c1e3678f1') in 0.002352 seconds 
+  Import took 0.007032 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.417429 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a12236d3a2a757ef98dab46070b33fc') in 0.002201 seconds 
+  Import took 0.006993 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.508244 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68dfdc6b3515b46f6ccff884d47232a2') in 0.002267 seconds 
+  Import took 0.007071 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.004618 seconds.
+Registered in 0.003860 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.79 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.717 seconds
+Domain Reload Profiling:
+	ReloadAssembly (718ms)
+		BeginReloadAssembly (86ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (30ms)
+		EndReloadAssembly (590ms)
+			LoadAssemblies (61ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (218ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (216ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (61ms)
+				ProcessInitializeOnLoadAttributes (140ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.5 MB.
+System memory in use after: 127.7 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3666.
+Total: 2.704200 ms (FindLiveObjects: 0.310800 ms CreateObjectMapping: 0.072800 ms MarkObjects: 2.235300 ms  DeleteObjects: 0.084300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007284 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.89 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.710 seconds
+Domain Reload Profiling:
+	ReloadAssembly (711ms)
+		BeginReloadAssembly (93ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (30ms)
+		EndReloadAssembly (576ms)
+			LoadAssemblies (60ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (212ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (212ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (60ms)
+				ProcessInitializeOnLoadAttributes (137ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.78 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.6 MB.
+System memory in use after: 127.7 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3668.
+Total: 2.608800 ms (FindLiveObjects: 0.257400 ms CreateObjectMapping: 0.083100 ms MarkObjects: 2.182000 ms  DeleteObjects: 0.085500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003927 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.79 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.704 seconds
+Domain Reload Profiling:
+	ReloadAssembly (704ms)
+		BeginReloadAssembly (93ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (28ms)
+		EndReloadAssembly (568ms)
+			LoadAssemblies (59ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (210ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (25ms)
+			SetupLoadedEditorAssemblies (208ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (59ms)
+				ProcessInitializeOnLoadAttributes (135ms)
+				ProcessInitializeOnLoadMethodAttributes (6ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.79 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.6 MB.
+System memory in use after: 127.7 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3670.
+Total: 2.591700 ms (FindLiveObjects: 0.323900 ms CreateObjectMapping: 0.096000 ms MarkObjects: 2.091200 ms  DeleteObjects: 0.079700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003837 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -284,42 +840,42 @@ Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.82 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.857 seconds
+- Completed reload, in  0.711 seconds
 Domain Reload Profiling:
-	ReloadAssembly (857ms)
-		BeginReloadAssembly (93ms)
+	ReloadAssembly (712ms)
+		BeginReloadAssembly (97ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (34ms)
-		EndReloadAssembly (715ms)
-			LoadAssemblies (74ms)
+			CreateAndSetChildDomain (31ms)
+		EndReloadAssembly (572ms)
+			LoadAssemblies (60ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (270ms)
+			SetupTypeCache (210ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (33ms)
-			SetupLoadedEditorAssemblies (261ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (211ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
+				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (73ms)
-				ProcessInitializeOnLoadAttributes (169ms)
-				ProcessInitializeOnLoadMethodAttributes (8ms)
-				AfterProcessingInitializeOnLoad (6ms)
+				BeforeProcessingInitializeOnLoad (59ms)
+				ProcessInitializeOnLoadAttributes (137ms)
+				ProcessInitializeOnLoadMethodAttributes (6ms)
+				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.95 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.75 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 132.6 MB.
-System memory in use after: 132.8 MB.
+System memory in use before: 127.6 MB.
+System memory in use after: 127.8 MB.
 
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3673.
-Total: 3.491500 ms (FindLiveObjects: 0.324300 ms CreateObjectMapping: 0.163500 ms MarkObjects: 2.915800 ms  DeleteObjects: 0.086800 ms)
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3672.
+Total: 2.567800 ms (FindLiveObjects: 0.300700 ms CreateObjectMapping: 0.083400 ms MarkObjects: 2.104100 ms  DeleteObjects: 0.078600 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -335,50 +891,109 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.003974 seconds.
+Registered in 0.003768 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.77 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.742 seconds
+- Completed reload, in  0.685 seconds
 Domain Reload Profiling:
-	ReloadAssembly (743ms)
-		BeginReloadAssembly (84ms)
+	ReloadAssembly (685ms)
+		BeginReloadAssembly (77ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (616ms)
-			LoadAssemblies (64ms)
+			CreateAndSetChildDomain (28ms)
+		EndReloadAssembly (566ms)
+			LoadAssemblies (57ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (231ms)
+			SetupTypeCache (208ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (28ms)
-			SetupLoadedEditorAssemblies (223ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (210ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (64ms)
-				ProcessInitializeOnLoadAttributes (144ms)
+				BeforeProcessingInitializeOnLoad (60ms)
+				ProcessInitializeOnLoadAttributes (136ms)
+				ProcessInitializeOnLoadMethodAttributes (6ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.6 MB.
+System memory in use after: 127.8 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3674.
+Total: 2.514500 ms (FindLiveObjects: 0.254400 ms CreateObjectMapping: 0.085900 ms MarkObjects: 2.092100 ms  DeleteObjects: 0.081400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004659 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.697 seconds
+Domain Reload Profiling:
+	ReloadAssembly (697ms)
+		BeginReloadAssembly (90ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (28ms)
+		EndReloadAssembly (566ms)
+			LoadAssemblies (57ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (211ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (208ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (59ms)
+				ProcessInitializeOnLoadAttributes (134ms)
 				ProcessInitializeOnLoadMethodAttributes (7ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.00 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.76 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 132.6 MB.
-System memory in use after: 132.8 MB.
+System memory in use before: 127.6 MB.
+System memory in use after: 127.8 MB.
 
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3675.
-Total: 3.664900 ms (FindLiveObjects: 0.321600 ms CreateObjectMapping: 0.142500 ms MarkObjects: 3.087400 ms  DeleteObjects: 0.112200 ms)
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3676.
+Total: 2.565700 ms (FindLiveObjects: 0.254200 ms CreateObjectMapping: 0.082800 ms MarkObjects: 2.144800 ms  DeleteObjects: 0.083000 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -394,95 +1009,872 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.004047 seconds.
+Registered in 0.003796 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.84 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.89 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.767 seconds
+- Completed reload, in  0.711 seconds
 Domain Reload Profiling:
-	ReloadAssembly (768ms)
-		BeginReloadAssembly (92ms)
+	ReloadAssembly (712ms)
+		BeginReloadAssembly (98ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (29ms)
+		EndReloadAssembly (570ms)
+			LoadAssemblies (58ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (211ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (213ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (60ms)
+				ProcessInitializeOnLoadAttributes (138ms)
+				ProcessInitializeOnLoadMethodAttributes (6ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.75 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.6 MB.
+System memory in use after: 127.8 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3678.
+Total: 2.546000 ms (FindLiveObjects: 0.268100 ms CreateObjectMapping: 0.082700 ms MarkObjects: 2.118000 ms  DeleteObjects: 0.076500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003910 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.81 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.748 seconds
+Domain Reload Profiling:
+	ReloadAssembly (748ms)
+		BeginReloadAssembly (83ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (29ms)
+		EndReloadAssembly (624ms)
+			LoadAssemblies (61ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (238ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (30ms)
+			SetupLoadedEditorAssemblies (221ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (68ms)
+				ProcessInitializeOnLoadAttributes (138ms)
+				ProcessInitializeOnLoadMethodAttributes (6ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.95 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.6 MB.
+System memory in use after: 127.8 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3680.
+Total: 2.640800 ms (FindLiveObjects: 0.288600 ms CreateObjectMapping: 0.084800 ms MarkObjects: 2.187000 ms  DeleteObjects: 0.079500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003978 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.75 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.695 seconds
+Domain Reload Profiling:
+	ReloadAssembly (696ms)
+		BeginReloadAssembly (87ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (631ms)
-			LoadAssemblies (63ms)
+			CreateAndSetChildDomain (29ms)
+		EndReloadAssembly (566ms)
+			LoadAssemblies (57ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (244ms)
+			SetupTypeCache (211ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (28ms)
-			SetupLoadedEditorAssemblies (225ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (209ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (59ms)
+				ProcessInitializeOnLoadAttributes (136ms)
+				ProcessInitializeOnLoadMethodAttributes (6ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.82 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.6 MB.
+System memory in use after: 127.8 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3682.
+Total: 2.695900 ms (FindLiveObjects: 0.252000 ms CreateObjectMapping: 0.084100 ms MarkObjects: 2.260800 ms  DeleteObjects: 0.097300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 392.763588 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73b253e4795e9a48bedc993a9bef7d26') in 0.006318 seconds 
+  Import took 0.011409 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.248213 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs
+  artifactKey: Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyController.cs using Guid(b9bbd5c69e34ad7439c551ea2858440f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07b0221055a03baeb945f7d00c65018c') in 0.002284 seconds 
+  Import took 0.006968 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 76.489278 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f66e42967ad2c28f8527ac092f0060e4') in 0.008520 seconds 
+  Import took 0.013482 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.664416 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e581af6ef6d572cd1614803d2432d3f9') in 0.002200 seconds 
+  Import took 0.006905 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 44.351356 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b2ce0cb2740525008265751422502a1') in 0.002123 seconds 
+  Import took 0.006426 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.991744 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a5de3076521a0b8c77e122c58e75f9f') in 0.002368 seconds 
+  Import took 0.007185 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.275380 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b1ed2453b9d8cd3b877b25f68c9cc53') in 0.002043 seconds 
+  Import took 0.006476 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.128234 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67b197ada53c894af1573aa05782804b') in 0.002134 seconds 
+  Import took 0.006776 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 97.061179 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ce1de751eb72c99a20724bfe3a78b5e') in 0.002264 seconds 
+  Import took 0.007216 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 32.513743 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63223906de26a8cc4b7f05ec39948aa2') in 0.002160 seconds 
+  Import took 0.006875 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.530503 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c447abec108167da74adefa748c85ae9') in 0.002116 seconds 
+  Import took 0.006640 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.372399 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a90d85f02f2dd869423c8839f0b105d6') in 0.002280 seconds 
+  Import took 0.006613 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.476093 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba317f206bf08730467e8a0a7d412963') in 0.002216 seconds 
+  Import took 0.006599 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 89.708806 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fde4ccb20cd90246d0af9e2438775567') in 0.002187 seconds 
+  Import took 0.006883 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 59.819946 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fb30ece68ed6fd1059e270856d746bc') in 0.002207 seconds 
+  Import took 0.006748 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.637567 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b01711796b0cf42e09d943872ee0633f') in 0.002268 seconds 
+  Import took 0.006715 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 25.357557 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2bed8daa9745205fe99cdada5702c86') in 0.002409 seconds 
+  Import took 0.006696 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 48.066126 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34a8957b7f9b019a868444446dcd17ce') in 0.002239 seconds 
+  Import took 0.007015 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 24.462992 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4dfa23f41e79ab72e70b07618d19e37') in 0.002217 seconds 
+  Import took 0.006490 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.383520 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cadb7217510601c99f4cdedefbab9c0d') in 0.002319 seconds 
+  Import took 0.006919 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.635411 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ce8e802b085c09ede6aa499be9e6e66') in 0.002165 seconds 
+  Import took 0.006553 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 37.100893 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3bbef7978084a4542474195090795f4') in 0.002165 seconds 
+  Import took 0.006513 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.523391 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3feb389aa65f49dbab440ca7ef4907f') in 0.002187 seconds 
+  Import took 0.006848 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 16.017020 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f6460410cd19d67f5868492c8f4a9c9') in 0.002150 seconds 
+  Import took 0.006669 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.682104 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2bc14cf7f0227865bfe1aa6ff5e4d461') in 0.002398 seconds 
+  Import took 0.007174 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.757516 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a713a244309cb277cc8a501c9b719582') in 0.002255 seconds 
+  Import took 0.007086 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 98.469056 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d49e8d85f0b3b8b2e7fb9095b04bb67') in 0.002212 seconds 
+  Import took 0.006849 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.026714 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0dfadf71a57efc97db9da242012b5f4') in 0.002135 seconds 
+  Import took 0.006857 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.294663 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df5bc554f81c346d8dc30e633afb7bec') in 0.002308 seconds 
+  Import took 0.006762 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.160854 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d01be7dd7b4b595117901ad1a13e2e0') in 0.002086 seconds 
+  Import took 0.006616 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.051707 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '232b28f5fe8ef9a59d060007833afece') in 0.002183 seconds 
+  Import took 0.006776 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.098006 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49a39ee973f490e23f38335901ace305') in 0.002377 seconds 
+  Import took 0.006795 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.742473 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab28bf37e973776324fe871c4e946362') in 0.002147 seconds 
+  Import took 0.006457 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.488250 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b4cf36b72e3bb4f955d5e76d95ff958f') in 0.002247 seconds 
+  Import took 0.007044 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 14.792946 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b3dddfed049c7d2d06915cb933d39244') in 0.002151 seconds 
+  Import took 0.006886 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.328133 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f00ee84f9dec48479cc7421dbe5d01b') in 0.002223 seconds 
+  Import took 0.006905 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.342275 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf69ca7301818c9b26f3c63e525d7d05') in 0.002236 seconds 
+  Import took 0.006507 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 255.787880 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3095f75659442d8ecdf59f5161c1acd') in 0.002191 seconds 
+  Import took 0.007130 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 30.027345 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '059efc4042318cff2734946b19d831b9') in 0.002154 seconds 
+  Import took 0.006777 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.852583 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '70c82bdf3d23182e0d5bbaf77cb8fc70') in 0.002117 seconds 
+  Import took 0.006514 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.871982 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a04be85e96e9c10a51435a7583884217') in 0.002327 seconds 
+  Import took 0.006762 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.831720 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14146fcfa7b711c9eb03e790c4173778') in 0.002165 seconds 
+  Import took 0.006792 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.193450 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a12e064e18c6c9cfee264f4020bb6b4') in 0.002297 seconds 
+  Import took 0.006796 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.834447 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '040549867c0e48a4c37828eff4e481a2') in 0.002099 seconds 
+  Import took 0.006429 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 31.568813 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c30fae06eda358521eba006115660a8') in 0.002736 seconds 
+  Import took 0.007565 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.905467 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62dffabddcaac829fe9706a865ee822f') in 0.002200 seconds 
+  Import took 0.006583 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 163.357603 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffe903b5636e82216eccaaeec3889c17') in 0.002172 seconds 
+  Import took 0.006746 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 224.402270 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dadf7872c198a03cd056475117d78322') in 0.002354 seconds 
+  Import took 0.007066 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 35.283155 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eab951ab649400d0f80fa1232944ee5b') in 0.002455 seconds 
+  Import took 0.007206 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 131.643081 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dfac005b31b1fc661495f4b1ffcf8842') in 0.002448 seconds 
+  Import took 0.007209 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.577341 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cedac05866634ba145e1d4a7bc32d50f') in 0.002495 seconds 
+  Import took 0.007085 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 69.705349 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7744bce045b41532fa972e65474c3b51') in 0.002836 seconds 
+  Import took 0.007483 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 97.107017 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69772ca6e9d5353ebcf6fcef36b49258') in 0.002139 seconds 
+  Import took 0.007003 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 36.990514 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca3e4b10955c4f9fc513cacd3ecf4598') in 0.002082 seconds 
+  Import took 0.006557 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.962363 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca2c5c0d0b1efc119cb6dce2a6b53dd6') in 0.002146 seconds 
+  Import took 0.006593 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.169702 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af32bdfd7dd5962c8858d618a1889bef') in 0.002567 seconds 
+  Import took 0.007816 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.245980 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b20388ff83c0fe573b3e52f7dcc04247') in 0.002429 seconds 
+  Import took 0.007670 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 61.969295 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2806b6942c3ddfc535a3148d9d1f83ad') in 0.002184 seconds 
+  Import took 0.006792 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.146474 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '187cc90a4c51c30befd7e2fe45d07e15') in 0.002330 seconds 
+  Import took 0.006903 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.894811 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4edac6798990aed3083824c4f20f855') in 0.002166 seconds 
+  Import took 0.006643 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.938148 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bcf6ecfe3afe755aa1764b57be61d3c') in 0.002144 seconds 
+  Import took 0.006495 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 26.597776 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aef31423a00f0b142ca3cdf143b03d62') in 0.002189 seconds 
+  Import took 0.006532 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.569866 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd366c43997e5d49b8b7695104cc4ac0c') in 0.002124 seconds 
+  Import took 0.006427 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 42.291273 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '086bcdd1e3110bf924927356171c4f93') in 0.002329 seconds 
+  Import took 0.007351 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 14.938850 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18453870e71c719c749d9ed7cc6d73f6') in 0.002462 seconds 
+  Import took 0.007221 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.591263 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85327fb28c5cd5b0739add8f9db3456f') in 0.002292 seconds 
+  Import took 0.007602 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.393399 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82be587a63f395297381f13b6d3b02ae') in 0.002274 seconds 
+  Import took 0.006663 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.511574 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cba4bf60e8bf8aa6dc4b2d550b6ce7d4') in 0.002472 seconds 
+  Import took 0.007392 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.264626 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72615dc435e761ec18186685d5117a2a') in 0.002172 seconds 
+  Import took 0.006537 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.677444 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f849488c013d6bf4321b7311ebde736') in 0.002183 seconds 
+  Import took 0.006551 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 21.261160 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56b5cfe0ae9ea76910307a03dfb5b088') in 0.002475 seconds 
+  Import took 0.007442 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.265993 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1c13b0307180e100cff7ae7faa19981') in 0.002207 seconds 
+  Import took 0.006845 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.730274 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93d00338054e774e7642ed9645026ced') in 0.002307 seconds 
+  Import took 0.007152 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.250924 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7db250e4dc3d59e36320387570a20d88') in 0.002614 seconds 
+  Import took 0.008948 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 176.623503 seconds.
+  path: Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs
+  artifactKey: Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Wolmi/GyroswingA/Src/Objects/EnemyMovement.cs using Guid(1eefd2257e106154da9e2e33c635c6af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62c16252942f67e4a0a33fd53aba2456') in 0.002421 seconds 
+  Import took 0.007309 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004141 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.82 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.730 seconds
+Domain Reload Profiling:
+	ReloadAssembly (730ms)
+		BeginReloadAssembly (81ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (29ms)
+		EndReloadAssembly (605ms)
+			LoadAssemblies (60ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (220ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (222ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (62ms)
+				ProcessInitializeOnLoadAttributes (145ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.77 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3185 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.6 MB.
+System memory in use after: 127.8 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3685.
+Total: 2.714100 ms (FindLiveObjects: 0.272200 ms CreateObjectMapping: 0.085600 ms MarkObjects: 2.275300 ms  DeleteObjects: 0.080400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003931 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.86 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.790 seconds
+Domain Reload Profiling:
+	ReloadAssembly (791ms)
+		BeginReloadAssembly (91ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (28ms)
+		EndReloadAssembly (656ms)
+			LoadAssemblies (99ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (236ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (224ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
 				BeforeProcessingInitializeOnLoad (62ms)
 				ProcessInitializeOnLoadAttributes (146ms)
-				ProcessInitializeOnLoadMethodAttributes (9ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.02 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 132.7 MB.
-System memory in use after: 132.8 MB.
-
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3677.
-Total: 2.885000 ms (FindLiveObjects: 0.334900 ms CreateObjectMapping: 0.089200 ms MarkObjects: 2.370500 ms  DeleteObjects: 0.089500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004137 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.99 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.781 seconds
-Domain Reload Profiling:
-	ReloadAssembly (782ms)
-		BeginReloadAssembly (91ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (32ms)
-		EndReloadAssembly (644ms)
-			LoadAssemblies (66ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (243ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (29ms)
-			SetupLoadedEditorAssemblies (234ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (67ms)
-				ProcessInitializeOnLoadAttributes (151ms)
 				ProcessInitializeOnLoadMethodAttributes (7ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
@@ -491,12 +1883,189 @@ Domain Reload Profiling:
 Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.79 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3184 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 132.7 MB.
-System memory in use after: 132.8 MB.
+Unloading 3185 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.6 MB.
+System memory in use after: 127.8 MB.
 
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3679.
-Total: 2.999900 ms (FindLiveObjects: 0.369600 ms CreateObjectMapping: 0.088900 ms MarkObjects: 2.454300 ms  DeleteObjects: 0.085800 ms)
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3687.
+Total: 2.833700 ms (FindLiveObjects: 0.303300 ms CreateObjectMapping: 0.085000 ms MarkObjects: 2.342500 ms  DeleteObjects: 0.101400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004252 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.79 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.713 seconds
+Domain Reload Profiling:
+	ReloadAssembly (714ms)
+		BeginReloadAssembly (86ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (27ms)
+		EndReloadAssembly (586ms)
+			LoadAssemblies (59ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (220ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (215ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (60ms)
+				ProcessInitializeOnLoadAttributes (139ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.88 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3185 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.7 MB.
+System memory in use after: 127.8 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3689.
+Total: 3.711000 ms (FindLiveObjects: 0.321600 ms CreateObjectMapping: 0.077300 ms MarkObjects: 3.214800 ms  DeleteObjects: 0.096200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003962 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.75 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.735 seconds
+Domain Reload Profiling:
+	ReloadAssembly (735ms)
+		BeginReloadAssembly (88ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (31ms)
+		EndReloadAssembly (604ms)
+			LoadAssemblies (59ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (230ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (224ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (71ms)
+				ProcessInitializeOnLoadAttributes (139ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.02 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3185 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.7 MB.
+System memory in use after: 127.8 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3691.
+Total: 2.814200 ms (FindLiveObjects: 0.210600 ms CreateObjectMapping: 0.082300 ms MarkObjects: 2.436300 ms  DeleteObjects: 0.083900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004385 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\ForGitHub\project_unity_gyroswing_a\GyroswingA\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.88 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.777 seconds
+Domain Reload Profiling:
+	ReloadAssembly (777ms)
+		BeginReloadAssembly (99ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (30ms)
+		EndReloadAssembly (628ms)
+			LoadAssemblies (64ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (236ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (29ms)
+			SetupLoadedEditorAssemblies (230ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (65ms)
+				ProcessInitializeOnLoadAttributes (148ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.08 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3185 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 127.7 MB.
+System memory in use after: 127.9 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3693.
+Total: 3.082800 ms (FindLiveObjects: 0.399200 ms CreateObjectMapping: 0.080200 ms MarkObjects: 2.502800 ms  DeleteObjects: 0.099400 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 

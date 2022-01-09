@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -23,10 +24,11 @@ public class EnemyController : LivingCreatures
     //NavMeshAgent agent;
     GameObject player;
     BT_Dragon bt;
-
-    float movementTimeMax { get { return 1.0f; } } // move for 1 seconds
-    EnemyMovement movementCur;
+    
+    Queue<EnemyMovement> movementsToDo;
+    Queue<Node> btNodes;
     TimeController movementTimer;
+    public bool movementsAllDone { get { return movementsToDo.Count == 0; } }
 
     void Update()
     {
@@ -35,8 +37,9 @@ public class EnemyController : LivingCreatures
             if (!IsStopped())
             {
                 DoMovement();
+                CheckMovementIsFinished();
 
-                if (movementCur == EnemyMovement.None)
+                if (movementsAllDone)
                     bt.UpdateBT();
 
             }
@@ -55,9 +58,11 @@ public class EnemyController : LivingCreatures
     {
         this.player = player;
         bt = GetComponent<BT_Dragon>();
-        movementCur = EnemyMovement.None;
-        movementTimer = new TimeController();
 
+        movementsToDo = new Queue<EnemyMovement>();
+        btNodes = new Queue<Node>();
+        movementTimer = new TimeController();
+        
         SetCreature(stage, machineRadius, options);
     }
 
@@ -67,43 +72,62 @@ public class EnemyController : LivingCreatures
         bt.SetBT();
     }
     
-    public void StartMoveEnemy(EnemyMovement moveLikeThis)
+    public void AddEnemyMovement(EnemyMovement moveLikeThis, Node node)
     {
-        if (movementCur == EnemyMovement.None)
-        {
-            movementCur = moveLikeThis;
-            movementTimer.StartTimer(movementTimeMax);
+        movementsToDo.Enqueue(moveLikeThis);
+        btNodes.Enqueue(node);
 
-            if (moveLikeThis == EnemyMovement.JumpForward)
-                Jump();
+        if (!movementTimer.IsRunning)
+        {
+            StartMovement();
         }
     }
 
-    void FinishMoveEnemy()
+    float GetMovementTime(EnemyMovement movement)
     {
-        movementCur = EnemyMovement.None;
-        movementTimer.FinishTimer();
+        if (movement == EnemyMovement.TurnLeft || movement == EnemyMovement.TurnRight)
+            return 0.5f;
+        return 1.0f;
+
+    }
+
+    void StartMovement()
+    {
+        EnemyMovement e = movementsToDo.Peek();
+
+        movementTimer.StartTimer(GetMovementTime(e));
+
+        if (e == EnemyMovement.JumpForward)
+            Jump();
     }
 
     void DoMovement()
     {
-        if (movementCur != EnemyMovement.None)
+        if (!movementsAllDone)
         {
-            if (!movementTimer.IsFinished)
+            switch (movementsToDo.Peek())
             {
-                switch (movementCur)
-                {
-                    case EnemyMovement.MoveForward: Move(1.0f); break;
-                    case EnemyMovement.MoveBackward: Move(-1.0f); break;
-                    case EnemyMovement.TurnRight: Turn(1.0f); break;
-                    case EnemyMovement.TurnLeft: Turn(-1.0f); break;
-                    case EnemyMovement.JumpForward: if (isJumping) Move(1.0f); break;
-                }
+                case EnemyMovement.MoveForward: Move(1.0f); break;
+                case EnemyMovement.MoveBackward: Move(-1.0f); break;
+                case EnemyMovement.TurnRight: Turn(1.0f); break;
+                case EnemyMovement.TurnLeft: Turn(-1.0f); break;
+                case EnemyMovement.JumpForward: if (isJumping) Move(1.0f); break;
+                default: break;
             }
-            else
-            {
-                FinishMoveEnemy();
-            }
+        }
+    }
+
+    void CheckMovementIsFinished()
+    {
+        if (movementTimer.IsFinished)
+        {
+            movementsToDo.Dequeue();
+            btNodes.Peek().SetFinishedFlag(true);
+            btNodes.Dequeue();
+            movementTimer.FinishTimer();
+
+            if (!movementsAllDone)
+                StartMovement();
         }
     }
 
