@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4046827400444098220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4046827400444098130}
+  - component: {fileID: 4046827400444098131}
+  - component: {fileID: 3311720282454025916}
+  - component: {fileID: 4356470250033048499}
+  m_Layer: 0
+  m_Name: Singleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4046827400444098130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046827400444098220}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -29.3, y: -0.9256549, z: -40.800003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4046827400444098131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046827400444098220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957c6f20153d997419299b242d8cddd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  stageLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  failZoneLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stagePoleLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  machine: {fileID: 0}
+  player: {fileID: 0}
+  _inGameUi: {fileID: 0}
+  enemySpawner: {fileID: 0}
+  stage: {fileID: 0}
+  options:
+    EnemyPrepareAmount: 5
+    LimitSecondsPerStage: 180
+    RequiredStarAmountForHardMode: 25
+    StageAmountPerMode: 10
+    IsMachineSwinging: 1
+    IsMachineTurning: 1
+    IsMachineSpining: 1
+    LevelValues:
+    - {fileID: 11400000, guid: 3a9e6ed7abf6e6e4d9c427da8383dabd, type: 2}
+    IsSpiningCW: 1
+    Gravity: 9.8
+    PlayerMoveSpeed: 2
+    PlayerRotateSpeed: 40
+    PlayerJumpPower: 5
+    PlayerDashPower: 1000
+    WaitTimeAfterDash: 0.5
+--- !u!114 &3311720282454025916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046827400444098220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efa370f70d9c1f4f8a67ecb5b933b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4356470250033048499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046827400444098220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463773b7d3584e147b8808d0765be2ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
