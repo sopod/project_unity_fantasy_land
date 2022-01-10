@@ -42,22 +42,23 @@ public class GameManager : MonoBehaviour
     public LayerMask failZoneLayer;
     public LayerMask platformLayer;
     public LayerMask stagePoleLayer;
+    public LayerMask stageBoundaryLayer;
 
     [SerializeField] MachineController machine;
     [SerializeField] PlayerController player;
     [SerializeField] InGameUIController _inGameUi;
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] GameObject stage;
+    [SerializeField] UISoundPlayer uiSoundPlayer;
     [SerializeField] Options options;
 
     KeyController keyController;
     TimeController gameTimer;
-    UISoundPlayer uiSoundPlayer;
 
     GameState gameState;
     GameMode gameMode;
 
-    bool modeChanged;
+    bool isSceneSet;
 
     int _levelCur = 0;
     int _remainingMonsterCur = 0;
@@ -85,6 +86,8 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+
+        isSceneSet = false;
     }
 
     void Start()
@@ -96,14 +99,36 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        UpdateInGame();
+        WaitForTheFirstUpdate();
+
+        if (isSceneSet)
+        {
+            UpdateInGame();
+        }
     }
-    
+
+    void WaitForTheFirstUpdate()
+    {
+        if (!isSceneSet)
+        {
+            isSceneSet = true;
+            ChangeSceneToInGame();
+        }
+    }
+
+    public void ChangeSceneToInGame()
+    {
+        InitInGame();
+        SpawnEnemies();
+
+        ChangeGameState(GameState.InGame);
+        StartInGame();
+    }
+
     void InitInGame()
     {
         keyController = new KeyController();
         gameTimer = new TimeController();
-        uiSoundPlayer = player.gameObject.GetComponent<UISoundPlayer>();
 
         machine.SetMachine(options);
         player.SetPlayer(stage, keyController, machine.Radius, options);
@@ -139,19 +164,10 @@ public class GameManager : MonoBehaviour
     {
         if (gameState == GameState.InGame)
         {
-            Debug.Log(000000);
             _inGameUi.UpdateTime(gameTimer.GetCurrentTime());
         }
     }
 
-    public void ChangeSceneToInGame()
-    {
-        InitInGame();
-        SpawnEnemies();
-
-        ChangeGameState(GameState.InGame);
-        StartInGame();
-    }
 
     public void ChangeLevel()
     {

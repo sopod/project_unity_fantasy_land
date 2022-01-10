@@ -9,8 +9,9 @@ public class LivingCreature : MovingThing
     protected LayerMask enemyLayer;
     protected LayerMask stageLayer;
     protected LayerMask failZoneLayer;
-    protected LayerMask platformLayer;
+    //protected LayerMask platformLayer;
     protected LayerMask stagePoleLayer;
+    protected LayerMask stageBoundaryLayer;
 
     [SerializeField] protected GameObject centerOfCreature;
     protected GameObject stage;
@@ -18,11 +19,11 @@ public class LivingCreature : MovingThing
     protected Rigidbody rb;
     protected Animator ani;
 
-    [SerializeField] protected bool isFlying;
+    //[SerializeField] protected bool isFlying;
     [SerializeField] protected bool isJumping;
     [SerializeField] protected bool isDoingSkill;
     [SerializeField] protected bool isOnStage;
-    [SerializeField] protected bool isOnPlatform;
+    //[SerializeField] protected bool isOnPlatform;
     [SerializeField] protected bool isDead;
 
     protected float moveSpeed;
@@ -35,7 +36,8 @@ public class LivingCreature : MovingThing
 
     protected float machineRadius;
     protected float machineSpinSpeed;
-    protected bool isMachineSpiningCW;
+    protected bool isAffectedByStage;
+    //protected bool isMachineSpiningCW;
 
     protected float _spinSpeedUp;
 
@@ -67,12 +69,13 @@ public class LivingCreature : MovingThing
     {
         ChangeMachineValues(values);
 
-        isFlying = false;
+        //isFlying = false;
         isJumping = false;
         isDoingSkill = false;
         isOnStage = true;
-        isOnPlatform = false;
+        //isOnPlatform = false;
         isDead = false;
+        isAffectedByStage = true;
 
         PauseMoving();
     }
@@ -83,8 +86,9 @@ public class LivingCreature : MovingThing
         enemyLayer = GameManager.Instance.enemyLayer;
         stageLayer = GameManager.Instance.stageLayer;
         failZoneLayer = GameManager.Instance.failZoneLayer;
-        platformLayer = GameManager.Instance.platformLayer;
+        //platformLayer = GameManager.Instance.platformLayer;
         stagePoleLayer = GameManager.Instance.stagePoleLayer;
+        stageBoundaryLayer = GameManager.Instance.stageBoundaryLayer;
     }
 
     public void ChangeMachineValues(LevelValues values)
@@ -245,7 +249,7 @@ public class LivingCreature : MovingThing
 
     public void MoveAlongStage(StageMovementValue values)
     {
-        if (!IsPaused() && !GameManager.Instance.IsMachineStopped)
+        if (!IsPaused() && !GameManager.Instance.IsMachineStopped && isAffectedByStage)
         {
             Vector3 centerforSpin = (values.isSpiningCW) ? values.stageUpDir : -values.stageUpDir;
             Vector3 resPos = rb.position;
@@ -269,10 +273,33 @@ public class LivingCreature : MovingThing
 
     protected void FreezeLocalXZRotation()
     {
-        Quaternion turnQuat = Quaternion.FromToRotation(centerOfCreature.transform.up, stage.transform.up);
-        rb.rotation = turnQuat * rb.rotation;
+        if (isAffectedByStage)
+        {
+            Quaternion turnQuat = Quaternion.FromToRotation(centerOfCreature.transform.up, stage.transform.up);
+            rb.rotation = turnQuat * rb.rotation;
+        }
     }
     
+    void OnTriggerEnter(Collider other)
+    {
+        int layer = (1 << other.gameObject.layer);
+
+        if (layer == stageBoundaryLayer.value)
+        {
+            isAffectedByStage = true;
+        }
+
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        int layer = (1 << other.gameObject.layer);
+
+        if (layer == stageBoundaryLayer.value)
+        {
+            isAffectedByStage = false;
+        }
+    }
 
     //protected void FreezeLocalVelocity()
     //{

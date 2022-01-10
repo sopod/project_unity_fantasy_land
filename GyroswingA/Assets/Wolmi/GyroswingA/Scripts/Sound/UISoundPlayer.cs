@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum UISoundType
+public enum EffectSoundType
 {
     Max
 }
@@ -17,7 +17,7 @@ public class UISoundPlayer : MonoBehaviour
     [SerializeField] AudioSource effectSoundAudio;
     [SerializeField] AudioSource bgmAudio;
 
-    public void PlayUISound(UISoundType soundType)
+    public void PlayUISound(EffectSoundType soundType)
     {
         AudioClip clip = SoundManager.Instance.GetClip(effectSounds[(int)soundType].name);
 

@@ -10,10 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4046827400444098130}
   - component: {fileID: 4046827400444098131}
-  - component: {fileID: 3311720282454025916}
-  - component: {fileID: 4356470250033048499}
   m_Layer: 0
-  m_Name: Singleton
+  m_Name: InGameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,11 +61,15 @@ MonoBehaviour:
   stagePoleLayer:
     serializedVersion: 2
     m_Bits: 1024
+  stageBoundaryLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   machine: {fileID: 0}
   player: {fileID: 0}
   _inGameUi: {fileID: 0}
   enemySpawner: {fileID: 0}
   stage: {fileID: 0}
+  uiSoundPlayer: {fileID: 0}
   options:
     EnemyPrepareAmount: 5
     LimitSecondsPerStage: 180
@@ -85,27 +87,3 @@ MonoBehaviour:
     PlayerJumpPower: 5
     PlayerDashPower: 1000
     WaitTimeAfterDash: 0.5
---- !u!114 &3311720282454025916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4046827400444098220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4efa370f70d9c1f4f8a67ecb5b933b9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4356470250033048499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4046827400444098220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 463773b7d3584e147b8808d0765be2ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

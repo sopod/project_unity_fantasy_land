@@ -6,6 +6,6 @@ public class UIPlayButton : UIButton
 {
     public override void OnClicked()
     {
-        SceneChange.Instance.ChangeSceneToInGame();
+        SceneLoader.LoadScene("InGame");
     }
 }

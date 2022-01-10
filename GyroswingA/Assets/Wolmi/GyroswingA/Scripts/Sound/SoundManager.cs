@@ -7,23 +7,35 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     Dictionary<string, AudioClip> clips;
-
-
+    
     static SoundManager instance;
     public static SoundManager Instance
     {
         get
         {
             if (instance == null)
+            {
                 instance = FindObjectOfType<SoundManager>();
+            }
             return instance;
         }
     }
 
     void Awake()
     {
-        if (instance == null)
-            instance = this;
+        var objs = FindObjectsOfType<SoundManager>();
+
+        if (objs.Length == 1)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        
+        if (instance == null) instance = this;
 
         LoadAll();
     }
