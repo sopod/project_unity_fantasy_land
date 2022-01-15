@@ -21,6 +21,8 @@ public class PlayerController : LivingCreature
 
                 DashPlayer();
                 FirePlayer();
+
+                SetIsMovingAnimation();
             }
         }
     }
@@ -33,19 +35,19 @@ public class PlayerController : LivingCreature
         }
     }
     
-    public void SetPlayer(GameObject stage, KeyController keyController, float machineRadius, Options options)
+    public void SetPlayer(GameObject stage, StageMovementValue stageVal, Options options)
     {
-        key = keyController;
+        key = new KeyController();
 
         this.moveSpeed = options.PlayerMoveSpeed;
         this.rotSpeed = options.PlayerRotateSpeed;
         this.jumpPower = options.PlayerJumpPower;
 
-        SetCreature(stage, machineRadius, options);
+        SetCreature(stage, stageVal, options);
     }
 
     void MovePlayer()
-    {      
+    {
         Move(key.GetVerticalKey());
     }
 
@@ -72,50 +74,58 @@ public class PlayerController : LivingCreature
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    public override void OnEnemyLayer()
     {
+
+    }
+
+    protected override void NotifyDead()
+    {
+        GameManager.Instance.SetGameOver();
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (IsPaused()) return;
+
         int layer = (1 << collision.gameObject.layer);
 
-        if (layer == stageLayer.value)
+        if (layer == options.EnemyLayer.value)
         {
-            isJumping = false;
-            isOnStage = true;
-            //isFlying = false;
-            //isOnPlatform = false;
-
-            ani.SetBool("IsJumping", false);
-        }
-        else if (layer == failZoneLayer.value)
-        {
-            //Debug.Log("You fell. Game Over.");
-
-            isJumping = false;
-            isOnStage = false;
-            //isFlying = false;
-            //isOnPlatform = false;
-            isDead = true;
-
-            ani.SetBool("IsDead", true);
-            ani.SetBool("IsJumping", false);
-        }
-        //else if (layer == platformLayer.value)
-        //{
-        //    isJumping = false;
-        //    isOnStage = true;
-        //    isFlying = false;
-        //    //isOnPlatform = true;
-
-        //    ani.SetBool("IsJumping", false);
-        //}
-        else if (layer == enemyLayer.value)
-        {
-
+            CheckDamagedToMoveBack(collision.gameObject.GetComponent<LivingCreature>());
         }
         else
         {
-            isOnStage = false;
-            //isFlying = true;
-            //isOnPlatform = false;
+            isDamaged = false;
+        }
+
+        if (layer == options.StageLayer.value)
+        {
+            OnStageLayer();
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (IsPaused()) return;
+
+        int layer = (1 << collision.gameObject.layer);
+
+        if (layer == options.StageLayer.value)
+        {
+            OnStageLayer();
+        }
+        else if (layer == options.FailZoneLayer.value)
+        {
+            OnFailZoneLayer();
+        }
+        else if (layer == options.EnemyLayer.value)
+        {
+            OnEnemyLayer();
+        }
+        else
+        {
+            OnNothingLayer();
         }
     }
 

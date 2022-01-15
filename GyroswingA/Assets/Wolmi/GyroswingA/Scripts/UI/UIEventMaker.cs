@@ -7,31 +7,26 @@ using UnityEngine.Events;
 
 public class UIEventMaker
 {
-    UIButton uiBtn;
-    Button btn;
-    EventTrigger trigger;
-
     public bool MakeUIObjectWork(UIButton obj)
     {
-        uiBtn = obj;
-        btn = obj.GetComponent<Button>();
-        trigger = obj.GetComponent<EventTrigger>();
+        Button btn = obj.GetComponent<Button>();
+        EventTrigger trigger = obj.GetComponent<EventTrigger>();
 
         if (trigger == null || btn == null) return false;
 
-        SetEvents();
+        SetEvents(trigger, obj);
 
         return true;
     }
 
-    void SetEvents()
+    void SetEvents(EventTrigger trigger, UIButton obj)
     {
-        trigger.triggers.Clear();
+        ClearEvent(trigger);
         
-        AddEvent(EventTriggerType.PointerClick, (data) => { OnLeftClick((PointerEventData)data); });
+        AddEvent(trigger, EventTriggerType.PointerClick, (data) => { OnLeftClick((PointerEventData)data, obj); });
     }
 
-    void AddEvent(EventTriggerType type, UnityAction<BaseEventData> action)
+    void AddEvent(EventTrigger trigger, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         EventTrigger.Entry entry = new EventTrigger.Entry();
 
@@ -40,16 +35,16 @@ public class UIEventMaker
         trigger.triggers.Add(entry);
     }   
 
-    void ClearEvent()
+    void ClearEvent(EventTrigger trigger)
     {
         trigger.triggers.Clear();
     }    
 
-    void OnLeftClick(PointerEventData data)
+    void OnLeftClick(PointerEventData data, UIButton obj)
     {
         if (data.button == PointerEventData.InputButton.Left)
         {
-            uiBtn.OnClicked();
+            obj.OnClicked();
         }
     }
 }

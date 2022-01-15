@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-
     bool[] isPositionTaken;
     int[] spawnedEnemyCount;
 
@@ -89,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
         spawnedEnemyCount[getThisFromEnemyScript]--;
     }
 
-    void ReturnAllEnemy()
+    public void ReturnAllEnemy()
     {
         for (int i = 0; i < spawnedEnemies.Count; i++)
         {

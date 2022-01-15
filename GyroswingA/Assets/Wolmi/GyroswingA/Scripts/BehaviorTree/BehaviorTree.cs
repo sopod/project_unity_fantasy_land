@@ -8,7 +8,11 @@ using UnityEngine;
 public abstract class BehaviorTree : MovingThing
 {
     protected BlackBoard bb;
+    protected Options options;
+
     protected Node root;
+
+    public abstract Node SetBT(Options options);
 
     public void UpdateBT()
     {
@@ -16,6 +20,5 @@ public abstract class BehaviorTree : MovingThing
             root.Execute();
     }
     
-    public abstract Node SetBT();
 }
 

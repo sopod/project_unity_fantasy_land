@@ -43,34 +43,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957c6f20153d997419299b242d8cddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  stageLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  failZoneLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  stagePoleLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  stageBoundaryLayer:
-    serializedVersion: 2
-    m_Bits: 2048
   machine: {fileID: 0}
   player: {fileID: 0}
-  _inGameUi: {fileID: 0}
+  inGameUi: {fileID: 0}
   enemySpawner: {fileID: 0}
   stage: {fileID: 0}
   uiSoundPlayer: {fileID: 0}
+  stageVal:
+    Radius: 0
+    SwingPosCur: {x: 0, y: 0, z: 0}
+    IsSwingRight: 0
+    SwingAngleCur: 0
+    SpinAngleCur: 0
   options:
+    PlayerLayer:
+      serializedVersion: 2
+      m_Bits: 8
+    EnemyLayer:
+      serializedVersion: 2
+      m_Bits: 512
+    StageLayer:
+      serializedVersion: 2
+      m_Bits: 64
+    FailZoneLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    StagePoleLayer:
+      serializedVersion: 2
+      m_Bits: 1024
+    StageBoundaryLayer:
+      serializedVersion: 2
+      m_Bits: 2048
+    LevelValues:
+      MachineSwingSpeed_Default: 10
+      MachineSwingAngleMax_Default: 30
+      MachineSpinSpeed_Default: 10
+      SwingSpeedCur: 10
+      SwingAngleMaxCur: 30
+      SpinSpeedCur: 10
+      EnemyTypesCur: 0000000001000000
     EnemyPrepareAmount: 5
     LimitSecondsPerStage: 180
     RequiredStarAmountForHardMode: 25
@@ -78,12 +89,18 @@ MonoBehaviour:
     IsMachineSwinging: 1
     IsMachineTurning: 1
     IsMachineSpining: 1
-    LevelValues:
-    - {fileID: 11400000, guid: 3a9e6ed7abf6e6e4d9c427da8383dabd, type: 2}
     IsSpiningCW: 1
-    Gravity: 9.8
+    PlayerStartPos: {x: -32, y: 2.2, z: -50.2}
     PlayerMoveSpeed: 2
     PlayerRotateSpeed: 40
-    PlayerJumpPower: 5
-    PlayerDashPower: 1000
-    WaitTimeAfterDash: 0.5
+    PlayerJumpPower: 3
+    Gravity: 9.8
+    DashPowerToHit: 20
+    DashPowerToDamaged: 10
+    WaitForAnotherDash: 0.5
+    EnemyMoveSpeed: 2
+    EnemyRotateSpeed: 40
+    EnemyJumpPower: 3
+    EnemyKnockDownTime: 2
+  starCollector:
+    _starCur: 0

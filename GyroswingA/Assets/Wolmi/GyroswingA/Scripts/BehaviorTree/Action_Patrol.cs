@@ -9,12 +9,25 @@ public class Action_Patrol : Node
 
     public override BT_State Execute()
     {
-        //return BT_State.Success;
+        if (!addedToMovementQueue)
+        {
+            addedToMovementQueue = true;
 
-        bb.character.GetComponent<EnemyController>().AddEnemyMovement(EnemyMovement.TurnLeft, this);
-        bb.character.GetComponent<EnemyController>().AddEnemyMovement(EnemyMovement.MoveForward, this);
-        bb.character.GetComponent<EnemyController>().AddEnemyMovement(EnemyMovement.TurnRight, this);
-        bb.character.GetComponent<EnemyController>().AddEnemyMovement(EnemyMovement.MoveForward, this);
+            int ranNum = Random.RandomRange(0, 2);
+
+            if (ranNum == 0)
+            {
+                bb.character.GetComponent<EnemyController>().AddEnemyMovement(new MovementData(EnemyMovement.TurnLeft, this, bb.enemyTurnTime));
+                bb.character.GetComponent<EnemyController>().AddEnemyMovement(new MovementData(EnemyMovement.Wait, this, bb.enemyWaitTime));
+            }
+            else if (ranNum == 1)
+            {
+                bb.character.GetComponent<EnemyController>().AddEnemyMovement(new MovementData(EnemyMovement.TurnLeft, this, bb.enemyTurnTime));
+                bb.character.GetComponent<EnemyController>().AddEnemyMovement(new MovementData(EnemyMovement.Wait, this, bb.enemyWaitTime));
+            }
+
+            bb.character.GetComponent<EnemyController>().AddEnemyMovement(new MovementData(EnemyMovement.MoveForward, this, bb.enemyMoveTime));
+        }
 
         CheckFinishFlag();
         return state;

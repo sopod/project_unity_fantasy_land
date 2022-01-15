@@ -4,10 +4,28 @@ using UnityEditor;
 using UnityEngine;
 
 
+// 에디터에서 설정하기.
+
 [System.Serializable]
 public class Options
 {
-    int levelCur = 0;
+    // layer
+    public LayerMask PlayerLayer;
+    public LayerMask EnemyLayer;
+    public LayerMask StageLayer;
+    public LayerMask FailZoneLayer;
+    //public LayerMask platformLayer;
+    public LayerMask StagePoleLayer;
+    public LayerMask StageBoundaryLayer;
+
+
+
+    // level
+    int _levelCur = 0;
+    GameMode _modeCur;
+    [SerializeField] LevelValues LevelValues;
+
+
 
     // game 
     [HideInInspector] public int EnemyPrepareAmount = 5;
@@ -15,72 +33,61 @@ public class Options
     [HideInInspector] public int RequiredStarAmountForHardMode = 25;
     [HideInInspector] public int StageAmountPerMode = 10;
 
+
+
     // machine
     [HideInInspector] public bool IsMachineSwinging = true;
     [HideInInspector] public bool IsMachineTurning = true;
     [HideInInspector] public bool IsMachineSpining = true;
-    
-    [SerializeField] LevelValues[] LevelValues;
     [HideInInspector] public bool IsSpiningCW = true;
 
 
+
     // player
-    [HideInInspector] public float Gravity = 9.8f;
+    [HideInInspector] public Vector3 PlayerStartPos = new Vector3(-32.0f, 2.2f, -50.2f);
     public float PlayerMoveSpeed = 2.0f;
     public float PlayerRotateSpeed = 40.0f;
-    public float PlayerJumpPower = 5.0f;
-    public float PlayerDashPower = 1000.0f;
-    public float WaitTimeAfterDash = 0.5f;
+    public float PlayerJumpPower = 3.0f;
 
-    // monster
+
+
+    // common
+    [HideInInspector] public float Gravity = 9.8f;
+
+
+
+    // skill
+    public float DashPowerToHit = 20.0f;
+    public float DashPowerToDamaged = 10.0f;
+    [HideInInspector] public float WaitForAnotherDash = 0.5f;
+
+
+
+    // enemy
+    public float EnemyMoveSpeed = 2.0f;
+    public float EnemyRotateSpeed = 40.0f;
+    public float EnemyJumpPower = 3.0f;
+
+    public float EnemyKnockDownTime = 2.0f;
+
 
 
 
     public LevelValues GetCurLevelValues()
     {
-        return LevelValues[levelCur];
+        return LevelValues;
     }
 
-    public void SetLevel(int level)
+    public void ChangeLevel(GameMode mode, int level)
     {
-        levelCur = level;
+        _modeCur = mode;
+        _levelCur = level;
+        LevelValues.ChangeLevel(mode, level);
     }
 
-    public int GetMonsterAmountForCurState(GameMode mode)
+    public int GetMonsterAmountForCurState()
     {
-        return (mode == GameMode.Easy ? 5 : 9);
+        return (_modeCur == GameMode.Easy ? 5 : 9);
     }
-
-    public int GetStarAmountForCurStage(GameMode mode, int remainingMonsterCur)
-    {
-        switch (mode)
-        {
-            case GameMode.Easy:
-            {
-                if (remainingMonsterCur <= 1)
-                    return 3;
-                else if (remainingMonsterCur <= 3)
-                    return 2;
-                else if (remainingMonsterCur <= 4)
-                    return 1;
-                else
-                    return 0;
-            }
-
-            case GameMode.Hard:
-            {
-                if (remainingMonsterCur <= 1)
-                    return 3;
-                else if (remainingMonsterCur <= 5)
-                    return 2;
-                else if (remainingMonsterCur <= 7)
-                    return 1;
-                else
-                    return 0;
-            }
-        }
-
-        return 0;
-    }
-
+    
 }

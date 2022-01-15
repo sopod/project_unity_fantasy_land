@@ -8,20 +8,25 @@ public class Action_MoveToPlayer : Node
 
     public override BT_State Execute()
     {
-        Vector3 playerPos = GameManager.Instance.PlayerPosition;
-        
-        bb.character.transform.LookAt(playerPos); // look at player
-
-        if (Physics.Raycast(bb.character.transform.position, playerPos, bb.rayDistance, bb.stagePoleLayer)) // if pole is in front of monster
+        if (!addedToMovementQueue)
         {
-            
-        }
-        else
-        {
-            
-        }
+            addedToMovementQueue = true;
 
-        bb.character.GetComponent<EnemyController>().AddEnemyMovement(EnemyMovement.MoveForward, this);
+            Vector3 playerPos = GameManager.Instance.PlayerPosition;
+
+            bb.character.transform.LookAt(playerPos); // look at player
+
+            if (Physics.Raycast(bb.character.transform.position, playerPos, bb.rayDistance, bb.options.StagePoleLayer)) // if pole is in front of monster
+            {
+
+            }
+            else
+            {
+
+            }
+
+            bb.character.GetComponent<EnemyController>().AddEnemyMovement(new MovementData(EnemyMovement.MoveForward, this, bb.enemyMoveTime));
+        }
 
         CheckFinishFlag();
         return state;

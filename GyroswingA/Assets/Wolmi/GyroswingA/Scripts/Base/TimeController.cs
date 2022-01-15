@@ -23,12 +23,7 @@ public class TimeController
             return timerStarted;
         }
     }
-
-    public void StartTimer()
-    {
-        startTime = Time.time;
-        timerStarted = true;
-    }
+    
     public void StartTimer(float limitTime)
     {
         startTime = Time.time;

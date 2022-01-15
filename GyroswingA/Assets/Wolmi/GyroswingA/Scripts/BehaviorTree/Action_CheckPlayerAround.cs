@@ -12,9 +12,8 @@ public class Action_CheckPlayerAround : Node
 
         for (int i = 0; i < hitColliders.Length; i++)
         { 
-            if ((1 << hitColliders[i].gameObject.layer) == bb.playerLayer)
+            if ((1 << hitColliders[i].gameObject.layer) == bb.options.PlayerLayer)
             {
-                Debug.Log("I found player");
                 state =  BT_State.Success;
                 return state;
             }

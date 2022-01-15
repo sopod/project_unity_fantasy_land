@@ -17,54 +17,32 @@ public enum GameMode
     Hard
 }
 
-public struct StageMovementValue
-{
-    public Vector3 swingPosCur;
-    public bool isSwingRight;
-    public float swingAngleCur;
-    public bool isSpiningCW;
-    public float spinAngleCur;
-    public Vector3 stageUpDir;
-    public bool isSwinging;
-    public bool isTurning;
-    public bool isSpining;
-    public Vector3 prevStagePos;
-    public float stageX;
-}
-
 
 
 public class GameManager : MonoBehaviour
 {
-    public LayerMask playerLayer;
-    public LayerMask enemyLayer;
-    public LayerMask stageLayer;
-    public LayerMask failZoneLayer;
-    public LayerMask platformLayer;
-    public LayerMask stagePoleLayer;
-    public LayerMask stageBoundaryLayer;
-
     [SerializeField] MachineController machine;
     [SerializeField] PlayerController player;
-    [SerializeField] InGameUIController _inGameUi;
+    [SerializeField] InGameUIController inGameUi;
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] GameObject stage;
     [SerializeField] UISoundPlayer uiSoundPlayer;
-    [SerializeField] Options options;
 
-    KeyController keyController;
+    [SerializeField] StageMovementValue stageVal;
+    [SerializeField] Options options;
+    [SerializeField] StarCollector starCollector;
+
     TimeController gameTimer;
 
-    GameState gameState;
-    GameMode gameMode;
+    GameState _gameStateCur;
+    GameMode _gameModeCur;
 
-    bool isSceneSet;
+    bool _isSceneSet;
+    bool _isGamePaused;
 
     int _levelCur = 0;
+    int _monsterMaxCur = 0;
     int _remainingMonsterCur = 0;
-    int _killedMonsterCur = 0;
-    int _starCur = 0;
-
 
 
     public bool IsMachineStopped { get { return machine.IsStopped(); } }
@@ -87,68 +65,82 @@ public class GameManager : MonoBehaviour
         if (instance == null)
             instance = this;
 
-        isSceneSet = false;
+        _isSceneSet = false;
+        _isGamePaused = true;
     }
 
-    void Start()
-    {
-        //InitInGame();
+    //void Start()
+    //{
+        //SetInGame();
         //SpawnEnemies();
         //StartInGame();
+    //}
+
+    void WaitForTheFirstUpdate()
+    {
+        if (!_isSceneSet)
+        {
+            _isSceneSet = true;
+
+            UpgradeLevel();
+            
+            SetInGame();
+
+            PrepareInGame();
+
+            StartInGame();
+        }
+    }
+    void SetInGame()
+    {
+        gameTimer = new TimeController();
+        starCollector = new StarCollector();
+        stageVal = new StageMovementValue();
+
+        machine.SetMachine(options, stageVal);
+        player.SetPlayer(stage, stageVal, options);
+
+        enemySpawner.SetEnemySpawner(options.EnemyPrepareAmount);
     }
 
     void Update()
     {
         WaitForTheFirstUpdate();
 
-        if (isSceneSet)
+        if (_isSceneSet && !_isGamePaused)
         {
             UpdateInGame();
         }
     }
 
-    void WaitForTheFirstUpdate()
+    void PrepareInGame() // use this after upgrade level
     {
-        if (!isSceneSet)
-        {
-            isSceneSet = true;
-            ChangeSceneToInGame();
-        }
-    }
-
-    public void ChangeSceneToInGame()
-    {
-        InitInGame();
+        SetPause();
         SpawnEnemies();
 
-        ChangeGameState(GameState.InGame);
-        StartInGame();
-    }
+        _monsterMaxCur = options.GetMonsterAmountForCurState();
+        inGameUi.SetUI(options.LimitSecondsPerStage, _monsterMaxCur);
+        _remainingMonsterCur = _monsterMaxCur;
 
-    void InitInGame()
-    {
-        keyController = new KeyController();
-        gameTimer = new TimeController();
+        player.ResetCreature(options.GetCurLevelValues());
+        player.transform.position = options.PlayerStartPos;
 
-        machine.SetMachine(options);
-        player.SetPlayer(stage, keyController, machine.Radius, options);
-        
-        _inGameUi.SetUI(options.LimitSecondsPerStage, options.GetMonsterAmountForCurState(gameMode));
-
-        enemySpawner.SetEnemySpawner(options.EnemyPrepareAmount);
-    }
-
-    void SpawnEnemies()
-    {
-        //for (int i = 0; i < enemySpawnPositions.Length; i++)
+        for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
         {
-            GameObject e = enemySpawner.SpawnRandomEnemy(options.GetCurLevelValues().EnemyTypes);
-            e.GetComponent<EnemyController>().SetEnemy(stage, player.gameObject, machine.Radius, options);
+            EnemyController e = enemySpawner.spawnedEnemies[i].GetComponent<EnemyController>();
+            e.ResetCreature(options.GetCurLevelValues());
         }
+
+        ChangeGameState(GameState.InGame);
     }
+
     void StartInGame()
     {
-        gameTimer.StartTimer();
+        uiSoundPlayer.PlayBGM(_gameStateCur);
+
+        _isGamePaused = false;
+
+        gameTimer.StartTimer(options.LimitSecondsPerStage);
         machine.StartMoving();
         player.StartMoving();
 
@@ -156,84 +148,100 @@ public class GameManager : MonoBehaviour
         {
             enemySpawner.spawnedEnemies[i].GetComponent<EnemyController>().StartMoving();
         }
-
-        uiSoundPlayer.PlayBGM(gameState);
     }
 
     void UpdateInGame()
     {
-        if (gameState == GameState.InGame)
+        if (_gameStateCur == GameState.InGame)
         {
-            _inGameUi.UpdateTime(gameTimer.GetCurrentTime());
+            inGameUi.UpdateTime(gameTimer.GetCurrentTime());
+
+            if (gameTimer.IsFinished)
+            {
+                EndCurLevel();
+            }
+        }
+    }
+    void SpawnEnemies()
+    {
+        //for (int i = 0; i < _monsterMaxCur; i++)
+        {
+            GameObject e = enemySpawner.SpawnRandomEnemy(options.GetCurLevelValues().EnemyTypesCur);
+            e.GetComponent<EnemyController>().SetEnemy(stage, stageVal, options);
         }
     }
 
-
-    public void ChangeLevel()
+    public void UpgradeLevel()
     {
         _levelCur++;
-        options.SetLevel(_levelCur);
-        ChangeLevelValues();
-    }
-
-    void ChangeLevelValues()
-    {
-        machine.ChangeMachineValues(options.GetCurLevelValues());
-        player.ChangeMachineValues(options.GetCurLevelValues());
-
-
-        // enemy
-
-    }
-
-    public void SetGameOver()
-    {
-        ChangeGameState(GameState.End);
-        player.StopMoving();
-        machine.StopMoving();
+        options.ChangeLevel(_gameModeCur, _levelCur);
     }
 
     public void SetWin()
     {
         ChangeGameState(GameState.End);
         player.PauseMoving();
-        machine.PauseMoving();
+        //machine.PauseMoving();
+
+        // win UI here
+    }
+
+    public void SetGameOver()
+    {
+        ChangeGameState(GameState.End);
+        player.StopMoving();
+        //machine.StopMoving();
+
+        // lose UI here
     }
 
     public void SetPause()
     {
         player.PauseMoving();
         machine.PauseMoving();
-    }
-
-    public void KilledMonster()
-    {
-        _remainingMonsterCur--;
-        _inGameUi.UpdateMonsterCount(_remainingMonsterCur);
-
-        if (_remainingMonsterCur == 0)
-            SetWin();
-    }
-
-    public void MoveCreaturesAlongStage(StageMovementValue values)
-    {
-        player.MoveAlongStage(values);
 
         for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
         {
-            enemySpawner.spawnedEnemies[i].GetComponent<EnemyController>().MoveAlongStage(values);
+            enemySpawner.spawnedEnemies[i].GetComponent<EnemyController>().PauseMoving();
         }
-        
     }
 
-    public Vector3 GetEnemyPosition(int enemySN)
+    void EndCurLevel()
     {
-        return enemySpawner.spawnedEnemies[enemySN].transform.position;
+        ChangeGameState(GameState.End);
+        float star = starCollector.GetStarForCurStage(_gameModeCur, _remainingMonsterCur);
+
+        if (star == 0)
+            SetGameOver();
+        else
+            SetWin();
+    }
+ 
+    public void OnMonsterKilled()
+    {
+        _remainingMonsterCur--;
+        inGameUi.UpdateMonsterCount(_remainingMonsterCur);
+
+        if (_remainingMonsterCur == 0)
+        {
+            EndCurLevel();
+            enemySpawner.ReturnAllEnemy();
+        }
     }
 
+    public void MoveCreaturesAlongStage()
+    {
+        player.MoveAlongStage();
+
+        for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
+        {
+            enemySpawner.spawnedEnemies[i].GetComponent<EnemyController>().MoveAlongStage();
+        }
+    }
+    
     void ChangeGameState(GameState gameState)
     {
-        this.gameState = gameState;
+        this._gameStateCur = gameState;
     }
 
 

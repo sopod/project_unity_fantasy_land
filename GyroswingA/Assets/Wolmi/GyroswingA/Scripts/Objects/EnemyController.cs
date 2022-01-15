@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public enum EnemyMovement
 {
-    None,
+    Wait,
     MoveForward,
     MoveBackward,
     TurnRight,
@@ -15,18 +15,35 @@ public enum EnemyMovement
     Max
 }
 
+public class MovementData
+{
+    public EnemyMovement movement;
+    public Node btNode;
+    public float time;
+
+    public MovementData(EnemyMovement movement, Node btNode, float time)
+    {
+        this.movement = movement;
+        this.btNode = btNode;
+        this.time = time;
+    }
+}
 
 
 public class EnemyController : LivingCreature
 {
-    //NavMeshAgent agent;
-    GameObject player;
     BT_Dragon bt;
     
-    Queue<EnemyMovement> movementsToDo;
-    Queue<Node> btNodes;
+    Queue<MovementData> movementDatas;
+
     TimeController movementTimer;
-    public bool movementsAllDone { get { return movementsToDo.Count == 0; } }
+
+    public bool movementsAllDone { get { return movementDatas.Count == 0; } }
+    float knockDownTime;
+    bool checkEnemyToMove;
+    bool isKnockDown;
+    public bool IsEnemySet = false;
+
 
     void Update()
     {
@@ -36,8 +53,10 @@ public class EnemyController : LivingCreature
             {
                 DoMovement();
                 CheckMovementIsFinished();
+                CheckKnockDownIsFinished();
+                SetIsMovingAnimation();
 
-                if (movementsAllDone)
+                if (movementsAllDone && !isKnockDown)
                     bt.UpdateBT();
 
             }
@@ -52,32 +71,33 @@ public class EnemyController : LivingCreature
         }
     }
 
-    public void SetEnemy(GameObject stage, GameObject player, float machineRadius, Options options)
+    public void SetEnemy(GameObject stage, StageMovementValue stageVal, Options options)
     {
-        this.player = player;
         bt = GetComponent<BT_Dragon>();
 
-        movementsToDo = new Queue<EnemyMovement>();
-        btNodes = new Queue<Node>();
+        movementDatas = new Queue<MovementData>();
         movementTimer = new TimeController();
 
-        this.moveSpeed = options.PlayerMoveSpeed;
-        this.rotSpeed = options.PlayerRotateSpeed;
-        this.jumpPower = options.PlayerJumpPower;
+        this.moveSpeed = options.EnemyMoveSpeed;
+        this.rotSpeed = options.EnemyRotateSpeed;
+        this.jumpPower = options.EnemyJumpPower;
+        this.knockDownTime = options.EnemyKnockDownTime;
 
-        SetCreature(stage, machineRadius, options);
+        checkEnemyToMove = false;
+        isKnockDown = false;
+
+        SetCreature(stage, stageVal, options);
     }
 
     public override void StartMoving()
     {
         base.StartMoving();
-        bt.SetBT();
+        bt.SetBT(options);
     }
     
-    public void AddEnemyMovement(EnemyMovement moveLikeThis, Node node)
+    public void AddEnemyMovement(MovementData input)
     {
-        movementsToDo.Enqueue(moveLikeThis);
-        btNodes.Enqueue(node);
+        movementDatas.Enqueue(input);
 
         if (!movementTimer.IsRunning)
         {
@@ -85,30 +105,22 @@ public class EnemyController : LivingCreature
         }
     }
 
-    float GetMovementTime(EnemyMovement movement)
-    {
-        if (movement == EnemyMovement.TurnLeft || movement == EnemyMovement.TurnRight)
-            return 0.5f;
-        return 1.0f;
-
-    }
-
     void StartMovement()
     {
-        EnemyMovement e = movementsToDo.Peek();
+        checkEnemyToMove = true;
+        movementTimer.StartTimer(movementDatas.Peek().time);
 
-        movementTimer.StartTimer(GetMovementTime(e));
-
-        if (e == EnemyMovement.JumpForward)
+        if (movementDatas.Peek().movement == EnemyMovement.JumpForward)
             Jump();
     }
 
     void DoMovement()
     {
-        if (!movementsAllDone)
+        if (checkEnemyToMove && !movementsAllDone)
         {
-            switch (movementsToDo.Peek())
+            switch (movementDatas.Peek().movement)
             {
+                case EnemyMovement.Wait: MakeEnemyDoIdleAnimation(); break;
                 case EnemyMovement.MoveForward: Move(1.0f); break;
                 case EnemyMovement.MoveBackward: Move(-1.0f); break;
                 case EnemyMovement.TurnRight: Turn(1.0f); break;
@@ -121,15 +133,41 @@ public class EnemyController : LivingCreature
 
     void CheckMovementIsFinished()
     {
-        if (movementTimer.IsFinished)
+        if (checkEnemyToMove && movementTimer.IsFinished)
         {
-            movementsToDo.Dequeue();
-            btNodes.Peek().SetFinishedFlag(true);
-            btNodes.Dequeue();
+            if (movementDatas.Peek().btNode != null)
+                movementDatas.Peek().btNode.SetFinishedFlag(true);
+
+            movementDatas.Dequeue();
             movementTimer.FinishTimer();
+            checkEnemyToMove = false;
 
             if (!movementsAllDone)
                 StartMovement();
+        }
+    }
+
+    void DeleteAllMovementsAndStop()
+    {
+        movementTimer.FinishTimer();
+
+        for (int i = 0; i < movementDatas.Count; i++)
+        {
+            if (movementDatas.Peek().btNode != null)
+                movementDatas.Peek().btNode.SetFailureState();
+            movementDatas.Dequeue();
+        }
+        
+        checkEnemyToMove = false;
+        InitAnimation();
+    }
+
+    void CheckKnockDownIsFinished()
+    {
+        if (isKnockDown && movementTimer.IsFinished)
+        {
+            movementTimer.FinishTimer();
+            isKnockDown = false;
         }
     }
 
@@ -138,73 +176,85 @@ public class EnemyController : LivingCreature
         Dash();
     }
 
-
-    //Vector3 GetDestinationToPlayer()
-    //{
-    //    Debug.DrawRay(GameManager.Instance.GetCenterPosOfPlayer, -stage.transform.up * rayDistanceToDetectPlayer, Color.blue);
-
-    //    if (Physics.Raycast(GameManager.Instance.GetCenterPosOfPlayer, -stage.transform.up, out hit, rayDistanceToDetectPlayer,
-    //            stageLayer))
-    //    {
-    //        return hit.point;
-    //    }
-
-    //    Debug.Log("couldn't find the target player");
-    //    return this.transform.position;
-    //}
-
-
-    void OnCollisionEnter(Collision collision)
+    void MakeEnemyDoIdleAnimation()
     {
+        isMoving = false; 
+        isTurning = false;
+    }
+
+    void OnCollisionStay(Collision collision) // when enemy stay with player.... only for checking damaged
+    {
+        if (IsPaused()) return;
+
         int layer = (1 << collision.gameObject.layer);
 
-        if (layer == stageLayer.value)
+        if (layer == options.PlayerLayer.value)
         {
-            isJumping = false;
-            isOnStage = true;
-            //isFlying = false;
-            //isOnPlatform = false;
-
-            ani.SetBool("IsJumping", false);
-        }
-        else if (layer == failZoneLayer.value)
-        {
-            Debug.Log("You fell. Game Over.");
-
-            isJumping = false;
-            isOnStage = false;
-            //isFlying = false;
-            //isOnPlatform = false;
-            isDead = true;
-
-            ani.SetBool("IsDead", true);
-            ani.SetBool("IsJumping", false);
-        }
-        //else if (layer == platformLayer.value)
-        //{
-        //    isJumping = false;
-        //    isOnStage = true;
-        //    isFlying = false;
-        //    //isOnPlatform = true;
-
-        //    ani.SetBool("IsJumping", false);
-        //}
-        else if (layer == enemyLayer.value)
-        {
-
-        }
-        else if (layer == playerLayer.value)
-        {
-
+            CheckDamagedToMoveBack(collision.gameObject.GetComponent<LivingCreature>());
         }
         else
         {
-            isOnStage = false;
-            //isFlying = true;
-            //isOnPlatform = false;
+            isDamaged = false;
+        }
+
+        if (layer == options.StageLayer.value)
+        {
+            OnStageLayer();
         }
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (IsPaused()) return;
+
+        int layer = (1 << collision.gameObject.layer);
+
+        if (layer == options.StageLayer.value)
+        {
+            OnStageLayer();
+        }
+        else if (layer == options.FailZoneLayer.value)
+        {
+            OnFailZoneLayer();
+        }
+        else if (layer == options.EnemyLayer.value)
+        {
+            OnEnemyLayer();
+        }
+        else if (layer == options.PlayerLayer.value)
+        {
+            OnPlayerLayer(collision.gameObject.GetComponent<PlayerController>());
+        }
+        else
+        {
+            OnNothingLayer();
+        }
+    }
+
+    protected override void NotifyDead()
+    {
+        GameManager.Instance.OnMonsterKilled();
+    }
+
+    public void OnPlayerLayer(PlayerController player) // when enemy first met player
+    {
+
+        // maybe don't need this when you make bt perfect....?
+
+
+
+        //DeleteAllMovementsAndStop();
+
+        //isKnockDown = true;
+        //movementTimer.StartTimer(knockDownTime);
+
+        //CheckDamagedToMoveBack(player);
+    }
+
+
+    public override void OnEnemyLayer()
+    {
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

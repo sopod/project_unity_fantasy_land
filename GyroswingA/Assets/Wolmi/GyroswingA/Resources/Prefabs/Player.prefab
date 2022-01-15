@@ -156,8 +156,8 @@ Transform:
   - {fileID: 2706288346238358304}
   - {fileID: 2706288346238358362}
   - {fileID: 2706288346238358360}
-  - {fileID: 3291949929500241192}
   - {fileID: 8454604621129367858}
+  - {fileID: 3291949929500241192}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -172,7 +172,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 40d66aae74632074e81b61b2073c204c, type: 3}
   m_Controller: {fileID: 9100000, guid: f1b4bbc9a5daa5b4188b5899dd7d6a15, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -236,10 +236,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfCreature: {fileID: 2706288346238717738}
+  isMoving: 0
+  isTurning: 0
   isJumping: 0
   isDoingSkill: 0
   isOnStage: 0
   isDead: 0
+  isDamaged: 0
 --- !u!1 &2706288346238717738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,7 +1814,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2706288346238358280}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!20 &6611486550443980514
 Camera:
@@ -1877,7 +1880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5953012972650277740, guid: 772aa8268caa7d042bd2dc45dc743035, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5953012972650277740, guid: 772aa8268caa7d042bd2dc45dc743035, type: 3}
       propertyPath: m_LocalPosition.x

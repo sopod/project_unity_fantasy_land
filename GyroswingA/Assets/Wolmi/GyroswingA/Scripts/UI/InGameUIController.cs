@@ -24,7 +24,7 @@ public class InGameUIController : MonoBehaviour
         this.monsterMax = enemyMax;
 
         timeText.text = GetLeftTimeString(0.0f);
-        enemyCountText.text = new StringBuilder("남은 적 0 / " + enemyMax).ToString();
+        enemyCountText.text = new StringBuilder("남은 적 " + monsterMax + " / " + monsterMax).ToString();
     }
 
     public void UpdateTime(float curTime)
