@@ -12,6 +12,7 @@ public class Options
     // layer
     public LayerMask PlayerLayer;
     public LayerMask EnemyLayer;
+    public LayerMask ItemLayer;
     public LayerMask StageLayer;
     public LayerMask FailZoneLayer;
     public LayerMask StagePoleLayer;
@@ -26,7 +27,7 @@ public class Options
     public float ResultUIShowingTime = 3.0f;
     public float GameStartWaitingTime = 4.0f;
     public int EnemyPrepareAmount = 5;
-    public int LimitSecondsPerStage = 20;//180;
+    public int LimitSecondsPerStage = 180;
     public int RequiredStarAmountForHardMode = 25;
     public int StageAmountPerMode = 10;
 

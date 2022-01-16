@@ -32,7 +32,7 @@ public class MovementData
 
 public class EnemyController : LivingCreature, ISpawnableObject
 {
-    EnemyType enemyType;
+    [SerializeField] EnemyType enemyType;
     public int Type 
     { 
         get { return (int) enemyType; }

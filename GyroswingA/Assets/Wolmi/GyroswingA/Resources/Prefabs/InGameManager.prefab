@@ -88,7 +88,7 @@ MonoBehaviour:
     ResultUIShowingTime: 3
     GameStartWaitingTime: 4
     EnemyPrepareAmount: 5
-    LimitSecondsPerStage: 20
+    LimitSecondsPerStage: 180
     RequiredStarAmountForHardMode: 25
     StageAmountPerMode: 10
     StageStartPos: {x: 0, y: 0, z: 0}

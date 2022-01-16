@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    [SerializeField] GameObject stage;
     [SerializeField] bool[] isPositionTaken;
     [SerializeField] int[] spawnedObjectCount;
 
@@ -68,9 +69,13 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         GameObject e = queues[idx].Dequeue();
-        e.transform.SetParent(null);
 
-        SetObjectRandomPosition(e);
+        if (e.GetComponent<EnemyController>() != null)
+            e.transform.SetParent(null);
+        else
+            e.transform.SetParent(stage.gameObject.transform);
+
+        SetObjectRandomPosition(e, idx);
 
         spawnedObjects.Add(e);
         spawnedObjectCount[idx]++;
@@ -104,7 +109,7 @@ public class ObjectSpawner : MonoBehaviour
             isPositionTaken[i] = false;
     }
 
-    void SetObjectRandomPosition(GameObject e)
+    void SetObjectRandomPosition(GameObject e, int idx)
     {
         int i = Random.Range(0, spawnPositions.Length);
         
@@ -118,8 +123,10 @@ public class ObjectSpawner : MonoBehaviour
             Debug.LogWarning("Object Count Over Position Index");
             return;
         }
-
+        
         e.transform.position = spawnPositions[i].transform.position;
+        e.transform.rotation = database.GetPrefab(idx).transform.rotation;
+
         isPositionTaken[i] = true;
     }
 

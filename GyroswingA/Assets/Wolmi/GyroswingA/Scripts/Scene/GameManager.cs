@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using UnityEditor;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -98,6 +99,7 @@ public class GameManager : MonoBehaviour
         player.SetPlayer(stage, stageVal, options);
 
         enemySpawner.SetSpawner(options.EnemyPrepareAmount);
+        itemSpawner.SetSpawner(options.EnemyPrepareAmount);
     }
 
     void Update()
@@ -121,6 +123,7 @@ public class GameManager : MonoBehaviour
         player.transform.rotation = options.PlayerStartRot;
         
         SpawnEnemies();
+        SpawnItems();
 
         SetPauseMoving();
 
@@ -164,7 +167,18 @@ public class GameManager : MonoBehaviour
             e.GetComponent<EnemyController>().SetEnemy(stage, stageVal, options);
         }
     }
-    
+
+    void SpawnItems()
+    {
+        ItemType[] typesToGen = options.GetCurLevelValues().ItemTypesCur;
+
+        for (int i = 0; i < typesToGen.Length; i++)
+        {
+            GameObject e = itemSpawner.SpawnItemObject(typesToGen[i]);
+            e.GetComponent<ItemController>().SetItem(stage, stageVal, options);
+        }
+    }
+
     public bool UpgradeLevel()
     {
         _levelCur++;
@@ -196,7 +210,7 @@ public class GameManager : MonoBehaviour
 
         enemySpawner.ReturnAllObjects();
         itemSpawner.ReturnAllObjects();
-
+        
         if (star == 0)
         {
             SetFail();
@@ -251,6 +265,11 @@ public class GameManager : MonoBehaviour
         {
             enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().StartMoving();
         }
+
+        for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
+        {
+            itemSpawner.spawnedObjects[i].GetComponent<ItemController>().StartMoving();
+        }
     }
 
     public void SetPauseMoving()
@@ -265,6 +284,11 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
         {
             enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().PauseMoving();
+        }
+
+        for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
+        {
+            itemSpawner.spawnedObjects[i].GetComponent<ItemController>().PauseMoving();
         }
     }
 
