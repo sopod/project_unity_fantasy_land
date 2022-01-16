@@ -36,7 +36,7 @@ public class StageData : ScriptableObject
     [SerializeField] int[] easyMode = new int[stageCountPerMode];
     [SerializeField] int[] hardMode = new int[stageCountPerMode];
 
-
+    [ContextMenu("Clear Data")]
     public void Clear()
     {
         stageNumberCur = 1;

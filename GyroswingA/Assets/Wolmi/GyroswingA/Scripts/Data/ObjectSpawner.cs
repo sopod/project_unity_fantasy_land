@@ -134,7 +134,6 @@ public class ObjectSpawner : MonoBehaviour
         // at least one object have to gen
         for (int i = 0; i < types.Length; i++)
         {
-            Debug.Log(spawnedObjectCount[(int)types[i]]);
             if (spawnedObjectCount[(int)types[i]] == 0)
             {
                 return TakeObject((int)types[i]);

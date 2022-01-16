@@ -37,7 +37,7 @@ public class StageButton : MonoBehaviour
         {
             darkCover.SetActive(false);
             inGameButton.SetInGameButton(mode, stageNum);
-            UIEventMaker.MakeUIObjectWork(inGameButton);
+            UIEventMaker.MakeButtonEvent(inGameButton);
 
             starDisplay.TurnOn(starsGot);
         }

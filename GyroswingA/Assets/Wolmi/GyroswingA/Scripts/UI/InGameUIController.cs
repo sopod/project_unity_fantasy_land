@@ -21,11 +21,20 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] Sprite[] resultSprite;
     [SerializeField] StarDisplay starDisplay;
 
+    [SerializeField] GameObject optionScreen;
+    [SerializeField] UIButton closeOptionButton;
+    [SerializeField] UIButton lobbyButton;
+    [SerializeField] UIButton exitGameButton;
+
     public void SetUI(int secondsMax, int enemyMax)
     {
         resultScreen.SetActive(false);
+        optionScreen.SetActive(false);
 
-        UIEventMaker.MakeUIObjectWork(pauseButton);
+        UIEventMaker.MakeButtonEvent(pauseButton);
+        UIEventMaker.MakeButtonEvent(closeOptionButton);
+        UIEventMaker.MakeButtonEvent(lobbyButton);
+        UIEventMaker.MakeButtonEvent(exitGameButton);
 
         this.secondsMax = secondsMax;
         this.monsterMax = enemyMax;

@@ -7,19 +7,19 @@ using UnityEngine.Events;
 
 public static class UIEventMaker
 {
-    public static bool MakeUIObjectWork(UIButton obj)
+    public static bool MakeButtonEvent(UIButton obj)
     {
         Button btn = obj.GetComponent<Button>();
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
 
         if (trigger == null || btn == null) return false;
 
-        SetEvents(trigger, obj);
+        SetClickEvent(trigger, obj);
 
         return true;
     }
-
-    static void SetEvents(EventTrigger trigger, UIButton obj)
+    
+    static void SetClickEvent(EventTrigger trigger, UIButton obj)
     {
         ClearEvent(trigger);
         
