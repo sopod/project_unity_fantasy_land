@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum EffectSoundType
 {
@@ -16,6 +17,46 @@ public class UISoundPlayer : MonoBehaviour
 
     [SerializeField] AudioSource effectSoundAudio;
     [SerializeField] AudioSource bgmAudio;
+
+    public bool IsBGMPlaying { get { return bgmAudio.isPlaying; } }
+
+    static UISoundPlayer instance;
+    public static UISoundPlayer Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<UISoundPlayer>();
+            }
+            return instance;
+        }
+    }
+
+    void Awake()
+    {
+        var objs = FindObjectsOfType<UISoundPlayer>();
+
+        if (objs.Length == 1)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            foreach (var obj in objs)
+            {
+                if (SceneManager.GetActiveScene().name == "InGame" && obj.gameObject != this.gameObject) // destroy previous object
+                    Destroy(obj.gameObject);
+                else if (SceneManager.GetActiveScene().name != "InGame" && obj.gameObject == this.gameObject) // destroy new object
+                    Destroy(obj.gameObject);
+            }
+            return;
+        }
+
+        if (instance == null) instance = this;
+    }
+
+
 
     public void PlayUISound(EffectSoundType soundType)
     {
@@ -41,7 +82,7 @@ public class UISoundPlayer : MonoBehaviour
     {
         if (bgmAudio.isPlaying)
             bgmAudio.Stop();
-
+        
         AudioClip clip = SoundManager.Instance.GetClip(bgms[(int)gameState].name);
 
         if (clip == null) return;

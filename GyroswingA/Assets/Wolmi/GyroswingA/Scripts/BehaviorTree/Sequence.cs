@@ -9,6 +9,8 @@ public class Sequence : Node
 
     public override BT_State Execute()
     {
+        bool anyChildIsRunning = false;
+
         // stop doing if it failed
         for (int i = 0; i < children.Count; i++)
         {
@@ -16,8 +18,8 @@ public class Sequence : Node
             {
                 case BT_State.Running:
                 {
-                    state = BT_State.Running;
-                    return state;
+                    anyChildIsRunning = true;
+                    continue;
                 }
 
                 case BT_State.Success:
@@ -33,13 +35,13 @@ public class Sequence : Node
 
                 default:
                 {
-                    continue;
+                    state = BT_State.Success;
+                    return state;
                 }
             }
         }
 
-        // has no children
-        state = BT_State.Failure;
+        state = (anyChildIsRunning) ? BT_State.Running : BT_State.Success;
         return state;
     }
 }

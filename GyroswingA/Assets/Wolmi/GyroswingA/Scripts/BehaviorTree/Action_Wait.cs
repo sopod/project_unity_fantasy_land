@@ -15,6 +15,7 @@ public class Action_Wait : Node
         }
 
         CheckFinishFlag();
+
         return state;
     }
 }

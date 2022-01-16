@@ -5,12 +5,11 @@ using UnityEngine;
 public class LobbyUIController : MonoBehaviour
 {
     [SerializeField] UIButton playButton;
-    [SerializeField] UIButton pauseButton;
+    [SerializeField] UIButton optionsButton;
 
     public void Start()
     {
-        UIEventMaker maker = new UIEventMaker();
-        maker.MakeUIObjectWork(playButton);
-        maker.MakeUIObjectWork(pauseButton);
+         UIEventMaker.MakeUIObjectWork(playButton);
+         UIEventMaker.MakeUIObjectWork(optionsButton);
     }
 }

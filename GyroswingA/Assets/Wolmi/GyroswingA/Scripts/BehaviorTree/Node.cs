@@ -9,7 +9,6 @@ public enum BT_State
     Success,
     Failure
 }
-
 public class Node
 {
     protected bool finishFlag;
@@ -53,7 +52,7 @@ public class Node
 
     public virtual BT_State Execute()
     {
-        return state;
+        return BT_State.Failure;
     }
 
     public void SetFinishedFlag(bool isFinished)

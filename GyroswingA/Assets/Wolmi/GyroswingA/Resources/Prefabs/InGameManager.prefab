@@ -47,8 +47,10 @@ MonoBehaviour:
   player: {fileID: 0}
   inGameUi: {fileID: 0}
   enemySpawner: {fileID: 0}
+  itemSpawner: {fileID: 0}
   stage: {fileID: 0}
   uiSoundPlayer: {fileID: 0}
+  stageData: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
   stageVal:
     Radius: 0
     SwingPosCur: {x: 0, y: 0, z: 0}
@@ -82,25 +84,34 @@ MonoBehaviour:
       SwingAngleMaxCur: 30
       SpinSpeedCur: 10
       EnemyTypesCur: 0000000001000000
+      ItemTypesCur: 
+    ResultUIShowingTime: 3
+    GameStartWaitingTime: 4
     EnemyPrepareAmount: 5
-    LimitSecondsPerStage: 180
+    LimitSecondsPerStage: 20
     RequiredStarAmountForHardMode: 25
     StageAmountPerMode: 10
+    StageStartPos: {x: 0, y: 0, z: 0}
+    StageStartRot: {x: 0, y: 0, z: 0, w: 0}
+    BarStartPos: {x: 0, y: 0, z: 0}
+    BarStartRot: {x: 0, y: 0, z: 0, w: 0}
     IsMachineSwinging: 1
     IsMachineTurning: 1
     IsMachineSpining: 1
     IsSpiningCW: 1
+    Gravity: 9.8
     PlayerStartPos: {x: -32, y: 2.2, z: -50.2}
+    PlayerStartRot: {x: 0, y: 0, z: 0, w: 0}
     PlayerMoveSpeed: 2
     PlayerRotateSpeed: 40
     PlayerJumpPower: 3
-    Gravity: 9.8
-    DashPowerToHit: 20
-    DashPowerToDamaged: 10
-    WaitForAnotherDash: 0.5
-    EnemyMoveSpeed: 2
     EnemyRotateSpeed: 40
     EnemyJumpPower: 3
     EnemyKnockDownTime: 2
+    DashPowerToHit: 20
+    DashPowerToDamaged: 10
+    SkillCoolTime: 0.5
   starCollector:
     _starCur: 0
+  _gameModeCur: 0
+  _levelCur: 0

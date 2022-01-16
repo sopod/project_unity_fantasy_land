@@ -18,6 +18,7 @@ public class BT_Dragon : BehaviorTree
                         new Action_CheckPlayerToAttack(bb),
                         new Action_Attack(bb),
                         new Action_Wait(bb),
+                        new Action_Wait(bb),
                         new Action_Wait(bb)
                     }),
 

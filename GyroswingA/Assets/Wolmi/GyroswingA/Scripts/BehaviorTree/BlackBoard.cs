@@ -16,7 +16,7 @@ public class BlackBoard
     // time duration
     public float enemyWaitTime { get { return 1.0f; } }
     public float enemyTurnTime { get { return 0.3f; } }
-    public float enemyMoveTime { get { return 0.3f; } }
+    public float enemyMoveTime { get { return 0.5f; } }
     public float enemyLongTurnTime { get { return 0.5f; } }
 
 

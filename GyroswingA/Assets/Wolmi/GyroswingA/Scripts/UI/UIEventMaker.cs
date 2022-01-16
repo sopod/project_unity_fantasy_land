@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class UIEventMaker
+public static class UIEventMaker
 {
-    public bool MakeUIObjectWork(UIButton obj)
+    public static bool MakeUIObjectWork(UIButton obj)
     {
         Button btn = obj.GetComponent<Button>();
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
@@ -19,28 +19,28 @@ public class UIEventMaker
         return true;
     }
 
-    void SetEvents(EventTrigger trigger, UIButton obj)
+    static void SetEvents(EventTrigger trigger, UIButton obj)
     {
         ClearEvent(trigger);
         
         AddEvent(trigger, EventTriggerType.PointerClick, (data) => { OnLeftClick((PointerEventData)data, obj); });
     }
 
-    void AddEvent(EventTrigger trigger, EventTriggerType type, UnityAction<BaseEventData> action)
+    static void AddEvent(EventTrigger trigger, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         EventTrigger.Entry entry = new EventTrigger.Entry();
 
         entry.eventID = type;
         entry.callback.AddListener(action);
         trigger.triggers.Add(entry);
-    }   
+    }
 
-    void ClearEvent(EventTrigger trigger)
+    static void ClearEvent(EventTrigger trigger)
     {
         trigger.triggers.Clear();
-    }    
+    }
 
-    void OnLeftClick(PointerEventData data, UIButton obj)
+    static void OnLeftClick(PointerEventData data, UIButton obj)
     {
         if (data.button == PointerEventData.InputButton.Left)
         {

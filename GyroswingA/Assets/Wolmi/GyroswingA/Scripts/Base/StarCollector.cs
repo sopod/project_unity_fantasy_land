@@ -42,7 +42,7 @@ public class StarCollector
                 break;
         }
 
-        _starCur += got;
+        _starCur = got;
 
         return got;
     }

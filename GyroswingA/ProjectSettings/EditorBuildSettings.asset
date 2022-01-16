@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Wolmi/GyroswingA/Scenes/Lobby.unity
     guid: 80cad5fd48d7edb4eb99025a1d0b081c
   - enabled: 1
+    path: Assets/Wolmi/GyroswingA/Scenes/StageSelection.unity
+    guid: d52c624234b7ab14fb9aa5811a25e0d8
+  - enabled: 1
     path: Assets/Wolmi/GyroswingA/Scenes/InGame.unity
     guid: 9ca4dbe36d633374699cd22ae5c969e6
   m_configObjects: {}

@@ -15,10 +15,17 @@ public class InGameUIController : MonoBehaviour
     float secondsMax;
     int monsterMax;
 
+    
+    [SerializeField] GameObject resultScreen;
+    [SerializeField] Image resultImage;
+    [SerializeField] Sprite[] resultSprite;
+    [SerializeField] StarDisplay starDisplay;
+
     public void SetUI(int secondsMax, int enemyMax)
     {
-        UIEventMaker maker = new UIEventMaker();
-        maker.MakeUIObjectWork(pauseButton);
+        resultScreen.SetActive(false);
+
+        UIEventMaker.MakeUIObjectWork(pauseButton);
 
         this.secondsMax = secondsMax;
         this.monsterMax = enemyMax;
@@ -53,6 +60,25 @@ public class InGameUIController : MonoBehaviour
         res += sec.ToString("00");
 
         return res;
+    }
+
+    public void SetWinUI(int starsGot)
+    {
+        resultScreen.SetActive(true);
+        resultImage.sprite = resultSprite[0];
+        starDisplay.TurnOn(starsGot);
+    }
+
+    public void SetLoseUI()
+    {
+        resultScreen.SetActive(true);
+        resultImage.sprite = resultSprite[1];
+        starDisplay.TurnOff();
+    }
+
+    public void TurnOffResultUI()
+    {
+        resultScreen.SetActive(false);
     }
 
 }
