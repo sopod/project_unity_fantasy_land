@@ -26,7 +26,7 @@ public class Options
     // game 
     public float ResultUIShowingTime = 3.0f;
     public float GameStartWaitingTime = 4.0f;
-    public int EnemyPrepareAmount = 5;
+    public int SpawnerPrepareAmount = 5;
     public int LimitSecondsPerStage = 180;
     public int RequiredStarAmountForHardMode = 25;
     public int StageAmountPerMode = 10;
@@ -63,16 +63,16 @@ public class Options
     public float SkillCoolTime = 0.5f;
 
 
-    public void ResetOptions()
+    public void ResetForDevelopment()
     {
         // game 
         ResultUIShowingTime = 3.0f;
         GameStartWaitingTime = 4.0f;
-        EnemyPrepareAmount = 5;
-        LimitSecondsPerStage = 180;
+        SpawnerPrepareAmount = 5;
+        LimitSecondsPerStage = 20;
         RequiredStarAmountForHardMode = 25;
         StageAmountPerMode = 10;
-            
+
         IsMachineSwinging = true;
         IsMachineTurning = true;
         IsMachineSpining = true;
@@ -96,6 +96,11 @@ public class Options
         DashPowerToHit = 20.0f;
         DashPowerToDamaged = 10.0f;
         SkillCoolTime = 0.5f;
+    }
+
+    public void ResetOptions()
+    {
+        PlayerMoveSpeed = 2.0f;
     }   
 
     public LevelValues GetCurLevelValues()

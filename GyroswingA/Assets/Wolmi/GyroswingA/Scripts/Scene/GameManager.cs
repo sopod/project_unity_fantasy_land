@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviour
             _gameModeCur = stageData.stageModeCur;
             options.ChangeLevel(_gameModeCur, _levelCur);
 
+            options.ResetForDevelopment(); ///123123123123123123123123
+
             SetInGame();
 
             PrepareInGame();
@@ -98,8 +100,8 @@ public class GameManager : MonoBehaviour
         machine.SetMachine(options, stageVal);
         player.SetPlayer(stage, stageVal, options);
 
-        enemySpawner.SetSpawner(options.EnemyPrepareAmount);
-        itemSpawner.SetSpawner(options.EnemyPrepareAmount);
+        enemySpawner.SetSpawner(options);
+        itemSpawner.SetSpawner(options);
     }
 
     void Update()

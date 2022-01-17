@@ -268,8 +268,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 1.1, z: 2}
-  m_Center: {x: 0, y: 0.6, z: 0}
+  m_Size: {x: 1.1, y: 1.1232967, z: 2}
+  m_Center: {x: 0, y: 0.58835167, z: 0}
 --- !u!54 &-1040142954123801551
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -306,6 +306,7 @@ MonoBehaviour:
   isDamaged: 0
   isBeingAffectedByStage: 0
   isEnemy: 0
+  enemyType: 0
   IsEnemySet: 0
 --- !u!114 &4131434598269413448
 MonoBehaviour:

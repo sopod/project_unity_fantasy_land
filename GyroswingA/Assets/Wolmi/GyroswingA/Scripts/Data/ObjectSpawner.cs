@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    Options options;
+
     [SerializeField] GameObject stage;
     [SerializeField] bool[] isPositionTaken;
     [SerializeField] int[] spawnedObjectCount;
@@ -16,13 +18,15 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] Queue<GameObject>[] queues;
     public List<GameObject> spawnedObjects;
     
-    public void SetSpawner(int prepareAamount)
+    public void SetSpawner( Options options)
     {
+        this.options = options;
+
         spawnedObjects = new List<GameObject>();
         isPositionTaken = new bool[spawnPositions.Length];
         spawnedObjectCount = new int[(int)EnemyType.Max];
 
-        PrepareObjects(prepareAamount);
+        PrepareObjects(options.SpawnerPrepareAmount);
         InitSpawner();
     }
 
@@ -51,7 +55,7 @@ public class ObjectSpawner : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject e = Instantiate(database.GetPrefab(idx), Vector3.zero, Quaternion.identity, this.transform);
+            GameObject e = Instantiate(database.GetPrefab(idx), Vector3.zero, database.GetPrefab(idx).transform.rotation, this.transform);
             
             ISpawnableObject obj = e.GetComponent<ISpawnableObject>();
             obj.Type = idx;
@@ -75,7 +79,7 @@ public class ObjectSpawner : MonoBehaviour
         else
             e.transform.SetParent(stage.gameObject.transform);
 
-        SetObjectRandomPosition(e, idx);
+        SetObjectRandomPosition(e, idx); //123123123123123123
 
         spawnedObjects.Add(e);
         spawnedObjectCount[idx]++;
@@ -112,7 +116,7 @@ public class ObjectSpawner : MonoBehaviour
     void SetObjectRandomPosition(GameObject e, int idx)
     {
         int i = Random.Range(0, spawnPositions.Length);
-        
+
         while (isPositionTaken[i])
         {
             i = Random.Range(0, spawnPositions.Length);
@@ -124,11 +128,44 @@ public class ObjectSpawner : MonoBehaviour
             return;
         }
         
-        e.transform.position = spawnPositions[i].transform.position;
-        e.transform.rotation = database.GetPrefab(idx).transform.rotation;
+        GameObject obj = spawnPositions[i];
+
+        if (Physics.Raycast(obj.transform.position, -obj.transform.up, out RaycastHit hit, 10.0f, options.StageLayer))
+        {
+            Vector3 pos = hit.point + new Vector3(0, database.GetPrefab(idx).transform.position.y, 0);
+
+            e.transform.position = pos;
+        }
+        else
+        {
+            //Debug.Log("Raycast didn't happen");
+            e.transform.position = spawnPositions[i].transform.position;
+        }
 
         isPositionTaken[i] = true;
     }
+
+
+    //void SetObjectRandomPosition(GameObject e, int idx)
+    //{
+    //    int i = Random.Range(0, spawnPositions.Length);
+        
+    //    while (isPositionTaken[i])
+    //    {
+    //        i = Random.Range(0, spawnPositions.Length);
+    //    }
+
+    //    if (isPositionTaken[i])
+    //    {
+    //        Debug.LogWarning("Object Count Over Position Index");
+    //        return;
+    //    }
+        
+    //    e.transform.position = spawnPositions[i].transform.position;
+    //    e.transform.rotation = database.GetPrefab(idx).transform.rotation;
+
+    //    isPositionTaken[i] = true;
+    //}
 
     public GameObject SpawnEnemyObject(EnemyType[] types, int maxAmount)
     {
