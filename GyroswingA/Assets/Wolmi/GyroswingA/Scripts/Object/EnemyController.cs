@@ -82,6 +82,7 @@ public class EnemyController : LivingCreature, ISpawnableObject
     {
         bt = GetComponent<BT_Dragon>();
 
+        creatureType = CreatureType.Enemy;
         movementDatas = new Queue<MovementData>();
         movementTimer = new TimeController();
 
@@ -92,7 +93,6 @@ public class EnemyController : LivingCreature, ISpawnableObject
 
         checkEnemyToMove = false;
         isKnockDown = false;
-        isEnemy = true;
 
         SetCreature(stage, stageVal, options);
     }
@@ -203,7 +203,7 @@ public class EnemyController : LivingCreature, ISpawnableObject
         }
         else
         {
-            isDamaged = false;
+            //isDamaged = false;
         }
 
         if (layer == options.StageLayer.value)
@@ -237,6 +237,18 @@ public class EnemyController : LivingCreature, ISpawnableObject
         else
         {
             OnNothingLayer();
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (IsPaused()) return;
+
+        int layer = (1 << collision.gameObject.layer);
+
+        if (layer == options.PlayerLayer.value)
+        {
+            isDamaged = false;
         }
     }
 

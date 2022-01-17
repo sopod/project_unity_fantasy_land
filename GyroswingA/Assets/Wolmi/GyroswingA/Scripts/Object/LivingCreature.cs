@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CreatureType
+{
+    Enemy, 
+    Player,
+    Max
+}
+
 
 
 public abstract class LivingCreature : MovingThing
@@ -11,10 +18,17 @@ public abstract class LivingCreature : MovingThing
     protected StageMovementValue stageVal;
 
     protected GameObject stage;
+    protected CreatureSoundPlayer soundPlayer;
     [SerializeField] protected GameObject centerOfCreature;
 
     protected Rigidbody rb;
     protected Animator ani;
+
+    protected CreatureType creatureType;
+    public bool IsPlayer
+    {
+        get { return creatureType == CreatureType.Player; }
+    }
 
     protected StateController state;
 
@@ -24,7 +38,7 @@ public abstract class LivingCreature : MovingThing
     [SerializeField] protected bool isOnStage;
     [SerializeField] protected bool isDamaged;
     [SerializeField] protected bool isBeingAffectedByStage;
-    [SerializeField] protected bool isEnemy;
+
 
     protected float moveSpeed;
     protected float rotSpeed;
@@ -45,6 +59,7 @@ public abstract class LivingCreature : MovingThing
         this.stage = stage;
         ani = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        soundPlayer = GetComponentInChildren<CreatureSoundPlayer>();
 
         state = new StateController();
 
@@ -128,24 +143,28 @@ public abstract class LivingCreature : MovingThing
     {
         if (isJumping || state.IsAttacking) return;
 
+        soundPlayer.PlaySound(CreatureEffectSoundType.Jump, IsPlayer);
         ani.SetBool("IsJumping", true);
 
         isJumping = true;
         isOnStage = false;
-        
-        rb.AddForce(stage.transform.up * jumpPower, ForceMode.Impulse);
 
+
+        rb.AddForce(stage.transform.up * jumpPower, ForceMode.Impulse);
     }
 
     public void Dash()
     {
         if (isJumping || state.IsAttacking) return;
 
+        soundPlayer.PlaySound(CreatureEffectSoundType.Dash, IsPlayer);
+        soundPlayer.PlaySound(CreatureEffectSoundType.HittingSound, IsPlayer);
+
         ani.SetTrigger("JustDashed");
         rb.AddForce(transform.forward * options.DashPowerToHit, ForceMode.Impulse);
         
         state.SetAttacking();
-
+        
         Invoke("SetIdle", options.SkillCoolTime);
     }
 
@@ -153,6 +172,7 @@ public abstract class LivingCreature : MovingThing
     {
         if (isJumping || state.IsAttacking) return;
         
+        soundPlayer.PlaySound(CreatureEffectSoundType.Fire, IsPlayer);
         ani.SetTrigger("JustFired");
 
         // do something
@@ -162,7 +182,7 @@ public abstract class LivingCreature : MovingThing
 
 
         state.SetAttacking();
-
+        
         Invoke("SetIdle", options.SkillCoolTime);
     }
 
@@ -186,8 +206,8 @@ public abstract class LivingCreature : MovingThing
             Vector3 dir = (CenterPosition - attacker.CenterPosition).normalized;
             float damagedPower = options.DashPowerToDamaged;
 
-            //if (attacker.isEnemy)
-            //{
+            if (!attacker.IsPlayer)
+            {
             //    EnemyController obj = attacker.GetComponent<EnemyController>();
             //    if (obj == null)
             //    {
@@ -195,7 +215,7 @@ public abstract class LivingCreature : MovingThing
             //        return;
             //    }
             //    damagedPower = options.GetDashPowerToDamaged((EnemyType)obj.Type);
-            //}
+            }
 
             rb.AddForce(dir * damagedPower, ForceMode.Impulse);
             isDamaged = true;
@@ -306,10 +326,12 @@ public abstract class LivingCreature : MovingThing
     {
         if (state.IsDead) return;
 
+        soundPlayer.PlaySound(CreatureEffectSoundType.Dead, IsPlayer);
+
         isJumping = false;
         isOnStage = false;
         state.SetDead();
-
+        
         NotifyDead();
 
         ani.SetBool("IsDead", true);

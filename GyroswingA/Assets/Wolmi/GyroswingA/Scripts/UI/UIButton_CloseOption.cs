@@ -10,6 +10,8 @@ public class UIButton_CloseOption : UIButton
 
     public override void OnClicked()
     {
+        UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnBack);
+
         optionScreen.SetActive(false);
 
         if (SceneManager.GetActiveScene().name == "InGame")

@@ -50,32 +50,10 @@ MonoBehaviour:
   itemSpawner: {fileID: 0}
   stage: {fileID: 0}
   uiSoundPlayer: {fileID: 0}
-  stageData: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
-  stageVal:
-    Radius: 0
-    SwingPosCur: {x: 0, y: 0, z: 0}
-    IsSwingRight: 0
-    SwingAngleCur: 0
-    SpinAngleCur: 0
+  _gameModeCur: 0
+  _levelCur: 0
+  _levelDataPerLevel: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
   options:
-    PlayerLayer:
-      serializedVersion: 2
-      m_Bits: 8
-    EnemyLayer:
-      serializedVersion: 2
-      m_Bits: 512
-    StageLayer:
-      serializedVersion: 2
-      m_Bits: 64
-    FailZoneLayer:
-      serializedVersion: 2
-      m_Bits: 128
-    StagePoleLayer:
-      serializedVersion: 2
-      m_Bits: 1024
-    StageBoundaryLayer:
-      serializedVersion: 2
-      m_Bits: 2048
     LevelValues:
       MachineSwingSpeed_Default: 10
       MachineSwingAngleMax_Default: 30
@@ -85,9 +63,12 @@ MonoBehaviour:
       SpinSpeedCur: 10
       EnemyTypesCur: 0000000001000000
       ItemTypesCur: 
-    ResultUIShowingTime: 3
+    ResultSoundWaitingTime: 0
+    ResultUIWaitingTime: 0
+    ResultUIRemainingTime: 0
     GameStartWaitingTime: 4
-    EnemyPrepareAmount: 5
+    EnemyStartWaitingTime: 0
+    SpawnerPrepareAmount: 0
     LimitSecondsPerStage: 180
     RequiredStarAmountForHardMode: 25
     StageAmountPerMode: 10
@@ -111,7 +92,24 @@ MonoBehaviour:
     DashPowerToHit: 20
     DashPowerToDamaged: 10
     SkillCoolTime: 0.5
-  starCollector:
-    _starCur: 0
-  _gameModeCur: 0
-  _levelCur: 0
+    PlayerLayer:
+      serializedVersion: 2
+      m_Bits: 8
+    EnemyLayer:
+      serializedVersion: 2
+      m_Bits: 512
+    ItemLayer:
+      serializedVersion: 2
+      m_Bits: 4096
+    StageLayer:
+      serializedVersion: 2
+      m_Bits: 64
+    FailZoneLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    StagePoleLayer:
+      serializedVersion: 2
+      m_Bits: 1024
+    StageBoundaryLayer:
+      serializedVersion: 2
+      m_Bits: 2048

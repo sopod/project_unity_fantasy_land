@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 8942051336424745790}
   - component: {fileID: -3373968872986341880}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Item_Gummy_2_Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}

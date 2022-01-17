@@ -39,10 +39,10 @@ public class PlayerController : LivingCreature
     {
         key = new KeyController();
 
+        this.creatureType = CreatureType.Player;
         this.moveSpeed = options.PlayerMoveSpeed;
         this.rotSpeed = options.PlayerRotateSpeed;
         this.jumpPower = options.PlayerJumpPower;
-        isEnemy = true;
 
         SetCreature(stage, stageVal, options);
     }
@@ -60,12 +60,18 @@ public class PlayerController : LivingCreature
 
     void JumpPlayer()
     {
-        if (key.IsJumpKeyPressed()) Jump();
+        if (key.IsJumpKeyPressed())
+        {
+            Jump();
+        }
     }
     
     void DashPlayer()
     {
-        if (key.IsDashKeyPressed()) Dash();
+        if (key.IsDashKeyPressed())
+        {
+            Dash();
+        }
     }
 
     void FirePlayer()
@@ -85,6 +91,17 @@ public class PlayerController : LivingCreature
     {
         GameManager.Instance.SetFail();
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (IsPaused()) return;
+
+        int layer = (1 << other.gameObject.layer);
+
+        if (layer == options.ItemLayer.value)
+        {
+            soundPlayer.PlaySound(CreatureEffectSoundType.ItemGet, IsPlayer);
+        }
+    }
 
     void OnCollisionStay(Collision collision)
     {
@@ -98,7 +115,7 @@ public class PlayerController : LivingCreature
         }
         else
         {
-            isDamaged = false;
+            //isDamaged = false;
         }
 
         if (layer == options.StageLayer.value)
@@ -131,5 +148,16 @@ public class PlayerController : LivingCreature
         }
     }
 
+    void OnCollisionExit(Collision collision)
+    {
+        if (IsPaused()) return;
+
+        int layer = (1 << collision.gameObject.layer);
+
+        if (layer == options.EnemyLayer.value)
+        {
+            isDamaged = false;
+        }
+    }
 
 }

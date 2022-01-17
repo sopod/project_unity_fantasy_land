@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class StarCollector
 {
-    [SerializeField] int _starCur = 0;
+    int _starCur = 0;
 
     public int GetStarCur { get { return _starCur; } }
 

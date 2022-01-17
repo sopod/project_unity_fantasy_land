@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class UIButton_EasyModeScreen : UIButton
 {
-    [SerializeField] StageSelectionUIController ui;
+    [SerializeField] StageSelectionUIDisplay ui;
 
     public override void OnClicked()
     {
+        UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
+
         ui.SetEasyModeUI();
     }
 }

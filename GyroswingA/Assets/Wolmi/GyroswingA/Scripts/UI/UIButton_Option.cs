@@ -8,6 +8,9 @@ public class UIButton_Option : UIButton
 
     public override void OnClicked()
     {
+
+        UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
+
         optionScreen.SetActive(true);
     }
 }

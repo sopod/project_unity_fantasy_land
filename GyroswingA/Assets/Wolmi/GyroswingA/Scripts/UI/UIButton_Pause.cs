@@ -9,6 +9,8 @@ public class UIButton_Pause : UIButton
     
     public override void OnClicked()
     {
+        UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
+
         manager.SetPauseMoving();
         optionScreen.SetActive(true);
     }

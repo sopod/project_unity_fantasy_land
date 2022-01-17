@@ -9,7 +9,63 @@ using UnityEngine;
 [System.Serializable]
 public class Options
 {
-    // layer
+    // level
+    int _levelCur = 0;
+    GameMode _modeCur;
+
+
+    [Header("---- level")]
+    [SerializeField] LevelValues LevelValues;
+
+    [Header("---- game rule")]
+    public int LimitSecondsPerStage;
+
+    [HideInInspector] public float ResultSoundWaitingTime;
+    [HideInInspector] public float ResultUIWaitingTime;
+
+    [HideInInspector] public float ResultUIRemainingTime;
+    [HideInInspector] public float GameStartWaitingTime;
+    [HideInInspector] public float EnemyStartWaitingTime;
+
+    [HideInInspector] public int SpawnerPrepareAmount;
+    [HideInInspector] public int RequiredStarAmountForHardMode;
+    [HideInInspector] public int StageAmountPerMode;
+
+
+    [Header("---- machine")]
+    public bool IsMachineSwinging;
+    public bool IsMachineTurning;
+    public bool IsMachineSpining;
+
+    [HideInInspector] public Vector3 StageStartPos;
+    [HideInInspector] public Quaternion StageStartRot;
+    [HideInInspector] public Vector3 BarStartPos;
+    [HideInInspector] public Quaternion BarStartRot;
+    [HideInInspector] public bool IsSpiningCW;
+
+
+    [Header("---- common")]
+    [HideInInspector] public float Gravity;
+
+
+    [Header("---- player")]
+    public float PlayerMoveSpeed;
+    public float PlayerRotateSpeed;
+    public float PlayerJumpPower;
+    [HideInInspector] public Vector3 PlayerStartPos;
+    [HideInInspector] public Quaternion PlayerStartRot;
+
+    [Header("---- enemy")]
+    public float EnemyRotateSpeed;
+    public float EnemyJumpPower;
+    public float EnemyKnockDownTime;
+
+    [Header("---- skill")]
+    public float SkillCoolTime;
+    public float DashPowerToDamaged;
+    [HideInInspector] public float DashPowerToHit;
+
+    [Header("---- layers")]
     public LayerMask PlayerLayer;
     public LayerMask EnemyLayer;
     public LayerMask ItemLayer;
@@ -17,59 +73,23 @@ public class Options
     public LayerMask FailZoneLayer;
     public LayerMask StagePoleLayer;
     public LayerMask StageBoundaryLayer;
-    
-    // level
-    int _levelCur = 0;
-    GameMode _modeCur;
-    [SerializeField] LevelValues LevelValues;
-
-    // game 
-    public float ResultUIShowingTime = 3.0f;
-    public float GameStartWaitingTime = 4.0f;
-    public int SpawnerPrepareAmount = 5;
-    public int LimitSecondsPerStage = 180;
-    public int RequiredStarAmountForHardMode = 25;
-    public int StageAmountPerMode = 10;
-
-    // machine
-    public Vector3 StageStartPos;
-    public Quaternion StageStartRot;
-    public Vector3 BarStartPos;
-    public Quaternion BarStartRot;
-
-    public bool IsMachineSwinging = true;
-    public bool IsMachineTurning = true;
-    public bool IsMachineSpining = true;
-    public bool IsSpiningCW = true;
-
-    // common
-    public float Gravity = 9.8f;
-    
-    // player
-    public Vector3 PlayerStartPos = new Vector3(-32.0f, 2.2f, -50.2f);
-    public Quaternion PlayerStartRot;
-    public float PlayerMoveSpeed = 2.0f;
-    public float PlayerRotateSpeed = 40.0f;
-    public float PlayerJumpPower = 3.0f;
-    
-    // enemy
-    public float EnemyRotateSpeed = 40.0f;
-    public float EnemyJumpPower = 3.0f;
-    public float EnemyKnockDownTime = 2.0f;
-    
-    // skill
-    public float DashPowerToHit = 20.0f;
-    public float DashPowerToDamaged = 10.0f;
-    public float SkillCoolTime = 0.5f;
 
 
-    public void ResetForDevelopment()
+
+
+
+    public void ResetOptionValuesByCode()
     {
         // game 
-        ResultUIShowingTime = 3.0f;
-        GameStartWaitingTime = 4.0f;
+        ResultSoundWaitingTime = 0.3f;
+        ResultUIWaitingTime = 0.4f;
+        ResultUIRemainingTime = 5.0f;
+
+        GameStartWaitingTime = 6.0f;
+        EnemyStartWaitingTime = 1.0f;
+        
         SpawnerPrepareAmount = 5;
-        LimitSecondsPerStage = 20;
+        LimitSecondsPerStage = 20; // Fix this !!!!!!!!!!!!!!!!!!!
         RequiredStarAmountForHardMode = 25;
         StageAmountPerMode = 10;
 
@@ -83,18 +103,18 @@ public class Options
 
         // player
         PlayerStartPos = new Vector3(-32.0f, 2.2f, -50.2f);
-        PlayerMoveSpeed = 2.0f;
-        PlayerRotateSpeed = 40.0f;
-        PlayerJumpPower = 3.0f;
+        PlayerMoveSpeed = 2.0f; // Fix this
+        PlayerRotateSpeed = 40.0f; // Fix this
+        PlayerJumpPower = 3.0f; // Fix this
 
         // enemy
-        EnemyRotateSpeed = 40.0f;
-        EnemyJumpPower = 3.0f;
-        EnemyKnockDownTime = 2.0f;
+        EnemyRotateSpeed = 40.0f; // Fix this
+        EnemyJumpPower = 3.0f; // Fix this
+        EnemyKnockDownTime = 2.0f; // Fix this
 
         // skill
         DashPowerToHit = 20.0f;
-        DashPowerToDamaged = 10.0f;
+        DashPowerToDamaged = 10.0f; // Fix this
         SkillCoolTime = 0.5f;
     }
 

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1404927ec3bc643b756b35cc097e60, type: 3}
   m_Name: StageData
   m_EditorClassIdentifier: 
-  stageNumberCur: 1
+  levelNumberCur: 1
   stageModeCur: 0
-  stageNumberUnlocked: 1
-  stageModeUnlocked: 0
+  levelNumberUnlocked: 1
+  levelModeUnlocked: 0
   easyMode: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   hardMode: 00000000000000000000000000000000000000000000000000000000000000000000000000000000

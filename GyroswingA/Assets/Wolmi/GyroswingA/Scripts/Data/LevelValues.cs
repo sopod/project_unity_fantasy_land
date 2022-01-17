@@ -13,12 +13,12 @@ public class LevelValues
     [SerializeField] float MachineSwingAngleMax_Default = 30.0f;
     [SerializeField] float MachineSpinSpeed_Default = 10.0f;
 
-    public float SwingSpeedCur;
-    public float SwingAngleMaxCur;
-    public float SpinSpeedCur;
+    [HideInInspector] public float SwingSpeedCur;
+    [HideInInspector] public float SwingAngleMaxCur;
+    [HideInInspector] public float SpinSpeedCur;
 
-    public EnemyType[] EnemyTypesCur;
-    public ItemType[] ItemTypesCur;
+    [HideInInspector] public EnemyType[] EnemyTypesCur;
+    [HideInInspector] public ItemType[] ItemTypesCur;
     
 
     public LevelValues()

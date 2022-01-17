@@ -4,8 +4,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum EffectSoundType
+public enum UIEffectSoundType
 {
+    BtnClick,
+    BtnBack,
+    CreatureDash, 
+    CreatureFire,
+    CreatureJump,
+    CreatureDead,
+    ItemGet,
     Max
 }
 
@@ -15,12 +22,16 @@ public class UISoundPlayer : MonoBehaviour
     [SerializeField] AudioClip[] effectSounds;
     [SerializeField] AudioClip[] bgms;
 
-    [SerializeField] AudioSource effectSoundAudio;
+    [SerializeField] AudioSource[] effectSoundAudios;
     [SerializeField] AudioSource bgmAudio;
 
-    public bool IsBGMPlaying { get { return bgmAudio.isPlaying; } }
+    public bool IsBGMPlaying
+    {
+        get { return bgmAudio.isPlaying; }
+    }
 
     static UISoundPlayer instance;
+
     public static UISoundPlayer Instance
     {
         get
@@ -29,6 +40,7 @@ public class UISoundPlayer : MonoBehaviour
             {
                 instance = FindObjectOfType<UISoundPlayer>();
             }
+
             return instance;
         }
     }
@@ -45,11 +57,14 @@ public class UISoundPlayer : MonoBehaviour
         {
             foreach (var obj in objs)
             {
-                if (SceneManager.GetActiveScene().name == "InGame" && obj.gameObject != this.gameObject) // destroy previous object
+                if (SceneManager.GetActiveScene().name == "InGame" &&
+                    obj.gameObject != this.gameObject) // destroy previous object
                     Destroy(obj.gameObject);
-                else if (SceneManager.GetActiveScene().name != "InGame" && obj.gameObject == this.gameObject) // destroy new object
+                else if (SceneManager.GetActiveScene().name != "InGame" &&
+                         obj.gameObject == this.gameObject) // destroy new object
                     Destroy(obj.gameObject);
             }
+
             return;
         }
 
@@ -58,32 +73,33 @@ public class UISoundPlayer : MonoBehaviour
 
 
 
-    public void PlayUISound(EffectSoundType soundType)
+    public void PlayUISound(UIEffectSoundType soundType)
     {
-        AudioClip clip = SoundManager.Instance.GetClip(effectSounds[(int)soundType].name);
+        if ((int)soundType >= effectSounds.Length) return;
+
+        AudioClip clip = SoundManager.Instance.GetClip(effectSounds[(int) soundType].name);
 
         if (clip == null) return;
-
-        if (!effectSoundAudio.isPlaying)
-            effectSoundAudio.PlayOneShot(clip);
-
-        //for (int i =0; i < audios.Length; i++)
-        //{
-        //    if (!audios[i].isPlaying)
-        //    {
-        //        audios[i].PlayOneShot(clip);
-        //        break;
-        //    }
-        //}
+        
+        for (int i = 0; i < effectSoundAudios.Length; i++)
+        {
+            if (!effectSoundAudios[i].isPlaying)
+            {
+                effectSoundAudios[i].PlayOneShot(clip);
+                break;
+            }
+        }
 
     }
 
     public void PlayBGM(GameState gameState, bool isLoop = true)
     {
+        if ((int)gameState >= effectSounds.Length) return;
+
         if (bgmAudio.isPlaying)
             bgmAudio.Stop();
-        
-        AudioClip clip = SoundManager.Instance.GetClip(bgms[(int)gameState].name);
+
+        AudioClip clip = SoundManager.Instance.GetClip(bgms[(int) gameState].name);
 
         if (clip == null) return;
 
@@ -91,4 +107,28 @@ public class UISoundPlayer : MonoBehaviour
         bgmAudio.clip = clip;
         bgmAudio.Play();
     }
+
+    public void PlayResultBGM(bool isWin)
+    {
+        if (bgmAudio.isPlaying)
+            bgmAudio.Stop();
+
+        AudioClip clip;
+        if (isWin)
+            clip = SoundManager.Instance.GetClip(bgms[2].name);
+        else
+            clip = SoundManager.Instance.GetClip(bgms[3].name);
+
+        if (clip == null) return;
+
+        bgmAudio.loop = false;
+        bgmAudio.clip = clip;
+        bgmAudio.Play();
+    }
+
+    public void StopPlayingBGM()
+    {
+        bgmAudio.Stop();
+    }
+
 }

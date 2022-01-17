@@ -22,24 +22,29 @@ public enum GameMode
 
 public class GameManager : MonoBehaviour
 {
+    [Header("------- Attached components")]
     [SerializeField] MachineController machine;
     [SerializeField] PlayerController player;
-    [SerializeField] InGameUIController inGameUi;
+    [SerializeField] InGameUIDisplay inGameUi;
     [SerializeField] ObjectSpawner enemySpawner;
     [SerializeField] ObjectSpawner itemSpawner;
     [SerializeField] GameObject stage;
     [SerializeField] UISoundPlayer uiSoundPlayer;
 
-    [SerializeField] StageData stageData;
-    [SerializeField] StageMovementValue stageVal;
-    [SerializeField] Options options;
-    [SerializeField] StarCollector starCollector;
-
-    TimeController gameTimer;
-
-    GameState _gameStateCur;
+    [Header("------- Game Status")]
     [SerializeField] GameMode _gameModeCur;
     [SerializeField] int _levelCur = 0;
+    GameState _gameStateCur;
+
+
+    [Header("------- Game Data")]
+    [SerializeField] StarDataPerLevel _levelDataPerLevel;
+    [SerializeField] Options options;
+    StageMovementValue stageVal;
+
+    StarCollector starCollector;
+    TimeController gameTimer;
+
 
     bool _isSceneSet;
     bool _isGamePaused;
@@ -79,11 +84,11 @@ public class GameManager : MonoBehaviour
         {
             _isSceneSet = true;
 
-            _levelCur = stageData.stageNumberCur;
-            _gameModeCur = stageData.stageModeCur;
+            _levelCur = _levelDataPerLevel.levelNumberCur;
+            _gameModeCur = _levelDataPerLevel.stageModeCur;
             options.ChangeLevel(_gameModeCur, _levelCur);
 
-            options.ResetForDevelopment(); ///123123123123123123123123
+            options.ResetOptionValuesByCode(); ///123123123123123123123123
 
             SetInGame();
 
@@ -131,8 +136,7 @@ public class GameManager : MonoBehaviour
 
         SetPauseMoving();
 
-        if(!uiSoundPlayer.IsBGMPlaying)
-            uiSoundPlayer.PlayBGM(GameState.InGame);
+        uiSoundPlayer.PlayBGM(GameState.InGame);
     }
 
     void StartInGame()
@@ -187,19 +191,19 @@ public class GameManager : MonoBehaviour
     {
         _levelCur++;
 
-        if (_levelCur > stageData.StageCountPerMode && _gameModeCur == GameMode.Easy)
+        if (_levelCur > _levelDataPerLevel.LevelCountPerMode && _gameModeCur == GameMode.Easy)
         {
             _levelCur = 1;
             _gameModeCur = GameMode.Hard;
 
         }
-        else if (_levelCur > stageData.StageCountPerMode && _gameModeCur == GameMode.Hard)
+        else if (_levelCur > _levelDataPerLevel.LevelCountPerMode && _gameModeCur == GameMode.Hard)
         {
             return false;
         }
 
         options.ChangeLevel(_gameModeCur, _levelCur);
-        stageData.SetUnlocked(_gameModeCur, _levelCur);
+        _levelDataPerLevel.SetUnlocked(_gameModeCur, _levelCur);
 
         return true;
     }
@@ -210,7 +214,7 @@ public class GameManager : MonoBehaviour
 
         int star = starCollector.GetStarForCurStage(_gameModeCur, _remainingMonsterCur);
 
-        stageData.SetStar(_gameModeCur, _levelCur, star);
+        _levelDataPerLevel.SetStar(_gameModeCur, _levelCur, star);
 
         enemySpawner.ReturnAllObjects();
         itemSpawner.ReturnAllObjects();
@@ -230,17 +234,21 @@ public class GameManager : MonoBehaviour
         SetPauseMoving();
         ChangeGameState(GameState.Result);
         
-        inGameUi.SetWinUI(starCollector.GetStarCur);
+        //inGameUi.SetWinUI(starCollector.GetStarCur);
+
+        uiSoundPlayer.StopPlayingBGM();
+        Invoke("SetWinBGM", options.ResultSoundWaitingTime);
+        Invoke("SetWinUI", options.ResultUIWaitingTime);
 
         // call restart level
         if (!UpgradeLevel())
         {
-            Invoke("BackToStageSelectionScene", options.ResultUIShowingTime);
+            Invoke("BackToStageSelectionScene", options.ResultUIRemainingTime);
         }
         else
         {
-            Invoke("PrepareInGame", options.ResultUIShowingTime);
-            Invoke("TurnResultUIOff", options.ResultUIShowingTime);
+            Invoke("PrepareInGame", options.ResultUIRemainingTime);
+            Invoke("TurnResultUIOff", options.ResultUIRemainingTime);
             Invoke("StartInGame", options.GameStartWaitingTime);
         }
     }
@@ -249,14 +257,37 @@ public class GameManager : MonoBehaviour
     {
         SetPauseMoving();
         ChangeGameState(GameState.Result);
+        
+        uiSoundPlayer.StopPlayingBGM();
+        Invoke("SetFailBGM", options.ResultSoundWaitingTime);
+        Invoke("SetFailUI", options.ResultUIWaitingTime);
 
-        inGameUi.SetLoseUI();
 
         // call return to stage selection scene function
-        Invoke("BackToStageSelectionScene", options.ResultUIShowingTime);
+        Invoke("BackToStageSelectionScene", options.ResultUIRemainingTime);
     }
 
-    public void SetStartMoving()
+    void SetWinBGM()
+    {
+        uiSoundPlayer.PlayResultBGM(true);
+    }
+
+    void SetFailBGM()
+    {
+        uiSoundPlayer.PlayResultBGM(false);
+    }
+
+    void SetWinUI()
+    {
+        inGameUi.SetWinUI(starCollector.GetStarCur);
+    }
+
+    void SetFailUI()
+    {
+        inGameUi.SetLoseUI();
+    }
+
+    public void SetStartMoving(bool waitEnemy = false)
     {
         ChangeGameState(GameState.InGame);
 
@@ -265,14 +296,27 @@ public class GameManager : MonoBehaviour
         machine.StartMoving();
         player.StartMoving();
 
-        for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
+        if (waitEnemy)
         {
-            enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().StartMoving();
+            Invoke("StartEnemyMove", options.EnemyStartWaitingTime);
         }
+        else
+        {
+            StartEnemyMove();
+        }
+        
 
         for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
         {
             itemSpawner.spawnedObjects[i].GetComponent<ItemController>().StartMoving();
+        }
+    }
+
+    void StartEnemyMove()
+    {
+        for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
+        {
+            enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().StartMoving();
         }
     }
 

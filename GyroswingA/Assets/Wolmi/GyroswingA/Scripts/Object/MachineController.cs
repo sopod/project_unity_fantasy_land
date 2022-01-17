@@ -2,7 +2,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-[System.Serializable]
 public class StageMovementValue
 {
     public float Radius;
