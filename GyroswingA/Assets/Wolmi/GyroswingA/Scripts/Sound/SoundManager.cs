@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public class SoundManager : MonoBehaviour
@@ -44,6 +45,7 @@ public class SoundManager : MonoBehaviour
     void LoadAll()
     {
         clips = new Dictionary<string, AudioClip>();
+
         var temp = Resources.LoadAll<AudioClip>("Sounds");
 
         for (int i = 0; i < temp.Length; i++)

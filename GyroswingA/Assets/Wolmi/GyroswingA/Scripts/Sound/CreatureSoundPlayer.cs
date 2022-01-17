@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public enum CreatureEffectSoundType
@@ -18,9 +19,25 @@ public class CreatureSoundPlayer : MonoBehaviour
 {
     const float trimRatio = 0.3f;
 
+    [SerializeField] AudioMixerGroup effectSoundMixerGroup;
+
     [SerializeField] AudioClip[] effectSounds;
     [SerializeField] AudioSource[] effectSoundAudios;
-    
+
+    void Awake()
+    {
+        SetGroup();
+    }
+
+    void SetGroup()
+    {
+        for (int i = 0; i < effectSoundAudios.Length; i++)
+        {
+            effectSoundAudios[i].outputAudioMixerGroup = effectSoundMixerGroup;
+        }
+    }
+
+
 
     public void PlaySound(CreatureEffectSoundType soundType, bool trim)
     {

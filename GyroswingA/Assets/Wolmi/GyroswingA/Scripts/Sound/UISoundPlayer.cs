@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public enum UIEffectSoundType
@@ -19,6 +20,9 @@ public enum UIEffectSoundType
 
 public class UISoundPlayer : MonoBehaviour
 {
+    [SerializeField] AudioMixerGroup bgmMixerGroup;
+    [SerializeField] AudioMixerGroup effectSoundMixerGroup;
+
     [SerializeField] AudioClip[] effectSounds;
     [SerializeField] AudioClip[] bgms;
 
@@ -57,20 +61,32 @@ public class UISoundPlayer : MonoBehaviour
         {
             foreach (var obj in objs)
             {
-                if (SceneManager.GetActiveScene().name == "InGame" &&
-                    obj.gameObject != this.gameObject) // destroy previous object
-                    Destroy(obj.gameObject);
-                else if (SceneManager.GetActiveScene().name != "InGame" &&
-                         obj.gameObject == this.gameObject) // destroy new object
-                    Destroy(obj.gameObject);
+                if (SceneManager.GetActiveScene().name == "InGame" && obj.gameObject != this.gameObject) 
+                {
+                    Destroy(obj.gameObject); // destroy previous object
+                }
+                else if (SceneManager.GetActiveScene().name != "InGame" && obj.gameObject == this.gameObject) 
+                {
+                    Destroy(obj.gameObject); // destroy this new object
+                    return;
+                }
             }
-
-            return;
         }
 
         if (instance == null) instance = this;
+
+        SetGroup();
     }
 
+    void SetGroup()
+    {
+        for (int i = 0; i < effectSoundAudios.Length; i++)
+        {
+            effectSoundAudios[i].outputAudioMixerGroup = effectSoundMixerGroup;
+        }
+
+        bgmAudio.outputAudioMixerGroup = bgmMixerGroup;
+    }
 
 
     public void PlayUISound(UIEffectSoundType soundType)

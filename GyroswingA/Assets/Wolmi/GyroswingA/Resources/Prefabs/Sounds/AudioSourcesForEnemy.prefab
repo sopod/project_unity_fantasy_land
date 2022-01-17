@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2a11521f8e0214ca7302ecda80228a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSoundMixerGroup: {fileID: 7867377859811683651, guid: a1d325928b7fa284e9b3b9e3c488c97c, type: 2}
   effectSounds:
   - {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   effectSoundAudios:

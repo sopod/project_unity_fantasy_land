@@ -233,7 +233,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 134532723}
   m_HandleRect: {fileID: 852288765}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.1
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -242,7 +242,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 495960126009342139}
         m_TargetAssemblyTypeName: VolumeSlider, Assembly-CSharp
-        m_MethodName: ChangeVolume
+        m_MethodName: OnVolumeChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -264,7 +264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d8d2785bd057c488724f33e8cbdfe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSlider: {fileID: 494036771}
+  type: 0
+  mixerGroup: {fileID: 4806926043966088744, guid: a1d325928b7fa284e9b3b9e3c488c97c, type: 2}
+  slider: {fileID: 494036771}
 --- !u!1 &637506642
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +803,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 5782073542603081137}
   m_HandleRect: {fileID: 5526755106137345881}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.1
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -810,7 +812,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6391274321386513359}
         m_TargetAssemblyTypeName: VolumeSlider, Assembly-CSharp
-        m_MethodName: ChangeVolume
+        m_MethodName: OnVolumeChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -832,7 +834,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d8d2785bd057c488724f33e8cbdfe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSlider: {fileID: 4053329326209822545}
+  type: 1
+  mixerGroup: {fileID: 7867377859811683651, guid: a1d325928b7fa284e9b3b9e3c488c97c, type: 2}
+  slider: {fileID: 4053329326209822545}
 --- !u!1 &4514690158746145829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,6 +1436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192e532a902a19b4494bd238ec81946a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
   optionScreen: {fileID: 7932870196559299679}
 --- !u!1 &7932870196838176413
 GameObject:
