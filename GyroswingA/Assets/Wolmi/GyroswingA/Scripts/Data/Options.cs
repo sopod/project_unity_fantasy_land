@@ -89,11 +89,11 @@ public class Options
         ResultUIWaitingTime = 0.4f;
         ResultUIRemainingTime = 5.0f;
 
-        GameStartWaitingTime = 6.0f;
+        GameStartWaitingTime = 5.5f;
         EnemyStartWaitingTime = 1.0f;
         
         SpawnerPrepareAmount = 5;
-        LimitSecondsPerStage = 180; // Fix this !!!!!!!!!!!!!!!!!!! 180 
+        LimitSecondsPerStage = 20; // Fix this !!!!!!!!!!!!!!!!!!! 180 
         RequiredStarAmountForHardMode = 25;
         StageAmountPerMode = 10;
 
@@ -110,11 +110,11 @@ public class Options
         PlayerStartPos = new Vector3(-32.0f, 2.2f, -50.2f);
         PlayerMoveSpeed = 2.0f; // Fix this
         PlayerRotateSpeed = 40.0f; // Fix this
-        PlayerJumpPower = 6.0f; // Fix this
+        PlayerJumpPower = 5.0f; // Fix this
 
         // enemy
         EnemyRotateSpeed = 40.0f; // Fix this
-        EnemyJumpPower = 6.0f; // Fix this
+        EnemyJumpPower = 5.0f; // Fix this
         EnemyKnockDownTime = 2.0f; // Fix this
 
         // skill

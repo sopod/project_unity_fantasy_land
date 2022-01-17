@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
 
         gameTimer.StartTimer(options.LimitSecondsPerStage);
 
-        SetStartMoving();
+        SetStartMoving(true);
     }
 
     void UpdateInGame()
@@ -303,13 +303,16 @@ public class GameManager : MonoBehaviour
 
         if (waitEnemy)
         {
+            for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
+            {
+                enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().StopMoving();
+            }
             Invoke("StartEnemyMove", options.EnemyStartWaitingTime);
         }
         else
         {
             StartEnemyMove();
         }
-        
 
         for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
         {
