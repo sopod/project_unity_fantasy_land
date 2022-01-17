@@ -12,9 +12,7 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] TextMeshProUGUI enemyCountText;
     [SerializeField] UIButton pauseButton;
 
-    float secondsMax;
     int monsterMax;
-
     
     [SerializeField] GameObject resultScreen;
     [SerializeField] Image resultImage;
@@ -26,7 +24,7 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] UIButton lobbyButton;
     [SerializeField] UIButton exitGameButton;
 
-    public void SetUI(int secondsMax, int enemyMax)
+    public void SetUI(int limitTime, int enemyMax)
     {
         resultScreen.SetActive(false);
         optionScreen.SetActive(false);
@@ -36,16 +34,15 @@ public class InGameUIController : MonoBehaviour
         UIEventMaker.MakeButtonEvent(lobbyButton);
         UIEventMaker.MakeButtonEvent(exitGameButton);
 
-        this.secondsMax = secondsMax;
         this.monsterMax = enemyMax;
 
-        timeText.text = GetLeftTimeString(0.0f);
+        timeText.text = GetRemainingTimeString(limitTime);
         enemyCountText.text = new StringBuilder("남은 적 " + monsterMax + " / " + monsterMax).ToString();
     }
 
-    public void UpdateTime(float curTime)
+    public void UpdateTime(float remainingTime)
     {
-        timeText.text = GetLeftTimeString(curTime);
+        timeText.text = GetRemainingTimeString(remainingTime);
     }
 
     public void UpdateMonsterCount(int monsterCur)
@@ -53,9 +50,9 @@ public class InGameUIController : MonoBehaviour
         enemyCountText.text = new StringBuilder("남은 적 " + monsterCur + " / " + monsterMax).ToString();
     }
 
-    string GetLeftTimeString(float seconds)
+    string GetRemainingTimeString(float seconds)
     {
-        int sec = Mathf.FloorToInt(secondsMax - seconds);
+        int sec = Mathf.FloorToInt(seconds);
         int min = 0;
 
         if (sec >= 60)

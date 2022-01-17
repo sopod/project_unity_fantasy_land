@@ -44,7 +44,7 @@ public class LevelValues
                     SwingAngleMaxCur = MachineSwingAngleMax_Default;
                     SpinSpeedCur = MachineSpinSpeed_Default;
                     EnemyTypesCur = new EnemyType[]{ EnemyType.Bwun, EnemyType.Ssak};
-                    ItemTypesCur = new ItemType[] { };
+                    ItemTypesCur = new ItemType[] { ItemType.HarippoRed };
                 }
                     break;
 

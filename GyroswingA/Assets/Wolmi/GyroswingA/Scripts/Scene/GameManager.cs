@@ -116,6 +116,8 @@ public class GameManager : MonoBehaviour
 
     void PrepareInGame() // use this after upgrade level
     {
+        options.ResetOptions();
+
         machine.ResetMachine();
 
         player.ResetCreature();
@@ -148,7 +150,7 @@ public class GameManager : MonoBehaviour
     {
         if (_gameStateCur == GameState.InGame)
         {
-            inGameUi.UpdateTime(gameTimer.GetCurrentTime());
+            inGameUi.UpdateTime(gameTimer.GetRemainingTime());
 
             if (gameTimer.IsFinished)
             {
@@ -290,6 +292,11 @@ public class GameManager : MonoBehaviour
         {
             itemSpawner.spawnedObjects[i].GetComponent<ItemController>().PauseMoving();
         }
+    }
+
+    public void OnTimeItemUsed(float plusTime)
+    {
+        gameTimer.ExtendTimer(plusTime);
     }
 
     public void OnMonsterKilled()

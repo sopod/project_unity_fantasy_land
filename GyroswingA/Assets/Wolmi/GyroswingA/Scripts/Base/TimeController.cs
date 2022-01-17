@@ -40,6 +40,11 @@ public class TimeController
         }
     }
 
+    public void ExtendTimer(float plusTime)
+    {
+        limitTime += plusTime;
+    }
+
     public void FinishTimer()
     {
         startTime = 0.0f;
@@ -51,7 +56,7 @@ public class TimeController
     {
         return Time.time - startTime;
     }
-
+    
     public float GetRemainingTime()
     {
         return limitTime - GetCurrentTime();

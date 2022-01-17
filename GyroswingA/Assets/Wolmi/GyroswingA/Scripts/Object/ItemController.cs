@@ -31,9 +31,10 @@ public class ItemController : MovingThing, ISpawnableObject
         if (layer == options.PlayerLayer.value)
         {
             // effect
+            options.OnPlayerSpeedItemUsed(itemType);
 
-
-
+            float plusTime = options.GetItemSecondsToAdd(itemType);
+            GameManager.Instance.OnTimeItemUsed(plusTime);
 
             this.gameObject.SetActive(false);
         }
