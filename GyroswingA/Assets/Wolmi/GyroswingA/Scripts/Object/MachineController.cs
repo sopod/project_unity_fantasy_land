@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -9,9 +8,6 @@ public class StageMovementValue
     public bool IsSwingRight;
     public float SwingAngleCur;
     public float SpinAngleCur;
-    //public Vector3 StageUpDir;
-    //public Vector3 prevStagePos;
-    //public float stageX;
 }
 
 
@@ -39,8 +35,6 @@ public class MachineController : MovingThing
     {
         if (!IsPaused())
         {
-            //values.prevStagePos = stage.transform.position;
-
             SetSwingAngleCur();
             
             if (options.IsMachineSwinging)
@@ -58,12 +52,9 @@ public class MachineController : MovingThing
             if (options.IsMachineSwinging)
                 ChangeDirection();
             
-            //values.stageX = stage.transform.rotation.eulerAngles.x;
-
             SetStageValues();
             GameManager.Instance.MoveCreaturesAlongStage();
 
-            // if (IsStopped())  back to the original position
         }
     }
 
@@ -81,7 +72,6 @@ public class MachineController : MovingThing
         this.options = options;
 
         swingPowerMinPercent = 0.3f; // min 30% will be same power 
-        //values.prevStagePos = stage.transform.position;
 
         _changeDir = false;
         _isSwingingRight = true;
@@ -213,7 +203,6 @@ public class MachineController : MovingThing
         stageVal.IsSwingRight = _isSwingingRight;
         stageVal.SwingAngleCur = _swingAngleCur;
         stageVal.SpinAngleCur = _spinAngleCur;
-        //stageVal.StageUpDir = ;
     }
     
 }

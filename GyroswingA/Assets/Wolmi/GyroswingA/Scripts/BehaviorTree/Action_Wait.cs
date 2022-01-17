@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Action_Wait : Node
 {
     public Action_Wait(BlackBoard bb) : base(bb) { }

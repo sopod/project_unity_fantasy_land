@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 
 public enum MoblieActionType
@@ -135,11 +132,13 @@ public class PlayerController : LivingCreature
 
         if (layer == options.EnemyLayer.value)
         {
-            LivingCreature l = collision.gameObject.GetComponent<LivingCreature>();
+            EnemyController e = collision.gameObject.GetComponent<EnemyController>();
 
-            if (l.IsAttacking && !isDamaged)
+            if (e == null) return;
+            
+            if (e.IsAttacking && !isDamaged)
             {
-                OnDamagedAndMoveBack(false, false, l.CenterPosition, l.CenterForward);
+                OnDamagedAndMoveBack(false, false, e.CenterPosition, e.CenterForward, (EnemyType)e.Type);
             }
         }
     }

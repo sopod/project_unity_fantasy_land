@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -13,7 +10,7 @@ public class InGameUIDisplay : MonoBehaviour
     [SerializeField] UIButton pauseButton;
 
     int monsterMax;
-    
+
     [SerializeField] GameObject resultScreen;
     [SerializeField] Image resultImage;
     [SerializeField] Sprite[] resultSprite;
@@ -86,10 +83,18 @@ public class InGameUIDisplay : MonoBehaviour
         starDisplay.TurnOff();
     }
 
-    public void TurnOffResultUI()
+    public void SetGameUI()
     {
-        moblieController.SetActive(true);
         resultScreen.SetActive(false);
+        optionScreen.SetActive(false);
+        moblieController.SetActive(true);
     }
+
+    public void SetOptionUI()
+    {
+        optionScreen.SetActive(true);
+        moblieController.SetActive(false);
+    }
+
 
 }

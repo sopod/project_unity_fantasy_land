@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
-using UnityEditor;
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 public enum GameState
 {
@@ -90,7 +85,7 @@ public class GameManager : MonoBehaviour
             _gameModeCur = _levelDataPerLevel.stageModeCur;
             options.ChangeLevel(_gameModeCur, _levelCur);
 
-            options.ResetOptionValuesByCode(); ///123123123123123123123123
+            options.ResetOptionValuesByCode();
 
             SetInGame();
 
@@ -239,8 +234,6 @@ public class GameManager : MonoBehaviour
         SetPauseMoving();
         ChangeGameState(GameState.Result);
         
-        //inGameUi.SetWinUI(starCollector.GetStarCur);
-
         uiSoundPlayer.StopPlayingBGM();
         Invoke("SetWinBGM", options.ResultSoundWaitingTime);
         Invoke("SetWinUI", options.ResultUIWaitingTime);
@@ -386,7 +379,7 @@ public class GameManager : MonoBehaviour
 
     void TurnResultUIOff()
     {
-        inGameUi.TurnOffResultUI();
+        inGameUi.SetGameUI();
     }
 
     public void SpawnProjectile(GameObject shootMouth)

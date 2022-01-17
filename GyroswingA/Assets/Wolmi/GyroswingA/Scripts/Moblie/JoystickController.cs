@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,13 +17,7 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         joystick = GetComponent<RectTransform>();
     }
-
-    //void Update()
-    //{
-    //    if (isInput)
-    //        Debug.Log(inputDir.x + " / " + inputDir.y);
-    //}
-
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
         SetLeverPosition(eventData);

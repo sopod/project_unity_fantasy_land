@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum CreatureType
@@ -141,7 +138,7 @@ public abstract class LivingCreature : MovingThing
 
         ani.SetFloat("TurnRight", key);
 
-        float angle = key * rotSpeed * Time.fixedDeltaTime;
+        float angle = key * rotSpeed * Time.deltaTime;
         rb.rotation *= Quaternion.AngleAxis(angle, Vector3.up);
     }
 
@@ -186,7 +183,7 @@ public abstract class LivingCreature : MovingThing
         Invoke("SetIdle", options.SkillCoolTime);
     }
 
-    protected void OnDamagedAndMoveBack(bool isAttackedByPlayer, bool isProjectile, Vector3 centerPosOfAttacker, Vector3 forwardPosOfAttacker)
+    protected void OnDamagedAndMoveBack(bool isAttackedByPlayer, bool isProjectile, Vector3 centerPosOfAttacker, Vector3 forwardPosOfAttacker, EnemyType type)
     {
         isDamaged = true;
 
@@ -206,16 +203,11 @@ public abstract class LivingCreature : MovingThing
         Vector3 dir = (CenterPosition - centerPosOfAttacker).normalized;
         float damagedPower = options.DashPowerToDamaged;
 
-        if (isAttackedByPlayer)
+        if (isAttackedByPlayer && type != EnemyType.Max)
         {
             soundPlayer.PlaySound(CreatureEffectSoundType.Dash, IsPlayer);
-        //    EnemyController obj = attacker.GetComponent<EnemyController>();
-        //    if (obj == null)
-        //    {
-        //        Debug.Log("obj is null: " + attacker.gameObject.name);
-        //        return;
-        //    }
-        //    damagedPower = options.GetDashPowerToDamaged((EnemyType)obj.Type);
+            
+            damagedPower = options.GetDashPowerToDamaged(type);
         }
 
         if (isProjectile)
@@ -235,7 +227,7 @@ public abstract class LivingCreature : MovingThing
 
     protected void AffectedByGravity()
     {
-        rb.velocity -= stage.transform.up * options.Gravity * Time.fixedDeltaTime;
+        rb.velocity -= stage.transform.up * options.Gravity * Time.deltaTime;
     }
 
     protected void AffectedBySpin()
@@ -244,9 +236,10 @@ public abstract class LivingCreature : MovingThing
         {
             Vector3 dir = GetDirectionFromStageToCreature();
 
-            rb.velocity += (dir * stageVal.Radius * (55.5f + _spinSpeedUp) * Mathf.Deg2Rad * Time.fixedDeltaTime);
+            rb.velocity += (dir * stageVal.Radius * (55.5f + _spinSpeedUp) * Mathf.Deg2Rad * Time.deltaTime);
         }
     }
+
     public void MoveAlongWithStage()
     {
         if (!IsPaused() && !GameManager.Instance.IsMachineStopped && isInStageBoundary)

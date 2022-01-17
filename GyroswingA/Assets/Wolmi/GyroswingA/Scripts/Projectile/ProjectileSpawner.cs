@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum ProjectileType
@@ -14,7 +12,6 @@ public class ProjectileSpawner : MonoBehaviour
 {
     Options options;
 
-    //[SerializeField] GameObject stage;
     [SerializeField] int[] spawnedObjectCount;
 
     [SerializeField] GameObject[] projectiles;
@@ -85,7 +82,6 @@ public class ProjectileSpawner : MonoBehaviour
 
         GameObject e = queues[idx].Dequeue();
 
-        //e.transform.SetParent(stage.gameObject.transform);
         e.transform.SetParent(null);
         
         spawnedObjects[idx].Add(e);

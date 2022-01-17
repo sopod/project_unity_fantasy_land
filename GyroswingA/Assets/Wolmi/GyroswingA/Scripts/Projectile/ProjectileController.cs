@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -30,7 +27,6 @@ public class ProjectileController : MonoBehaviour, ISpawnableObject
 
     void MoveForward()
     {
-        Debug.DrawRay(transform.position, transform.forward, Color.blue);
         transform.Translate(transform.forward * options.ProjectileMoveSpeed * Time.deltaTime, Space.World);
     }
 
@@ -53,11 +49,6 @@ public class ProjectileController : MonoBehaviour, ISpawnableObject
 
         spawner.ReturnObject(this.gameObject);
     }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        //Gizmos.DrawSphere(transform.position, 0.6f);
-    }
+    
 
 }

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 
@@ -107,11 +104,11 @@ public class Options
         // player
         PlayerStartPos = new Vector3(-32.0f, 2.2f, -50.2f);
         PlayerMoveSpeed = 2.0f; // Fix this
-        PlayerRotateSpeed = 100.0f; // Fix this
+        PlayerRotateSpeed = 120.0f; // Fix this
         PlayerJumpPower = 5.0f; // Fix this
 
         // enemy
-        EnemyRotateSpeed = 100.0f; // Fix this
+        EnemyRotateSpeed = 120.0f; // Fix this
         EnemyJumpPower = 5.0f; // Fix this
         EnemyKnockDownTime = 2.0f; // Fix this
 

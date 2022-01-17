@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIButton_Pause : UIButton
 {
     [SerializeField] GameManager manager;
-    [SerializeField] GameObject optionScreen;
-    
+    [SerializeField] InGameUIDisplay display;
+
     public override void OnClicked()
     {
         UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
 
         manager.SetPauseMoving();
-        optionScreen.SetActive(true);
+        display.SetOptionUI();
     }
 }

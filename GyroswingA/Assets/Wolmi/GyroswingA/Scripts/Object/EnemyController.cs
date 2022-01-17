@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
 public enum EnemyMovement
 {
@@ -207,7 +204,7 @@ public class EnemyController : LivingCreature, ISpawnableObject
         {
             //if (!isDamaged)
             {
-                OnDamagedAndMoveBack(true, true, other.transform.position, other.transform.forward);
+                OnDamagedAndMoveBack(true, true, other.transform.position, other.transform.forward, EnemyType.Max);
             }
         }
     }
@@ -225,18 +222,9 @@ public class EnemyController : LivingCreature, ISpawnableObject
 
             if (l.IsAttacking && !isDamaged)
             {
-                OnDamagedAndMoveBack(true, false, l.CenterPosition, l.CenterForward);
+                OnDamagedAndMoveBack(true, false, l.CenterPosition, l.CenterForward, EnemyType.Max);
             }
         }
-        //else
-        //{
-        //    //isDamaged = false;
-        //}
-
-        //if (layer == options.StageLayer.value)
-        //{
-        //    OnStageLayer();
-        //}
     }
 
     // -------------------------------------------------- for layer collision
@@ -280,8 +268,6 @@ public class EnemyController : LivingCreature, ISpawnableObject
         }
     }
     
-
-
     public void OnPlayerLayer(PlayerController player) // when enemy first met player
     {
         //DeleteAllMovementsAndStop();
@@ -299,10 +285,5 @@ public class EnemyController : LivingCreature, ISpawnableObject
     {
         OnStageLayer();
     }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        //Gizmos.DrawSphere(transform.position, 0.5f);
-    }
+    
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileShooter : MonoBehaviour
@@ -7,10 +5,6 @@ public class ProjectileShooter : MonoBehaviour
     [SerializeField] ProjectileSpawner spawner;
     [SerializeField] GameObject mouth;
     
-    void Start()
-    {
-        
-    }
     
     void Update()
     {
