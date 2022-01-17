@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StageButtonDisplay : MonoBehaviour
 {
-    [SerializeField] StarDataPerLevel _dataPerLevel;
+    [SerializeField] StarDataPerLevel data;
 
     [SerializeField] GameMode modeForButtons;
     [SerializeField] StageButton[] buttons;
@@ -12,20 +12,22 @@ public class StageButtonDisplay : MonoBehaviour
     
     public void SetButtons()
     {
+        bool forceToOn = false;
         int curStars = 0;
 
         for (int i = 0; i < buttons.Length; i++)
         {
-            curStars = _dataPerLevel.GetStar(modeForButtons, i + 1);
+            forceToOn = false;
 
-            if (_dataPerLevel.LevelNumberUnlocked == (i + 1) && _dataPerLevel.LevelModeUnlocked == modeForButtons)
+            if ((modeForButtons == GameMode.Easy && (i + 1) == data.UnlockedLevelMax_Easy) ||
+                (modeForButtons == GameMode.Hard && (i + 1) == data.UnlockedLevelMax_Hard))
             {
-                buttons[i].SetStageButton(i + 1, modeForButtons, curStars, true);
+               forceToOn = true;
             }
-            else
-            {
-                buttons[i].SetStageButton(i + 1, modeForButtons, curStars, false);
-            }
+
+            curStars = data.GetStar(modeForButtons, i + 1);
+
+            buttons[i].SetStageButton(i + 1, modeForButtons, curStars, forceToOn);
         }
     }
     

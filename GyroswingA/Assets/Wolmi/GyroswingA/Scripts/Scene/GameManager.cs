@@ -191,6 +191,7 @@ public class GameManager : MonoBehaviour
 
     public bool UpgradeLevel()
     {
+        // calculate next level and mode
         _levelCur++;
 
         if (_levelCur > _levelDataPerLevel.LevelCountPerMode && _gameModeCur == GameMode.Easy)
@@ -204,6 +205,8 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
+
+        // save data
         options.ChangeLevel(_gameModeCur, _levelCur);
         _levelDataPerLevel.SetUnlocked(_gameModeCur, _levelCur);
 

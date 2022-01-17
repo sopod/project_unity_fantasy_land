@@ -8,9 +8,26 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Star Data", menuName = "Gyroswing/Star Data")]
 public class StarDataPerLevel : ScriptableObject
 {
+    const int requiredStarsToHardMode = 25; 
     const int levelCountPerMode = 10;
     public int LevelCountPerMode { get { return levelCountPerMode; } }
 
+    public bool IsHardModeOpen { get { return TotalStar >= requiredStarsToHardMode; } }
+    int TotalStar
+    {
+        get
+        {
+            int count = 0;
+
+            for (int i = 0; i < levelCountPerMode; i++)
+            {
+                count += easyMode[i];
+                count += hardMode[i];
+            }
+
+            return count;
+        }
+    }
 
     // to set In Game Scene at first
     public int levelNumberCur = 1;
@@ -18,10 +35,12 @@ public class StarDataPerLevel : ScriptableObject
 
 
 
-    [SerializeField] int levelNumberUnlocked = 1;
-    [SerializeField] GameMode levelModeUnlocked = GameMode.Easy;
-    public int LevelNumberUnlocked { get { return levelNumberUnlocked; } }
-    public GameMode LevelModeUnlocked { get { return levelModeUnlocked; } }
+    [SerializeField] int unlockedLevelMax_Easy = 1;
+    public int UnlockedLevelMax_Easy { get { return unlockedLevelMax_Easy; } }
+
+
+    [SerializeField] int unlockedLevelMax_Hard = 0;
+    public int UnlockedLevelMax_Hard { get { return unlockedLevelMax_Hard; } }
 
 
     [SerializeField] int[] easyMode = new int[levelCountPerMode];
@@ -37,8 +56,8 @@ public class StarDataPerLevel : ScriptableObject
         levelNumberCur = 1;
         stageModeCur = GameMode.Easy;
 
-        levelNumberUnlocked = 1;
-        levelModeUnlocked = GameMode.Easy;
+        unlockedLevelMax_Easy = 1;
+        unlockedLevelMax_Hard = 0;
 
         for (int i = 0; i < levelCountPerMode; i++)
         {
@@ -99,22 +118,20 @@ public class StarDataPerLevel : ScriptableObject
 
     public void SetUnlocked(GameMode mode, int levelNum)
     {
-        levelModeUnlocked = mode;
-        levelNumberUnlocked = levelNum;
+        if (mode == GameMode.Easy)
+        {
+            if (levelNum <= unlockedLevelMax_Easy) return;
+            unlockedLevelMax_Easy = levelNum;
+        }
+        else
+        {
+            if (levelNum <= unlockedLevelMax_Hard) return;
+            unlockedLevelMax_Hard = levelNum;
+        }
 
-        //if (mode == GameMode.Easy && levelNum + 1 > 10)
-        //{
-        //    levelModeUnlocked = GameMode.Hard;
-        //    levelNumberUnlocked = 1;
-        //}
-        //else if (mode == GameMode.Hard && levelNum + 1 > 10)
-        //{
-        //    levelModeUnlocked = GameMode.Hard;
-        //    levelNumberUnlocked = 10;
-        //}
-        //else
-        //{
-        //    levelNumberUnlocked = levelNum + 1;
-        //}
+        if (unlockedLevelMax_Hard == 0 && IsHardModeOpen)
+        {
+            unlockedLevelMax_Hard = 1;
+        }
     }
 }

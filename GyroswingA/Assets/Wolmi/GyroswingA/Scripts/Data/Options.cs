@@ -93,7 +93,7 @@ public class Options
         EnemyStartWaitingTime = 1.0f;
         
         SpawnerPrepareAmount = 5;
-        LimitSecondsPerStage = 180; // Fix this !!!!!!!!!!!!!!!!!!!
+        LimitSecondsPerStage = 20; // Fix this !!!!!!!!!!!!!!!!!!! 180 
         RequiredStarAmountForHardMode = 25;
         StageAmountPerMode = 10;
 

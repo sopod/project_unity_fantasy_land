@@ -1563,6 +1563,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5210155536806058200, guid: efb1df326c168604da94ba2c1bf05482, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
     - target: {fileID: 5210155536806058202, guid: efb1df326c168604da94ba2c1bf05482, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2244,6 +2248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage Buttons For EasyMode
       objectReference: {fileID: 0}
+    - target: {fileID: 6495003140184110286, guid: a1994fcd4d56e1e499bd1d7f4633d27b, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
     - target: {fileID: 6495003140279752231, guid: a1994fcd4d56e1e499bd1d7f4633d27b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
