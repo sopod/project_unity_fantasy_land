@@ -146,11 +146,11 @@ public abstract class LivingCreature : MovingThing
     {
         if (isJumping || state.IsAttacking) return;
 
-        soundPlayer.PlaySound(CreatureEffectSoundType.Jump, IsPlayer);
-        ani.SetBool("IsJumping", true);
-
         isJumping = true;
         isOnStage = false;
+
+        soundPlayer.PlaySound(CreatureEffectSoundType.Jump, IsPlayer);
+        ani.SetBool("IsJumping", true);
 
 
         rb.AddForce(stage.transform.up * jumpPower, ForceMode.Impulse);
@@ -186,6 +186,8 @@ public abstract class LivingCreature : MovingThing
 
     protected void OnDamagedAndMoveBack(bool isAttackedByPlayer, bool isProjectile, Vector3 centerPosOfAttacker, Vector3 forwardPosOfAttacker)
     {
+        isDamaged = true;
+
         if (!isProjectile)
         {
             // return, if it's back
@@ -220,7 +222,6 @@ public abstract class LivingCreature : MovingThing
         }
 
         rb.AddForce(dir * damagedPower, ForceMode.Impulse);
-        isDamaged = true;
     }
 
     public void SetIdle()

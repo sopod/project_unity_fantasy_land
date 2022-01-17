@@ -326,6 +326,7 @@ MonoBehaviour:
   isOnStage: 0
   isDamaged: 0
   isBeingAffectedByStage: 0
+  joystick: {fileID: 0}
 --- !u!1 &2706288346238717738
 GameObject:
   m_ObjectHideFlags: 0

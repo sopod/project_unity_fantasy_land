@@ -7,7 +7,9 @@ using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : LivingCreature
 {
+    [SerializeField] JoystickController joystick;
     KeyController key;
+
 
     private void Update()
     {
@@ -37,7 +39,7 @@ public class PlayerController : LivingCreature
     
     public void SetPlayer(GameObject stage, StageMovementValue stageVal, Options options)
     {
-        key = new KeyController();
+        key = new KeyController(joystick);
 
         this.creatureType = CreatureType.Player;
         this.moveSpeed = options.PlayerMoveSpeed;

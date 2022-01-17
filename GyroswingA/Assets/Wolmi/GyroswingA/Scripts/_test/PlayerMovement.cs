@@ -9,7 +9,6 @@ public class PlayerMovement : Mover
     void Start()
     {
         Set();
-        key = new KeyController();
     }
 
     void Update()

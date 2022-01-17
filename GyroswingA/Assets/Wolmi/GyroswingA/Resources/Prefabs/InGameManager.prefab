@@ -93,6 +93,7 @@ MonoBehaviour:
     SkillCoolTime: 0.5
     DashPowerToDamaged: 10
     DashPowerToHit: 20
+    FireBallPowerToDamaged: 0
     ProjectileMoveSpeed: 0
     ProjectileRemaingTime: 0
     PlayerLayer:

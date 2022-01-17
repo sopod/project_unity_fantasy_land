@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38db44b77f14d78469ebd547d1c5dfed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: {fileID: 0}
   spawnedObjectCount: 
   projectiles:
   - {fileID: 1745751436853880, guid: 9ddb4783868af8e46aee510e918ad9ed, type: 3}

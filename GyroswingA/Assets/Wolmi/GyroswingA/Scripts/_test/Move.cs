@@ -11,7 +11,6 @@ public class Move : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        key = new KeyController();
 
 
 
