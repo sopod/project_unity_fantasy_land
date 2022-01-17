@@ -37,7 +37,6 @@ public class CreatureSoundPlayer : MonoBehaviour
             {
                 if (trim) effectSoundAudios[i].time = trimRatio;
 
-                Debug.Log("sound played");
                 effectSoundAudios[i].PlayOneShot(clip);
                 return;
             }

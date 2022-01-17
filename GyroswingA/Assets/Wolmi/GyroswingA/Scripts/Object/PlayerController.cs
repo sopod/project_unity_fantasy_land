@@ -93,6 +93,7 @@ public class PlayerController : LivingCreature
     {
         GameManager.Instance.SetFail();
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (IsPaused()) return;
@@ -164,6 +165,11 @@ public class PlayerController : LivingCreature
         if (layer == options.EnemyLayer.value)
         {
             isDamaged = false;
+        }
+        else if (layer == options.StageLayer.value)
+        {
+            if (isJumping)
+                soundPlayer.PlaySound(CreatureEffectSoundType.Jump, IsPlayer);
         }
     }
 

@@ -144,12 +144,12 @@ public abstract class LivingCreature : MovingThing
 
     public void Jump()
     {
-        if (isJumping || state.IsAttacking) return;
+        if (isJumping || state.IsAttacking || !isOnStage) return;
 
         isJumping = true;
         isOnStage = false;
 
-        soundPlayer.PlaySound(CreatureEffectSoundType.Jump, IsPlayer);
+        //soundPlayer.PlaySound(CreatureEffectSoundType.Jump, IsPlayer);
         ani.SetBool("IsJumping", true);
 
 
