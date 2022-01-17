@@ -23,11 +23,13 @@ public class InGameUIDisplay : MonoBehaviour
     [SerializeField] UIButton closeOptionButton;
     [SerializeField] UIButton lobbyButton;
     [SerializeField] UIButton exitGameButton;
+    [SerializeField] GameObject moblieController;
 
     public void SetUI(int limitTime, int enemyMax)
     {
         resultScreen.SetActive(false);
         optionScreen.SetActive(false);
+        moblieController.SetActive(true);
 
         UIEventMaker.MakeButtonEvent(pauseButton);
         UIEventMaker.MakeButtonEvent(closeOptionButton);
@@ -70,6 +72,7 @@ public class InGameUIDisplay : MonoBehaviour
 
     public void SetWinUI(int starsGot)
     {
+        moblieController.SetActive(false);
         resultScreen.SetActive(true);
         resultImage.sprite = resultSprite[0];
         starDisplay.TurnOn(starsGot);
@@ -77,6 +80,7 @@ public class InGameUIDisplay : MonoBehaviour
 
     public void SetLoseUI()
     {
+        moblieController.SetActive(false);
         resultScreen.SetActive(true);
         resultImage.sprite = resultSprite[1];
         starDisplay.TurnOff();
@@ -84,6 +88,7 @@ public class InGameUIDisplay : MonoBehaviour
 
     public void TurnOffResultUI()
     {
+        moblieController.SetActive(true);
         resultScreen.SetActive(false);
     }
 
