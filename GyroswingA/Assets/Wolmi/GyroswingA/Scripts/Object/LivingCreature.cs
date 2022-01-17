@@ -20,6 +20,7 @@ public abstract class LivingCreature : MovingThing
     protected GameObject stage;
     protected CreatureSoundPlayer soundPlayer;
     [SerializeField] protected GameObject centerOfCreature;
+    [SerializeField] protected GameObject shootMouth;
 
     protected Rigidbody rb;
     protected Animator ani;
@@ -45,6 +46,8 @@ public abstract class LivingCreature : MovingThing
     protected float jumpPower;
     
     protected float _spinSpeedUp;
+
+    public Vector3 CenterForward { get { return centerOfCreature.transform.forward; } }
 
     public Vector3 CenterPosition { get { return centerOfCreature.transform.position; } }
     public bool IsAttacking { get { return state.IsAttacking; } }
@@ -158,7 +161,6 @@ public abstract class LivingCreature : MovingThing
         if (isJumping || state.IsAttacking) return;
 
         soundPlayer.PlaySound(CreatureEffectSoundType.Dash, IsPlayer);
-        soundPlayer.PlaySound(CreatureEffectSoundType.HittingSound, IsPlayer);
 
         ani.SetTrigger("JustDashed");
         rb.AddForce(transform.forward * options.DashPowerToHit, ForceMode.Impulse);
@@ -175,51 +177,50 @@ public abstract class LivingCreature : MovingThing
         soundPlayer.PlaySound(CreatureEffectSoundType.Fire, IsPlayer);
         ani.SetTrigger("JustFired");
 
-        // do something
-
-
-
-
+        GameManager.Instance.SpawnProjectile(shootMouth); // fire
 
         state.SetAttacking();
         
         Invoke("SetIdle", options.SkillCoolTime);
     }
 
-    protected void CheckDamagedToMoveBack(LivingCreature attacker)
+    protected void OnDamagedAndMoveBack(bool isAttackedByPlayer, bool isProjectile, Vector3 centerPosOfAttacker, Vector3 forwardPosOfAttacker)
     {
-        bool isAttacked = attacker.IsAttacking;
-
-        if (isAttacked && !isDamaged)
+        if (!isProjectile)
         {
             // return, if it's back
             Vector2 targetPos = new Vector2(this.transform.position.x, this.transform.position.z);
-            Vector2 myPos = new Vector2(attacker.transform.position.x, attacker.transform.position.z);
-            Vector2 myForwardDir = new Vector2(attacker.transform.forward.x, attacker.transform.forward.z);
+            Vector2 attackerPos = new Vector2(centerPosOfAttacker.x, centerPosOfAttacker.z);
+            Vector2 attackedForward = new Vector2(forwardPosOfAttacker.x, forwardPosOfAttacker.z);
 
-            Vector2 lookTargetDir = targetPos - myPos;
-            
-            if (myForwardDir.x * lookTargetDir.x + myForwardDir.y * lookTargetDir.y < 0) return; 
-
-
-            // give dash power
-            Vector3 dir = (CenterPosition - attacker.CenterPosition).normalized;
-            float damagedPower = options.DashPowerToDamaged;
-
-            if (!attacker.IsPlayer)
-            {
-            //    EnemyController obj = attacker.GetComponent<EnemyController>();
-            //    if (obj == null)
-            //    {
-            //        Debug.Log("obj is null: " + attacker.gameObject.name);
-            //        return;
-            //    }
-            //    damagedPower = options.GetDashPowerToDamaged((EnemyType)obj.Type);
-            }
-
-            rb.AddForce(dir * damagedPower, ForceMode.Impulse);
-            isDamaged = true;
+            Vector2 lookTargetDir = targetPos - attackerPos;
+            if (attackedForward.x * lookTargetDir.x + attackedForward.y * lookTargetDir.y < 0) return;
         }
+
+
+        // give dash power
+        Vector3 dir = (CenterPosition - centerPosOfAttacker).normalized;
+        float damagedPower = options.DashPowerToDamaged;
+
+        if (isAttackedByPlayer)
+        {
+            soundPlayer.PlaySound(CreatureEffectSoundType.Dash, IsPlayer);
+        //    EnemyController obj = attacker.GetComponent<EnemyController>();
+        //    if (obj == null)
+        //    {
+        //        Debug.Log("obj is null: " + attacker.gameObject.name);
+        //        return;
+        //    }
+        //    damagedPower = options.GetDashPowerToDamaged((EnemyType)obj.Type);
+        }
+
+        if (isProjectile)
+        {
+            damagedPower = options.FireBallPowerToDamaged;
+        }
+
+        rb.AddForce(dir * damagedPower, ForceMode.Impulse);
+        isDamaged = true;
     }
 
     public void SetIdle()

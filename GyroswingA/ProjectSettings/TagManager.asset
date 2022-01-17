@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Effects
   - FxTemporaire
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - StagePole
   - StageBoundary
   - Item
-  - 
+  - ShootProjectile
   - 
   - 
   - 

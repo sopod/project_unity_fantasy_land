@@ -191,6 +191,22 @@ public class EnemyController : LivingCreature, ISpawnableObject
         isTurning = false;
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (IsPaused()) return;
+
+        int layer = (1 << other.gameObject.layer);
+
+        if (layer == options.ShootProjectileLayer.value)
+        {
+            //if (!isDamaged)
+            {
+                OnDamagedAndMoveBack(true, true, other.transform.position, other.transform.forward);
+            }
+        }
+    }
+    
+
     void OnCollisionStay(Collision collision)
     {
         if (IsPaused()) return;
@@ -199,7 +215,12 @@ public class EnemyController : LivingCreature, ISpawnableObject
 
         if (layer == options.PlayerLayer.value)
         {
-            CheckDamagedToMoveBack(collision.gameObject.GetComponent<LivingCreature>());
+            LivingCreature l = collision.gameObject.GetComponent<LivingCreature>();
+
+            if (l.IsAttacking && !isDamaged)
+            {
+                OnDamagedAndMoveBack(true, false, l.CenterPosition, l.CenterForward);
+            }
         }
         else
         {
@@ -251,6 +272,7 @@ public class EnemyController : LivingCreature, ISpawnableObject
             isDamaged = false;
         }
     }
+    
 
     protected override void NotifyDead()
     {
@@ -269,7 +291,7 @@ public class EnemyController : LivingCreature, ISpawnableObject
         //isKnockDown = true;
         //movementTimer.StartTimer(knockDownTime);
 
-        //CheckDamagedToMoveBack(player);
+        //OnDamagedAndMoveBack(player);
     }
 
 

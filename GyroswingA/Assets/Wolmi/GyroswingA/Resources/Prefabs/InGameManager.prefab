@@ -48,6 +48,7 @@ MonoBehaviour:
   inGameUi: {fileID: 0}
   enemySpawner: {fileID: 0}
   itemSpawner: {fileID: 0}
+  projectileSpawner: {fileID: 0}
   stage: {fileID: 0}
   uiSoundPlayer: {fileID: 0}
   _gameModeCur: 0
@@ -92,6 +93,8 @@ MonoBehaviour:
     SkillCoolTime: 0.5
     DashPowerToDamaged: 10
     DashPowerToHit: 20
+    ProjectileMoveSpeed: 0
+    ProjectileRemaingTime: 0
     PlayerLayer:
       serializedVersion: 2
       m_Bits: 8
@@ -113,3 +116,6 @@ MonoBehaviour:
     StageBoundaryLayer:
       serializedVersion: 2
       m_Bits: 2048
+    ShootProjectileLayer:
+      serializedVersion: 2
+      m_Bits: 8192

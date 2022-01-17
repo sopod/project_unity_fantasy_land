@@ -17,7 +17,7 @@ public class Options
     [Header("---- level")]
     [SerializeField] LevelValues LevelValues;
 
-    [Header("---- game rule")]
+    [Header("---- game")]
     public int LimitSecondsPerStage;
 
     [HideInInspector] public float ResultSoundWaitingTime;
@@ -64,6 +64,9 @@ public class Options
     public float SkillCoolTime;
     public float DashPowerToDamaged;
     [HideInInspector] public float DashPowerToHit;
+    public float FireBallPowerToDamaged;
+    public float ProjectileMoveSpeed;
+    public float ProjectileRemaingTime;
 
     [Header("---- layers")]
     public LayerMask PlayerLayer;
@@ -73,6 +76,7 @@ public class Options
     public LayerMask FailZoneLayer;
     public LayerMask StagePoleLayer;
     public LayerMask StageBoundaryLayer;
+    public LayerMask ShootProjectileLayer;
 
 
 
@@ -89,13 +93,14 @@ public class Options
         EnemyStartWaitingTime = 1.0f;
         
         SpawnerPrepareAmount = 5;
-        LimitSecondsPerStage = 20; // Fix this !!!!!!!!!!!!!!!!!!!
+        LimitSecondsPerStage = 180; // Fix this !!!!!!!!!!!!!!!!!!!
         RequiredStarAmountForHardMode = 25;
         StageAmountPerMode = 10;
 
         IsMachineSwinging = true;
         IsMachineTurning = true;
         IsMachineSpining = true;
+
         IsSpiningCW = true;
 
         // common
@@ -115,8 +120,11 @@ public class Options
         // skill
         DashPowerToHit = 20.0f;
         DashPowerToDamaged = 10.0f; // Fix this
-        SkillCoolTime = 0.5f;
-    }
+        FireBallPowerToDamaged = 20.0f;
+        SkillCoolTime = 0.5f; 
+        ProjectileMoveSpeed = 7.0f;
+        ProjectileRemaingTime = 1.6f;
+    }                       
 
     public void ResetOptions()
     {

@@ -111,7 +111,12 @@ public class PlayerController : LivingCreature
 
         if (layer == options.EnemyLayer.value)
         {
-            CheckDamagedToMoveBack(collision.gameObject.GetComponent<LivingCreature>());
+            LivingCreature l = collision.gameObject.GetComponent<LivingCreature>();
+
+            if (l.IsAttacking && !isDamaged)
+            {
+                OnDamagedAndMoveBack(false, false, l.CenterPosition, l.CenterForward);
+            }
         }
         else
         {

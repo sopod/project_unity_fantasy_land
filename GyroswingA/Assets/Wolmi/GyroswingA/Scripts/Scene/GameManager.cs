@@ -28,8 +28,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] InGameUIDisplay inGameUi;
     [SerializeField] ObjectSpawner enemySpawner;
     [SerializeField] ObjectSpawner itemSpawner;
+    [SerializeField] ProjectileSpawner projectileSpawner;
     [SerializeField] GameObject stage;
     [SerializeField] UISoundPlayer uiSoundPlayer;
+
 
     [Header("------- Game Status")]
     [SerializeField] GameMode _gameModeCur;
@@ -381,4 +383,11 @@ public class GameManager : MonoBehaviour
         inGameUi.TurnOffResultUI();
     }
 
+    public void SpawnProjectile(GameObject shootMouth)
+    {
+        GameObject p = projectileSpawner.SpawnProjectile(ProjectileType.Shoot, shootMouth.transform.position, shootMouth.transform.forward);
+
+        p.GetComponent<ProjectileController>().SetStart(projectileSpawner, options);
+    }
+    
 }
