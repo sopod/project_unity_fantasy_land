@@ -63,35 +63,35 @@ MonoBehaviour:
       SpinSpeedCur: 10
       EnemyTypesCur: 0000000001000000
       ItemTypesCur: 
+    LimitSecondsPerStage: 180
     ResultSoundWaitingTime: 0
     ResultUIWaitingTime: 0
     ResultUIRemainingTime: 0
     GameStartWaitingTime: 4
     EnemyStartWaitingTime: 0
     SpawnerPrepareAmount: 0
-    LimitSecondsPerStage: 180
     RequiredStarAmountForHardMode: 25
     StageAmountPerMode: 10
+    IsMachineSwinging: 1
+    IsMachineTurning: 1
+    IsMachineSpining: 1
     StageStartPos: {x: 0, y: 0, z: 0}
     StageStartRot: {x: 0, y: 0, z: 0, w: 0}
     BarStartPos: {x: 0, y: 0, z: 0}
     BarStartRot: {x: 0, y: 0, z: 0, w: 0}
-    IsMachineSwinging: 1
-    IsMachineTurning: 1
-    IsMachineSpining: 1
     IsSpiningCW: 1
     Gravity: 9.8
-    PlayerStartPos: {x: -32, y: 2.2, z: -50.2}
-    PlayerStartRot: {x: 0, y: 0, z: 0, w: 0}
     PlayerMoveSpeed: 2
     PlayerRotateSpeed: 40
     PlayerJumpPower: 3
+    PlayerStartPos: {x: -32, y: 2.2, z: -50.2}
+    PlayerStartRot: {x: 0, y: 0, z: 0, w: 0}
     EnemyRotateSpeed: 40
     EnemyJumpPower: 3
     EnemyKnockDownTime: 2
-    DashPowerToHit: 20
-    DashPowerToDamaged: 10
     SkillCoolTime: 0.5
+    DashPowerToDamaged: 10
+    DashPowerToHit: 20
     PlayerLayer:
       serializedVersion: 2
       m_Bits: 8

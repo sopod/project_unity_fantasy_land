@@ -43,6 +43,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ee54fdb7905c642b01f311dfd6243e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  database: {fileID: 0}
-  spawnPositions: []
+  stage: {fileID: 0}
+  isPositionTaken: 
+  spawnedObjectCount: 
+  database: {fileID: 11400000, guid: a9dd33af2b22df74784779f1c6d32ea9, type: 2}
+  spawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnedObjects: []
