@@ -12,6 +12,7 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     Vector2 inputDir;
     bool isInput;
+    public bool IsInput { get { return isInput; } }
 
 
     void Awake()
@@ -19,11 +20,11 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
         joystick = GetComponent<RectTransform>();
     }
 
-    void Update()
-    {
-        if (isInput)
-            Debug.Log(inputDir.x + " / " + inputDir.y);
-    }
+    //void Update()
+    //{
+    //    if (isInput)
+    //        Debug.Log(inputDir.x + " / " + inputDir.y);
+    //}
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -56,52 +57,21 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
         lever.anchoredPosition = Vector2.zero;
     }
 
-    public float GetHorizontalKey()
+    public float GetXDir()
     {
-        //if (Input.GetKey(moveRightKey))
-        {
-            return 1.0f;
-        }
-
-        //if (Input.GetKey(moveLeftKey))
-        {
-            return -1.0f;
-        }
+        if (isInput)
+            return inputDir.x;
 
         return 0.0f;
     }
 
-    public float GetVerticalKey()
+    public float GetYDir()
     {
-        //if (Input.GetKey(moveFrontKey))
-        {
-            return 1.0f;
-        }
-
-        //if (Input.GetKey(moveBackKey))
-        {
-            return -1.0f;
-        }
+        if (isInput)
+            return inputDir.y;
 
         return 0.0f;
     }
-
-    public bool IsJumpKeyPressed()
-    {
-        return false;
-        //return Input.GetKey(jumpKey);
-    }
-
-    public bool IsDashKeyPressed()
-    {
-        return false;
-        //return Input.GetKey(dashKey);
-    }
-
-    public bool IsFireKeyPressed()
-    {
-        return false;
-        //return Input.GetKey(fireKey);
-    }
+    
 
 }

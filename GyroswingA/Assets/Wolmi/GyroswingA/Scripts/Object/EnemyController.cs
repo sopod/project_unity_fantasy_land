@@ -190,7 +190,13 @@ public class EnemyController : LivingCreature, ISpawnableObject
         isMoving = false; 
         isTurning = false;
     }
+    protected override void NotifyDead()
+    {
+        GameManager.Instance.OnMonsterKilled();
+    }
 
+
+    // -------------------------------------------------- for being damaged by player fire
     void OnTriggerEnter(Collider other)
     {
         if (IsPaused()) return;
@@ -205,8 +211,8 @@ public class EnemyController : LivingCreature, ISpawnableObject
             }
         }
     }
-    
 
+    // -------------------------------------------------- for being damaged by player dash
     void OnCollisionStay(Collision collision)
     {
         if (IsPaused()) return;
@@ -222,17 +228,18 @@ public class EnemyController : LivingCreature, ISpawnableObject
                 OnDamagedAndMoveBack(true, false, l.CenterPosition, l.CenterForward);
             }
         }
-        else
-        {
-            //isDamaged = false;
-        }
+        //else
+        //{
+        //    //isDamaged = false;
+        //}
 
-        if (layer == options.StageLayer.value)
-        {
-            OnStageLayer();
-        }
+        //if (layer == options.StageLayer.value)
+        //{
+        //    OnStageLayer();
+        //}
     }
 
+    // -------------------------------------------------- for layer collision
     void OnCollisionEnter(Collision collision)
     {
         if (IsPaused()) return;
@@ -274,30 +281,25 @@ public class EnemyController : LivingCreature, ISpawnableObject
     }
     
 
-    protected override void NotifyDead()
-    {
-        GameManager.Instance.OnMonsterKilled();
-    }
 
     public void OnPlayerLayer(PlayerController player) // when enemy first met player
     {
-
-        // maybe don't need this when you make bt perfect....?
-
-
-
         //DeleteAllMovementsAndStop();
 
         //isKnockDown = true;
         //movementTimer.StartTimer(knockDownTime);
 
         //OnDamagedAndMoveBack(player);
+
+        OnStageLayer();
     }
 
 
     public override void OnEnemyLayer()
     {
+        OnStageLayer();
     }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

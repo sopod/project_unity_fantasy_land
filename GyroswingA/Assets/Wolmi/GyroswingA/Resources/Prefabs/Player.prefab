@@ -320,12 +320,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerOfCreature: {fileID: 2706288346238717738}
   shootMouth: {fileID: 1279070824601189192}
+  isJumping: 0
+  isOnJumpableObject: 0
   isMoving: 0
   isTurning: 0
-  isJumping: 0
-  isOnStage: 0
   isDamaged: 0
-  isBeingAffectedByStage: 0
+  isInStageBoundary: 0
   joystick: {fileID: 0}
 --- !u!1 &2706288346238717738
 GameObject:

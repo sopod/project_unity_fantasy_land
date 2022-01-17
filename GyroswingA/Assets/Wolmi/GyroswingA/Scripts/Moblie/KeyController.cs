@@ -22,6 +22,11 @@ public class KeyController
 
     public float GetHorizontalKey()
     {
+        if (joystick.IsInput)
+        {
+            return joystick.GetXDir();
+        }
+
         if (Input.GetKey(moveRightKey))
         {
             return 1.0f;
@@ -37,6 +42,11 @@ public class KeyController
 
     public float GetVerticalKey()
     {
+        if (joystick.IsInput)
+        {
+            return joystick.GetYDir();
+        }
+        
         if (Input.GetKey(moveFrontKey))
         {
             return 1.0f;

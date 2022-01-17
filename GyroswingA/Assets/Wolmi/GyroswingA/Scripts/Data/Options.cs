@@ -110,11 +110,11 @@ public class Options
         PlayerStartPos = new Vector3(-32.0f, 2.2f, -50.2f);
         PlayerMoveSpeed = 2.0f; // Fix this
         PlayerRotateSpeed = 40.0f; // Fix this
-        PlayerJumpPower = 3.0f; // Fix this
+        PlayerJumpPower = 6.0f; // Fix this
 
         // enemy
         EnemyRotateSpeed = 40.0f; // Fix this
-        EnemyJumpPower = 3.0f; // Fix this
+        EnemyJumpPower = 6.0f; // Fix this
         EnemyKnockDownTime = 2.0f; // Fix this
 
         // skill

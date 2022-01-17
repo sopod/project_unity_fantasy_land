@@ -363,11 +363,11 @@ public class GameManager : MonoBehaviour
 
     public void MoveCreaturesAlongStage()
     {
-        player.MoveAlongStage();
+        player.MoveAlongWithStage();
 
         for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
         {
-            enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().MoveAlongStage();
+            enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().MoveAlongWithStage();
         }
     }
     

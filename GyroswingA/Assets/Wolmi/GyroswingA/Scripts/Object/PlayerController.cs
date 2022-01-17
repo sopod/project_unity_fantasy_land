@@ -2,8 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
-using Vector3 = UnityEngine.Vector3;
+
+public enum MoblieActionType
+{
+    Dash, 
+    Jump, 
+    Fire,
+    Max
+}
+
+
 
 public class PlayerController : LivingCreature
 {
@@ -36,7 +44,7 @@ public class PlayerController : LivingCreature
             AffectedByPhysics();
         }
     }
-    
+
     public void SetPlayer(GameObject stage, StageMovementValue stageVal, Options options)
     {
         key = new KeyController(joystick);
@@ -48,7 +56,7 @@ public class PlayerController : LivingCreature
 
         SetCreature(stage, stageVal, options);
     }
-    
+
 
     void MovePlayer()
     {
@@ -67,7 +75,7 @@ public class PlayerController : LivingCreature
             Jump();
         }
     }
-    
+
     void DashPlayer()
     {
         if (key.IsDashKeyPressed())
@@ -84,9 +92,20 @@ public class PlayerController : LivingCreature
         }
     }
 
-    public override void OnEnemyLayer()
+    public void MobileButtonAction(MoblieActionType type)
     {
-
+        if (type == MoblieActionType.Jump)
+        {
+            Jump();
+        }
+        else if (type == MoblieActionType.Dash)
+        {
+            Dash();
+        }
+        else if (type == MoblieActionType.Fire)
+        {
+            Fire();
+        }
     }
 
     protected override void NotifyDead()
@@ -94,6 +113,7 @@ public class PlayerController : LivingCreature
         GameManager.Instance.SetFail();
     }
 
+    // -------------------------------------------------- for item trigger enter
     void OnTriggerEnter(Collider other)
     {
         if (IsPaused()) return;
@@ -106,7 +126,8 @@ public class PlayerController : LivingCreature
         }
     }
 
-    void OnCollisionStay(Collision collision)
+    // -------------------------------------------------- for being damaged by enemy dash
+    void OnCollisionStay(Collision collision) 
     {
         if (IsPaused()) return;
 
@@ -121,17 +142,9 @@ public class PlayerController : LivingCreature
                 OnDamagedAndMoveBack(false, false, l.CenterPosition, l.CenterForward);
             }
         }
-        else
-        {
-            //isDamaged = false;
-        }
-
-        if (layer == options.StageLayer.value)
-        {
-            OnStageLayer();
-        }
     }
 
+    // -------------------------------------------------- for layer collision
     void OnCollisionEnter(Collision collision)
     {
         if (IsPaused()) return;
@@ -168,9 +181,13 @@ public class PlayerController : LivingCreature
         }
         else if (layer == options.StageLayer.value)
         {
-            if (isJumping)
-                soundPlayer.PlaySound(CreatureEffectSoundType.Jump, IsPlayer);
+            //if (isJumping)
+            //soundPlayer.PlaySound(CreatureEffectSoundType.Jump, IsPlayer);
         }
     }
 
+    public override void OnEnemyLayer()
+    {
+        OnStageLayer();
+    }
 }
