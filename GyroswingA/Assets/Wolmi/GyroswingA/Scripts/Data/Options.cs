@@ -28,7 +28,6 @@ public class Options
     [HideInInspector] public float EnemyStartWaitingTime;
 
     [HideInInspector] public int SpawnerPrepareAmount;
-    [HideInInspector] public int RequiredStarAmountForHardMode;
     [HideInInspector] public int StageAmountPerMode;
 
 
@@ -93,8 +92,7 @@ public class Options
         EnemyStartWaitingTime = 1.0f;
         
         SpawnerPrepareAmount = 5;
-        LimitSecondsPerStage = 20; // Fix this !!!!!!!!!!!!!!!!!!! 180 
-        RequiredStarAmountForHardMode = 25;
+        LimitSecondsPerStage = 180; // Fix this !!!!!!!!!!!!!!!!!!! 180 
         StageAmountPerMode = 10;
 
         IsMachineSwinging = true;
@@ -109,11 +107,11 @@ public class Options
         // player
         PlayerStartPos = new Vector3(-32.0f, 2.2f, -50.2f);
         PlayerMoveSpeed = 2.0f; // Fix this
-        PlayerRotateSpeed = 40.0f; // Fix this
+        PlayerRotateSpeed = 100.0f; // Fix this
         PlayerJumpPower = 5.0f; // Fix this
 
         // enemy
-        EnemyRotateSpeed = 40.0f; // Fix this
+        EnemyRotateSpeed = 100.0f; // Fix this
         EnemyJumpPower = 5.0f; // Fix this
         EnemyKnockDownTime = 2.0f; // Fix this
 
