@@ -3,10 +3,17 @@ using UnityEngine;
 public class LobbySceneStarter : MonoBehaviour
 {
     [SerializeField] UISoundPlayer uiSoundPlayer;
+    [SerializeField] VolumeSlider BgmSlider;
+    [SerializeField] VolumeSlider effectSoundSlider;
 
     void Start()
     {
+        GameDataLoader.Instance.LoadFile();
+
         uiSoundPlayer.PlayBGM(GameState.Lobby);
+
+        BgmSlider.InitSlider();
+        effectSoundSlider.InitSlider();
     }
 
 

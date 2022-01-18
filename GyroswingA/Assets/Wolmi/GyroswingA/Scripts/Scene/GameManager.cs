@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
 
     [Header("------- Game Data")]
-    [SerializeField] StarDataPerLevel _levelDataPerLevel;
+    [SerializeField] StarDataPerLevel levelDataPerLevel;
     [SerializeField] Options options;
     StageMovementValue stageVal;
 
@@ -81,8 +81,8 @@ public class GameManager : MonoBehaviour
         {
             _isSceneSet = true;
 
-            _levelCur = _levelDataPerLevel.levelNumberCur;
-            _gameModeCur = _levelDataPerLevel.stageModeCur;
+            _levelCur = levelDataPerLevel.levelNumberCur;
+            _gameModeCur = levelDataPerLevel.stageModeCur;
             options.ChangeLevel(_gameModeCur, _levelCur);
 
             options.ResetOptionValuesByCode();
@@ -184,26 +184,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool UpgradeLevel()
+    public bool UpgradeLevel() // after get star
     {
         // calculate next level and mode
         _levelCur++;
 
-        if (_levelCur > _levelDataPerLevel.LevelCountPerMode && _gameModeCur == GameMode.Easy)
+        if (_levelCur > levelDataPerLevel.LevelCountPerMode && _gameModeCur == GameMode.Easy)
         {
+            if (!levelDataPerLevel.IsHardModeOpen)
+            {
+                return false;
+            }
+
             _levelCur = 1;
             _gameModeCur = GameMode.Hard;
-
         }
-        else if (_levelCur > _levelDataPerLevel.LevelCountPerMode && _gameModeCur == GameMode.Hard)
+        else if (_levelCur > levelDataPerLevel.LevelCountPerMode && _gameModeCur == GameMode.Hard)
         {
             return false;
         }
-
+        
 
         // save data
         options.ChangeLevel(_gameModeCur, _levelCur);
-        _levelDataPerLevel.SetUnlocked(_gameModeCur, _levelCur);
+        levelDataPerLevel.SetUnlocked(_gameModeCur, _levelCur);
+
+        GameDataLoader.Instance.SaveFile();
 
         return true;
     }
@@ -214,7 +220,7 @@ public class GameManager : MonoBehaviour
 
         int star = starCollector.GetStarForCurStage(_gameModeCur, _remainingMonsterCur);
 
-        _levelDataPerLevel.SetStar(_gameModeCur, _levelCur, star);
+        levelDataPerLevel.SetStar(_gameModeCur, _levelCur, star);
 
         enemySpawner.ReturnAllObjects();
         itemSpawner.ReturnAllObjects();

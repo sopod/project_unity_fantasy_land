@@ -1,7 +1,6 @@
 using UnityEngine;
 
 
-// 에디터에서 설정하기.
 
 [System.Serializable]
 public class Options
@@ -70,7 +69,6 @@ public class Options
     public LayerMask ItemLayer;
     public LayerMask StageLayer;
     public LayerMask FailZoneLayer;
-    public LayerMask StagePoleLayer;
     public LayerMask StageBoundaryLayer;
     public LayerMask ShootProjectileLayer;
 
@@ -104,11 +102,11 @@ public class Options
         // player
         PlayerStartPos = new Vector3(-32.0f, 2.2f, -50.2f);
         PlayerMoveSpeed = 2.0f; // Fix this
-        PlayerRotateSpeed = 120.0f; // Fix this
+        PlayerRotateSpeed = 130.0f; // Fix this
         PlayerJumpPower = 5.0f; // Fix this
 
         // enemy
-        EnemyRotateSpeed = 120.0f; // Fix this
+        EnemyRotateSpeed = 130.0f; // Fix this
         EnemyJumpPower = 5.0f; // Fix this
         EnemyKnockDownTime = 2.0f; // Fix this
 

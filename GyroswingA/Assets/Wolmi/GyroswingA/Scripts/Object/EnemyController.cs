@@ -204,7 +204,7 @@ public class EnemyController : LivingCreature, ISpawnableObject
         {
             //if (!isDamaged)
             {
-                OnDamagedAndMoveBack(true, true, other.transform.position, other.transform.forward, EnemyType.Max);
+                OnDamagedAndMoveBack(true, other.transform.position, other.transform.forward, EnemyType.Max);
             }
         }
     }
@@ -222,7 +222,7 @@ public class EnemyController : LivingCreature, ISpawnableObject
 
             if (l.IsAttacking && !isDamaged)
             {
-                OnDamagedAndMoveBack(true, false, l.CenterPosition, l.CenterForward, EnemyType.Max);
+                OnDamagedAndMoveBack(false, l.CenterPosition, l.CenterForward, EnemyType.Max);
             }
         }
     }

@@ -183,7 +183,7 @@ public abstract class LivingCreature : MovingThing
         Invoke("SetIdle", options.SkillCoolTime);
     }
 
-    protected void OnDamagedAndMoveBack(bool isAttackedByPlayer, bool isProjectile, Vector3 centerPosOfAttacker, Vector3 forwardPosOfAttacker, EnemyType type)
+    protected void OnDamagedAndMoveBack(bool isProjectile, Vector3 centerPosOfAttacker, Vector3 forwardPosOfAttacker, EnemyType type)
     {
         isDamaged = true;
 
@@ -203,17 +203,20 @@ public abstract class LivingCreature : MovingThing
         Vector3 dir = (CenterPosition - centerPosOfAttacker).normalized;
         float damagedPower = options.DashPowerToDamaged;
 
-        if (isAttackedByPlayer && type != EnemyType.Max)
+        if (IsPlayer && type != EnemyType.Max) // this is player script and player damaged
         {
-            soundPlayer.PlaySound(CreatureEffectSoundType.Dash, IsPlayer);
-            
             damagedPower = options.GetDashPowerToDamaged(type);
         }
-
-        if (isProjectile)
+        else if (isProjectile) // this is enemy script and enemy damaged by projectile
         {
             damagedPower = options.FireBallPowerToDamaged;
         }
+
+        if (!IsPlayer) // this is enemy script and enemy damaged
+        {
+            soundPlayer.PlaySound(CreatureEffectSoundType.Dash, IsPlayer);
+        }
+        
 
         rb.AddForce(dir * damagedPower, ForceMode.Impulse);
     }

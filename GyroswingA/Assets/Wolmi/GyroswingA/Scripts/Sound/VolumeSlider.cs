@@ -17,7 +17,8 @@ public class VolumeSlider : MonoBehaviour
 
     [SerializeField] Slider slider;
 
-    void Start()
+   
+    public void InitSlider()
     {
         slider.minValue = 0.1f;
 
@@ -35,7 +36,6 @@ public class VolumeSlider : MonoBehaviour
         {
             Load();
         }
-        
     }
 
     public void OnVolumeChanged()

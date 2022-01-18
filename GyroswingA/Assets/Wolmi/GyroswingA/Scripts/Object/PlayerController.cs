@@ -138,7 +138,7 @@ public class PlayerController : LivingCreature
             
             if (e.IsAttacking && !isDamaged)
             {
-                OnDamagedAndMoveBack(false, false, e.CenterPosition, e.CenterForward, (EnemyType)e.Type);
+                OnDamagedAndMoveBack(false, e.CenterPosition, e.CenterForward, (EnemyType)e.Type);
             }
         }
     }

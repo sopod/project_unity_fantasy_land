@@ -22,6 +22,11 @@ public class InGameUIDisplay : MonoBehaviour
     [SerializeField] UIButton exitGameButton;
     [SerializeField] GameObject moblieController;
 
+    [SerializeField] VolumeSlider BgmSlider;
+    [SerializeField] VolumeSlider effectSoundSlider;
+
+
+
     public void SetUI(int limitTime, int enemyMax)
     {
         resultScreen.SetActive(false);
@@ -37,6 +42,10 @@ public class InGameUIDisplay : MonoBehaviour
 
         timeText.text = GetRemainingTimeString(limitTime);
         enemyCountText.text = new StringBuilder("³²Àº Àû " + monsterMax + " / " + monsterMax).ToString();
+
+
+        BgmSlider.InitSlider();
+        effectSoundSlider.InitSlider();
     }
 
     public void UpdateTime(float remainingTime)

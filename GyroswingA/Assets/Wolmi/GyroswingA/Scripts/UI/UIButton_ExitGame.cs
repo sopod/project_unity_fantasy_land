@@ -7,6 +7,8 @@ public class UIButton_ExitGame : UIButton
     {
         UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
 
+        GameDataLoader.Instance.SaveFile();
+
         Invoke("QuitGame", 1.0f);
     }
 

@@ -910,6 +910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   display: {fileID: 1014647453}
+  optionScreen: {fileID: 0}
 --- !u!1 &1868700026511638940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,6 +1892,8 @@ MonoBehaviour:
   lobbyButton: {fileID: 1615878085055834599}
   exitGameButton: {fileID: 8645156104394185943}
   moblieController: {fileID: 7051594136735893723}
+  BgmSlider: {fileID: 8150322043395813306}
+  effectSoundSlider: {fileID: 3407990776255116494}
 --- !u!1 &6946019163606947316
 GameObject:
   m_ObjectHideFlags: 0

@@ -4542,6 +4542,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2108515194}
     - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: levelDataPerLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
       propertyPath: projectileSpawner
       value: 
       objectReference: {fileID: 260981697}
