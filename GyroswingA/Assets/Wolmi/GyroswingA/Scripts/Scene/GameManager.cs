@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
 
     bool _isSceneSet;
-    bool _isGamePaused;
+    //bool _isGamePaused;
 
     int _monsterMaxCur = 0;
     int _remainingMonsterCur = 0;
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
             instance = this;
 
         _isSceneSet = false;
-        _isGamePaused = true;
+        //_isGamePaused = true;
     }
     
 

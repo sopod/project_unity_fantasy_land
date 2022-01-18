@@ -21,7 +21,9 @@ public class LobbySceneStarter : MonoBehaviour
     [SerializeField] StarDataPerLevel data;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.N))
             data.Clear();
+        if (Input.GetKeyDown(KeyCode.M))
+            data.UnlockAll();
     }
 }

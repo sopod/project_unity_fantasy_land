@@ -20,7 +20,7 @@ public class LevelValues
 
     public LevelValues()
     {
-        SwingSpeedCur = MachineSpinSpeed_Default;
+        SwingSpeedCur = MachineSwingSpeed_Default;
         SwingAngleMaxCur = MachineSwingAngleMax_Default;
         SpinSpeedCur = MachineSpinSpeed_Default;
         EnemyTypesCur = new EnemyType[] { };
@@ -38,7 +38,7 @@ public class LevelValues
             {
                 case 1:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default;
+                    SwingSpeedCur = MachineSwingSpeed_Default;
                     SwingAngleMaxCur = MachineSwingAngleMax_Default;
                     SpinSpeedCur = MachineSpinSpeed_Default;
                     EnemyTypesCur = new EnemyType[]{ EnemyType.Bwun, EnemyType.Ssak};
@@ -50,9 +50,9 @@ public class LevelValues
                 case 3:
                 case 4:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.1f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.1f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.1f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.1f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.1f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.1f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Bwun, EnemyType.Ssak };
                     ItemTypesCur = new ItemType[] { };
                 }
@@ -60,9 +60,9 @@ public class LevelValues
 
                 case 5:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.2f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.2f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.2f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.2f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.2f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.2f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Bwun, EnemyType.Ssak };
                     ItemTypesCur = new ItemType[] {ItemType.HarippoBlue};
                 }
@@ -70,9 +70,9 @@ public class LevelValues
 
                 case 6:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.2f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.2f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.2f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.2f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.2f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.2f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Bwun, EnemyType.Ssak, EnemyType.Ral };
                     ItemTypesCur = new ItemType[] { ItemType.HarippoGreen };
                 }
@@ -80,9 +80,9 @@ public class LevelValues
                 case 7:
                 case 8:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.2f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.2f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.2f;
+                    SwingSpeedCur = MachineSpinSpeed_Default * 1.2f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.2f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.2f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Bwun, EnemyType.Ssak, EnemyType.Ral };
                     ItemTypesCur = new ItemType[] { ItemType.HarippoBlue };
                 }
@@ -91,9 +91,9 @@ public class LevelValues
                 case 9:
                 case 10:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.3f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.3f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.3f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.3f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.3f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.3f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Bwun, EnemyType.Ssak, EnemyType.Ral };
                     ItemTypesCur = new ItemType[] { ItemType.HarippoGreen };
                 }
@@ -101,9 +101,9 @@ public class LevelValues
 
                 default:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.3f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.3f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.3f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.3f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.3f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.3f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Bwun, EnemyType.Ssak, EnemyType.Ral };
                     ItemTypesCur = new ItemType[] { ItemType.HarippoGreen };
                 }
@@ -117,7 +117,7 @@ public class LevelValues
                 case 1:
                 {
 
-                    SwingSpeedCur = MachineSpinSpeed_Default;
+                    SwingSpeedCur = MachineSwingSpeed_Default;
                     SwingAngleMaxCur = MachineSwingAngleMax_Default;
                     SpinSpeedCur = MachineSpinSpeed_Default;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Juck, EnemyType.Swook };
@@ -127,18 +127,18 @@ public class LevelValues
 
                 case 2:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.1f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.1f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.1f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.1f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.1f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.1f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Juck, EnemyType.Swook };
                     ItemTypesCur = new ItemType[] { ItemType.Coke };
                 }
                     break;
                 case 3:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.1f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.1f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.1f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.1f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.1f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.1f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Juck, EnemyType.Swook };
                     ItemTypesCur = new ItemType[] { ItemType.HarippoYellow , ItemType.Coke };
                 }
@@ -146,18 +146,18 @@ public class LevelValues
 
                 case 4:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.2f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.2f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.2f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.2f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.2f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.2f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Juck, EnemyType.Swook };
                     ItemTypesCur = new ItemType[] { ItemType.HarippoYellow};
                 }
                     break;
                 case 5:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.2f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.2f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.2f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.2f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.2f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.2f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Juck, EnemyType.Swook };
                     ItemTypesCur = new ItemType[] { ItemType.HarippoRed, ItemType.ChocoTarte };
                 }
@@ -166,18 +166,18 @@ public class LevelValues
                 case 6:
                 case 7:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.3f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.3f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.3f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.3f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.3f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.3f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Juck, EnemyType.Swook, EnemyType.Gum };
                     ItemTypesCur = new ItemType[] { ItemType.ChocoTarte };
                 }
                     break;
                 case 8:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.3f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.3f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.3f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.3f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.3f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.3f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Juck, EnemyType.Swook, EnemyType.Gum };
                     ItemTypesCur = new ItemType[] { ItemType.HarippoRed };
                 }
@@ -185,9 +185,9 @@ public class LevelValues
 
                 case 9:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.4f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.4f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.4f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.4f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.4f;
+                    SpinSpeedCur = MachineSpinSpeed_Default *1.4f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Juck, EnemyType.Swook, EnemyType.Gum };
                     ItemTypesCur = new ItemType[] { ItemType.HarippoRed, ItemType.Coke };
                 }
@@ -195,9 +195,9 @@ public class LevelValues
 
                 case 10:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.5f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.5f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.5f;
+                    SwingSpeedCur = MachineSwingSpeed_Default * 1.5f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default * 1.5f;
+                    SpinSpeedCur = MachineSpinSpeed_Default * 1.5f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Juck, EnemyType.Swook, EnemyType.Gum };
                     ItemTypesCur = new ItemType[] { ItemType.ChocoTarte };
                 }
@@ -205,9 +205,9 @@ public class LevelValues
 
                 default:
                 {
-                    SwingSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.5f;
-                    SwingAngleMaxCur = MachineSwingAngleMax_Default + MachineSwingAngleMax_Default * 0.5f;
-                    SpinSpeedCur = MachineSpinSpeed_Default + MachineSpinSpeed_Default * 0.5f;
+                    SwingSpeedCur = MachineSwingSpeed_Default *1.5f;
+                    SwingAngleMaxCur = MachineSwingAngleMax_Default *1.5f;
+                    SpinSpeedCur = MachineSpinSpeed_Default *1.5f;
                     EnemyTypesCur = new EnemyType[] { EnemyType.Juck, EnemyType.Swook, EnemyType.Gum };
                     ItemTypesCur = new ItemType[] { ItemType.ChocoTarte };
                 }

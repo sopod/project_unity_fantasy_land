@@ -9,9 +9,9 @@ public class UIButton_ExitGame : UIButton
 
         GameDataLoader.Instance.SaveFile();
 
-        Invoke("QuitGame", 1.0f);
+        Invoke("QuitGame", 2.0f);
     }
-
+    
     void QuitGame()
     {
         Application.Quit();

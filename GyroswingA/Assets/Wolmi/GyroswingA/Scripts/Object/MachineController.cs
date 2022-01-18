@@ -20,7 +20,7 @@ public class MachineController : MovingThing
     [SerializeField] GameObject stage;
     
     float swingRadius;
-    float swingPowerMinPercent;
+    //float swingPowerMinPercent;
 
     Vector3 _swingPosCur;
     bool _changeDir;
@@ -71,7 +71,7 @@ public class MachineController : MovingThing
         this.stageVal = stageVal;
         this.options = options;
 
-        swingPowerMinPercent = 0.3f; // min 30% will be same power 
+        //swingPowerMinPercent = 0.3f; // min 30% will be same power 
 
         _changeDir = false;
         _isSwingingRight = true;
