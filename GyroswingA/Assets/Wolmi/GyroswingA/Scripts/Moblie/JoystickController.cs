@@ -37,7 +37,11 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     void SetLeverPosition(PointerEventData eventData)
     {
-        var leverPos = eventData.position - joystick.anchoredPosition;
+        float x = (Screen.width * 235f) / 1920f;
+        float y = (Screen.height * 235f) / 1080f;
+
+        
+        var leverPos = eventData.position - new Vector2(x, y); // - joystick.anchoredPosition // fixed this
         var inRangePos = (leverPos.magnitude < leverRange) ? leverPos : leverPos.normalized * leverRange;
         lever.anchoredPosition = inRangePos;
 
