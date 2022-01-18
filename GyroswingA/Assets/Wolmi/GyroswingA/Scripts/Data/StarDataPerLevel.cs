@@ -47,7 +47,6 @@ public class StarDataPerLevel : ScriptableObject
 
 
 
-    [ContextMenu("Clear Data")]
     public void Clear()
     {
         levelNumberCur = 1;
