@@ -7,6 +7,7 @@ public enum ProjectileType
     FireHit,
     DashHit,
     Dead,
+    ItemPickUp,
     Max
 }
 
@@ -154,6 +155,18 @@ public class ProjectileSpawner : MonoBehaviour
 
         p.transform.position = character.transform.position + character.transform.right * 0.1f + character.transform.up * 0.3f;
         p.transform.forward = character.transform.forward;
+
+        return p;
+    }
+
+    public GameObject SpawnItemPickUpProjectile(GameObject character)
+    {
+        GameObject p = TakeObject((int)ProjectileType.ItemPickUp);
+
+        p.transform.position = character.transform.position;
+        p.transform.forward = -character.transform.up;
+
+        p.transform.SetParent(character.transform);
 
         return p;
     }

@@ -120,6 +120,7 @@ public class PlayerController : LivingCreature
         if (layer == options.ItemLayer.value)
         {
             soundPlayer.PlaySound(CreatureEffectSoundType.ItemGet, IsPlayer);
+            GameManager.Instance.SpawnItemPickUpEffect(this.gameObject);
         }
     }
 

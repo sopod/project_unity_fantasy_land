@@ -4,7 +4,8 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour, ISpawnableObject
 {
     Options options;
-    
+
+    bool isDisabled = false;
     bool isAlive = false;
     public bool isMoving = false;
 
@@ -36,6 +37,7 @@ public class ProjectileController : MonoBehaviour, ISpawnableObject
         this.spawner = spawner;
         this.options = options;
 
+        isDisabled = false;
         isAlive = true;
         
         Invoke("BackToSpawner", options.ProjectileRemaingTime);
@@ -44,8 +46,9 @@ public class ProjectileController : MonoBehaviour, ISpawnableObject
 
     public void BackToSpawner()
     {
-        CancelInvoke("BackToSpawner");
+        if (isDisabled) return;
 
+        isDisabled = true;
         isAlive = false;
 
         spawner.ReturnObject(this.gameObject);

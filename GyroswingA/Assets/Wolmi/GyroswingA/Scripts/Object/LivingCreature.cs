@@ -206,12 +206,6 @@ public abstract class LivingCreature : MovingThing
         if (IsPlayer && type != EnemyType.Max) // this is player script and player damaged
         {
             damagedPower = options.GetDashPowerToDamaged(type);
-
-
-
-
-
-
         }
         else if (isProjectile) // this is enemy script and enemy damaged by projectile
         {
