@@ -317,6 +317,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4581218772041449809, guid: 6dd4e112f6c84d34c9c12811622cb923, type: 3}
+      propertyPath: database
+      value: 
+      objectReference: {fileID: 11400000, guid: 77576023f7d04cd41abe91d0f2f75d76, type: 2}
+    - target: {fileID: 4581218772041449809, guid: 6dd4e112f6c84d34c9c12811622cb923, type: 3}
+      propertyPath: projectiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4581218772041449814, guid: 6dd4e112f6c84d34c9c12811622cb923, type: 3}
       propertyPath: m_Name
       value: ProjectileSpawner
@@ -2650,7 +2658,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1.2
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4460,6 +4468,10 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 6946019163277611695}
+    - target: {fileID: 3206009156446349649, guid: ff99b704540970243b568b3c3a5e71d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff99b704540970243b568b3c3a5e71d0, type: 3}
 --- !u!1001 &4046827399231631571

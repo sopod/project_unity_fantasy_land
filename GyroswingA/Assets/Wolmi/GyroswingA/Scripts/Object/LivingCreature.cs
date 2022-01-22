@@ -176,7 +176,7 @@ public abstract class LivingCreature : MovingThing
         soundPlayer.PlaySound(CreatureEffectSoundType.Fire, IsPlayer);
         ani.SetTrigger("JustFired");
 
-        GameManager.Instance.SpawnProjectile(shootMouth); // fire
+        GameManager.Instance.SpawnFireProjectile(shootMouth); // fire
 
         state.SetAttacking();
         
@@ -206,6 +206,12 @@ public abstract class LivingCreature : MovingThing
         if (IsPlayer && type != EnemyType.Max) // this is player script and player damaged
         {
             damagedPower = options.GetDashPowerToDamaged(type);
+
+
+
+
+
+
         }
         else if (isProjectile) // this is enemy script and enemy damaged by projectile
         {
@@ -342,6 +348,8 @@ public abstract class LivingCreature : MovingThing
 
         ani.SetBool("IsDead", true);
         ani.SetBool("IsJumping", false);
+
+        GameManager.Instance.SpawnDeadEffect(this.gameObject);
     }
 
 

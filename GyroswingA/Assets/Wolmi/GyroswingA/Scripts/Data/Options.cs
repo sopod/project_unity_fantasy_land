@@ -87,12 +87,12 @@ public class Options
         EnemyStartWaitingTime = 1.0f;
         
         SpawnerPrepareAmount = 5;
-        LimitSecondsPerStage = 180; // Fix this !!!!!!!!!!!!!!!!!!! 180 
+        LimitSecondsPerStage = 180;
         StageAmountPerMode = 10;
 
-        IsMachineSwinging = false;
-        IsMachineTurning = false;
-        IsMachineSpining = false;
+        IsMachineSwinging = true;
+        IsMachineTurning = true;
+        IsMachineSpining = true;
 
         IsSpiningCW = true;
 

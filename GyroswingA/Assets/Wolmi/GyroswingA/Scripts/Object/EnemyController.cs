@@ -204,6 +204,7 @@ public class EnemyController : LivingCreature, ISpawnableObject
         {
             //if (!isDamaged)
             {
+                GameManager.Instance.SpawnFireHitEffect(this.gameObject);
                 OnDamagedAndMoveBack(true, other.transform.position, other.transform.forward, EnemyType.Max);
             }
         }
@@ -222,6 +223,7 @@ public class EnemyController : LivingCreature, ISpawnableObject
 
             if (l.IsAttacking && !isDamaged)
             {
+                GameManager.Instance.SpawnDashHitEffect(collision);
                 OnDamagedAndMoveBack(false, l.CenterPosition, l.CenterForward, EnemyType.Max);
             }
         }

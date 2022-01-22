@@ -6,6 +6,7 @@ public class ProjectileController : MonoBehaviour, ISpawnableObject
     Options options;
     
     bool isAlive = false;
+    public bool isMoving = false;
 
     ProjectileType projectileType;
     ProjectileSpawner spawner;
@@ -19,7 +20,7 @@ public class ProjectileController : MonoBehaviour, ISpawnableObject
 
     void Update()
     {
-        if (isAlive)
+        if (isAlive && isMoving)
         {
             MoveForward();
         }

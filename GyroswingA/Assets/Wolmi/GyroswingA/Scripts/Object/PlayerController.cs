@@ -138,6 +138,7 @@ public class PlayerController : LivingCreature
             
             if (e.IsAttacking && !isDamaged)
             {
+                GameManager.Instance.SpawnDashHitEffect(collision);
                 OnDamagedAndMoveBack(false, e.CenterPosition, e.CenterForward, (EnemyType)e.Type);
             }
         }

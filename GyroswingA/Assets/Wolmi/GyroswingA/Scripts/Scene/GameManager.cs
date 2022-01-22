@@ -386,11 +386,25 @@ public class GameManager : MonoBehaviour
         inGameUi.SetGameUI();
     }
 
-    public void SpawnProjectile(GameObject shootMouth)
+    public void SpawnFireProjectile(GameObject shootMouth)
     {
-        GameObject p = projectileSpawner.SpawnProjectile(ProjectileType.Shoot, shootMouth.transform.position, shootMouth.transform.forward);
+        GameObject p = projectileSpawner.SpawnFireProjectile(shootMouth.transform.position, shootMouth.transform.forward);
 
         p.GetComponent<ProjectileController>().SetStart(projectileSpawner, options);
     }
-    
+
+    public void SpawnDashHitEffect(Collision collision)
+    {
+        GameObject p = projectileSpawner.SpawnDashHitProjectile(collision);
+    }
+
+    public void SpawnFireHitEffect(GameObject character)
+    {
+        GameObject p = projectileSpawner.SpawnFireHitProjectile(character);
+    }
+
+    public void SpawnDeadEffect(GameObject character)
+    {
+        GameObject p = projectileSpawner.SpawnDeadProjectile(character);
+    }
 }

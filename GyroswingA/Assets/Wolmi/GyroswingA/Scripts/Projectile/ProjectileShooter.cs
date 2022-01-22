@@ -16,7 +16,7 @@ public class ProjectileShooter : MonoBehaviour
 
     void Fire()
     {
-        GameObject p = spawner.SpawnProjectile(ProjectileType.Shoot, mouth.transform.position, mouth.transform.forward);
+        GameObject p = spawner.SpawnFireProjectile(mouth.transform.position, mouth.transform.forward);
 
         p.GetComponent<ProjectileController>().SetStart(spawner, new Options());
     }

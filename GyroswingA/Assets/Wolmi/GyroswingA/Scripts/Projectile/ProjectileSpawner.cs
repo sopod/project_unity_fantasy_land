@@ -3,8 +3,10 @@ using UnityEngine;
 
 public enum ProjectileType
 {
-    Shoot,
-    Hit, 
+    FireShoot,
+    FireHit,
+    DashHit,
+    Dead,
     Max
 }
 
@@ -14,7 +16,7 @@ public class ProjectileSpawner : MonoBehaviour
 
     int[] spawnedObjectCount;
 
-    [SerializeField] GameObject[] projectiles;
+    [SerializeField] ObjectDatabase database;
 
     Queue<GameObject>[] queues;
     [HideInInspector] public List<GameObject>[] spawnedObjects;
@@ -44,8 +46,8 @@ public class ProjectileSpawner : MonoBehaviour
 
     public void InitSpawner()
     {
-        ReturnAllObjects((int)ProjectileType.Shoot);
-        ReturnAllObjects((int)ProjectileType.Hit);
+        ReturnAllObjects((int)ProjectileType.FireShoot);
+        ReturnAllObjects((int)ProjectileType.DashHit);
     }
 
     void PrepareObjects(int amount)
@@ -63,7 +65,7 @@ public class ProjectileSpawner : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject e = Instantiate(projectiles[idx], Vector3.zero, projectiles[idx].transform.rotation, this.transform);
+            GameObject e = Instantiate(database.GetPrefab(idx), Vector3.zero, database.GetPrefab(idx).transform.rotation, this.transform);
 
             ISpawnableObject obj = e.GetComponent<ISpawnableObject>();
             obj.Type = idx;
@@ -114,17 +116,46 @@ public class ProjectileSpawner : MonoBehaviour
     }
     
     
-    public GameObject SpawnProjectile(ProjectileType type, Vector3 pos, Vector3 forward)
+    public GameObject SpawnFireProjectile(Vector3 pos, Vector3 forward)
     {
-        GameObject p = TakeObject((int)type);
+        GameObject p = TakeObject((int)ProjectileType.FireShoot);
 
         p.transform.position = pos;
         p.transform.forward = forward;
 
         return p;
     }
-    
 
+    public GameObject SpawnDashHitProjectile(Collision collision)
+    {
+        GameObject p = TakeObject((int)ProjectileType.DashHit);
+        
+        p.transform.position = collision.contacts[0].point;
+        p.transform.right = collision.contacts[0].normal;
 
+        p.transform.SetParent(collision.gameObject.transform);
+
+        return p;
+    }
+
+    public GameObject SpawnFireHitProjectile(GameObject character)
+    {
+        GameObject p = TakeObject((int)ProjectileType.FireHit);
+
+        p.transform.position = character.transform.position;
+        p.transform.forward = character.transform.forward;
+
+        return p;
+    }
+
+    public GameObject SpawnDeadProjectile(GameObject character)
+    {
+        GameObject p = TakeObject((int)ProjectileType.Dead);
+
+        p.transform.position = character.transform.position + character.transform.right * 0.1f + character.transform.up * 0.3f;
+        p.transform.forward = character.transform.forward;
+
+        return p;
+    }
 
 }
