@@ -124,6 +124,7 @@ public class ProjectileSpawner : MonoBehaviour
         p.transform.position = pos;
         p.transform.forward = forward;
 
+        //p.GetComponent<ProjectileController>().SetStart(options);
         return p;
     }
 
@@ -136,6 +137,7 @@ public class ProjectileSpawner : MonoBehaviour
 
         p.transform.SetParent(collision.gameObject.transform);
 
+        //p.GetComponent<ProjectileController>().SetStart(options);
         return p;
     }
 
@@ -146,6 +148,7 @@ public class ProjectileSpawner : MonoBehaviour
         p.transform.position = character.transform.position;
         p.transform.forward = character.transform.forward;
 
+        //p.GetComponent<ProjectileController>().SetStart(options);
         return p;
     }
 
@@ -156,6 +159,7 @@ public class ProjectileSpawner : MonoBehaviour
         p.transform.position = character.transform.position + character.transform.right * 0.1f + character.transform.up * 0.3f;
         p.transform.forward = character.transform.forward;
 
+        //p.GetComponent<ProjectileController>().SetStart(options);
         return p;
     }
 
@@ -168,6 +172,7 @@ public class ProjectileSpawner : MonoBehaviour
 
         p.transform.SetParent(character.transform);
 
+        //p.GetComponent<ProjectileController>().SetStart(options);
         return p;
     }
 

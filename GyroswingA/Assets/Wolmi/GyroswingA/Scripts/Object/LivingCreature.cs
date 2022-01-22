@@ -176,7 +176,9 @@ public abstract class LivingCreature : MovingThing
         soundPlayer.PlaySound(CreatureEffectSoundType.Fire, IsPlayer);
         ani.SetTrigger("JustFired");
 
-        GameManager.Instance.SpawnFireProjectile(shootMouth); // fire
+
+        GameObject p = options.ProjectilesSpawner.SpawnFireProjectile(shootMouth.transform.position, shootMouth.transform.forward);
+        p.GetComponent<ProjectileController>().SetStart(options);
 
         state.SetAttacking();
         
@@ -343,7 +345,8 @@ public abstract class LivingCreature : MovingThing
         ani.SetBool("IsDead", true);
         ani.SetBool("IsJumping", false);
 
-        GameManager.Instance.SpawnDeadEffect(this.gameObject);
+        GameObject p = options.ProjectilesSpawner.SpawnDeadProjectile(this.gameObject);
+        p.GetComponent<ProjectileController>().SetStart(options);
     }
 
 

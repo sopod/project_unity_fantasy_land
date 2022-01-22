@@ -55,7 +55,8 @@ public class Options
     public float EnemyJumpPower;
     public float EnemyKnockDownTime;
 
-    [Header("---- skill")]
+    [Header("---- skill")] 
+    public ProjectileSpawner ProjectilesSpawner;
     public float SkillCoolTime;
     public float DashPowerToDamaged;
     [HideInInspector] public float DashPowerToHit;

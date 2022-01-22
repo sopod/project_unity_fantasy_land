@@ -120,7 +120,9 @@ public class PlayerController : LivingCreature
         if (layer == options.ItemLayer.value)
         {
             soundPlayer.PlaySound(CreatureEffectSoundType.ItemGet, IsPlayer);
-            GameManager.Instance.SpawnItemPickUpEffect(this.gameObject);
+
+            GameObject p = options.ProjectilesSpawner.SpawnItemPickUpProjectile(this.gameObject);
+            p.GetComponent<ProjectileController>().SetStart(options);
         }
     }
 
@@ -139,7 +141,8 @@ public class PlayerController : LivingCreature
             
             if (e.IsAttacking && !isDamaged)
             {
-                GameManager.Instance.SpawnDashHitEffect(collision);
+                GameObject p = options.ProjectilesSpawner.SpawnDashHitProjectile(collision);
+                p.GetComponent<ProjectileController>().SetStart(options);
                 OnDamagedAndMoveBack(false, e.CenterPosition, e.CenterForward, (EnemyType)e.Type);
             }
         }

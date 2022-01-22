@@ -4561,6 +4561,10 @@ PrefabInstance:
       propertyPath: projectileSpawner
       value: 
       objectReference: {fileID: 260981697}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: options.ProjectilesSpawner
+      value: 
+      objectReference: {fileID: 260981697}
     - target: {fileID: 4046827400444098220, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
       propertyPath: m_Name
       value: GameManager

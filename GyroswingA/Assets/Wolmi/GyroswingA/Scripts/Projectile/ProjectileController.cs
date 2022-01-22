@@ -10,7 +10,6 @@ public class ProjectileController : MonoBehaviour, ISpawnableObject
     public bool isMoving = false;
 
     ProjectileType projectileType;
-    ProjectileSpawner spawner;
 
     public int Type
     {
@@ -32,9 +31,8 @@ public class ProjectileController : MonoBehaviour, ISpawnableObject
         transform.Translate(transform.forward * options.ProjectileMoveSpeed * Time.deltaTime, Space.World);
     }
 
-    public void SetStart(ProjectileSpawner spawner, Options options)
+    public void SetStart(Options options)
     {
-        this.spawner = spawner;
         this.options = options;
 
         isDisabled = false;
@@ -51,7 +49,7 @@ public class ProjectileController : MonoBehaviour, ISpawnableObject
         isDisabled = true;
         isAlive = false;
 
-        spawner.ReturnObject(this.gameObject);
+        options.ProjectilesSpawner.ReturnObject(this.gameObject);
     }
     
 

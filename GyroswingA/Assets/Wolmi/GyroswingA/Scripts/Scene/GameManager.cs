@@ -385,34 +385,5 @@ public class GameManager : MonoBehaviour
     {
         inGameUi.SetGameUI();
     }
-
-    public void SpawnFireProjectile(GameObject shootMouth)
-    {
-        GameObject p = projectileSpawner.SpawnFireProjectile(shootMouth.transform.position, shootMouth.transform.forward);
-        p.GetComponent<ProjectileController>().SetStart(projectileSpawner, options);
-    }
-
-    public void SpawnDashHitEffect(Collision collision)
-    {
-        GameObject p = projectileSpawner.SpawnDashHitProjectile(collision);
-        p.GetComponent<ProjectileController>().SetStart(projectileSpawner, options);
-    }
-
-    public void SpawnFireHitEffect(GameObject character)
-    {
-        GameObject p = projectileSpawner.SpawnFireHitProjectile(character);
-        p.GetComponent<ProjectileController>().SetStart(projectileSpawner, options);
-    }
-
-    public void SpawnDeadEffect(GameObject character)
-    {
-        GameObject p = projectileSpawner.SpawnDeadProjectile(character);
-        p.GetComponent<ProjectileController>().SetStart(projectileSpawner, options);
-    }
-
-    public void SpawnItemPickUpEffect(GameObject character)
-    {
-        GameObject p = projectileSpawner.SpawnItemPickUpProjectile(character);
-        p.GetComponent<ProjectileController>().SetStart(projectileSpawner, options);
-    }
+    
 }
