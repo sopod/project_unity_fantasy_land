@@ -6,7 +6,7 @@ public class MobileButton_Jump : UIButton
 
     void Start()
     {
-        UIEventMaker.MakeButtonEvent(this.GetComponent<UIButton>());
+        UIEventMaker.MakeButtonEvent(this);
     }
 
     public override void OnClicked()

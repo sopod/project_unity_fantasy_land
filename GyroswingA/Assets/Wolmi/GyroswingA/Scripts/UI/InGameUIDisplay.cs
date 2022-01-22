@@ -7,7 +7,6 @@ public class InGameUIDisplay : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI enemyCountText;
-    [SerializeField] UIButton pauseButton;
 
     int monsterMax;
 
@@ -17,9 +16,6 @@ public class InGameUIDisplay : MonoBehaviour
     [SerializeField] StarDisplay starDisplay;
 
     [SerializeField] GameObject optionScreen;
-    [SerializeField] UIButton closeOptionButton;
-    [SerializeField] UIButton lobbyButton;
-    [SerializeField] UIButton exitGameButton;
     [SerializeField] GameObject moblieController;
 
     [SerializeField] VolumeSlider BgmSlider;
@@ -32,12 +28,7 @@ public class InGameUIDisplay : MonoBehaviour
         resultScreen.SetActive(false);
         optionScreen.SetActive(false);
         moblieController.SetActive(true);
-
-        UIEventMaker.MakeButtonEvent(pauseButton);
-        UIEventMaker.MakeButtonEvent(closeOptionButton);
-        UIEventMaker.MakeButtonEvent(lobbyButton);
-        UIEventMaker.MakeButtonEvent(exitGameButton);
-
+        
         this.monsterMax = enemyMax;
 
         timeText.text = GetRemainingTimeString(limitTime);

@@ -61,8 +61,7 @@ public class StarDataPerLevel : ScriptableObject
             hardMode[i] = 0;
         }
 
-
-        GameDataLoader.Instance.SaveFile();
+        GameDataLoader.SaveStarDataFile(this);
     }
 
     public void UnlockAll()
@@ -78,9 +77,8 @@ public class StarDataPerLevel : ScriptableObject
             easyMode[i] = 3;
             hardMode[i] = 3;
         }
-
-
-        GameDataLoader.Instance.SaveFile();
+        
+        GameDataLoader.SaveStarDataFile(this);
     }
 
     public int GetStar(GameMode mode, int levelNum)

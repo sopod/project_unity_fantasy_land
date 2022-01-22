@@ -18,10 +18,6 @@ public class StageSelectionUIDisplay : MonoBehaviour
     
     void Start()
     {
-        UIEventMaker.MakeButtonEvent(leftButtonToLobby);
-        UIEventMaker.MakeButtonEvent(rightButtonToHardMode);
-        UIEventMaker.MakeButtonEvent(leftButtonToEasyMode);
-
         // set
         SetStageButtons();
         SetEasyModeUI();

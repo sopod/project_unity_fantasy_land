@@ -30,13 +30,13 @@ public abstract class LivingCreature : MovingThing
 
     protected StateController state;
 
-    [SerializeField] protected bool isJumping;
-    [SerializeField] protected bool isOnJumpableObject;
+    protected bool isJumping;
+    protected bool isOnJumpableObject;
 
-    [SerializeField] protected bool isMoving;
-    [SerializeField] protected bool isTurning;
-    [SerializeField] protected bool isDamaged;
-    [SerializeField] protected bool isInStageBoundary;
+    protected bool isMoving;
+    protected bool isTurning;
+    protected bool isDamaged;
+    protected bool isInStageBoundary;
 
 
     protected float moveSpeed;

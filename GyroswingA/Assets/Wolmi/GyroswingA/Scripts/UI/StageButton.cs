@@ -13,8 +13,6 @@ public class StageButton : MonoBehaviour
     [SerializeField] StarDisplay starDisplay;
     [SerializeField] GameObject darkCover;
 
-    public UIButton_InGameScene InGameButton { get { return inGameButton; } }
-
     public void SetStageButton(int stageNum, GameMode mode, int starsGot, bool setOn)
     {
         // set text
@@ -33,7 +31,6 @@ public class StageButton : MonoBehaviour
         {
             darkCover.SetActive(false);
             inGameButton.SetInGameButton(mode, stageNum);
-            UIEventMaker.MakeButtonEvent(inGameButton);
 
             starDisplay.TurnOn(starsGot);
         }

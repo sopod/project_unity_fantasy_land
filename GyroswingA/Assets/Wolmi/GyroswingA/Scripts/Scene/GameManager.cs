@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
             instance = this;
 
         _isSceneSet = false;
-        //_isGamePaused = true;
     }
     
 
@@ -93,6 +92,7 @@ public class GameManager : MonoBehaviour
             StartInGame();
         }
     }
+
     void SetInGame()
     {
         gameTimer = new TimeController();
@@ -115,8 +115,6 @@ public class GameManager : MonoBehaviour
             UpdateInGame();
         }
     }
-
-
 
     void PrepareInGame() // use this after upgrade level
     {
@@ -209,7 +207,7 @@ public class GameManager : MonoBehaviour
         options.ChangeLevel(_gameModeCur, _levelCur);
         levelDataPerLevel.SetUnlocked(_gameModeCur, _levelCur);
 
-        GameDataLoader.Instance.SaveFile();
+        GameDataLoader.SaveStarDataFile(levelDataPerLevel);
 
         return true;
     }

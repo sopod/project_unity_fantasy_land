@@ -4,73 +4,43 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class GameDataLoader : MonoBehaviour
+public static class GameDataLoader
 {
-    [SerializeField] StarDataPerLevel starData;
+    static string path = Application.persistentDataPath + "/star_data";
+    static string name = Application.persistentDataPath + "/star_data/star_data_save.txt";
 
-    static GameDataLoader instance;
-    public static GameDataLoader Instance
+    static bool IsFilePathThere()
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<GameDataLoader>();
-            }
-            return instance;
-        }
+        return Directory.Exists(path);
     }
 
-    void Awake()
-    {
-        var objs = FindObjectsOfType<GameDataLoader>();
-
-        if (objs.Length == 1)
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject); // destroy new obj
-            return;
-        }
-
-        if (instance == null) instance = this;
-        
-    }
-
-    bool IsFilePathThere()
-    {
-        return Directory.Exists(Application.persistentDataPath + "/star_data");
-    }
-
-    public void SaveFile()
+    public static void SaveStarDataFile(StarDataPerLevel starData)
     {
         if (!IsFilePathThere())
         {
-            Directory.CreateDirectory(Application.persistentDataPath + "/star_data");
+            Directory.CreateDirectory(path);
         }
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/star_data/star_data_save.txt");
+        FileStream file = File.Create(name);
 
         var json = JsonUtility.ToJson(starData);
         bf.Serialize(file, json);
         file.Close();
     }
 
-    public void LoadFile()
+    public static void LoadStarDataFile(StarDataPerLevel starData)
     {
-        if (!Directory.Exists(Application.persistentDataPath + "/star_data"))
+        if (!Directory.Exists(path))
         {
-            Directory.CreateDirectory(Application.persistentDataPath + "/star_data");
+            Directory.CreateDirectory(path);
         }
+
         BinaryFormatter bf = new BinaryFormatter();
 
-        if (File.Exists(Application.persistentDataPath + "/star_data/star_data_save.txt"))
+        if (File.Exists(name))
         {
-            FileStream file = File.Open(Application.persistentDataPath + "/star_data/star_data_save.txt",
-                FileMode.Open);
+            FileStream file = File.Open(name, FileMode.Open);
             JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file), starData);
             file.Close();
         }

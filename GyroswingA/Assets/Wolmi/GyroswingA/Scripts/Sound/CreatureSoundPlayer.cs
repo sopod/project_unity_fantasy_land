@@ -8,7 +8,6 @@ public enum CreatureEffectSoundType
     Jump,
     Dead,
     ItemGet,
-    HittingSound,
     Max
 }
 

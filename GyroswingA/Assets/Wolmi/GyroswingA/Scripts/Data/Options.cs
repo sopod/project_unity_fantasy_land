@@ -90,9 +90,9 @@ public class Options
         LimitSecondsPerStage = 180; // Fix this !!!!!!!!!!!!!!!!!!! 180 
         StageAmountPerMode = 10;
 
-        IsMachineSwinging = true;
-        IsMachineTurning = true;
-        IsMachineSpining = true;
+        IsMachineSwinging = false;
+        IsMachineTurning = false;
+        IsMachineSpining = false;
 
         IsSpiningCW = true;
 
@@ -100,7 +100,7 @@ public class Options
         Gravity = 9.8f;
 
         // player
-        PlayerStartPos = new Vector3(-32.0f, 2.2f, -50.2f);
+        PlayerStartPos = new Vector3(-30.57f, 2.21f, -50.2f);
         PlayerMoveSpeed = 2.0f; // Fix this
         PlayerRotateSpeed = 130.0f; // Fix this
         PlayerJumpPower = 5.0f; // Fix this

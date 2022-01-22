@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     const float leverRange = 120.0f;
+    const float screenResolusionX = 1920f;
+    const float screenResolusionY = 1080f;
+
 
     RectTransform joystick;
     [SerializeField] RectTransform lever;
@@ -24,7 +27,7 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
         isInput = true; 
     }
 
-    public void OnDrag(PointerEventData eventData) // call when mouse is moving...
+    public void OnDrag(PointerEventData eventData)
     {
         SetLeverPosition(eventData);
     }
@@ -37,11 +40,10 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     void SetLeverPosition(PointerEventData eventData)
     {
-        float x = (Screen.width * 235f) / 1920f;
-        float y = (Screen.height * 235f) / 1080f;
-
+        float x = (Screen.width * joystick.sizeDelta.x / 2 + joystick.anchoredPosition.x) / screenResolusionX; // 245f
+        float y = (Screen.height * joystick.sizeDelta.y / 2 + joystick.anchoredPosition.y) / screenResolusionY;
         
-        var leverPos = eventData.position - new Vector2(x, y); // - joystick.anchoredPosition // fixed this
+        var leverPos = eventData.position - new Vector2(x, y);
         var inRangePos = (leverPos.magnitude < leverRange) ? leverPos : leverPos.normalized * leverRange;
         lever.anchoredPosition = inRangePos;
 

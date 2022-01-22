@@ -12,12 +12,12 @@ public class ProjectileSpawner : MonoBehaviour
 {
     Options options;
 
-    [SerializeField] int[] spawnedObjectCount;
+    int[] spawnedObjectCount;
 
     [SerializeField] GameObject[] projectiles;
 
-    [SerializeField] Queue<GameObject>[] queues;
-    public List<GameObject>[] spawnedObjects;
+    Queue<GameObject>[] queues;
+    [HideInInspector] public List<GameObject>[] spawnedObjects;
 
     void Start()
     {

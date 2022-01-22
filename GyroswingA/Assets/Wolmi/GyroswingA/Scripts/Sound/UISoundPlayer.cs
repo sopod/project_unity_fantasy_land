@@ -6,11 +6,6 @@ public enum UIEffectSoundType
 {
     BtnClick,
     BtnBack,
-    CreatureDash, 
-    CreatureFire,
-    CreatureJump,
-    CreatureDead,
-    ItemGet,
     Max
 }
 
@@ -25,11 +20,9 @@ public class UISoundPlayer : MonoBehaviour
 
     [SerializeField] AudioSource[] effectSoundAudios;
     [SerializeField] AudioSource bgmAudio;
+    
+    
 
-    public bool IsBGMPlaying
-    {
-        get { return bgmAudio.isPlaying; }
-    }
 
     static UISoundPlayer instance;
 

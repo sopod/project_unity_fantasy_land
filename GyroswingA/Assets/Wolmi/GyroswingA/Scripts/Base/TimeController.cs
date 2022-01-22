@@ -8,7 +8,7 @@ public class TimeController
 
     float stopTime = 0.0f;
 
-    public bool IsFinished { get { return timerStarted && GetRemainingTime() <= 0.2f; } }
+    public bool IsFinished { get { return timerStarted && GetRemainingTime() <= 0.1f; } }
     public bool IsRunning { get { return timerStarted; } }
     
     public void StartTimer(float limitTime)

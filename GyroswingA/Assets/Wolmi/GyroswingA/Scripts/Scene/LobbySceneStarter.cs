@@ -5,10 +5,12 @@ public class LobbySceneStarter : MonoBehaviour
     [SerializeField] UISoundPlayer uiSoundPlayer;
     [SerializeField] VolumeSlider BgmSlider;
     [SerializeField] VolumeSlider effectSoundSlider;
+    [SerializeField] StarDataPerLevel data;
+
 
     void Start()
     {
-        GameDataLoader.Instance.LoadFile();
+        GameDataLoader.LoadStarDataFile(data);
 
         uiSoundPlayer.PlayBGM(GameState.Lobby);
 
@@ -18,11 +20,11 @@ public class LobbySceneStarter : MonoBehaviour
 
 
     // --------------------- reset data button for test
-    [SerializeField] StarDataPerLevel data;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
             data.Clear();
+
         if (Input.GetKeyDown(KeyCode.M))
             data.UnlockAll();
     }

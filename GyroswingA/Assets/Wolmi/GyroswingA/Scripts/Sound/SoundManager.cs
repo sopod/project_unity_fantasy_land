@@ -5,6 +5,8 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     Dictionary<string, AudioClip> clips;
+    string soundFolderName = "Sounds";
+
     
     static SoundManager instance;
     public static SoundManager Instance
@@ -42,7 +44,7 @@ public class SoundManager : MonoBehaviour
     {
         clips = new Dictionary<string, AudioClip>();
 
-        var temp = Resources.LoadAll<AudioClip>("Sounds");
+        var temp = Resources.LoadAll<AudioClip>(soundFolderName);
 
         for (int i = 0; i < temp.Length; i++)
         {

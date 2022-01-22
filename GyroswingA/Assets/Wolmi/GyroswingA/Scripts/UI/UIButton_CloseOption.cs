@@ -7,6 +7,11 @@ public class UIButton_CloseOption : UIButton
     [SerializeField] private InGameUIDisplay display;
     [SerializeField] GameObject optionScreen;
 
+    void Start()
+    {
+        UIEventMaker.MakeButtonEvent(this);
+    }
+
     public override void OnClicked()
     {
         UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnBack);

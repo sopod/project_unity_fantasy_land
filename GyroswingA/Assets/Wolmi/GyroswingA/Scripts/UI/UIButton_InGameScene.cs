@@ -6,6 +6,11 @@ public class UIButton_InGameScene : UIButton
 
     GameMode modeForThisButton;
     int stageNumber;
+    
+    void Start()
+    {
+        UIEventMaker.MakeButtonEvent(this);
+    }
 
     public void SetInGameButton(GameMode mode, int stageNumber)
     {

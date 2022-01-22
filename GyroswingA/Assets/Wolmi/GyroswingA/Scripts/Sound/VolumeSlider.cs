@@ -14,6 +14,8 @@ public class VolumeSlider : MonoBehaviour
 {
     [SerializeField] SoundGroupType type;
     [SerializeField] AudioMixerGroup mixerGroup;
+    string bgmVolumeName = "BGMVolume";
+    string effectSoundVolume = "EffectSoundVolume";
 
     [SerializeField] Slider slider;
 
@@ -22,14 +24,14 @@ public class VolumeSlider : MonoBehaviour
     {
         slider.minValue = 0.1f;
 
-        if (type == SoundGroupType.BGM && !PlayerPrefs.HasKey("bgmVolume")) // if not exists, save and load
+        if (type == SoundGroupType.BGM && !PlayerPrefs.HasKey(bgmVolumeName)) // if not exists, save and load
         {
-            PlayerPrefs.SetFloat("bgmVolume", 1);
+            PlayerPrefs.SetFloat(bgmVolumeName, 1);
             Load();
         }
-        else if (type == SoundGroupType.EffectSound && !PlayerPrefs.HasKey("effectSoundVolume"))
+        else if (type == SoundGroupType.EffectSound && !PlayerPrefs.HasKey(effectSoundVolume))
         {
-            PlayerPrefs.SetFloat("effectSoundVolume", 1);
+            PlayerPrefs.SetFloat(effectSoundVolume, 1);
             Load();
         }
         else // if exists, load
@@ -43,11 +45,11 @@ public class VolumeSlider : MonoBehaviour
         float volume = Mathf.Log10(slider.value) * 20;
         if (type == SoundGroupType.BGM)
         {
-            mixerGroup.audioMixer.SetFloat("BGMVolume", volume);
+            mixerGroup.audioMixer.SetFloat(bgmVolumeName, volume);
         }
         else
         {
-            mixerGroup.audioMixer.SetFloat("EffectSoundVolume", volume);
+            mixerGroup.audioMixer.SetFloat(effectSoundVolume, volume);
         }
             
         Save();
@@ -57,11 +59,11 @@ public class VolumeSlider : MonoBehaviour
     {
         if (type == SoundGroupType.BGM)
         {
-            slider.value = PlayerPrefs.GetFloat("bgmVolume");
+            slider.value = PlayerPrefs.GetFloat(bgmVolumeName);
         }
         else
         {
-            slider.value = PlayerPrefs.GetFloat("effectSoundVolume");
+            slider.value = PlayerPrefs.GetFloat(effectSoundVolume);
         }
     }
 
@@ -69,11 +71,11 @@ public class VolumeSlider : MonoBehaviour
     {
         if (type == SoundGroupType.BGM)
         {
-            PlayerPrefs.SetFloat("bgmVolume", slider.value);
+            PlayerPrefs.SetFloat(bgmVolumeName, slider.value);
         }
         else
         {
-            PlayerPrefs.SetFloat("effectSoundVolume", slider.value);
+            PlayerPrefs.SetFloat(effectSoundVolume, slider.value);
         }
     }
 }

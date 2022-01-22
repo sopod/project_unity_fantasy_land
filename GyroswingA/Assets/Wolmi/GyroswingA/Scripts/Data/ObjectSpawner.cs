@@ -6,16 +6,16 @@ public class ObjectSpawner : MonoBehaviour
     Options options;
 
     [SerializeField] GameObject stage;
-    [SerializeField] bool[] isPositionTaken;
-    [SerializeField] int[] spawnedObjectCount;
+    bool[] isPositionTaken;
+    int[] spawnedObjectCount;
 
     int totalSpawnedObjectCount { get { return spawnedObjects.Count; } }
 
     [SerializeField] ObjectDatabase database;
     [SerializeField] GameObject[] spawnPositions;
 
-    [SerializeField] Queue<GameObject>[] queues;
-    public List<GameObject> spawnedObjects;
+    Queue<GameObject>[] queues;
+    [HideInInspector] public List<GameObject> spawnedObjects;
     
     public void SetSpawner( Options options)
     {
@@ -78,7 +78,7 @@ public class ObjectSpawner : MonoBehaviour
         else
             e.transform.SetParent(stage.gameObject.transform);
 
-        SetObjectRandomPosition(e, idx); //123123123123123123
+        SetObjectRandomPosition(e, idx);
 
         spawnedObjects.Add(e);
         spawnedObjectCount[idx]++;
@@ -137,35 +137,12 @@ public class ObjectSpawner : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Raycast didn't happen");
             e.transform.position = spawnPositions[i].transform.position;
         }
 
         isPositionTaken[i] = true;
     }
-
-
-    //void SetObjectRandomPosition(GameObject e, int idx)
-    //{
-    //    int i = Random.Range(0, spawnPositions.Length);
-        
-    //    while (isPositionTaken[i])
-    //    {
-    //        i = Random.Range(0, spawnPositions.Length);
-    //    }
-
-    //    if (isPositionTaken[i])
-    //    {
-    //        Debug.LogWarning("Object Count Over Position Index");
-    //        return;
-    //    }
-        
-    //    e.transform.position = spawnPositions[i].transform.position;
-    //    e.transform.rotation = database.GetPrefab(idx).transform.rotation;
-
-    //    isPositionTaken[i] = true;
-    //}
-
+    
     public GameObject SpawnEnemyObject(EnemyType[] types, int maxAmount)
     {
         if (totalSpawnedObjectCount >= maxAmount)
