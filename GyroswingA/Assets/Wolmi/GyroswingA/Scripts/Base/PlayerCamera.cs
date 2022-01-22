@@ -37,8 +37,8 @@ public class PlayerCamera : MonoBehaviour
 
             Debug.DrawLine(cameraCenter.transform.position, cameraCollider.transform.position, Color.red);
 
-            Vector3 localPosition = camera.transform.position + new Vector3(0.0f, 0.0f, collisionSensivitity);
-            camera.transform.localPosition = localPosition;
+            //Vector3 localPosition = camera.transform.position + new Vector3(0.0f, 0.0f, collisionSensivitity);
+            //camera.transform.localPosition = localPosition;
         }
 
         //if (camera.transform.localPosition.z > -1f)

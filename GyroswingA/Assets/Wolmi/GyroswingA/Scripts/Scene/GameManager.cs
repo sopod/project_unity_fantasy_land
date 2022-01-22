@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] InGameUIDisplay inGameUi;
     [SerializeField] ObjectSpawner enemySpawner;
     [SerializeField] ObjectSpawner itemSpawner;
-    [SerializeField] ProjectileSpawner projectileSpawner;
     [SerializeField] GameObject stage;
     [SerializeField] UISoundPlayer uiSoundPlayer;
 

@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 915845608}
   - component: {fileID: 915845607}
   - component: {fileID: 915845606}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,6 +643,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4326f1945b800974ebf7022120acef75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageLayer:
+    serializedVersion: 2
+    m_Bits: 0
   cameraCenter: {fileID: 2065341212}
   cameraCollider: {fileID: 419356350}
   camera: {fileID: 2046602715}

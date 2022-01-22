@@ -218,7 +218,6 @@ public abstract class LivingCreature : MovingThing
         {
             soundPlayer.PlaySound(CreatureEffectSoundType.Dash, IsPlayer);
         }
-        
 
         rb.AddForce(dir * damagedPower, ForceMode.Impulse);
     }
