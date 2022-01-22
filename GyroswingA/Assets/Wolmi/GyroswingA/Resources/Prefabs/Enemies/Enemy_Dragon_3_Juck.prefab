@@ -1305,6 +1305,7 @@ GameObject:
   - component: {fileID: 6042312862377469314}
   - component: {fileID: 2308630201133179727}
   - component: {fileID: -8193240911230783011}
+  - component: {fileID: -6429856174115182783}
   - component: {fileID: 832220585208085377}
   - component: {fileID: -2812766087026368589}
   m_Layer: 9
@@ -1384,6 +1385,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &-6429856174115182783
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6042312862370174544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.75
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.76, z: 0}
 --- !u!114 &832220585208085377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,13 +1412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfCreature: {fileID: 6042312862370174546}
-  isMoving: 0
-  isTurning: 0
-  isJumping: 0
-  isOnStage: 0
-  isDamaged: 0
-  isBeingAffectedByStage: 0
-  isEnemy: 0
+  shootMouth: {fileID: 0}
   enemyType: 0
   IsEnemySet: 0
 --- !u!114 &-2812766087026368589
