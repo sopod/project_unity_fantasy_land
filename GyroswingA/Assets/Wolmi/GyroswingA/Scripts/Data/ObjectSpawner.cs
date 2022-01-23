@@ -129,15 +129,14 @@ public class ObjectSpawner : MonoBehaviour
         
         GameObject obj = spawnPositions[i];
 
-        if (Physics.Raycast(obj.transform.position, -obj.transform.up, out RaycastHit hit, 10.0f, options.StageLayer))
+        //if (Physics.Raycast(obj.transform.position, -obj.transform.up, out RaycastHit hit, 10.0f, options.StageLayer))
+        //{
+        //    Vector3 pos = hit.point + new Vector3(0, database.GetPrefab(idx).transform.position.y, 0);
+        //    e.transform.position = pos;
+        //}
+        //else
         {
-            Vector3 pos = hit.point + new Vector3(0, database.GetPrefab(idx).transform.position.y, 0);
-
-            e.transform.position = pos;
-        }
-        else
-        {
-            e.transform.position = spawnPositions[i].transform.position;
+            e.transform.position = spawnPositions[i].transform.position + new Vector3(0, database.GetPrefab(idx).transform.position.y, 0); ;
         }
 
         isPositionTaken[i] = true;
