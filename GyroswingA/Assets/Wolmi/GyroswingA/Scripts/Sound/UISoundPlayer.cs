@@ -20,8 +20,6 @@ public class UISoundPlayer : MonoBehaviour
 
     [SerializeField] AudioSource[] effectSoundAudios;
     [SerializeField] AudioSource bgmAudio;
-    
-    
 
 
     static UISoundPlayer instance;

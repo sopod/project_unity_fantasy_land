@@ -23,12 +23,9 @@ public abstract class LivingCreature : MovingThing
     protected Animator ani;
 
     protected CreatureType creatureType;
-    public bool IsPlayer
-    {
-        get { return creatureType == CreatureType.Player; }
-    }
+    public bool IsPlayer { get { return creatureType == CreatureType.Player; } }
 
-    protected StateController state;
+    protected State state;
 
     protected bool isJumping;
     protected bool isOnJumpableObject;
@@ -62,7 +59,7 @@ public abstract class LivingCreature : MovingThing
         rb = GetComponent<Rigidbody>();
         soundPlayer = GetComponentInChildren<CreatureSoundPlayer>();
 
-        state = new StateController();
+        state = new State();
 
         rb.useGravity = false;
         rb.mass = 1;
@@ -178,7 +175,7 @@ public abstract class LivingCreature : MovingThing
 
 
         GameObject p = options.ProjectilesSpawner.SpawnFireProjectile(shootMouth.transform.position, shootMouth.transform.forward);
-        p.GetComponent<ProjectileController>().SetStart(options);
+        p.GetComponent<Projectile>().SetStart(options);
 
         state.SetAttacking();
         
@@ -292,7 +289,7 @@ public abstract class LivingCreature : MovingThing
     }
 
 
-    // -------------------------------------------------- for move along with stage
+    // -------------------------------------------------- move along with stage
     void OnTriggerEnter(Collider other)
     {
         if (IsPaused()) return;
@@ -318,7 +315,7 @@ public abstract class LivingCreature : MovingThing
         }
     }
 
-    // -------------------------------------------------- for layer collision
+    // -------------------------------------------------- layer collision
     public void OnStageLayer()
     {
         isInStageBoundary = true;
@@ -345,7 +342,7 @@ public abstract class LivingCreature : MovingThing
         ani.SetBool("IsJumping", false);
 
         GameObject p = options.ProjectilesSpawner.SpawnDeadProjectile(this.gameObject);
-        p.GetComponent<ProjectileController>().SetStart(options);
+        p.GetComponent<Projectile>().SetStart(options);
     }
 
 

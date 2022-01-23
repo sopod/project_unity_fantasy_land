@@ -18,8 +18,8 @@ public enum GameMode
 public class GameCenter : MonoBehaviour
 {
     [Header("------- Attached components")]
-    [SerializeField] MachineController machine;
-    [SerializeField] PlayerController player;
+    [SerializeField] Machine machine;
+    [SerializeField] Player player;
     [SerializeField] InGameUIDisplay inGameUi;
     [SerializeField] ObjectSpawner enemySpawner;
     [SerializeField] ObjectSpawner itemSpawner;
@@ -39,7 +39,7 @@ public class GameCenter : MonoBehaviour
     StageMovementValue stageVal;
 
     StarCollector starCollector;
-    TimeController gameTimer;
+    StopWatch gameTimer;
 
 
     bool _isSceneSet;
@@ -94,13 +94,12 @@ public class GameCenter : MonoBehaviour
             machine.StartMoving();
 
             Invoke("StartInGame", options.WaitingTimeForCinemachine);
-            //StartInGame();
         }
     }
 
     void SetInGame()
     {
-        gameTimer = new TimeController();
+        gameTimer = new StopWatch();
         starCollector = new StarCollector();
         stageVal = new StageMovementValue();
 
@@ -174,7 +173,7 @@ public class GameCenter : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             GameObject e = enemySpawner.SpawnEnemyObject(typesToGen, amount);
-            e.GetComponent<EnemyController>().SetEnemy(stage, stageVal, options);
+            e.GetComponent<Enemy>().SetEnemy(stage, stageVal, options);
         }
     }
 
@@ -185,7 +184,7 @@ public class GameCenter : MonoBehaviour
         for (int i = 0; i < typesToGen.Length; i++)
         {
             GameObject e = itemSpawner.SpawnItemObject(typesToGen[i]);
-            e.GetComponent<ItemController>().SetItem(stage, stageVal, options);
+            e.GetComponent<Item>().SetItem(options);
         }
     }
 
@@ -309,7 +308,7 @@ public class GameCenter : MonoBehaviour
         {
             for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
             {
-                enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().StopMoving();
+                enemySpawner.spawnedObjects[i].GetComponent<Enemy>().StopMoving();
             }
             Invoke("StartEnemyMove", options.EnemyStartWaitingTime);
         }
@@ -320,7 +319,7 @@ public class GameCenter : MonoBehaviour
 
         for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
         {
-            itemSpawner.spawnedObjects[i].GetComponent<ItemController>().StartMoving();
+            itemSpawner.spawnedObjects[i].GetComponent<Item>().StartMoving();
         }
     }
 
@@ -328,7 +327,7 @@ public class GameCenter : MonoBehaviour
     {
         for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
         {
-            enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().StartMoving();
+            enemySpawner.spawnedObjects[i].GetComponent<Enemy>().StartMoving();
         }
     }
     public void SetStopMoving()
@@ -340,12 +339,12 @@ public class GameCenter : MonoBehaviour
 
         for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
         {
-            enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().StopMoving();
+            enemySpawner.spawnedObjects[i].GetComponent<Enemy>().StopMoving();
         }
 
         for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
         {
-            itemSpawner.spawnedObjects[i].GetComponent<ItemController>().StopMoving();
+            itemSpawner.spawnedObjects[i].GetComponent<Item>().StopMoving();
         }
     }
 
@@ -360,12 +359,12 @@ public class GameCenter : MonoBehaviour
 
         for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
         {
-            enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().PauseMoving();
+            enemySpawner.spawnedObjects[i].GetComponent<Enemy>().PauseMoving();
         }
 
         for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
         {
-            itemSpawner.spawnedObjects[i].GetComponent<ItemController>().PauseMoving();
+            itemSpawner.spawnedObjects[i].GetComponent<Item>().PauseMoving();
         }
     }
 
@@ -391,7 +390,7 @@ public class GameCenter : MonoBehaviour
 
         for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
         {
-            enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().MoveAlongWithStage();
+            enemySpawner.spawnedObjects[i].GetComponent<Enemy>().MoveAlongWithStage();
         }
     }
     

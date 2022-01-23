@@ -48,12 +48,11 @@ MonoBehaviour:
   inGameUi: {fileID: 0}
   enemySpawner: {fileID: 0}
   itemSpawner: {fileID: 0}
-  projectileSpawner: {fileID: 0}
   stage: {fileID: 0}
   uiSoundPlayer: {fileID: 0}
   _gameModeCur: 0
   _levelCur: 0
-  _levelDataPerLevel: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
+  levelDataPerLevel: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
   options:
     LevelValues:
       MachineSwingSpeed_Default: 10
@@ -64,6 +63,7 @@ MonoBehaviour:
       SpinSpeedCur: 10
       EnemyTypesCur: 0000000001000000
       ItemTypesCur: 
+    WaitingTimeForCinemachine: 0
     LimitSecondsPerStage: 180
     ResultSoundWaitingTime: 0
     ResultUIWaitingTime: 0
@@ -71,7 +71,6 @@ MonoBehaviour:
     GameStartWaitingTime: 4
     EnemyStartWaitingTime: 0
     SpawnerPrepareAmount: 0
-    RequiredStarAmountForHardMode: 25
     StageAmountPerMode: 10
     IsMachineSwinging: 1
     IsMachineTurning: 1
@@ -90,6 +89,7 @@ MonoBehaviour:
     EnemyRotateSpeed: 40
     EnemyJumpPower: 3
     EnemyKnockDownTime: 2
+    ProjectilesSpawner: {fileID: 0}
     SkillCoolTime: 0.5
     DashPowerToDamaged: 10
     DashPowerToHit: 20
@@ -111,9 +111,6 @@ MonoBehaviour:
     FailZoneLayer:
       serializedVersion: 2
       m_Bits: 128
-    StagePoleLayer:
-      serializedVersion: 2
-      m_Bits: 1024
     StageBoundaryLayer:
       serializedVersion: 2
       m_Bits: 2048

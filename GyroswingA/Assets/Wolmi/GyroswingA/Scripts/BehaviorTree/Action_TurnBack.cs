@@ -7,7 +7,7 @@ public class Action_TurnBack : Node
         if (!addedToMovementQueue)
         {
             addedToMovementQueue = true;
-            bb.character.GetComponent<EnemyController>().AddEnemyMovement(new MovementData(EnemyMovement.TurnRight, this, bb.enemyLongTurnTime));
+            bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.TurnRight, this, bb.enemyLongTurnTime));
         }
 
         CheckFinishFlag();

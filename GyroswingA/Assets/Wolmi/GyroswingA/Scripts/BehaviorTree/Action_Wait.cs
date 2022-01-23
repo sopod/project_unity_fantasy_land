@@ -7,7 +7,7 @@ public class Action_Wait : Node
         if (!addedToMovementQueue)
         {
             addedToMovementQueue = true;
-            bb.character.GetComponent<EnemyController>().AddEnemyMovement(new MovementData(EnemyMovement.Wait, this, bb.enemyWaitTime));
+            bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.Wait, this, bb.enemyWaitTime));
         }
 
         CheckFinishFlag();

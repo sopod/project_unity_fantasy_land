@@ -307,9 +307,29 @@ namespace GAP_ParticleSystemController{
 		public Vector3 GetVector3 (){
 			return new Vector3 (x,y,z);
 		}
-	}
+    }
 
-	[Serializable]
+    [Serializable]
+    public class CopyOfSerializableVector3
+    {
+        public float x;
+        public float y;
+        public float z;
+
+        public CopyOfSerializableVector3(Vector3 v3)
+        {
+            x = v3.x;
+            y = v3.y;
+            z = v3.z;
+        }
+
+        public Vector3 GetVector3()
+        {
+            return new Vector3(x, y, z);
+        }
+    }
+
+    [Serializable]
 	public class SerializableGradient{
 		public SerializableAlphaKeys gradientAlphaKeys;
 		public SerializableColorKeys gradientColorKeys;
@@ -370,9 +390,54 @@ namespace GAP_ParticleSystemController{
 			}
 			return psGradientMode;
 		}
-	}
+    }
 
-	[Serializable]
+    [Serializable]
+    public class CopyOfSerializablePSGradientMode
+    {
+        public string mode;
+
+        public CopyOfSerializablePSGradientMode(ParticleSystemGradientMode psGradientMode)
+        {
+            mode = psGradientMode.ToString();
+        }
+
+        public ParticleSystemGradientMode GetGradientMode()
+        {
+            ParticleSystemGradientMode psGradientMode = new ParticleSystemGradientMode();
+            switch (mode)
+            {
+                case "Color":
+                    {
+                        psGradientMode = ParticleSystemGradientMode.Color;
+                        break;
+                    }
+                case "Gradient":
+                    {
+                        psGradientMode = ParticleSystemGradientMode.Gradient;
+                        break;
+                    }
+                case "RandomColor":
+                    {
+                        psGradientMode = ParticleSystemGradientMode.RandomColor;
+                        break;
+                    }
+                case "TwoColors":
+                    {
+                        psGradientMode = ParticleSystemGradientMode.TwoColors;
+                        break;
+                    }
+                case "TwoGradients":
+                    {
+                        psGradientMode = ParticleSystemGradientMode.TwoGradients;
+                        break;
+                    }
+            }
+            return psGradientMode;
+        }
+    }
+
+    [Serializable]
 	public class SerializableGradientMode{
 		public string mode;
 

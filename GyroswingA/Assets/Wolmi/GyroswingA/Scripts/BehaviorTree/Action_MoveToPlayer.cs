@@ -14,7 +14,7 @@ public class Action_MoveToPlayer : Node
 
             bb.character.transform.LookAt(playerPos); // look at player
             
-            bb.character.GetComponent<EnemyController>().AddEnemyMovement(new MovementData(EnemyMovement.MoveForward, this, bb.enemyMoveTime));
+            bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.MoveForward, this, bb.enemyMoveTime));
         }
 
         CheckFinishFlag();

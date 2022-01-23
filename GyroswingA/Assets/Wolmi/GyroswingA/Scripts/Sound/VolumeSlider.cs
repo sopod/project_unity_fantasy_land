@@ -12,17 +12,20 @@ public enum SoundGroupType
 
 public class VolumeSlider : MonoBehaviour
 {
+    const float minVal = 0.1f;
+
     [SerializeField] SoundGroupType type;
     [SerializeField] AudioMixerGroup mixerGroup;
     string bgmVolumeName = "BGMVolume";
     string effectSoundVolume = "EffectSoundVolume";
+
 
     [SerializeField] Slider slider;
 
    
     public void InitSlider()
     {
-        slider.minValue = 0.1f;
+        slider.minValue = minVal;
 
         if (type == SoundGroupType.BGM && !PlayerPrefs.HasKey(bgmVolumeName)) // if not exists, save and load
         {

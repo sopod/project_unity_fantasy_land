@@ -4,7 +4,6 @@ public abstract class MovingThing : MonoBehaviour
 {
     bool _isPaused = true;
     bool _isStopped = true;
-    
 
     public virtual void StartMoving()
     {

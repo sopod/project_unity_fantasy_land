@@ -1,0 +1,1176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="starFxController" Collapsed="true">
+    <Position X="37.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQQAAAAACAABQEAAAAAAAgAABAAAAAAAAAAAAACAUA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\EpicVictoryEffects\Scripts\starFxController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="vfxController" Collapsed="true">
+    <Position X="42.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQAAACAAQCAAgAAASEIAAAAAEAAAAhAAJAAAAACAEAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\EpicVictoryEffects\Scripts\vfxController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CopyOfvfxController" Collapsed="true">
+    <Position X="41" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQAAACAAQCAAgAAASEIAAAAAEAAAAhAAJAAAAACAEAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\EpicVictoryEffects\Scripts\vfxController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_AutoDestructShuriken" Collapsed="true">
+    <Position X="42.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAACAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_AutodestructWhenNoChildren" Collapsed="true">
+    <Position X="44.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_AutodestructWhenNoChildren.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CopyOfCFX_AutodestructWhenNoChildren" Collapsed="true">
+    <Position X="41" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_AutodestructWhenNoChildren.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_AutoRotate" Collapsed="true">
+    <Position X="46.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CopyOfCFX_AutoRotate" Collapsed="true">
+    <Position X="42.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_InspectorHelp" Collapsed="true">
+    <Position X="28.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAgAAgAAEAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_InspectorHelp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CopyOfCFX_InspectorHelp" Collapsed="true">
+    <Position X="44.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAgAAgAAEAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_InspectorHelp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_LightFlicker" Collapsed="true">
+    <Position X="30.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAEAAAACAAAAAAAAAAAAAAAAAAAAAAAoAAACEg=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CopyOfCFX_LightFlicker" Collapsed="true">
+    <Position X="46.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAEAAAACAAAAAAAAAAAAAAAAAAAAAAAoAAACEg=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_LightIntensityFade" Collapsed="true">
+    <Position X="32.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAIAACAAAIAQABAAAAgAAAAAAAAAAAAAgAAACAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_ShurikenThreadFix" Collapsed="true">
+    <Position X="34" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAACAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX_ShurikenThreadFix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX2_AutoRotate" Collapsed="true">
+    <Position X="37.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX\Scripts\CFX2_AutoRotate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFX_SpawnSystem" Collapsed="true">
+    <Position X="35.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQADIICAgAAAgAAEAAQAAAAFBACAACAAAEAAAAEQ=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\JMO Assets\Cartoon FX (legacy)\Spawn System\CFX_SpawnSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraShakeSimpleScript" Collapsed="true">
+    <Position X="41" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAACAAAABAAAAAAAAAAEAAAAAAAQAAAAAAAAg=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\UniqueProjectiles\CameraShakeSimpleScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectileMoveScript" Collapsed="true">
+    <Position X="41" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCAgCAARiIAgAgEKAAQAAAEAAAAAQAIAAAAAAAAAJI=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\UniqueProjectiles\ProjectileMoveScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotateToMouseScript" Collapsed="true">
+    <Position X="44.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABACAAACYIAAQAACGAIEAAAEAAQAAAAAAIAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\UniqueProjectiles\RotateToMouseScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpawnProjectilesScript" Collapsed="true">
+    <Position X="41" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQIAAIAACAQQgAAJABQQAAMACAAgICABAAAAAACABA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\UniqueProjectiles\SpawnProjectilesScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatController" Collapsed="true">
+    <Position X="39.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAICEAAAAAACAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DropdownSample" Collapsed="true">
+    <Position X="46.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAQAAAAAAIIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnvMapAnimator" Collapsed="true">
+    <Position X="28.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CopyOfEnvMapAnimator" Collapsed="true">
+    <Position X="28.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StarCollector" Collapsed="true">
+    <Position X="32.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Utility\StarCollector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StopWatch" Collapsed="true">
+    <Position X="41" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAQAEAAAIggQABAAAAAAAIAhAAAAgEAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Utility\StopWatch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_Attack" Collapsed="true">
+    <Position X="4" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Action_Attack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_CheckPlayerAround" Collapsed="true">
+    <Position X="5.75" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Action_CheckPlayerAround.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_CheckPlayerToAttack" Collapsed="true">
+    <Position X="8.25" Y="3.25" Width="2.25" />
+    <InheritanceLine Type="Node" FixedToPoint="true">
+      <Path>
+        <Point X="1.625" Y="3.75" />
+        <Point X="1.625" Y="3.168" />
+        <Point X="8.127" Y="3.168" />
+        <Point X="8.127" Y="3.562" />
+        <Point X="8.25" Y="3.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Action_CheckPlayerToAttack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_MoveToPlayer" Collapsed="true">
+    <Position X="10.75" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="Node" FixedToPoint="true">
+      <Path>
+        <Point X="1.625" Y="3.75" />
+        <Point X="1.625" Y="3.168" />
+        <Point X="10.627" Y="3.168" />
+        <Point X="10.627" Y="3.562" />
+        <Point X="10.75" Y="3.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Action_MoveToPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_Patrol" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="Node" FixedToPoint="true">
+      <Path>
+        <Point X="1.625" Y="3.75" />
+        <Point X="1.625" Y="3.596" />
+        <Point X="2.792" Y="3.596" Type="JumpStart" />
+        <Point X="2.958" Y="3.596" Type="JumpEnd" />
+        <Point X="3.918" Y="3.596" />
+        <Point X="3.918" Y="4.316" />
+        <Point X="11.627" Y="4.316" />
+        <Point X="11.627" Y="5.125" />
+        <Point X="11.75" Y="5.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Action_Patrol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_TurnBack" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="Node" FixedToPoint="true">
+      <Path>
+        <Point X="1.625" Y="3.75" />
+        <Point X="1.625" Y="3.596" />
+        <Point X="2.792" Y="3.596" Type="JumpStart" />
+        <Point X="2.958" Y="3.596" Type="JumpEnd" />
+        <Point X="3.918" Y="3.596" />
+        <Point X="3.918" Y="4.316" />
+        <Point X="9.877" Y="4.316" />
+        <Point X="9.877" Y="5.125" />
+        <Point X="10" Y="5.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Action_TurnBack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action_Wait" Collapsed="true">
+    <Position X="8.25" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="Node" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.625" Y="3.75" />
+        <Point X="1.625" Y="3.596" />
+        <Point X="0.377" Y="3.596" />
+        <Point X="0.377" Y="7.764" />
+        <Point X="6.562" Y="7.764" />
+        <Point X="6.562" Y="5.504" />
+        <Point X="6.188" Y="5.504" />
+        <Point X="6.188" Y="5.125" />
+        <Point X="8.25" Y="5.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Action_Wait.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BehaviorTree">
+    <Position X="3" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAEAAAAAAABAABAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\BehaviorTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlackBoard" Collapsed="true">
+    <Position X="37.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAIAAAAAAAAEIAAAAQQQAAAAAAAAAgAAIAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\BlackBoard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BT_Dragon">
+    <Position X="5.25" Y="12" Width="1.5" />
+    <InheritanceLine Type="BehaviorTree" FixedFromPoint="true">
+      <Path>
+        <Point X="4.5" Y="12.062" />
+        <Point X="5.25" Y="12.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\BT_Dragon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Node">
+    <Position X="0.5" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAEABARAAAAAAAAEAAEAAAAGAAACAAACAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Selector" Collapsed="true">
+    <Position X="5.75" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="Node" FixedToPoint="true">
+      <Path>
+        <Point X="1.625" Y="3.75" />
+        <Point X="1.625" Y="3.596" />
+        <Point X="2.792" Y="3.596" Type="JumpStart" />
+        <Point X="2.958" Y="3.596" Type="JumpEnd" />
+        <Point X="3.918" Y="3.596" />
+        <Point X="3.918" Y="4.316" />
+        <Point X="5.627" Y="4.316" />
+        <Point X="5.627" Y="5.125" />
+        <Point X="5.75" Y="5.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Selector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sequence" Collapsed="true">
+    <Position X="4" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Sequence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameDataLoader" Collapsed="true">
+    <Position X="32.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAACAAAEAAABAAAAEAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Data\GameDataLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelValues" Collapsed="true">
+    <Position X="39.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAARAEAAoAAAAAAAAAQAAABAIAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Data\LevelValues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectDatabase" Collapsed="true">
+    <Position X="46.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Data\ObjectDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectSpawner">
+    <Position X="21.75" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAYAAAAAAAAAAFECgDAAGAABAAACiAAAABAAAQAAAI=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\ObjectSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Options" Collapsed="true">
+    <Position X="32.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMgIaAkGBXoEBAkgQQgBBEIARAgAAAIYWAMAIABACE=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Data\Options.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StarDataPerLevel" Collapsed="true">
+    <Position X="34" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEACAggAAACAABAAAAAUAEAEBABAAIAAAAAAAABEAgI=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Data\StarDataPerLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoystickController" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="35.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAgAAAAAAAEAAAAEAABAEAAAIgAAACAgQAAQEAAAEEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Input\JoystickController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="KeyController" Collapsed="true">
+    <Position X="37.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAQEEAEAAABAAAEBAAIAAAAAIAAIAAAAgQAg=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Input\KeyController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MobileButton_Dash" Collapsed="true">
+    <Position X="21.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAQAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Input\MobileButton_Dash.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MobileButton_Fire" Collapsed="true">
+    <Position X="24" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAQAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Input\MobileButton_Fire.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MobileButton_Jump" Collapsed="true">
+    <Position X="1.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAQAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Input\MobileButton_Jump.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MovementData" Collapsed="true">
+    <Position X="44.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAEAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="10" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYCAAQABgCBAAJAACC0AACBAAAIAAAMUTAICAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\Enemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="1" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAABAAAAAAAAAAAAAAAAAAAQQACAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\Item.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LivingCreature" Collapsed="true">
+    <Position X="8" Y="11" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CEAIAicoEomEABCMAFACAASAgAAUCIIkSIABIAAQAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\LivingCreature.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StageMovementValue" Collapsed="true">
+    <Position X="46.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QABIAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\Machine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Machine" Collapsed="true">
+    <Position X="10" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFBAAAAAQlEAAgAQAAAAAAAAAEQATCAAAAABAAEASAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\Machine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MovingThing" Collapsed="true">
+    <Position X="5.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAACAAAAAAAAAEIAAAAAgACEAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\MovingThing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="10" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAQAggGAIBAAAEAEAACAAAAAgAAMQAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="State" Collapsed="true">
+    <Position X="39.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgABAAAQMAAEAAAAAAABAAEEAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\State.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projectile" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="39.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAQAAAAAAAAAAAAAAAAEAAAAAAQIBAAEAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Projectile\Projectile.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectileSpawner">
+    <Position X="24.25" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAIAAAAAKAAAAFAAADAAGAAQgAAAiAgAABAAAQAAAI=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Projectile\ProjectileSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameCenter" Collapsed="true">
+    <Position X="30.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gWwAEAgQAAEAGogBAIBEZQCCACFICAAJQCCQgAQgJMA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Scene\GameCenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LobbySceneStarter" Collapsed="true">
+    <Position X="41" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAACAAAAAAAAAAAAAAAAEAAAAAAAAQAAAAAAI=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Scene\LobbySceneStarter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneLoader" Collapsed="true">
+    <Position X="28.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Scene\SceneLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StageSelectionSceneStarter" Collapsed="true">
+    <Position X="28.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Scene\StageSelectionSceneStarter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CreatureSoundPlayer" Collapsed="true">
+    <Position X="44.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAEAAEAgAAAAAQAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Sound\CreatureSoundPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundManager" Collapsed="true">
+    <Position X="39.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAQAAAAAAAAAAAABAAAAAQAAAEAAAAEE=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Sound\SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UISoundPlayer" Collapsed="true">
+    <Position X="32.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAAAUAABAAEEAAAAAAABgQAAAQAAAAIAAAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Sound\UISoundPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VolumeSlider" Collapsed="true">
+    <Position X="44.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAgIAAAAAAAACQAAAACAAAAAABAAAAAAAEAACAEAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Sound\VolumeSlider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InGameUIDisplay" Collapsed="true">
+    <Position X="34" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAACEhAAQEAAwAAAAAAAACCAAAAAAASAQAAAwM=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\InGameUIDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LobbyUIDisplay" Collapsed="true">
+    <Position X="42.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\LobbyUIDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StageButton" Collapsed="true">
+    <Position X="42.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAECAAAAAAoAAAAAAAAAAAAAAAAEAAAgAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\StageButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StageButtonDisplay" Collapsed="true">
+    <Position X="44.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAIAAAAAAAAAAACAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\StageButtonDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StageSelectionUIDisplay" Collapsed="true">
+    <Position X="30.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAgAAACAAAgAAAIAAAAAEAAAAAAAAACAAABAEEQA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\StageSelectionUIDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StarDisplay" Collapsed="true">
+    <Position X="35.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAABAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\StarDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIButton" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIButton_CloseOption" Collapsed="true">
+    <Position X="26.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAQECAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIButton_CloseOption.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIButton_EasyModeScreen" Collapsed="true">
+    <Position X="3.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAEAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIButton_EasyModeScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIButton_ExitGame" Collapsed="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAIAAEQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIButton_ExitGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIButton_HardModeScreen" Collapsed="true">
+    <Position X="8.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAEAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIButton_HardModeScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIButton_InGameScene" Collapsed="true">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEACgAAAAAAgBAAAAAAQAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIButton_InGameScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIButton_LobbyScene" Collapsed="true">
+    <Position X="12.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIButton_LobbyScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIButton_Option" Collapsed="true">
+    <Position X="15" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAQACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIButton_Option.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIButton_Pause" Collapsed="true">
+    <Position X="17.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAQEAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIButton_Pause.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIButton_StageSelectionScene" Collapsed="true">
+    <Position X="19.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIButton_StageSelectionScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIEventMaker">
+    <Position X="24.5" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAGAABAAAAAAAAAAAAAAAAAAIAACAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\UI\UIEventMaker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.ParticleSystemOriginalSettings" Collapsed="true">
+    <Position X="37.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAIAAABACQAAAQAABDQAgAEAAABAISAAEQyAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\ParticleSystemController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.ParticleSystemController" Collapsed="true">
+    <Position X="34" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAgSQAAAJISAAIEACICCQABIQAAAAAAAIA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\ParticleSystemController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.ParticleSystemControllerEditor" Collapsed="true">
+    <Position X="35.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\ParticleSystemControllerEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SaveParticleSystemScript" Collapsed="true">
+    <Position X="46.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAEAAAAAAACAAAAgCCAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\SaveParticleSystemScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableMinMaxGradient" Collapsed="true">
+    <Position X="44.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAEAAgAAAQAEEAAAAAAAACACAAAAgAAAgAIA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableMinMaxCurve" Collapsed="true">
+    <Position X="42.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAEEAAgAAAAAAAAAAAAAAAACAQBAAAAAIAAAAEAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableAnimationCurve" Collapsed="true">
+    <Position X="32.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAAAAAAAAAAIAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableKeyFrames" Collapsed="true">
+    <Position X="41" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIABAAAAAAAQAAAAAAAAAAIAAAAAACAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableAlphaKeys" Collapsed="true">
+    <Position X="30.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableColorKeys" Collapsed="true">
+    <Position X="35.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableColor" Collapsed="true">
+    <Position X="34" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAKAEAAQA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableVector3" Collapsed="true">
+    <Position X="30.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAABgAQAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.CopyOfSerializableVector3" Collapsed="true">
+    <Position X="32.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAABgAQAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableGradient" Collapsed="true">
+    <Position X="37.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAQAAAAAAAAABAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializablePSGradientMode" Collapsed="true">
+    <Position X="28.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.CopyOfSerializablePSGradientMode" Collapsed="true">
+    <Position X="30.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableGradientMode" Collapsed="true">
+    <Position X="39.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializablePSCurveMode" Collapsed="true">
+    <Position X="46.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GAP_ParticleSystemController.SerializableWrapMode" Collapsed="true">
+    <Position X="32.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Effects\Unique_Projectiles_Volume_2\Scripts\ParticleSystemController\Serializables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark01" Collapsed="true">
+    <Position X="28.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAIAACAAAAAAAAQAAAAIAAQAAAAAgAABAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark01_UGUI" Collapsed="true">
+    <Position X="30.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAAAACAAAAAAAAQAAAAKAAQAAAAAgAABAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark02" Collapsed="true">
+    <Position X="32.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark03" Collapsed="true">
+    <Position X="34" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACCAAAAAAAAAAAAAAAAAQAAAAAAAAAAAEEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark04" Collapsed="true">
+    <Position X="35.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAIACAAAAAAAAAAAAAAAAAAAAAAAQAAAAABAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.CameraController" Collapsed="true">
+    <Position X="39.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAEAAEADAEBEAgAIQAIEABAAAFgYQQACAAAAAAIEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.ObjectSpin" Collapsed="true">
+    <Position X="30.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAEAIAAAAAAAAAAAAQAAAEABAIAgAAAAAAQBAAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.ShaderPropAnimator" Collapsed="true">
+    <Position X="34" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAAAAAAAAAgAEAAAAAAAAAAAAAAAQAgAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.SimpleScript" Collapsed="true">
+    <Position X="35.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAABAAAAAAAEAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.SkewTextExample" Collapsed="true">
+    <Position X="37.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAEAACAAAAAAAAAAAAAABAEAAAAAIAAAAAACAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TeleType" Collapsed="true">
+    <Position X="42.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAAAACAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TextConsoleSimulator" Collapsed="true">
+    <Position X="44.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAACAAAAAAAAAAAAAABAAAAAAIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TextMeshProFloatingText" Collapsed="true">
+    <Position X="46.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACICAJACAAAAAAAAAAAAAJAAQAQAAAAABAACAACEI=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.CopyOfTextMeshProFloatingText" Collapsed="true">
+    <Position X="34" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACICAJACAAAAAAAAAAAAAJAAQAQAAAAABAACAACEI=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TextMeshSpawner" Collapsed="true">
+    <Position X="28.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAEAAAAAAABAAAAAAAAAAAAAAAACEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMP_ExampleScript_01" Collapsed="true">
+    <Position X="32.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAIBAAAAAAAAAAACAAAAIAAAAAAAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMP_FrameRateCounter" Collapsed="true">
+    <Position X="34" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoQAAAAAACAAAIgAAAAgAIAAAgQAAAAAAAAAAAAAAEg=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMP_TextEventCheck" Collapsed="true">
+    <Position X="37.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAAAAAAAAAAAAAAAAAAAAAAEAAAAAAEJAAAAAAACCAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMP_TextInfoDebugTool" Collapsed="true">
+    <Position X="41" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEAAIYACACAAAggAAQAAAAoABKAAEAAACAgQACgAI=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMP_TextSelector_A" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="42.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAIAAAAAQoAAAAAAAAAQAAAWA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TMPro.Examples.TMP_TextSelector_B" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="44.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKAAABBGgAAAIAQAQAAIAAIgAQoAABIAEAAAQAACEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TMPro.Examples.TMP_UiFrameRateCounter" Collapsed="true">
+    <Position X="46.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoQAAAAAACAAAAgAAAAgAIAAAgQAAAAAAAAAAAAAAEg=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.CopyOfTMP_UiFrameRateCounter" Collapsed="true">
+    <Position X="35.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoQAAAAAACAAAAgAAAAgAIAAAgQAAAAAAAAAAAAAAEg=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMPro_InstructionOverlay" Collapsed="true">
+    <Position X="28.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAIAAAAAAIgAAAAgAAAAAAQAAAAACAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.CopyOfTMPro_InstructionOverlay" Collapsed="true">
+    <Position X="37.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAIAAAAAAIgAAAAgAAAAAAQAAAAACAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.VertexColorCycler" Collapsed="true">
+    <Position X="34" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAgAAAAAAAACAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.VertexJitter" Collapsed="true">
+    <Position X="35.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAAAAFAAAAAAAAAAgIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.VertexShakeA" Collapsed="true">
+    <Position X="37.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAACAAAFAACAAAAAAAgIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.VertexShakeB" Collapsed="true">
+    <Position X="39.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAAAAFAAAAAAAAAAgIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.VertexZoom" Collapsed="true">
+    <Position X="41" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAAAAFAAAAAAAAAAgIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.CopyOfVertexZoom" Collapsed="true">
+    <Position X="39.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAAAAFAAAAAAAAAAgIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.WarpTextExample" Collapsed="true">
+    <Position X="46.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAEAACAAAAAAAAAFAAAABAAAAAAAIAAAAAACAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.CopyOfWarpTextExample" Collapsed="true">
+    <Position X="42.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAEAACAAAAAAAAAFAAAABAAAAAAAIAAAAAACAEA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.TMP_DigitValidator" Collapsed="true">
+    <Position X="30.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.TMP_PhoneNumberValidator" Collapsed="true">
+    <Position X="35.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.TMP_TextEventHandler" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="39.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAgAEEAAAAAMABAAEAIEAIAUApAAAAAAAAAYACBWE=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Art\Fonts\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="ISpawnableObject">
+    <Position X="21.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\ISpawnableObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="BT_State" Collapsed="true">
+    <Position X="28.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAACIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\BehaviorTree\Node.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="EnemyType" Collapsed="true">
+    <Position X="37.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAABAAGAAAAAAAAAgAQAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Data\ObjectDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ItemType" Collapsed="true">
+    <Position X="42.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAACAQAAAgAAAAAAAIAAAAACACAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Data\ObjectDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="EnemyMovement" Collapsed="true">
+    <Position X="35.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABACAAAAAAEAABAAAAUAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CreatureType" Collapsed="true">
+    <Position X="34" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\LivingCreature.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MoblieActionType" Collapsed="true">
+    <Position X="44.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAhAAAAAAAAAAAAAAAAAEAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\Player.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CreatureState" Collapsed="true">
+    <Position X="32.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAABAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Object\State.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ProjectileType" Collapsed="true">
+    <Position X="46.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAABCAAAAAAAAAAAAAAACAAAAAAAAACAAAABA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Projectile\ProjectileSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GameState" Collapsed="true">
+    <Position X="41" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAQAAAAAAAAAAAAAQAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Scene\GameCenter.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GameMode" Collapsed="true">
+    <Position X="39.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Scene\GameCenter.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CreatureEffectSoundType" Collapsed="true">
+    <Position X="30.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAhAAAAAAAAAAAAAAAAAEAAAgAAAACAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Sound\CreatureSoundPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UIEffectSoundType" Collapsed="true">
+    <Position X="30.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAABAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Sound\UISoundPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SoundGroupType" Collapsed="true">
+    <Position X="28.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAABAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Wolmi\GyroswingA\Scripts\Sound\VolumeSlider.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Malgun Gothic" Size="9" />
+</ClassDiagram>

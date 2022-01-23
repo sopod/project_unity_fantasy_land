@@ -104,18 +104,18 @@ public class Options
 
         // player
         PlayerStartPos = new Vector3(-30.57f, 2.21f, -50.2f);
-        PlayerMoveSpeed = 2.0f; // Fix this
-        PlayerRotateSpeed = 150.0f; // Fix this
-        PlayerJumpPower = 5.0f; // Fix this
+        PlayerMoveSpeed = 2.0f;
+        PlayerRotateSpeed = 150.0f;
+        PlayerJumpPower = 5.0f;
 
         // enemy
-        EnemyRotateSpeed = 150.0f; // Fix this
-        EnemyJumpPower = 5.0f; // Fix this
-        EnemyKnockDownTime = 2.0f; // Fix this
+        EnemyRotateSpeed = 150.0f;
+        EnemyJumpPower = 5.0f;
+        EnemyKnockDownTime = 2.0f;
 
         // skill
         DashPowerToHit = 20.0f;
-        DashPowerToDamaged = 10.0f; // Fix this
+        DashPowerToDamaged = 10.0f;
         FireBallPowerToDamaged = 20.0f;
         SkillCoolTime = 0.5f; 
         ProjectileMoveSpeed = 7.0f;

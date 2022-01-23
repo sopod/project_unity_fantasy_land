@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stage: {fileID: 0}
-  isPositionTaken: 
-  spawnedObjectCount: 
   database: {fileID: 11400000, guid: a9dd33af2b22df74784779f1c6d32ea9, type: 2}
   spawnPositions:
   - {fileID: 0}

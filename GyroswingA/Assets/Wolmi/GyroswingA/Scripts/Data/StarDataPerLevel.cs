@@ -43,8 +43,6 @@ public class StarDataPerLevel : ScriptableObject
     [SerializeField] int[] easyMode = new int[levelCountPerMode];
     [SerializeField] int[] hardMode = new int[levelCountPerMode];
 
-    
-
 
 
     public void Clear()
@@ -100,10 +98,6 @@ public class StarDataPerLevel : ScriptableObject
         {
             case GameMode.Easy:
             {
-                //if (starCount > 0 && easyMode[levelNum - 1] == 0)
-                //{
-                //    SetUnlocked(mode, levelNum);
-                //}
                 if (starCount > easyMode[levelNum - 1])
                 {
                     easyMode[levelNum - 1] = starCount;
@@ -113,10 +107,6 @@ public class StarDataPerLevel : ScriptableObject
 
             case GameMode.Hard:
             {
-                //if (starCount > 0 && hardMode[levelNum - 1] == 0)
-                //{
-                //    SetUnlocked(mode, levelNum);
-                //}
                 if (starCount > hardMode[levelNum - 1])
                 {
                     hardMode[levelNum - 1] = starCount;
