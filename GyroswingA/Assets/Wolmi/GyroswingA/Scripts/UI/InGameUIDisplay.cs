@@ -95,6 +95,6 @@ public class InGameUIDisplay : MonoBehaviour
         optionScreen.SetActive(true);
         moblieController.SetActive(false);
     }
-
+    
 
 }

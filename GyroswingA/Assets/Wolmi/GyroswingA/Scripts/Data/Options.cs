@@ -13,7 +13,8 @@ public class Options
     [Header("---- level")]
     [SerializeField] LevelValues LevelValues;
 
-    [Header("---- game")]
+    [Header("---- game")] 
+    public float WaitingTimeForCinemachine;
     public int LimitSecondsPerStage;
 
     [HideInInspector] public float ResultSoundWaitingTime;
@@ -80,6 +81,7 @@ public class Options
     public void ResetOptionValuesByCode()
     {
         // game 
+        WaitingTimeForCinemachine = 8.0f;
         ResultSoundWaitingTime = 0.3f;
         ResultUIWaitingTime = 0.4f;
         ResultUIRemainingTime = 5.0f;

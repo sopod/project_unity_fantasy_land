@@ -10,7 +10,7 @@ public class Action_MoveToPlayer : Node
         {
             addedToMovementQueue = true;
 
-            Vector3 playerPos = GameManager.Instance.PlayerPosition;
+            Vector3 playerPos = GameCenter.Instance.PlayerPosition;
 
             bb.character.transform.LookAt(playerPos); // look at player
             

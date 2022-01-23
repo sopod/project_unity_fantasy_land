@@ -53,7 +53,7 @@ public class MachineController : MovingThing
                 ChangeDirection();
             
             SetStageValues();
-            GameManager.Instance.MoveCreaturesAlongStage();
+            GameCenter.Instance.MoveCreaturesAlongStage();
 
         }
     }

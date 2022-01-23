@@ -15,7 +15,7 @@ public enum GameMode
 }
 
 
-public class GameManager : MonoBehaviour
+public class GameCenter : MonoBehaviour
 {
     [Header("------- Attached components")]
     [SerializeField] MachineController machine;
@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
 
 
     bool _isSceneSet;
-    //bool _isGamePaused;
 
     int _monsterMaxCur = 0;
     int _remainingMonsterCur = 0;
@@ -53,13 +52,13 @@ public class GameManager : MonoBehaviour
     public Vector3 PlayerPosition { get { return player.CenterPosition; } }
 
 
-    static GameManager instance;
-    public static GameManager Instance
+    static GameCenter instance;
+    public static GameCenter Instance
     {
         get
         {
             if (instance == null)
-                instance = FindObjectOfType<GameManager>();
+                instance = FindObjectOfType<GameCenter>();
             return instance;
         }
     }
@@ -77,6 +76,8 @@ public class GameManager : MonoBehaviour
     {
         if (!_isSceneSet)
         {
+            inGameUi.gameObject.SetActive(false);
+
             _isSceneSet = true;
 
             _levelCur = levelDataPerLevel.levelNumberCur;
@@ -88,7 +89,12 @@ public class GameManager : MonoBehaviour
             SetInGame();
 
             PrepareInGame();
-            StartInGame();
+
+            SetStopMoving();
+            machine.StartMoving();
+
+            Invoke("StartInGame", options.WaitingTimeForCinemachine);
+            //StartInGame();
         }
     }
 
@@ -136,6 +142,8 @@ public class GameManager : MonoBehaviour
     void StartInGame()
     {
         ChangeGameState(GameState.InGame);
+        
+        inGameUi.gameObject.SetActive(true);
 
         _monsterMaxCur = options.GetMonsterAmountForCurState();
         inGameUi.SetUI(options.LimitSecondsPerStage, _monsterMaxCur);
@@ -321,6 +329,23 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
         {
             enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().StartMoving();
+        }
+    }
+    public void SetStopMoving()
+    {
+        gameTimer.PauseTimer();
+
+        player.StopMoving();
+        machine.StopMoving();
+
+        for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
+        {
+            enemySpawner.spawnedObjects[i].GetComponent<EnemyController>().StopMoving();
+        }
+
+        for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
+        {
+            itemSpawner.spawnedObjects[i].GetComponent<ItemController>().StopMoving();
         }
     }
 

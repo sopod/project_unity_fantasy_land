@@ -107,7 +107,7 @@ public class PlayerController : LivingCreature
 
     protected override void NotifyDead()
     {
-        GameManager.Instance.SetFail();
+        GameCenter.Instance.SetFail();
     }
 
     // -------------------------------------------------- for item trigger enter

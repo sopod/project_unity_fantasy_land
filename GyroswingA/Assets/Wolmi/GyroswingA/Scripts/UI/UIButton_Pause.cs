@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UIButton_Pause : UIButton
 {
-    [SerializeField] GameManager manager;
+    [SerializeField] GameCenter _center;
     [SerializeField] InGameUIDisplay display;
     void Start()
     {
@@ -13,7 +13,7 @@ public class UIButton_Pause : UIButton
     {
         UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
 
-        manager.SetPauseMoving();
+        _center.SetPauseMoving();
         display.SetOptionUI();
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class UIButton_CloseOption : UIButton
 {
-    [SerializeField] GameManager manager;
+    [SerializeField] GameCenter gameCenter;
     [SerializeField] private InGameUIDisplay display;
     [SerializeField] GameObject optionScreen;
 
@@ -19,7 +19,7 @@ public class UIButton_CloseOption : UIButton
         if (SceneManager.GetActiveScene().name == "InGame")
         {
             display.SetGameUI();
-            manager.SetStartMoving();
+            gameCenter.SetStartMoving();
         }
         else
         {

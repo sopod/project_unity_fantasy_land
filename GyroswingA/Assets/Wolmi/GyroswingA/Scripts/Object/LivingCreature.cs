@@ -236,7 +236,7 @@ public abstract class LivingCreature : MovingThing
 
     protected void AffectedBySpin()
     {
-        if (isOnJumpableObject && !GameManager.Instance.IsMachineStopped && isInStageBoundary)
+        if (isOnJumpableObject && !GameCenter.Instance.IsMachineStopped && isInStageBoundary)
         {
             Vector3 dir = GetDirectionFromStageToCreature();
 
@@ -246,7 +246,7 @@ public abstract class LivingCreature : MovingThing
 
     public void MoveAlongWithStage()
     {
-        if (!IsPaused() && !GameManager.Instance.IsMachineStopped && isInStageBoundary)
+        if (!IsPaused() && !GameCenter.Instance.IsMachineStopped && isInStageBoundary)
         {
             Vector3 centerForSpin = (options.IsSpiningCW) ? stage.transform.up : -stage.transform.up;
             Vector3 resPos = rb.position;

@@ -21,7 +21,8 @@ public class TimeController
 
     public void PauseTimer()
     {
-        stopTime = Time.time;
+        if (startTime != 0.0f)
+            stopTime = Time.time;
     }
 
     public void RestartTimer()

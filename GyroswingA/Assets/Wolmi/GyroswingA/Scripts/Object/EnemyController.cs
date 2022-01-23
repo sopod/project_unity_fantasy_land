@@ -189,7 +189,7 @@ public class EnemyController : LivingCreature, ISpawnableObject
     }
     protected override void NotifyDead()
     {
-        GameManager.Instance.OnMonsterKilled();
+        GameCenter.Instance.OnMonsterKilled();
     }
 
 

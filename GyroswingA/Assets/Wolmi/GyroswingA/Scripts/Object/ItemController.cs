@@ -32,7 +32,7 @@ public class ItemController : MovingThing, ISpawnableObject
             options.OnPlayerSpeedItemUsed(itemType);
 
             float plusTime = options.GetItemSecondsToAdd(itemType);
-            GameManager.Instance.OnTimeItemUsed(plusTime);
+            GameCenter.Instance.OnTimeItemUsed(plusTime);
 
             this.gameObject.SetActive(false);
         }
