@@ -16,7 +16,7 @@ public class UIButton_CloseOption : UIButton
     {
         UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnBack);
 
-        if (SceneManager.GetActiveScene().name == "InGame")
+        if (SceneController.Instance.CurScene == SceneState.InGame)
         {
             display.SetGameUI();
             gameCenter.SetStartMoving();

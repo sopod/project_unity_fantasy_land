@@ -9,7 +9,6 @@ public enum UIEffectSoundType
     Max
 }
 
-
 public class UISoundPlayer : MonoBehaviour
 {
     [SerializeField] AudioMixerGroup bgmMixerGroup;
@@ -21,6 +20,8 @@ public class UISoundPlayer : MonoBehaviour
     [SerializeField] AudioSource[] effectSoundAudios;
     [SerializeField] AudioSource bgmAudio;
 
+    SoundLoader sound;
+    
 
     static UISoundPlayer instance;
 
@@ -39,29 +40,9 @@ public class UISoundPlayer : MonoBehaviour
 
     void Awake()
     {
-        var objs = FindObjectsOfType<UISoundPlayer>();
-
-        if (objs.Length == 1)
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            foreach (var obj in objs)
-            {
-                if (SceneManager.GetActiveScene().name == "InGame" && obj.gameObject != this.gameObject) 
-                {
-                    Destroy(obj.gameObject); // destroy previous object
-                }
-                else if (SceneManager.GetActiveScene().name != "InGame" && obj.gameObject == this.gameObject) 
-                {
-                    Destroy(obj.gameObject); // destroy this new object
-                    return;
-                }
-            }
-        }
-
-        if (instance == null) instance = this;
+        DontDestroyOnLoad(this.gameObject);
+        
+        sound = FindObjectOfType<SoundLoader>();
 
         SetGroup();
     }
@@ -81,7 +62,7 @@ public class UISoundPlayer : MonoBehaviour
     {
         if ((int)soundType >= effectSounds.Length) return;
 
-        AudioClip clip = SoundManager.Instance.GetClip(effectSounds[(int) soundType].name);
+        AudioClip clip = sound.GetClip(effectSounds[(int) soundType].name);
 
         if (clip == null) return;
         
@@ -96,14 +77,16 @@ public class UISoundPlayer : MonoBehaviour
 
     }
 
-    public void PlayBGM(GameState gameState, bool isLoop = true)
+    public void PlayBGM(SceneState state, bool isLoop = true)
     {
-        if ((int)gameState >= effectSounds.Length) return;
+        int idx = (state == SceneState.Lobby) ? 0 : 1;
+
+        if (idx >= effectSounds.Length) return;
 
         if (bgmAudio.isPlaying)
             bgmAudio.Stop();
 
-        AudioClip clip = SoundManager.Instance.GetClip(bgms[(int) gameState].name);
+        AudioClip clip = sound.GetClip(bgms[idx].name);
 
         if (clip == null) return;
 
@@ -119,9 +102,9 @@ public class UISoundPlayer : MonoBehaviour
 
         AudioClip clip;
         if (isWin)
-            clip = SoundManager.Instance.GetClip(bgms[2].name);
+            clip = sound.GetClip(bgms[2].name);
         else
-            clip = SoundManager.Instance.GetClip(bgms[3].name);
+            clip = sound.GetClip(bgms[3].name);
 
         if (clip == null) return;
 

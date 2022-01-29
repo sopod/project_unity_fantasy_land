@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIButton_InGameScene : UIButton
 {
@@ -30,6 +31,6 @@ public class UIButton_InGameScene : UIButton
 
     void StartInGame()
     {
-        SceneLoader.LoadScene("InGame");
+        SceneController.Instance.ChangeScene(SceneState.InGame);
     }
 }

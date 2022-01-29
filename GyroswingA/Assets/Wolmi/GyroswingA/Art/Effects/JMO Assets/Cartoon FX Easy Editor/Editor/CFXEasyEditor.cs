@@ -300,7 +300,7 @@ public class CFXEasyEditor : EditorWindow
 			//----------------------------------------------------------------
 
 			GUILayout.BeginHorizontal();
-			if(GUILayout.Button(new GUIContent("Scale Size", "Changes the size of the Particle System(s) and other values accordingly (speed, gravity, etc.)"), GUILayout.Width(120)))
+			if(GUILayout.Button(new GUIContent("Scale Size", "Changes the size of the Particle System(s) and other ValueList accordingly (speed, gravity, etc.)"), GUILayout.Width(120)))
 			{
 				applyScale();
 			}
@@ -673,7 +673,7 @@ public class CFXEasyEditor : EditorWindow
 			DrawSelectableModules(ref selectedModulesMutate, ref enabledModulesMutate, selectedParticleSystem);
 
 			EditorGUI.BeginChangeCheck();
-			float newValue = EditorGUILayout.Slider("± percent", Mathf.Floor(mutatePercentage * 100), 0, 100);
+			float newValue = EditorGUILayout.Slider("?percent", Mathf.Floor(mutatePercentage * 100), 0, 100);
 			if (EditorGUI.EndChangeCheck())
 			{
 				mutatePercentage = newValue / 100f;
@@ -894,7 +894,7 @@ public class CFXEasyEditor : EditorWindow
 	{
 		foreach(GameObject go in Selection.gameObjects)
 		{
-			//Scale Shuriken Particles Values
+			//Scale Shuriken Particles RawLevelValues
 			ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
@@ -915,7 +915,7 @@ public class CFXEasyEditor : EditorWindow
 	{
 		foreach(GameObject go in Selection.gameObjects)
 		{
-			//Scale Shuriken Particles Values
+			//Scale Shuriken Particles RawLevelValues
 			ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
@@ -939,7 +939,7 @@ public class CFXEasyEditor : EditorWindow
 
 		foreach(GameObject go in Selection.gameObjects)
 		{
-			//Scale Shuriken Particles Values
+			//Scale Shuriken Particles RawLevelValues
 			ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);
@@ -1417,7 +1417,7 @@ public class CFXEasyEditor : EditorWindow
 	{
 		foreach(GameObject go in Selection.gameObjects)
 		{
-			//Scale Shuriken Particles Values
+			//Scale Shuriken Particles RawLevelValues
 			ParticleSystem[] systems;
 			if(pref_IncludeChildren)
 				systems = go.GetComponentsInChildren<ParticleSystem>(true);

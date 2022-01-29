@@ -112,7 +112,7 @@ public class Machine : MovingThing
     {
         //SetSwingPower();
 
-        _swingAngleCur = options.GetCurLevelValues().SwingSpeedCur * Time.fixedDeltaTime * _swingPowerCur;
+        _swingAngleCur = options.GetCurLevelValues().SwingSpeed * Time.fixedDeltaTime * _swingPowerCur;
 
         if (_isSwingingRight)
             _swingAngleTotal += _swingAngleCur;
@@ -126,19 +126,19 @@ public class Machine : MovingThing
             _swingAngleTotal += 360.0f;
 
         // swingAngleMax <= _swingAngleTotal <= 360.0f - swingAngleMax
-        if (options.GetCurLevelValues().SwingAngleMaxCur < _swingAngleTotal && _swingAngleTotal < (360.0f - options.GetCurLevelValues().SwingAngleMaxCur))
+        if (options.GetCurLevelValues().SwingAngleMax < _swingAngleTotal && _swingAngleTotal < (360.0f - options.GetCurLevelValues().SwingAngleMax))
         {
             _changeDir = true;
 
             if (_swingAngleTotal <= 180.0f)
             {
-                _swingAngleCur -= _swingAngleTotal - options.GetCurLevelValues().SwingAngleMaxCur;
-                _swingAngleTotal = options.GetCurLevelValues().SwingAngleMaxCur;
+                _swingAngleCur -= _swingAngleTotal - options.GetCurLevelValues().SwingAngleMax;
+                _swingAngleTotal = options.GetCurLevelValues().SwingAngleMax;
             }
             else
             {
-                _swingAngleCur -= (360.0f - options.GetCurLevelValues().SwingAngleMaxCur) - _swingAngleTotal;
-                _swingAngleTotal = 360.0f - options.GetCurLevelValues().SwingAngleMaxCur;
+                _swingAngleCur -= (360.0f - options.GetCurLevelValues().SwingAngleMax) - _swingAngleTotal;
+                _swingAngleTotal = 360.0f - options.GetCurLevelValues().SwingAngleMax;
             }
         }        
     }
@@ -178,7 +178,7 @@ public class Machine : MovingThing
     {
         //_upDirBeforeSpin = stage.transform.up;
 
-        _spinAngleCur = options.GetCurLevelValues().SpinSpeedCur * Time.fixedDeltaTime;
+        _spinAngleCur = options.GetCurLevelValues().SpinSpeed * Time.fixedDeltaTime;
 
         // up - local 
         if (options.IsSpiningCW)

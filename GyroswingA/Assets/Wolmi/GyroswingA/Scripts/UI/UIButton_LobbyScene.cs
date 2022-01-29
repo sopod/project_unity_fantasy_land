@@ -10,7 +10,7 @@ public class UIButton_LobbyScene : UIButton
     {
         UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
 
-        if (SceneManager.GetActiveScene().name == "InGame")
+        if (SceneController.Instance.CurScene == SceneState.InGame)
             Invoke("BackToLobby" , 1.0f);
         else
             BackToLobby();
@@ -18,6 +18,6 @@ public class UIButton_LobbyScene : UIButton
 
     void BackToLobby()
     {
-        SceneLoader.LoadScene("Lobby");
+        SceneController.Instance.ChangeScene(SceneState.Lobby);
     }
 }

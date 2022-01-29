@@ -1,9 +1,9 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
-    Lobby,
-    InGame,
+    Playing,
     Pause,
     Result
 }
@@ -53,12 +53,16 @@ public class GameCenter : MonoBehaviour
 
 
     static GameCenter instance;
+
     public static GameCenter Instance
     {
         get
         {
             if (instance == null)
+            {
                 instance = FindObjectOfType<GameCenter>();
+            }
+
             return instance;
         }
     }
@@ -69,6 +73,8 @@ public class GameCenter : MonoBehaviour
             instance = this;
 
         _isSceneSet = false;
+
+        uiSoundPlayer = FindObjectOfType<UISoundPlayer>();
     }
     
 
@@ -135,12 +141,12 @@ public class GameCenter : MonoBehaviour
 
         SetPauseMoving();
 
-        uiSoundPlayer.PlayBGM(GameState.InGame);
+        uiSoundPlayer.PlayBGM(SceneState.InGame);
     }
 
     void StartInGame()
     {
-        ChangeGameState(GameState.InGame);
+        ChangeGameState(GameState.Playing);
         
         inGameUi.gameObject.SetActive(true);
 
@@ -155,7 +161,7 @@ public class GameCenter : MonoBehaviour
 
     void UpdateInGame()
     {
-        if (_gameStateCur == GameState.InGame)
+        if (_gameStateCur == GameState.Playing)
         {
             inGameUi.UpdateTime(gameTimer.GetRemainingTime());
 
@@ -167,7 +173,7 @@ public class GameCenter : MonoBehaviour
     }
     void SpawnEnemies()
     {
-        EnemyType[] typesToGen = options.GetCurLevelValues().EnemyTypesCur;
+        EnemyType[] typesToGen = options.GetCurLevelValues().EnemyTypes;
         int amount = options.GetMonsterAmountForCurState();
 
         for (int i = 0; i < amount; i++)
@@ -179,7 +185,7 @@ public class GameCenter : MonoBehaviour
 
     void SpawnItems()
     {
-        ItemType[] typesToGen = options.GetCurLevelValues().ItemTypesCur;
+        ItemType[] typesToGen = options.GetCurLevelValues().ItemTypes;
 
         for (int i = 0; i < typesToGen.Length; i++)
         {
@@ -243,7 +249,8 @@ public class GameCenter : MonoBehaviour
     {
         SetPauseMoving();
         ChangeGameState(GameState.Result);
-        
+
+
         uiSoundPlayer.StopPlayingBGM();
         Invoke("SetWinBGM", options.ResultSoundWaitingTime);
         Invoke("SetWinUI", options.ResultUIWaitingTime);
@@ -297,7 +304,7 @@ public class GameCenter : MonoBehaviour
 
     public void SetStartMoving(bool waitEnemy = false)
     {
-        ChangeGameState(GameState.InGame);
+        ChangeGameState(GameState.Playing);
 
         gameTimer.RestartTimer();
 
@@ -401,7 +408,7 @@ public class GameCenter : MonoBehaviour
 
     void BackToStageSelectionScene()
     {
-        SceneLoader.LoadScene("StageSelection");
+        SceneController.Instance.ChangeScene(SceneState.StageSelection);
     }
 
     void TurnResultUIOff()

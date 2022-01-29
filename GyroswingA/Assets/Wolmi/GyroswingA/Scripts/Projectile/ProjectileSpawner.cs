@@ -13,7 +13,7 @@ public enum ProjectileType
 
 public class ProjectileSpawner : MonoBehaviour
 {
-    Options options;
+    [SerializeField] Options options;
 
     int[] spawnedObjectCount;
 
@@ -22,16 +22,14 @@ public class ProjectileSpawner : MonoBehaviour
     Queue<GameObject>[] queues;
     [HideInInspector] public List<GameObject>[] spawnedObjects;
 
+
     void Start()
     {
-        SetSpawner(new Options());
+        SetSpawner();
     }
 
-
-    public void SetSpawner(Options options)
+    public void SetSpawner()
     {
-        this.options = options;
-
         spawnedObjects = new List<GameObject>[(int) ProjectileType.Max];
 
         spawnedObjectCount = new int[(int)ProjectileType.Max];

@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class Options
+public class Options : MonoBehaviour
 {
     // level
     int _levelCur = 0;
@@ -11,11 +11,10 @@ public class Options
 
 
     [Header("---- level")]
-    [SerializeField] LevelValues LevelValues;
+    GoogleSheetData Values;
 
-    [Header("---- game")] 
-    public float WaitingTimeForCinemachine;
-    public int LimitSecondsPerStage;
+    [HideInInspector] public float WaitingTimeForCinemachine;
+    [HideInInspector] public int LimitSecondsPerStage;
 
     [HideInInspector] public float ResultSoundWaitingTime;
     [HideInInspector] public float ResultUIWaitingTime;
@@ -28,10 +27,9 @@ public class Options
     [HideInInspector] public int StageAmountPerMode;
 
 
-    [Header("---- machine")]
-    public bool IsMachineSwinging;
-    public bool IsMachineTurning;
-    public bool IsMachineSpining;
+    [HideInInspector] public bool IsMachineSwinging;
+    [HideInInspector] public bool IsMachineTurning;
+    [HideInInspector] public bool IsMachineSpining;
 
     [HideInInspector] public Vector3 StageStartPos;
     [HideInInspector] public Quaternion StageStartRot;
@@ -45,25 +43,25 @@ public class Options
 
 
     [Header("---- player")]
-    public float PlayerMoveSpeed;
-    public float PlayerRotateSpeed;
-    public float PlayerJumpPower;
+    public float PlayerMoveSpeed = 2.0f;
+    public float PlayerRotateSpeed = 150.0f;
+    public float PlayerJumpPower = 5.0f;
     [HideInInspector] public Vector3 PlayerStartPos;
     [HideInInspector] public Quaternion PlayerStartRot;
 
     [Header("---- enemy")]
-    public float EnemyRotateSpeed;
-    public float EnemyJumpPower;
-    public float EnemyKnockDownTime;
+    public float EnemyRotateSpeed = 150.0f;
+    public float EnemyJumpPower = 5.0f;
+    [HideInInspector] public float EnemyKnockDownTime = 2.0f;
 
     [Header("---- skill")] 
     public ProjectileSpawner ProjectilesSpawner;
-    public float SkillCoolTime;
-    public float DashPowerToDamaged;
+    [HideInInspector] public float SkillCoolTime;
+    public float DashPowerToDamaged = 10.0f;
     [HideInInspector] public float DashPowerToHit;
-    public float FireBallPowerToDamaged;
-    public float ProjectileMoveSpeed;
-    public float ProjectileRemaingTime;
+    public float FireBallPowerToDamaged = 20.0f;
+    public float ProjectileMoveSpeed = 7.0f;
+    public float ProjectileRemaingTime = 1.6f;
 
     [Header("---- layers")]
     public LayerMask PlayerLayer;
@@ -75,7 +73,10 @@ public class Options
     public LayerMask ShootProjectileLayer;
 
 
-
+    void Start()
+    {
+        Values = FindObjectOfType<GoogleSheetData>();
+    }
 
 
     public void ResetOptionValuesByCode()
@@ -104,22 +105,22 @@ public class Options
 
         // player
         PlayerStartPos = new Vector3(-30.57f, 2.21f, -50.2f);
-        PlayerMoveSpeed = 2.0f;
-        PlayerRotateSpeed = 150.0f;
-        PlayerJumpPower = 5.0f;
+        //PlayerMoveSpeed = 2.0f;
+        //PlayerRotateSpeed = 150.0f;
+        //PlayerJumpPower = 5.0f;
 
         // enemy
-        EnemyRotateSpeed = 150.0f;
-        EnemyJumpPower = 5.0f;
+        //EnemyRotateSpeed = 150.0f;
+        //EnemyJumpPower = 5.0f;
         EnemyKnockDownTime = 2.0f;
 
         // skill
         DashPowerToHit = 20.0f;
-        DashPowerToDamaged = 10.0f;
-        FireBallPowerToDamaged = 20.0f;
+        //DashPowerToDamaged = 10.0f;
+        //FireBallPowerToDamaged = 20.0f;
         SkillCoolTime = 0.5f; 
-        ProjectileMoveSpeed = 7.0f;
-        ProjectileRemaingTime = 1.6f;
+        //ProjectileMoveSpeed = 7.0f;
+        //ProjectileRemaingTime = 1.6f;
     }                       
 
     public void ResetOptions()
@@ -129,14 +130,14 @@ public class Options
 
     public LevelValues GetCurLevelValues()
     {
-        return LevelValues;
+        return Values.GetLevelValueCur(_modeCur, _levelCur);
     }
 
     public void ChangeLevel(GameMode mode, int level)
     {
         _modeCur = mode;
         _levelCur = level;
-        LevelValues.ChangeLevel(mode, level);
+        Values.GetLevelValueCur(mode, level);
     }
 
     public int GetMonsterAmountForCurState()

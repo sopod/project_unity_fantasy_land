@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4046827400444098220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4046827400444098130}
+  - component: {fileID: 4046827400444098131}
+  - component: {fileID: 8338981509674863664}
+  m_Layer: 0
+  m_Name: InGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4046827400444098130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046827400444098220}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -29.3, y: -0.9256549, z: -40.800003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4046827400444098131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046827400444098220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957c6f20153d997419299b242d8cddd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine: {fileID: 0}
+  player: {fileID: 0}
+  inGameUi: {fileID: 0}
+  enemySpawner: {fileID: 0}
+  itemSpawner: {fileID: 0}
+  stage: {fileID: 0}
+  uiSoundPlayer: {fileID: 0}
+  _gameModeCur: 0
+  _levelCur: 0
+  levelDataPerLevel: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
+  options: {fileID: 8338981509674863664}
+--- !u!114 &8338981509674863664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046827400444098220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e682191b9c41a4d883c2387028206c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelValues: {fileID: 0}
+  WaitingTimeForCinemachine: 0
+  LimitSecondsPerStage: 0
+  ResultSoundWaitingTime: 0
+  ResultUIWaitingTime: 0
+  ResultUIRemainingTime: 0
+  GameStartWaitingTime: 0
+  EnemyStartWaitingTime: 0
+  SpawnerPrepareAmount: 0
+  StageAmountPerMode: 0
+  IsMachineSwinging: 0
+  IsMachineTurning: 0
+  IsMachineSpining: 0
+  StageStartPos: {x: 0, y: 0, z: 0}
+  StageStartRot: {x: 0, y: 0, z: 0, w: 0}
+  BarStartPos: {x: 0, y: 0, z: 0}
+  BarStartRot: {x: 0, y: 0, z: 0, w: 0}
+  IsSpiningCW: 0
+  Gravity: 0
+  PlayerMoveSpeed: 2
+  PlayerRotateSpeed: 150
+  PlayerJumpPower: 5
+  PlayerStartPos: {x: 0, y: 0, z: 0}
+  PlayerStartRot: {x: 0, y: 0, z: 0, w: 0}
+  EnemyRotateSpeed: 150
+  EnemyJumpPower: 5
+  EnemyKnockDownTime: 2
+  ProjectilesSpawner: {fileID: 0}
+  SkillCoolTime: 0
+  DashPowerToDamaged: 10
+  DashPowerToHit: 0
+  FireBallPowerToDamaged: 20
+  ProjectileMoveSpeed: 7
+  ProjectileRemaingTime: 1.6
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  ItemLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  StageLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  FailZoneLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  StageBoundaryLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  ShootProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 8192

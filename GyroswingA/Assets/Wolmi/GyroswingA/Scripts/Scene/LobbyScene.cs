@@ -1,21 +1,19 @@
 using UnityEngine;
 
-public class LobbySceneStarter : MonoBehaviour
+public class LobbyScene : MonoBehaviour
 {
-    [SerializeField] UISoundPlayer uiSoundPlayer;
     [SerializeField] VolumeSlider BgmSlider;
     [SerializeField] VolumeSlider effectSoundSlider;
-    [SerializeField] StarDataPerLevel data;
+    [SerializeField] StarDataPerLevel starData;
 
 
     void Start()
     {
-        GameDataLoader.LoadStarDataFile(data);
-
-        uiSoundPlayer.PlayBGM(GameState.Lobby);
-
         BgmSlider.InitSlider();
         effectSoundSlider.InitSlider();
+
+        if (SceneController.Instance.PlayLobbySceneMusic)
+            UISoundPlayer.Instance.PlayBGM(SceneState.Lobby);
     }
 
 
@@ -23,9 +21,9 @@ public class LobbySceneStarter : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
-            data.Clear();
+            starData.Clear();
 
         if (Input.GetKeyDown(KeyCode.M))
-            data.UnlockAll();
+            starData.UnlockAll();
     }
 }

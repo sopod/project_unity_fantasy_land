@@ -31,7 +31,7 @@ public class RotateToMouseScript : MonoBehaviour {
 				Vector2 direction = Camera.main.ScreenToWorldPoint (Input.mousePosition) - transform.position;
 				float angle = Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg;
 				if (angle > 180) angle -= 360;
-				rotation.eulerAngles = new Vector3 (-angle, 90, 0); // use different values to lock on different axis
+				rotation.eulerAngles = new Vector3 (-angle, 90, 0); // use different ValueList to lock on different axis
 				transform.rotation = rotation;
 			} else {
 				RaycastHit hit;
