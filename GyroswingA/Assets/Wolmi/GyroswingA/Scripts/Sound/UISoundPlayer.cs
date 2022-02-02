@@ -11,6 +11,8 @@ public enum UIEffectSoundType
 
 public class UISoundPlayer : MonoBehaviour
 {
+    public SoundLoader soundFiles;
+
     [SerializeField] AudioMixerGroup bgmMixerGroup;
     [SerializeField] AudioMixerGroup effectSoundMixerGroup;
 
@@ -20,7 +22,6 @@ public class UISoundPlayer : MonoBehaviour
     [SerializeField] AudioSource[] effectSoundAudios;
     [SerializeField] AudioSource bgmAudio;
 
-    SoundLoader sound;
     
 
     static UISoundPlayer instance;
@@ -42,8 +43,6 @@ public class UISoundPlayer : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         
-        sound = FindObjectOfType<SoundLoader>();
-
         SetGroup();
     }
 
@@ -62,7 +61,7 @@ public class UISoundPlayer : MonoBehaviour
     {
         if ((int)soundType >= effectSounds.Length) return;
 
-        AudioClip clip = sound.GetClip(effectSounds[(int) soundType].name);
+        AudioClip clip = soundFiles.GetClip(effectSounds[(int) soundType].name);
 
         if (clip == null) return;
         
@@ -86,7 +85,7 @@ public class UISoundPlayer : MonoBehaviour
         if (bgmAudio.isPlaying)
             bgmAudio.Stop();
 
-        AudioClip clip = sound.GetClip(bgms[idx].name);
+        AudioClip clip = soundFiles.GetClip(bgms[idx].name);
 
         if (clip == null) return;
 
@@ -102,9 +101,9 @@ public class UISoundPlayer : MonoBehaviour
 
         AudioClip clip;
         if (isWin)
-            clip = sound.GetClip(bgms[2].name);
+            clip = soundFiles.GetClip(bgms[2].name);
         else
-            clip = sound.GetClip(bgms[3].name);
+            clip = soundFiles.GetClip(bgms[3].name);
 
         if (clip == null) return;
 

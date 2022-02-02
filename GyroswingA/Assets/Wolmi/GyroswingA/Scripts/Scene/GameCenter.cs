@@ -34,7 +34,8 @@ public class GameCenter : MonoBehaviour
 
 
     [Header("------- Game Data")]
-    [SerializeField] StarDataPerLevel levelDataPerLevel;
+    //[SerializeField] StarDataPerLevel levelDataPerLevel;
+    public StarDataLoader loaderStarData;
     [SerializeField] Options options;
     StageMovementValue stageVal;
 
@@ -74,7 +75,8 @@ public class GameCenter : MonoBehaviour
 
         _isSceneSet = false;
 
-        uiSoundPlayer = FindObjectOfType<UISoundPlayer>();
+        uiSoundPlayer = UISoundPlayer.Instance;
+        loaderStarData = SceneController.Instance.loaderStarData;
     }
     
 
@@ -86,8 +88,8 @@ public class GameCenter : MonoBehaviour
 
             _isSceneSet = true;
 
-            _levelCur = levelDataPerLevel.levelNumberCur;
-            _gameModeCur = levelDataPerLevel.stageModeCur;
+            _levelCur = loaderStarData.data.levelNumberCur;
+            _gameModeCur = loaderStarData.data.stageModeCur;
             options.ChangeLevel(_gameModeCur, _levelCur);
 
             options.ResetOptionValuesByCode();
@@ -199,9 +201,9 @@ public class GameCenter : MonoBehaviour
         // calculate next level and mode
         _levelCur++;
 
-        if (_levelCur > levelDataPerLevel.LevelCountPerMode && _gameModeCur == GameMode.Easy)
+        if (_levelCur > loaderStarData.data.LevelCountPerMode && _gameModeCur == GameMode.Easy)
         {
-            if (!levelDataPerLevel.IsHardModeOpen)
+            if (!loaderStarData.data.IsHardModeOpen)
             {
                 return false;
             }
@@ -209,7 +211,7 @@ public class GameCenter : MonoBehaviour
             _levelCur = 1;
             _gameModeCur = GameMode.Hard;
         }
-        else if (_levelCur > levelDataPerLevel.LevelCountPerMode && _gameModeCur == GameMode.Hard)
+        else if (_levelCur > loaderStarData.data.LevelCountPerMode && _gameModeCur == GameMode.Hard)
         {
             return false;
         }
@@ -217,9 +219,9 @@ public class GameCenter : MonoBehaviour
 
         // save data
         options.ChangeLevel(_gameModeCur, _levelCur);
-        levelDataPerLevel.SetUnlocked(_gameModeCur, _levelCur);
+        loaderStarData.data.SetUnlocked(_gameModeCur, _levelCur);
 
-        GameDataLoader.SaveStarDataFile(levelDataPerLevel);
+        loaderStarData.SaveStarDataFile();
 
         return true;
     }
@@ -230,7 +232,7 @@ public class GameCenter : MonoBehaviour
 
         int star = starCollector.GetStarForCurStage(_gameModeCur, _remainingMonsterCur);
 
-        levelDataPerLevel.SetStar(_gameModeCur, _levelCur, star);
+        loaderStarData.data.SetStar(_gameModeCur, _levelCur, star);
 
         enemySpawner.ReturnAllObjects();
         itemSpawner.ReturnAllObjects();

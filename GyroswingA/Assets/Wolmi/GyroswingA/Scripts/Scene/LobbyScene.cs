@@ -4,7 +4,6 @@ public class LobbyScene : MonoBehaviour
 {
     [SerializeField] VolumeSlider BgmSlider;
     [SerializeField] VolumeSlider effectSoundSlider;
-    [SerializeField] StarDataPerLevel starData;
 
 
     void Start()
@@ -21,9 +20,9 @@ public class LobbyScene : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
-            starData.Clear();
+            SceneController.Instance.loaderStarData.data.Clear();
 
         if (Input.GetKeyDown(KeyCode.M))
-            starData.UnlockAll();
+            SceneController.Instance.loaderStarData.data.UnlockAll();
     }
 }

@@ -22,6 +22,15 @@ public enum ItemType
     Max
 }
 
+public enum ProjectileType
+{
+    FireShoot,
+    FireHit,
+    DashHit,
+    Dead,
+    ItemPickUp,
+    Max
+}
 
 [CreateAssetMenu(fileName = "Object Database", menuName = "Gyroswing/Object Database")]
 public class ObjectDatabase : ScriptableObject

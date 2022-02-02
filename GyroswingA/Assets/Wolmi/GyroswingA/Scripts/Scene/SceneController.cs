@@ -22,8 +22,8 @@ public class SceneController : MonoBehaviour
     public bool PlayLobbySceneMusic { get { return playLobbySceneMusic; } }
 
 
-    [SerializeField] GoogleSheetData levelValueData;
-    [SerializeField] StarDataPerLevel starData;
+    public GoogleSheetDataLoader loaderLevelValues;
+    public StarDataLoader loaderStarData;
 
     static SceneController instance;
     public static SceneController Instance
@@ -47,7 +47,7 @@ public class SceneController : MonoBehaviour
     void Start()
     {
         UISoundPlayer.Instance.PlayBGM(SceneState.Lobby);
-        GameDataLoader.LoadStarDataFile(starData);
+
         StartCoroutine(WaitUntilDataSet());
     }
     
@@ -55,7 +55,7 @@ public class SceneController : MonoBehaviour
     {
         while (true)
         {
-            if (levelValueData.IsDataSet) break;
+            if (loaderLevelValues.IsDataSet) break;
 
             yield return null;
         }
@@ -71,5 +71,10 @@ public class SceneController : MonoBehaviour
         curSceneState = toChange;
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName[(int)toChange]);
     }
-    
+
+    public void SaveFileAndQuitGame()
+    {
+        loaderStarData.SaveStarDataFile();
+        Application.Quit();
+    }
 }

@@ -11,7 +11,7 @@ public class Options : MonoBehaviour
 
 
     [Header("---- level")]
-    GoogleSheetData Values;
+    GoogleSheetDataLoader Values;
 
     [HideInInspector] public float WaitingTimeForCinemachine;
     [HideInInspector] public int LimitSecondsPerStage;
@@ -75,7 +75,7 @@ public class Options : MonoBehaviour
 
     void Start()
     {
-        Values = FindObjectOfType<GoogleSheetData>();
+        Values = FindObjectOfType<GoogleSheetDataLoader>();
     }
 
 

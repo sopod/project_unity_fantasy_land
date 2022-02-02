@@ -3,11 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class UIButton_InGameScene : UIButton
 {
-    [SerializeField] StarDataPerLevel _dataPerLevel;
+    StarDataPerLevel starData;
 
     GameMode modeForThisButton;
     int stageNumber;
-    
+
+    void Awake()
+    {
+        starData = SceneController.Instance.loaderStarData.data;
+    }
+
     void Start()
     {
         UIEventMaker.MakeButtonEvent(this);
@@ -23,8 +28,8 @@ public class UIButton_InGameScene : UIButton
     {
         UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
 
-        _dataPerLevel.levelNumberCur = stageNumber;
-        _dataPerLevel.stageModeCur = modeForThisButton;
+        starData.levelNumberCur = stageNumber;
+        starData.stageModeCur = modeForThisButton;
 
         Invoke("StartInGame", 1.0f);
     }

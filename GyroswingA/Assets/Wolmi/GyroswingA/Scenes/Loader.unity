@@ -198,49 +198,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37832114}
   m_CullTransparentMesh: 1
---- !u!1 &53863815
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 53863817}
-  - component: {fileID: 53863816}
-  m_Layer: 0
-  m_Name: SoundLoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &53863816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53863815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4efa370f70d9c1f4f8a67ecb5b933b9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &53863817
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53863815}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &169120846
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,8 +530,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463773b7d3584e147b8808d0765be2ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelValueData: {fileID: 1765071608}
-  starData: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
+  loaderLevelValues: {fileID: 1765071608}
+  loaderStarData: {fileID: 1765071609}
 --- !u!1 &1765071605
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,8 +541,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1765071607}
-  - component: {fileID: 1765071606}
   - component: {fileID: 1765071608}
+  - component: {fileID: 1765071609}
+  - component: {fileID: 1765071606}
   m_Layer: 0
   m_Name: DataLoader
   m_TagString: Untagged
@@ -602,11 +560,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765071605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac70cf5e30d9dc249a5dd450ea7ddcf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4efa370f70d9c1f4f8a67ecb5b933b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doneFlag: 0
-  url: https://script.googleusercontent.com/macros/echo?user_content_key=LfDt42V0EjwepjdNSpmRQzX_BEqhuTG0PWfeJah-tfSrmfzUwu_opzcSiVYwg5Jmx8SMbmNnApoZ3FSgBgCeuRl3yr-9H33Dm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnAZ8G9mW9IeVeFxWTjChNjWB_1KBvfuR9ZJxiVGCI58nUjUHOAElkCsBg1Np9ZdxinaO3Sq9cf8S5A-BL52_kcR4zyVmjAjQXNz9Jw9Md8uu&lib=Mopfy0-hgcm3Ojs5VrYx8X3qTP9lzMDak
 --- !u!4 &1765071607
 Transform:
   m_ObjectHideFlags: 0
@@ -633,6 +589,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0bb1ddba3204048893c83e0deeb13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1765071609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765071605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978716eb6c54c7540b275e20f3b273b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    levelNumberCur: 0
+    stageModeCur: 0
+    unlockedLevelMax_Easy: 0
+    unlockedLevelMax_Hard: 0
+    easyMode: 
+    hardMode: 
 --- !u!1 &1803863877
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a62ae1cb241b014b9bdb44e08500a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundFiles: {fileID: 1765071606}
   bgmMixerGroup: {fileID: 4806926043966088744, guid: a1d325928b7fa284e9b3b9e3c488c97c, type: 2}
   effectSoundMixerGroup: {fileID: 7867377859811683651, guid: a1d325928b7fa284e9b3b9e3c488c97c, type: 2}
   effectSounds:
@@ -788,7 +764,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &7732666162413799977
 AudioSource:

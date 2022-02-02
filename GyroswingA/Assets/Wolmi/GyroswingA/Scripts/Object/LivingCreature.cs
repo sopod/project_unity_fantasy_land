@@ -217,11 +217,18 @@ public abstract class LivingCreature : MovingThing
         }
 
         rb.AddForce(dir * damagedPower, ForceMode.Impulse);
+
+        Invoke("AcceptDamaged", options.SkillCoolTime);
     }
 
     public void SetIdle()
     {
         state.SetIdle();
+    }
+
+    public void AcceptDamaged()
+    {
+        isDamaged = false;
     }
 
     protected abstract void NotifyDead();

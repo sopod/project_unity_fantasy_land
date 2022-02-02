@@ -1,11 +1,10 @@
 using UnityEngine;
 
 
-
-[CreateAssetMenu(fileName = "Star Data", menuName = "Gyroswing/Star Data")]
-public class StarDataPerLevel : ScriptableObject
+[System.Serializable]
+public class StarDataPerLevel
 {
-    const int requiredStarsToHardMode = 25; 
+    const int requiredStarsToHardMode = 25;
     const int levelCountPerMode = 10;
     public int LevelCountPerMode { get { return levelCountPerMode; } }
 
@@ -42,9 +41,8 @@ public class StarDataPerLevel : ScriptableObject
 
     [SerializeField] int[] easyMode = new int[levelCountPerMode];
     [SerializeField] int[] hardMode = new int[levelCountPerMode];
-
-
-
+    
+    
     public void Clear()
     {
         levelNumberCur = 1;
@@ -59,7 +57,7 @@ public class StarDataPerLevel : ScriptableObject
             hardMode[i] = 0;
         }
 
-        GameDataLoader.SaveStarDataFile(this);
+        //StarDataLoader.SaveStarDataFile(this);
     }
 
     public void UnlockAll()
@@ -76,7 +74,7 @@ public class StarDataPerLevel : ScriptableObject
             hardMode[i] = 3;
         }
         
-        GameDataLoader.SaveStarDataFile(this);
+        //StarDataLoader.SaveStarDataFile(this);
     }
 
     public int GetStar(GameMode mode, int levelNum)

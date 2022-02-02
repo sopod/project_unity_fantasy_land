@@ -1,15 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ProjectileType
-{
-    FireShoot,
-    FireHit,
-    DashHit,
-    Dead,
-    ItemPickUp,
-    Max
-}
 
 public class ProjectileSpawner : MonoBehaviour
 {

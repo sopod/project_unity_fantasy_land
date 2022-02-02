@@ -15,7 +15,7 @@ public class CreatureSoundPlayer : MonoBehaviour
 {
     const float trimRatio = 0.3f;
 
-    SoundLoader sound;
+    SoundLoader soundFiles;
 
     [SerializeField] AudioMixerGroup effectSoundMixerGroup;
 
@@ -24,7 +24,7 @@ public class CreatureSoundPlayer : MonoBehaviour
 
     void Awake()
     {
-        sound = FindObjectOfType<SoundLoader>();
+        soundFiles = UISoundPlayer.Instance.soundFiles;
         SetGroup();
     }
 
@@ -40,7 +40,7 @@ public class CreatureSoundPlayer : MonoBehaviour
     {
         if ((int) soundType >= effectSounds.Length) return;
 
-        AudioClip clip = sound.GetClip(effectSounds[(int)soundType].name);
+        AudioClip clip = soundFiles.GetClip(effectSounds[(int)soundType].name);
 
         if (clip == null) return;
 

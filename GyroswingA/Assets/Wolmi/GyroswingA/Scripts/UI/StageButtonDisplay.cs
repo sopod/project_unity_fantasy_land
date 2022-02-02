@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class StageButtonDisplay : MonoBehaviour
 {
-    [SerializeField] StarDataPerLevel data;
+    StarDataPerLevel data;
 
     [SerializeField] GameMode modeForButtons;
     [SerializeField] StageButton[] buttons;
-    
+
+    void Awake()
+    {
+        data = SceneController.Instance.loaderStarData.data;
+    }
+
     
     public void SetButtons()
     {
