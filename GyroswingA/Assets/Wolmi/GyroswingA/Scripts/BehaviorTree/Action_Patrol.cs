@@ -15,13 +15,13 @@ public class Action_Patrol : Node
 
             if (ranNum == 0)
             {
-                bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.TurnLeft, this, bb.enemyTurnTime));
-                bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.Wait, this, bb.enemyWaitTime));
+                bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.TurnLeft, null, bb.enemyTurnTime));
+                bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.Wait, null, bb.enemyWaitTime));
             }
             else if (ranNum == 1)
             {
-                bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.TurnLeft, this, bb.enemyTurnTime));
-                bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.Wait, this, bb.enemyWaitTime));
+                bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.TurnLeft, null, bb.enemyTurnTime));
+                bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.Wait, null, bb.enemyWaitTime));
             }
 
             bb.character.GetComponent<Enemy>().AddEnemyMovement(new MovementData(EnemyMovement.MoveForward, this, bb.enemyMoveTime));
@@ -30,5 +30,4 @@ public class Action_Patrol : Node
         CheckFinishFlag();
         return state;
     }
-
 }

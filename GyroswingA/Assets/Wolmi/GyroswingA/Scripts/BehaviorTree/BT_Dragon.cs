@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+
+
 public class BT_Dragon : BehaviorTree
 {
     public override Node SetBT(Options options)
@@ -38,11 +40,9 @@ public class BT_Dragon : BehaviorTree
                         new Action_Wait(bb)
                     })
                 }
-            );
-        
+            );        
         StartMoving();
-
         return root;
-    }
-    
+    }    
 }
+

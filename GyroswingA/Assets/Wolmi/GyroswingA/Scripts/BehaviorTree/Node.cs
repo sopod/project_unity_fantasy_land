@@ -7,15 +7,16 @@ public enum BT_State
     Success,
     Failure
 }
+
 public class Node
 {
-    protected bool finishFlag;
-    protected bool addedToMovementQueue;
-
+    protected BlackBoard bb;
     protected BT_State state;
     protected Node parent;
     protected List<Node> children;
-    protected BlackBoard bb;
+
+    protected bool finishFlag;
+    protected bool addedToMovementQueue;
 
     public Node(BlackBoard bb)
     {

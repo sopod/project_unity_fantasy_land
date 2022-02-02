@@ -15,6 +15,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] GameObject[] spawnPositions;
 
     Queue<GameObject>[] queues;
+
     [HideInInspector] public List<GameObject> spawnedObjects;
     
     public void SetSpawner( Options options)

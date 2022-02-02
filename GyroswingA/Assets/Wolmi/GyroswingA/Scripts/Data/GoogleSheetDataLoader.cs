@@ -29,18 +29,18 @@ public class GoogleSheetDataLoader : MonoBehaviour
 
     IEnumerator GetGoogleSheetLevelValueData()
     {
-        UnityWebRequest web = UnityWebRequest.Get(LevelValuesURL);
+        UnityWebRequest www = UnityWebRequest.Get(LevelValuesURL);
 
-        yield return web.SendWebRequest();
+        yield return www.SendWebRequest();
 
-        if (web.result == UnityWebRequest.Result.ConnectionError ||
-            web.result == UnityWebRequest.Result.ProtocolError)
+        if (www.result == UnityWebRequest.Result.ConnectionError ||
+            www.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.Log("ERROR: " + web.error);
+            Debug.Log("ERROR: " + www.error);
         }
         else
         {
-            string json = web.downloadHandler.text;
+            string json = www.downloadHandler.text;
             json = AddWrapperJson(json);
 
             RawLevelValues[] output = FromJson<RawLevelValues>(json);

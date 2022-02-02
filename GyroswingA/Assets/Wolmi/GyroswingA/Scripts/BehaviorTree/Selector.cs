@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+
 public class Selector : Node
 {
     public Selector(BlackBoard bb) : base(bb) { }
@@ -9,7 +10,6 @@ public class Selector : Node
     {
         bool anyChildIsRunning = false;
 
-        // stop doing if it succeeded
         for (int i = 0; i < children.Count; i++)
         {
             switch (children[i].Execute())

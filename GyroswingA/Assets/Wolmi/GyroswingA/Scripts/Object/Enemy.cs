@@ -26,9 +26,12 @@ public class MovementData
     }
 }
 
-
 public class Enemy : LivingCreature, ISpawnableObject
 {
+    BT_Dragon bt;
+    Queue<MovementData> movementDatas;
+
+
     [SerializeField] EnemyType enemyType;
     public int Type 
     { 
@@ -36,9 +39,6 @@ public class Enemy : LivingCreature, ISpawnableObject
         set { enemyType = (EnemyType) value; }
     }
 
-    BT_Dragon bt;
-    
-    Queue<MovementData> movementDatas;
 
     StopWatch movementTimer;
 
