@@ -120,7 +120,7 @@ public class GoogleSheetDataLoader : MonoBehaviour
 
     public LevelValues GetLevelValueCur(GameMode mode, int level)
     {
-        int lev = level + (int)mode * 10;
+        int lev = (level - 1) + (int)mode * 10;
 
         return levelDatas[lev];
     }

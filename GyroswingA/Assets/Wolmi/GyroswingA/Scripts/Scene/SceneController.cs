@@ -20,7 +20,8 @@ public class SceneController : MonoBehaviour
 
     bool playLobbySceneMusic = true;
     public bool PlayLobbySceneMusic { get { return playLobbySceneMusic; } }
-
+    
+    bool isDataLoaded = false;
 
     public GoogleSheetDataLoader loaderLevelValues;
     public StarDataLoader loaderStarData;
@@ -48,9 +49,22 @@ public class SceneController : MonoBehaviour
     {
         UISoundPlayer.Instance.PlayBGM(SceneState.Lobby);
 
-        StartCoroutine(WaitUntilDataSet());
+        ChangeScene(SceneState.Lobby);
     }
-    
+
+    public void ChangeSceneToMainGame()
+    {
+        if (!isDataLoaded)
+        {
+            StartCoroutine(WaitUntilDataSet());
+        }
+        else
+        {
+            ChangeScene(SceneState.InGame);
+        }
+    }
+
+
     IEnumerator WaitUntilDataSet()
     {
         while (true)
@@ -60,7 +74,8 @@ public class SceneController : MonoBehaviour
             yield return null;
         }
 
-        ChangeScene(SceneState.Lobby);
+        isDataLoaded = true;
+        ChangeScene(SceneState.InGame);
     }
 
 

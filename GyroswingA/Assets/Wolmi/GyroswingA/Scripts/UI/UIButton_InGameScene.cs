@@ -31,11 +31,7 @@ public class UIButton_InGameScene : UIButton
         starData.levelNumberCur = stageNumber;
         starData.stageModeCur = modeForThisButton;
 
-        Invoke("StartInGame", 1.0f);
+        SceneController.Instance.ChangeSceneToMainGame();
     }
 
-    void StartInGame()
-    {
-        SceneController.Instance.ChangeScene(SceneState.InGame);
-    }
 }
