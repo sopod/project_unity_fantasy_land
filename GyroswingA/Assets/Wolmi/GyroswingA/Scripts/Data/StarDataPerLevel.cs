@@ -50,14 +50,12 @@ public class StarDataPerLevel
 
         unlockedLevelMax_Easy = 1;
         unlockedLevelMax_Hard = 0;
-
+        
         for (int i = 0; i < levelCountPerMode; i++)
         {
             easyMode[i] = 0;
             hardMode[i] = 0;
         }
-
-        //StarDataLoader.SaveStarDataFile(this);
     }
 
     public void UnlockAll()
@@ -73,8 +71,6 @@ public class StarDataPerLevel
             easyMode[i] = 3;
             hardMode[i] = 3;
         }
-        
-        //StarDataLoader.SaveStarDataFile(this);
     }
 
     public int GetStar(GameMode mode, int levelNum)

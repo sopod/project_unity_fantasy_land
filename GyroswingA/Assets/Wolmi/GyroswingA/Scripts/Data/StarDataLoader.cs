@@ -18,6 +18,8 @@ public class StarDataLoader : MonoBehaviour
 
     void Start()
     {
+        data = new StarDataPerLevel();
+        data.Clear();
         LoadStarDataFile();
     }
 
