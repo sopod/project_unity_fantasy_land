@@ -14,7 +14,6 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
     bool isInput;
     public bool IsInput { get { return isInput; } }
 
-
     void Awake()
     {
         joystick = GetComponent<RectTransform>();

@@ -17,7 +17,7 @@ public class StarCollector
                 else if (remainingMonsterCur <= 4) got = 1;
                 else got = 0;
             }
-                break;
+            break;
 
             case GameMode.Hard:
             {
@@ -26,11 +26,10 @@ public class StarCollector
                 else if (remainingMonsterCur <= 7) got = 1;
                 else got = 0;
             }
-                break;
+            break;
         }
 
         starCur = got;
-
         return got;
     }
 }

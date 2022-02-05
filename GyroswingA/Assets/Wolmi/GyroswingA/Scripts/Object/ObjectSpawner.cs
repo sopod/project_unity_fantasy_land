@@ -54,14 +54,14 @@ public abstract class ObjectSpawner : MonoBehaviour
 
         GameObject o = pools[idx].Dequeue();
 
-        SetObject(o, idx);
+        SetObjectBeforeSpawned(o, idx);
 
         o.SetActive(true);
 
         return o;
     }
 
-    protected abstract void SetObject(GameObject e, int idx);
+    protected abstract void SetObjectBeforeSpawned(GameObject e, int idx);
 
     public void ReturnObject(GameObject e, int idx)
     {

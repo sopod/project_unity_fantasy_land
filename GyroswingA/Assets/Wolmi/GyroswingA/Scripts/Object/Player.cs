@@ -42,10 +42,10 @@ public class Player : LivingCreature
     {
         key = new KeyController(joystick);
 
-        this.creatureType = CreatureType.Player;
-        this.moveSpeed = options.PlayerMoveSpeed;
-        this.rotSpeed = options.PlayerRotateSpeed;
-        this.jumpPower = options.PlayerJumpPower;
+        creatureType = CreatureType.Player;
+        moveSpeed = options.PlayerMoveSpeed;
+        rotSpeed = options.PlayerRotateSpeed;
+        jumpPower = options.PlayerJumpPower;
 
         SetCreature(stage, stageVal, options);
     }
@@ -63,42 +63,24 @@ public class Player : LivingCreature
 
     void JumpPlayer()
     {
-        if (key.IsJumpKeyPressed())
-        {
-            Jump();
-        }
+        if (key.IsJumpKeyPressed()) Jump();
     }
 
     void DashPlayer()
     {
-        if (key.IsDashKeyPressed())
-        {
-            Dash();
-        }
+        if (key.IsDashKeyPressed()) Dash();
     }
 
     void FirePlayer()
     {
-        if (key.IsFireKeyPressed())
-        {
-            Fire();
-        }
+        if (key.IsFireKeyPressed()) Fire();
     }
 
     public void MobileButtonAction(MoblieActionType type)
     {
-        if (type == MoblieActionType.Jump)
-        {
-            Jump();
-        }
-        else if (type == MoblieActionType.Dash)
-        {
-            Dash();
-        }
-        else if (type == MoblieActionType.Fire)
-        {
-            Fire();
-        }
+        if (type == MoblieActionType.Jump) Jump();
+        else if (type == MoblieActionType.Dash) Dash();
+        else if (type == MoblieActionType.Fire) Fire();
     }
 
     protected override void NotifyDead()
@@ -112,7 +94,6 @@ public class Player : LivingCreature
         if (IsPaused) return;
 
         int layer = (1 << other.gameObject.layer);
-
         if (layer != options.ItemLayer.value) return;
 
         soundPlayer.PlaySound(CreatureEffectSoundType.ItemGet, IsPlayer);
@@ -127,19 +108,14 @@ public class Player : LivingCreature
         if (IsPaused) return;
 
         int layer = (1 << collision.gameObject.layer);
-
         if (layer != options.EnemyLayer.value) return;
 
         Enemy e = collision.gameObject.GetComponent<Enemy>();
+        if (e == null || !e.IsAttacking || isDamaged) return;
 
-        if (e == null) return;
-
-        if (e.IsAttacking && !isDamaged)
-        {
-            GameObject p = options.ProjectilesSpawner.SpawnDashHitProjectile(collision);
-            p.GetComponent<Projectile>().SetStart(options);
-            OnDamagedAndMoveBack(false, e.CenterPosition, e.CenterForward, (EnemyType)e.Type);
-        }
+        GameObject p = options.ProjectilesSpawner.SpawnDashHitProjectile(collision);
+        p.GetComponent<Projectile>().SetStart(options);
+        OnDamagedAndMoveBack(false, e.CenterPosition, e.CenterForward, (EnemyType)e.Type);
     }
 
     // -------------------------------------------------- layer collision

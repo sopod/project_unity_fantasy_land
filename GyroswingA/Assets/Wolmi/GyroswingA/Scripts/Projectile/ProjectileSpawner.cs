@@ -25,7 +25,7 @@ public class ProjectileSpawner : ObjectSpawner
         ReturnAllObjects();
     }
     
-    protected override void SetObject(GameObject e, int idx)
+    protected override void SetObjectBeforeSpawned(GameObject e, int idx)
     {
         e.transform.SetParent(null);
         spawnedProjectiles.Add(e.GetComponent<Projectile>());

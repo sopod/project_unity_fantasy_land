@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +21,7 @@ public class ItemSpawner : ObjectSpawner
         InitSpawner();
     }
 
-    protected override void SetObject(GameObject o, int idx)
+    protected override void SetObjectBeforeSpawned(GameObject o, int idx)
     {
         o.transform.SetParent(stage.gameObject.transform);
 

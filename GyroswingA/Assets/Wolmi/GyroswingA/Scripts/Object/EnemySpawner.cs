@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +20,7 @@ public class EnemySpawner : ObjectSpawner
         InitSpawner();
     }
 
-    protected override void SetObject(GameObject o, int idx)
+    protected override void SetObjectBeforeSpawned(GameObject o, int idx)
     {
         o.transform.SetParent(null);
 

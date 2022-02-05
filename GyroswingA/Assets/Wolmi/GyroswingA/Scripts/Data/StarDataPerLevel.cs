@@ -29,19 +29,14 @@ public class StarDataPerLevel
     public int levelNumberCur = 1;
     public GameMode stageModeCur = GameMode.Easy;
 
-
-
     [SerializeField] int unlockedLevelMax_Easy = 1;
     public int UnlockedLevelMax_Easy { get { return unlockedLevelMax_Easy; } }
-
 
     [SerializeField] int unlockedLevelMax_Hard = 0;
     public int UnlockedLevelMax_Hard { get { return unlockedLevelMax_Hard; } }
 
-
     [SerializeField] int[] easyMode = new int[levelCountPerMode];
     [SerializeField] int[] hardMode = new int[levelCountPerMode];
-    
     
     public void Clear()
     {
@@ -85,45 +80,21 @@ public class StarDataPerLevel
 
     public void SetStar(GameMode mode, int levelNum, int starCount)
     {
-        switch (mode)
-        {
-            case GameMode.Easy:
-            {
-                if (starCount > easyMode[levelNum - 1])
-                {
-                    easyMode[levelNum - 1] = starCount;
-                }
-            }
-                break;
-
-            case GameMode.Hard:
-            {
-                if (starCount > hardMode[levelNum - 1])
-                {
-                    hardMode[levelNum - 1] = starCount;
-                }
-            }
-                break;
-        }
+        if (mode == GameMode.Easy && starCount > easyMode[levelNum - 1])
+            easyMode[levelNum - 1] = starCount;
+        else if (mode == GameMode.Hard && starCount > hardMode[levelNum - 1])
+            hardMode[levelNum - 1] = starCount;
     }
 
     public void SetUnlocked(GameMode mode, int levelNum)
     {
-        if (mode == GameMode.Easy)
-        {
-            if (levelNum <= unlockedLevelMax_Easy) return;
+        if (mode == GameMode.Easy && levelNum > unlockedLevelMax_Easy)
             unlockedLevelMax_Easy = levelNum;
-        }
-        else
-        {
-            if (levelNum <= unlockedLevelMax_Hard) return;
+        else if (mode == GameMode.Hard && levelNum > unlockedLevelMax_Hard)
             unlockedLevelMax_Hard = levelNum;
-        }
 
         if (unlockedLevelMax_Hard == 0 && IsHardModeOpen)
-        {
             unlockedLevelMax_Hard = 1;
-        }
     }
 }
 

@@ -31,9 +31,7 @@ public class StarDataLoader : MonoBehaviour
     public void SaveStarDataFile()
     {
         if (!IsFilePathThere())
-        {
             Directory.CreateDirectory(savePath);
-        }
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(saveName);
@@ -46,9 +44,7 @@ public class StarDataLoader : MonoBehaviour
     public void LoadStarDataFile()
     {
         if (!Directory.Exists(savePath))
-        {
             Directory.CreateDirectory(savePath);
-        }
 
         BinaryFormatter bf = new BinaryFormatter();
 

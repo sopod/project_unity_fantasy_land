@@ -7,8 +7,6 @@ public enum CreatureType
     Max
 }
 
-
-
 public abstract class LivingCreature : MovingThing
 {
     protected Options options;
@@ -43,10 +41,8 @@ public abstract class LivingCreature : MovingThing
     protected float _spinSpeedUp;
 
     public Vector3 CenterForward { get => centerOfCreature.transform.forward; }
-
     public Vector3 CenterPosition { get => centerOfCreature.transform.position; }
     public bool IsAttacking { get => state.IsAttacking; }
-
 
 
     protected void SetCreature(GameObject stage, StageMovementValue stageVal, Options options)

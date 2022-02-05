@@ -116,35 +116,33 @@ public class Enemy : LivingCreature, ISpawnableObject
 
     void DoMovement()
     {
-        if (checkEnemyToMove && !movementsAllDone)
+        if (!checkEnemyToMove || movementsAllDone) return;
+
+        switch (movementDatas.Peek().movement)
         {
-            switch (movementDatas.Peek().movement)
-            {
-                case EnemyMovement.Wait: MakeEnemyDoIdleAnimation(); break;
-                case EnemyMovement.MoveForward: Move(1.0f); break;
-                case EnemyMovement.MoveBackward: Move(-1.0f); break;
-                case EnemyMovement.TurnRight: Turn(1.0f); break;
-                case EnemyMovement.TurnLeft: Turn(-1.0f); break;
-                case EnemyMovement.JumpForward: if (isJumping) Move(1.0f); break;
-                default: break;
-            }
+            case EnemyMovement.Wait: MakeEnemyDoIdleAnimation(); break;
+            case EnemyMovement.MoveForward: Move(1.0f); break;
+            case EnemyMovement.MoveBackward: Move(-1.0f); break;
+            case EnemyMovement.TurnRight: Turn(1.0f); break;
+            case EnemyMovement.TurnLeft: Turn(-1.0f); break;
+            case EnemyMovement.JumpForward: if (isJumping) Move(1.0f); break;
+            default: break;
         }
     }
 
     void CheckMovementIsFinished()
     {
-        if (checkEnemyToMove && movementTimer.IsFinished)
-        {
-            if (movementDatas.Peek().btNode != null)
-                movementDatas.Peek().btNode.SetFinishedFlag(true);
+        if (!checkEnemyToMove || !movementTimer.IsFinished) return;
 
-            movementDatas.Dequeue();
-            movementTimer.FinishTimer();
-            checkEnemyToMove = false;
+        if (movementDatas.Peek().btNode != null)
+            movementDatas.Peek().btNode.SetFinishedFlag(true);
 
-            if (!movementsAllDone)
-                StartMovement();
-        }
+        movementDatas.Dequeue();
+        movementTimer.FinishTimer();
+        checkEnemyToMove = false;
+
+        if (!movementsAllDone)
+            StartMovement();
     }
 
     void DeleteAllMovementsAndStop()
@@ -164,11 +162,10 @@ public class Enemy : LivingCreature, ISpawnableObject
 
     void CheckKnockDownIsFinished()
     {
-        if (isKnockDown && movementTimer.IsFinished)
-        {
-            movementTimer.FinishTimer();
-            isKnockDown = false;
-        }
+        if (!isKnockDown || !movementTimer.IsFinished) return;
+        
+        movementTimer.FinishTimer();
+        isKnockDown = false;
     }
 
     public void AttackPlayer()
@@ -186,7 +183,6 @@ public class Enemy : LivingCreature, ISpawnableObject
     {
         GameCenter.Instance.OnMonsterKilled();
     }
-
 
     // -------------------------------------------------- damaged by player fire
     void OnTriggerEnter(Collider other)
@@ -211,13 +207,11 @@ public class Enemy : LivingCreature, ISpawnableObject
         if (layer != options.PlayerLayer.value) return;
 
         LivingCreature l = collision.gameObject.GetComponent<LivingCreature>();
+        if (!l.IsAttacking || isDamaged) return;
 
-        if (l.IsAttacking && !isDamaged)
-        {
-            GameObject p = options.ProjectilesSpawner.SpawnDashHitProjectile(collision);
-            p.GetComponent<Projectile>().SetStart(options);
-            OnDamagedAndMoveBack(false, l.CenterPosition, l.CenterForward, EnemyType.Max);
-        }
+        GameObject p = options.ProjectilesSpawner.SpawnDashHitProjectile(collision);
+        p.GetComponent<Projectile>().SetStart(options);
+        OnDamagedAndMoveBack(false, l.CenterPosition, l.CenterForward, EnemyType.Max);
     }
 
     // -------------------------------------------------- layer collision
