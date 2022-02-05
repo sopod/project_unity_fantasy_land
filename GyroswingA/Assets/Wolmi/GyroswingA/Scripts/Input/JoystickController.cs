@@ -7,7 +7,6 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
     const float screenResolusionX = 1920f;
     const float screenResolusionY = 1080f;
 
-
     RectTransform joystick;
     [SerializeField] RectTransform lever;
 
@@ -57,18 +56,12 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public float GetXDir()
     {
-        if (isInput)
-            return inputDir.x;
-
-        return 0.0f;
+        return (isInput) ? inputDir.x : 0.0f;
     }
 
     public float GetYDir()
     {
-        if (isInput)
-            return inputDir.y;
-
-        return 0.0f;
+        return (isInput) ? inputDir.y : 0.0f;
     }
     
 

@@ -11,11 +11,9 @@ public class GoogleSheetDataLoader : MonoBehaviour
     LevelValues[] levelDatas;
 
     bool levelValuesGetDone = false;
-
     public bool IsDataSet { get { return levelValuesGetDone; } }
 
-    string LevelValuesURL = "https://script.google.com/macros/s/AKfycbx0BbUOI8G5JZFt3ZihJf_HF1018MlMZqWgGJj0kbnoJ8Ml1joeqsUlJjq2znLtANkUHQ/exec";
-
+    [SerializeField] string LevelValuesURL = "https://script.google.com/macros/s/AKfycbx0BbUOI8G5JZFt3ZihJf_HF1018MlMZqWgGJj0kbnoJ8Ml1joeqsUlJjq2znLtANkUHQ/exec";
 
     void Awake()
     {

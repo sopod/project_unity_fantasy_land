@@ -18,7 +18,6 @@ public class StageSelectionUIDisplay : MonoBehaviour
     
     void Start()
     {
-        // set
         SetStageButtons();
         SetEasyModeUI();
     }

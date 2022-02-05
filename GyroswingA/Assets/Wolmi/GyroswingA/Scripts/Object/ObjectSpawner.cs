@@ -1,36 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectSpawner : MonoBehaviour
+public abstract class ObjectSpawner : MonoBehaviour
 {
-    Options options;
+    protected int spawnerPrepareAmount = 10;
 
-    [SerializeField] GameObject stage;
-    bool[] isPositionTaken;
-    int[] spawnedObjectCount;
+    protected bool[] isPositionTaken;
+    protected int[] spawnedObjectCount;
 
-    int totalSpawnedObjectCount { get { return spawnedObjects.Count; } }
+    [SerializeField] protected ObjectDatabase database;
+    [SerializeField] protected GameObject[] spawnPositions;
 
-    [SerializeField] ObjectDatabase database;
-    [SerializeField] GameObject[] spawnPositions;
+    protected Queue<GameObject>[] pools;
 
-    Queue<GameObject>[] queues;
-
-    [HideInInspector] public List<GameObject> spawnedObjects;
-    
-    public void SetSpawner( Options options)
-    {
-        this.options = options;
-
-        spawnedObjects = new List<GameObject>();
-        isPositionTaken = new bool[spawnPositions.Length];
-        spawnedObjectCount = new int[(int)EnemyType.Max];
-
-        PrepareObjects(options.SpawnerPrepareAmount);
-        InitSpawner();
-    }
-
-    public void InitSpawner()
+    public virtual void InitSpawner()
     {
         for (int i = 0; i < spawnPositions.Length; i++)
         {
@@ -40,80 +23,58 @@ public class ObjectSpawner : MonoBehaviour
         ReturnAllObjects();
     }
 
-    void PrepareObjects(int amount)
+    protected void PrepareObjects(int typeMax, int amount)
     {
-        queues = new Queue<GameObject>[(int)EnemyType.Max];
-
-        for (int i = 0; i < (int)EnemyType.Max; i++)
+        for (int i = 0; i < typeMax; i++)
         {
-            queues[i] = new Queue<GameObject>();
+            pools[i] = new Queue<GameObject>();
             CreateObject(i, amount);
         }
     }
 
-    void CreateObject(int idx, int amount)
+    protected void CreateObject(int idx, int amount)
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject e = Instantiate(database.GetPrefab(idx), Vector3.zero, database.GetPrefab(idx).transform.rotation, this.transform);
+            GameObject o = Instantiate(database.GetPrefab(idx), Vector3.zero, database.GetPrefab(idx).transform.rotation, transform);
             
-            ISpawnableObject obj = e.GetComponent<ISpawnableObject>();
-            obj.Type = idx;
+            o.GetComponent<ISpawnableObject>().Type = idx;
 
-            e.SetActive(false);
-            queues[idx].Enqueue(e);
+            o.SetActive(false);
+            pools[idx].Enqueue(o);
         }
     }
 
-    GameObject TakeObject(int idx)
+    protected GameObject TakeObject(int idx)
     {
-        if (queues[idx].Count == 0)
+        if (pools[idx].Count == 0)
         {
             CreateObject(idx, 1);
         }
 
-        GameObject e = queues[idx].Dequeue();
+        GameObject o = pools[idx].Dequeue();
 
-        if (e.GetComponent<Enemy>() != null)
-            e.transform.SetParent(null);
-        else
-            e.transform.SetParent(stage.gameObject.transform);
+        SetObject(o, idx);
 
-        SetObjectRandomPosition(e, idx);
+        o.SetActive(true);
 
-        spawnedObjects.Add(e);
-        spawnedObjectCount[idx]++;
-
-        e.SetActive(true);
-
-        return e;
+        return o;
     }
 
-    void ReturnObject(GameObject e)
-    {
-        ISpawnableObject obj = e.GetComponent<ISpawnableObject>();
-        int idx = obj.Type;
+    protected abstract void SetObject(GameObject e, int idx);
 
+    public void ReturnObject(GameObject e, int idx)
+    {
         e.SetActive(false);
         e.transform.SetParent(this.transform);
-        queues[idx].Enqueue(e);
+        pools[idx].Enqueue(e);
         
         spawnedObjectCount[idx]--;
     }
 
-    public void ReturnAllObjects()
-    {
-        for (int i = spawnedObjects.Count - 1; i >= 0; i--)
-        {
-            ReturnObject(spawnedObjects[i]);
-            spawnedObjects.RemoveAt(i);
-        }
+    public abstract void ReturnAllObjects();
 
-        for (int i = 0; i < isPositionTaken.Length; i++)
-            isPositionTaken[i] = false;
-    }
-
-    void SetObjectRandomPosition(GameObject e, int idx)
+    protected void SetObjectRandomPosition(GameObject e, int idx)
     {
         int i = Random.Range(0, spawnPositions.Length);
 
@@ -130,35 +91,9 @@ public class ObjectSpawner : MonoBehaviour
         
         GameObject obj = spawnPositions[i];
 
-        e.transform.position = spawnPositions[i].transform.position + new Vector3(0, database.GetPrefab(idx).transform.position.y, 0); ;
+        e.transform.position = spawnPositions[i].transform.position + new Vector3(0, database.GetPrefab(idx).transform.position.y, 0);
 
         isPositionTaken[i] = true;
     }
     
-    public GameObject SpawnEnemyObject(EnemyType[] types, int maxAmount)
-    {
-        if (totalSpawnedObjectCount >= maxAmount)
-        {
-            Debug.LogWarning("Already spawned all");
-            return null;
-        }
-
-        // at least one object have to gen
-        for (int i = 0; i < types.Length; i++)
-        {
-            if (spawnedObjectCount[(int)types[i]] == 0)
-            {
-                return TakeObject((int)types[i]);
-            }
-        }
-
-        int idx = Random.Range(0, types.Length);
-
-        return TakeObject((int)types[idx]);
-    }
-
-    public GameObject SpawnItemObject(ItemType type)
-    {
-        return TakeObject((int)type);
-    }
 }

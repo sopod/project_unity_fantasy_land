@@ -10,7 +10,7 @@ public class Action_Attack : Node
 
         bb.character.transform.LookAt(playerPos); // look at player
 
-        bb.character.GetComponent<Enemy>().AttackPlayer(); // attack player
+        bb.character.AttackPlayer(); // attack player
 
         state = BT_State.Success;
 

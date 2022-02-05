@@ -10,9 +10,9 @@ public class State
 {
     CreatureState state;
 
-    public bool IsIdle { get { return state == CreatureState.Idle; } }
-    public bool IsAttacking { get { return state == CreatureState.Attacking; } }
-    public bool IsDead { get { return state == CreatureState.Dead; } }
+    public bool IsIdle { get => (state == CreatureState.Idle); }
+    public bool IsAttacking { get => (state == CreatureState.Attacking); }
+    public bool IsDead { get => (state == CreatureState.Dead); }
 
     public State()
     {

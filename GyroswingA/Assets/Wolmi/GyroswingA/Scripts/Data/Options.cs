@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -150,19 +151,10 @@ public class Options : MonoBehaviour
         switch (type)
         {
             case EnemyType.Juck:
-            case EnemyType.Swook:
-            {
-                return PlayerMoveSpeed * 1.3f;
-            }
-            case EnemyType.Gum:
-            {
-                return PlayerMoveSpeed * 1.2f;
-            }
-            default:
-            {
-                return PlayerMoveSpeed;
-            }
+            case EnemyType.Swook: return PlayerMoveSpeed * 1.3f;
+            case EnemyType.Gum: return PlayerMoveSpeed * 1.2f;
         }
+        return PlayerMoveSpeed;
     }
 
     public float GetDashPowerToDamaged(EnemyType type)
@@ -170,62 +162,29 @@ public class Options : MonoBehaviour
         switch (type)
         {
             case EnemyType.Juck:
-            case EnemyType.Swook:
-            {
-                return DashPowerToDamaged * 1.2f;
-            }
-            default:
-            {
-                return DashPowerToDamaged;
-            }
+            case EnemyType.Swook: return DashPowerToDamaged * 1.2f;
         }
+        return DashPowerToDamaged;
     }
 
     public float GetItemSecondsToAdd(ItemType type)
     {
         switch (type)
         {
-            case ItemType.HarippoBlue:
-            {
-                return 5.0f;
-            }
-            case ItemType.HarippoGreen:
-            {
-                return 7.0f;
-            }
-            case ItemType.HarippoYellow:
-            {
-                return 10.0f;
-            }
-            case ItemType.HarippoRed:
-            {
-                return 20.0f;
-            }
-            default:
-            {
-                return 0.0f;
-            }
+            case ItemType.HarippoBlue:return 5.0f;
+            case ItemType.HarippoGreen: return 7.0f;
+            case ItemType.HarippoYellow: return 10.0f;
+            case ItemType.HarippoRed: return 20.0f;
         }
+        return 0.0f;
     }
 
     public void OnPlayerSpeedItemUsed(ItemType type)
     {
         switch (type)
         {
-            case ItemType.Coke:
-            {
-                PlayerMoveSpeed *= 1.1f;
-            }
-                break;
-            case ItemType.ChocoTarte:
-            {
-                PlayerMoveSpeed *= 1.3f;
-            }
-                break;
-            default:
-            {
-            }
-                break;
+            case ItemType.Coke: PlayerMoveSpeed *= 1.1f; break;
+            case ItemType.ChocoTarte:PlayerMoveSpeed *= 1.3f; break;
         }
     }
 }

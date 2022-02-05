@@ -104051,7 +104051,7 @@ GameObject:
   - component: {fileID: 4761959376320937248}
   - component: {fileID: 4761959376320937279}
   m_Layer: 0
-  m_Name: Gyroswing Machine
+  m_Name: GyroswingMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

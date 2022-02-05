@@ -12,7 +12,7 @@ public class Action_CheckPlayerAround : Node
         { 
             if ((1 << hitColliders[i].gameObject.layer) == bb.options.PlayerLayer)
             {
-                state =  BT_State.Success;
+                state = BT_State.Success;
                 return state;
             }
         }

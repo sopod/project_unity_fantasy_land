@@ -11,7 +11,6 @@ public class StageButtonDisplay : MonoBehaviour
     {
         data = SceneController.Instance.loaderStarData.data;
     }
-
     
     public void SetButtons()
     {

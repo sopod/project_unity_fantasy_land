@@ -7,7 +7,7 @@ public class BT_Dragon : BehaviorTree
     public override Node SetBT(Options options)
     {
         this.options = options;
-        bb = new BlackBoard(this.gameObject, options);
+        bb = new BlackBoard(this.gameObject.GetComponent<Enemy>(), options);
 
         root = 
             new Selector(bb, new List<Node>
@@ -40,7 +40,8 @@ public class BT_Dragon : BehaviorTree
                         new Action_Wait(bb)
                     })
                 }
-            );        
+            );     
+        
         StartMoving();
         return root;
     }    

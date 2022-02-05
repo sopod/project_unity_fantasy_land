@@ -33,29 +33,27 @@ public class Machine : MovingThing
     
     void FixedUpdate()
     {
-        if (!IsPaused())
+        if (IsPaused) return;
+
+        SetSwingAngleCur();
+
+        if (options.IsMachineSwinging)
         {
-            SetSwingAngleCur();
-            
-            if (options.IsMachineSwinging)
-            {
-                SwingBar();
-                SwingStage();
-            }
-
-            if (options.IsMachineTurning)
-                TurnStage();
-
-            if (options.IsMachineSpining)
-                SpinStage();
-
-            if (options.IsMachineSwinging)
-                ChangeDirection();
-            
-            SetStageValues();
-            GameCenter.Instance.MoveCreaturesAlongStage();
-
+            SwingBar();
+            SwingStage();
         }
+
+        if (options.IsMachineTurning)
+            TurnStage();
+
+        if (options.IsMachineSpining)
+            SpinStage();
+
+        if (options.IsMachineSwinging)
+            ChangeDirection();
+
+        SetStageValues();
+        GameCenter.Instance.MoveCreaturesAlongStage();
     }
 
     public void SetMachine(Options options, StageMovementValue stageVal)

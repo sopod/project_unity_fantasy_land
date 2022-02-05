@@ -4,6 +4,7 @@ public class UIButton_Pause : UIButton
 {
     [SerializeField] GameCenter _center;
     [SerializeField] InGameUIDisplay display;
+
     void Start()
     {
         UIEventMaker.MakeButtonEvent(this);

@@ -5,11 +5,10 @@ public class StopWatch
     bool timerStarted = false;
     float startTime = 0.0f;
     float limitTime = 0.0f;
-
     float stopTime = 0.0f;
 
-    public bool IsFinished { get { return timerStarted && GetRemainingTime() <= 0.1f; } }
-    public bool IsRunning { get { return timerStarted; } }
+    public bool IsFinished { get => (timerStarted && GetRemainingTime() <= 0.1f); }
+    public bool IsRunning { get => timerStarted; }
     
     public void StartTimer(float limitTime)
     {
@@ -55,5 +54,4 @@ public class StopWatch
     {
         return limitTime - GetCurrentTime();
     }
-
 }

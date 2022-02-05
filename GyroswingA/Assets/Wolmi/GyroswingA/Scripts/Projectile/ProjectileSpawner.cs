@@ -2,109 +2,44 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ProjectileSpawner : MonoBehaviour
+public class ProjectileSpawner : ObjectSpawner
 {
-    [SerializeField] Options options;
-
-    int[] spawnedObjectCount;
-
-    [SerializeField] ObjectDatabase database;
-
-    Queue<GameObject>[] queues;
-    [HideInInspector] public List<GameObject>[] spawnedObjects;
-
+    [HideInInspector] public List<Projectile> spawnedProjectiles = new List<Projectile>();
 
     void Start()
     {
         SetSpawner();
     }
 
-    public void SetSpawner()
+    void SetSpawner()
     {
-        spawnedObjects = new List<GameObject>[(int) ProjectileType.Max];
-
         spawnedObjectCount = new int[(int)ProjectileType.Max];
-
-        for (int i = 0; i < spawnedObjects.Length; i++)
-        {
-            spawnedObjects[i] = new List<GameObject>();
-        }
-
-        PrepareObjects(options.SpawnerPrepareAmount);
+        pools = new Queue<GameObject>[(int)ProjectileType.Max];
+        
+        PrepareObjects((int)ProjectileType.Max, spawnerPrepareAmount);
         InitSpawner();
     }
 
-    public void InitSpawner()
+    public override void InitSpawner()
     {
-        ReturnAllObjects((int)ProjectileType.FireShoot);
-        ReturnAllObjects((int)ProjectileType.DashHit);
-    }
-
-    void PrepareObjects(int amount)
-    {
-        queues = new Queue<GameObject>[(int)ProjectileType.Max];
-
-        for (int i = 0; i < (int)ProjectileType.Max; i++)
-        {
-            queues[i] = new Queue<GameObject>();
-            CreateObject(i, amount);
-        }
-    }
-
-    void CreateObject(int idx, int amount)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            GameObject e = Instantiate(database.GetPrefab(idx), Vector3.zero, database.GetPrefab(idx).transform.rotation, this.transform);
-
-            ISpawnableObject obj = e.GetComponent<ISpawnableObject>();
-            obj.Type = idx;
-
-            e.SetActive(false);
-            queues[idx].Enqueue(e);
-        }
-    }
-
-    GameObject TakeObject(int idx)
-    {
-        if (queues[idx].Count == 0)
-        {
-            CreateObject(idx, 1);
-        }
-
-        GameObject e = queues[idx].Dequeue();
-
-        e.transform.SetParent(null);
-        
-        spawnedObjects[idx].Add(e);
-        spawnedObjectCount[idx]++;
-
-        e.SetActive(true);
-
-        return e;
-    }
-
-    public void ReturnObject(GameObject e)
-    {
-        ISpawnableObject obj = e.GetComponent<ISpawnableObject>();
-        int idx = obj.Type;
-
-        e.SetActive(false);
-        e.transform.SetParent(this.transform);
-        queues[idx].Enqueue(e);
-
-        spawnedObjectCount[idx]--;
-    }
-
-    public void ReturnAllObjects(int idx)
-    {
-        for (int i = spawnedObjects[idx].Count - 1; i >= 0; i--)
-        {
-            ReturnObject(spawnedObjects[idx][i]);
-            spawnedObjects[idx].RemoveAt(i);
-        }
+        ReturnAllObjects();
     }
     
+    protected override void SetObject(GameObject e, int idx)
+    {
+        e.transform.SetParent(null);
+        spawnedProjectiles.Add(e.GetComponent<Projectile>());
+        spawnedObjectCount[idx]++;
+    }
+        
+    public override void ReturnAllObjects()
+    {
+        for (int i = spawnedProjectiles.Count - 1; i >= 0; i--)
+        {
+            ReturnObject(spawnedProjectiles[i].gameObject, spawnedProjectiles[i].Type);
+            spawnedProjectiles.RemoveAt(i);
+        }
+    }
     
     public GameObject SpawnFireProjectile(Vector3 pos, Vector3 forward)
     {

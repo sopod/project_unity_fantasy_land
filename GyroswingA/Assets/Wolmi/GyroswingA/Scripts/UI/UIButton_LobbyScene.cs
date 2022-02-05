@@ -6,6 +6,7 @@ public class UIButton_LobbyScene : UIButton
     {
         UIEventMaker.MakeButtonEvent(this);
     }
+
     public override void OnClicked()
     {
         UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);

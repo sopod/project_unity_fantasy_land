@@ -13,17 +13,16 @@ public class Projectile : MonoBehaviour, ISpawnableObject
 
     public int Type
     {
-        get { return (int)projectileType; }
+        get => (int)projectileType;
         set { projectileType = (ProjectileType)value; }
     }
 
 
     void Update()
     {
-        if (isAlive && isMoving)
-        {
-            MoveForward();
-        }
+        if (!isAlive || !isMoving) return;
+
+        MoveForward();
     }
 
     void MoveForward()
@@ -48,7 +47,7 @@ public class Projectile : MonoBehaviour, ISpawnableObject
         isDisabled = true;
         isAlive = false;
 
-        options.ProjectilesSpawner.ReturnObject(this.gameObject);
+        options.ProjectilesSpawner.ReturnObject(this.gameObject, Type);
     }
     
 

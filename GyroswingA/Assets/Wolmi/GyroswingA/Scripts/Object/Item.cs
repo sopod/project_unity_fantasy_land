@@ -5,7 +5,7 @@ public class Item : MovingThing, ISpawnableObject
     ItemType itemType;
     public int Type
     {
-        get { return (int)itemType; }
+        get => (int)itemType;
         set { itemType = (ItemType)value; }
     }
 
@@ -18,18 +18,16 @@ public class Item : MovingThing, ISpawnableObject
 
     void OnTriggerEnter(Collider other)
     {
-        if (IsPaused()) return;
+        if (IsPaused) return;
 
         int layer = (1 << other.gameObject.layer);
+        if (layer != options.PlayerLayer.value) return;
 
-        if (layer == options.PlayerLayer.value)
-        {
-            options.OnPlayerSpeedItemUsed(itemType);
+        options.OnPlayerSpeedItemUsed(itemType);
 
-            float plusTime = options.GetItemSecondsToAdd(itemType);
-            GameCenter.Instance.OnTimeItemUsed(plusTime);
+        float plusTime = options.GetItemSecondsToAdd(itemType);
+        GameCenter.Instance.OnTimeItemUsed(plusTime);
 
-            this.gameObject.SetActive(false);
-        }
+        gameObject.SetActive(false);
     }
 }

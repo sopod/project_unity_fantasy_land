@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BlackBoard
 {
-    public GameObject character;
+    public Enemy character;
     public Options options;
 
     // detection range
@@ -18,10 +18,10 @@ public class BlackBoard
     public float enemyLongTurnTime { get { return 0.5f; } }
 
 
-    public BlackBoard(GameObject monster, Options options)
+    public BlackBoard(Enemy e, Options options)
     {
         this.options = options;
-        character = monster;
+        character = e;
     }
     
 

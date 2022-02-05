@@ -10,8 +10,9 @@ public abstract class BehaviorTree : MovingThing
 
     public void UpdateBT()
     {
-        if (root != null && !IsStopped() && !IsPaused())
-            root.Execute();
+        if (root == null || IsStopped || IsPaused) return;
+
+        root.Execute();
     }    
 }
 

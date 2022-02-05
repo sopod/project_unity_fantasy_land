@@ -20,6 +20,4 @@ public class Action_CheckPlayerToAttack : Node
         state = BT_State.Failure;
         return state;
     }
-
-
 }

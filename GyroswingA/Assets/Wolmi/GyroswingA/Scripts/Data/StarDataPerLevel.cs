@@ -77,13 +77,10 @@ public class StarDataPerLevel
     {
         switch (mode)
         {
-            case GameMode.Easy:
-                return easyMode[levelNum - 1];
-            case GameMode.Hard:
-                return hardMode[levelNum - 1];
-            default:
-                return -1;
+            case GameMode.Easy: return easyMode[levelNum - 1];
+            case GameMode.Hard: return hardMode[levelNum - 1];
         }
+        return -1;
     }
 
     public void SetStar(GameMode mode, int levelNum, int starCount)
@@ -105,11 +102,6 @@ public class StarDataPerLevel
                 {
                     hardMode[levelNum - 1] = starCount;
                 }
-            }
-                break;
-
-            default:
-            {
             }
                 break;
         }

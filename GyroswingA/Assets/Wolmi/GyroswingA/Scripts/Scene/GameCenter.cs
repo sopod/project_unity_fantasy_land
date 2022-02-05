@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -21,8 +20,8 @@ public class GameCenter : MonoBehaviour
     [SerializeField] Machine machine;
     [SerializeField] Player player;
     [SerializeField] InGameUIDisplay inGameUi;
-    [SerializeField] ObjectSpawner enemySpawner;
-    [SerializeField] ObjectSpawner itemSpawner;
+    [SerializeField] EnemySpawner enemySpawner;
+    [SerializeField] ItemSpawner itemSpawner;
     [SerializeField] GameObject stage;
     [SerializeField] UISoundPlayer uiSoundPlayer;
 
@@ -34,7 +33,6 @@ public class GameCenter : MonoBehaviour
 
 
     [Header("------- Game Data")]
-    //[SerializeField] StarDataPerLevel levelDataPerLevel;
     public StarDataLoader loaderStarData;
     [SerializeField] Options options;
     StageMovementValue stageVal;
@@ -42,19 +40,14 @@ public class GameCenter : MonoBehaviour
     StarCollector starCollector;
     StopWatch gameTimer;
 
-
     bool _isSceneSet;
 
     int _monsterMaxCur = 0;
     int _remainingMonsterCur = 0;
 
-
-    public bool IsMachineStopped { get { return machine.IsStopped(); } }
-    public Vector3 PlayerPosition { get { return player.CenterPosition; } }
-
+    public Vector3 PlayerPosition { get => player.CenterPosition; }
 
     static GameCenter instance;
-
     public static GameCenter Instance
     {
         get
@@ -63,7 +56,6 @@ public class GameCenter : MonoBehaviour
             {
                 instance = FindObjectOfType<GameCenter>();
             }
-
             return instance;
         }
     }
@@ -82,27 +74,26 @@ public class GameCenter : MonoBehaviour
 
     void WaitForTheFirstUpdate()
     {
-        if (!_isSceneSet)
-        {
-            inGameUi.gameObject.SetActive(false);
+        if (_isSceneSet) return;
 
-            _isSceneSet = true;
+        inGameUi.gameObject.SetActive(false);
 
-            _levelCur = loaderStarData.data.levelNumberCur;
-            _gameModeCur = loaderStarData.data.stageModeCur;
-            options.ChangeLevel(_gameModeCur, _levelCur);
+        _isSceneSet = true;
 
-            options.ResetOptionValuesByCode();
+        _levelCur = loaderStarData.data.levelNumberCur;
+        _gameModeCur = loaderStarData.data.stageModeCur;
+        options.ChangeLevel(_gameModeCur, _levelCur);
 
-            SetInGame();
+        options.ResetOptionValuesByCode();
 
-            PrepareInGame();
+        SetInGame();
 
-            SetStopMoving();
-            machine.StartMoving();
+        PrepareInGame();
 
-            Invoke("StartInGame", options.WaitingTimeForCinemachine);
-        }
+        SetStopMoving();
+        machine.StartMoving();
+
+        Invoke("StartInGame", options.WaitingTimeForCinemachine);
     }
 
     void SetInGame()
@@ -113,9 +104,6 @@ public class GameCenter : MonoBehaviour
 
         machine.SetMachine(options, stageVal);
         player.SetPlayer(stage, stageVal, options);
-
-        enemySpawner.SetSpawner(options);
-        itemSpawner.SetSpawner(options);
     }
 
     void Update()
@@ -123,9 +111,7 @@ public class GameCenter : MonoBehaviour
         WaitForTheFirstUpdate();
 
         if (_isSceneSet)
-        {
             UpdateInGame();
-        }
     }
 
     void PrepareInGame() // use this after upgrade level
@@ -163,15 +149,12 @@ public class GameCenter : MonoBehaviour
 
     void UpdateInGame()
     {
-        if (_gameStateCur == GameState.Playing)
-        {
-            inGameUi.UpdateTime(gameTimer.GetRemainingTime());
+        if (_gameStateCur != GameState.Playing) return;
 
-            if (gameTimer.IsFinished)
-            {
-                EndCurLevel();
-            }
-        }
+        inGameUi.UpdateTime(gameTimer.GetRemainingTime());
+
+        if (gameTimer.IsFinished)
+            EndCurLevel();
     }
     void SpawnEnemies()
     {
@@ -238,13 +221,9 @@ public class GameCenter : MonoBehaviour
         itemSpawner.ReturnAllObjects();
         
         if (star == 0)
-        {
             SetFail();
-        }
         else
-        {
             SetWin();
-        }
     }
 
     public void SetWin()
@@ -315,9 +294,9 @@ public class GameCenter : MonoBehaviour
 
         if (waitEnemy)
         {
-            for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
+            for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
             {
-                enemySpawner.spawnedObjects[i].GetComponent<Enemy>().StopMoving();
+                enemySpawner.spawnedEnemies[i].StopMoving();
             }
             Invoke("StartEnemyMove", options.EnemyStartWaitingTime);
         }
@@ -326,17 +305,17 @@ public class GameCenter : MonoBehaviour
             StartEnemyMove();
         }
 
-        for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
+        for (int i = 0; i < itemSpawner.spawnedItems.Count; i++)
         {
-            itemSpawner.spawnedObjects[i].GetComponent<Item>().StartMoving();
+            itemSpawner.spawnedItems[i].StartMoving();
         }
     }
 
     void StartEnemyMove()
     {
-        for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
+        for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
         {
-            enemySpawner.spawnedObjects[i].GetComponent<Enemy>().StartMoving();
+            enemySpawner.spawnedEnemies[i].StartMoving();
         }
     }
     public void SetStopMoving()
@@ -346,14 +325,14 @@ public class GameCenter : MonoBehaviour
         player.StopMoving();
         machine.StopMoving();
 
-        for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
+        for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
         {
-            enemySpawner.spawnedObjects[i].GetComponent<Enemy>().StopMoving();
+            enemySpawner.spawnedEnemies[i].StopMoving();
         }
 
-        for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
+        for (int i = 0; i < itemSpawner.spawnedItems.Count; i++)
         {
-            itemSpawner.spawnedObjects[i].GetComponent<Item>().StopMoving();
+            itemSpawner.spawnedItems[i].StopMoving();
         }
     }
 
@@ -366,14 +345,14 @@ public class GameCenter : MonoBehaviour
         player.PauseMoving();
         machine.PauseMoving();
 
-        for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
+        for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
         {
-            enemySpawner.spawnedObjects[i].GetComponent<Enemy>().PauseMoving();
+            enemySpawner.spawnedEnemies[i].PauseMoving();
         }
 
-        for (int i = 0; i < itemSpawner.spawnedObjects.Count; i++)
+        for (int i = 0; i < itemSpawner.spawnedItems.Count; i++)
         {
-            itemSpawner.spawnedObjects[i].GetComponent<Item>().PauseMoving();
+            itemSpawner.spawnedItems[i].PauseMoving();
         }
     }
 
@@ -388,24 +367,22 @@ public class GameCenter : MonoBehaviour
         inGameUi.UpdateMonsterCount(_remainingMonsterCur);
 
         if (_remainingMonsterCur == 0)
-        {
             EndCurLevel();
-        }
     }
 
     public void MoveCreaturesAlongStage()
     {
         player.MoveAlongWithStage();
 
-        for (int i = 0; i < enemySpawner.spawnedObjects.Count; i++)
+        for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
         {
-            enemySpawner.spawnedObjects[i].GetComponent<Enemy>().MoveAlongWithStage();
+            enemySpawner.spawnedEnemies[i].MoveAlongWithStage();
         }
     }
     
     void ChangeGameState(GameState gameState)
     {
-        this._gameStateCur = gameState;
+        _gameStateCur = gameState;
     }
 
     void BackToStageSelectionScene()

@@ -2,5 +2,5 @@
 
 public interface ISpawnableObject
 {
-    public int Type { get; set; }
+    int Type { get; set; }
 }

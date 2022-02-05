@@ -22,40 +22,22 @@ public class KeyController
 
     public float GetHorizontalKey()
     {
-        if (joystick.IsInput)
-        {
-            return joystick.GetXDir();
-        }
+        if (joystick.IsInput) return joystick.GetXDir();
 
-        if (Input.GetKey(moveRightKey))
-        {
-            return 1.0f;
-        }
+        if (Input.GetKey(moveRightKey)) return 1.0f;
 
-        if (Input.GetKey(moveLeftKey))
-        {
-            return -1.0f;
-        }
+        if (Input.GetKey(moveLeftKey)) return -1.0f;
 
         return 0.0f;
     }
 
     public float GetVerticalKey()
     {
-        if (joystick.IsInput)
-        {
-            return joystick.GetYDir();
-        }
+        if (joystick.IsInput) return joystick.GetYDir();
         
-        if (Input.GetKey(moveFrontKey))
-        {
-            return 1.0f;
-        }
+        if (Input.GetKey(moveFrontKey)) return 1.0f;
 
-        if (Input.GetKey(moveBackKey))
-        {
-            return -1.0f;
-        }
+        if (Input.GetKey(moveBackKey)) return -1.0f;
 
         return 0.0f;
     }

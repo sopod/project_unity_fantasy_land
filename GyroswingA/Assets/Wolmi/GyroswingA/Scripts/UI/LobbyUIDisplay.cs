@@ -6,6 +6,6 @@ public class LobbyUIDisplay : MonoBehaviour
 
     public void Start()
     {
-         optionScreen.SetActive(false);
+        optionScreen.SetActive(false);
     }
 }

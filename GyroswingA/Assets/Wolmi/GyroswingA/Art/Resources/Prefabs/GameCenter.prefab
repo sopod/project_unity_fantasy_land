@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4046827400444098131}
   - component: {fileID: 8338981509674863664}
   m_Layer: 0
-  m_Name: InGameManager
+  m_Name: GameCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   uiSoundPlayer: {fileID: 0}
   _gameModeCur: 0
   _levelCur: 0
-  levelDataPerLevel: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
+  loaderStarData: {fileID: 0}
   options: {fileID: 8338981509674863664}
 --- !u!114 &8338981509674863664
 MonoBehaviour:
@@ -67,7 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e682191b9c41a4d883c2387028206c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelValues: {fileID: 0}
   WaitingTimeForCinemachine: 0
   LimitSecondsPerStage: 0
   ResultSoundWaitingTime: 0

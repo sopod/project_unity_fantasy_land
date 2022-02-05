@@ -42,10 +42,10 @@ public abstract class LivingCreature : MovingThing
     
     protected float _spinSpeedUp;
 
-    public Vector3 CenterForward { get { return centerOfCreature.transform.forward; } }
+    public Vector3 CenterForward { get => centerOfCreature.transform.forward; }
 
-    public Vector3 CenterPosition { get { return centerOfCreature.transform.position; } }
-    public bool IsAttacking { get { return state.IsAttacking; } }
+    public Vector3 CenterPosition { get => centerOfCreature.transform.position; }
+    public bool IsAttacking { get => state.IsAttacking; }
 
 
 
@@ -114,10 +114,8 @@ public abstract class LivingCreature : MovingThing
     {
         if (state.IsAttacking) return;
 
-        if ((Mathf.Abs(key) > 0.1f))
-            isMoving = true;
-        else
-            isMoving = false;
+        if ((Mathf.Abs(key) > 0.1f)) isMoving = true;
+        else isMoving = false;
 
         ani.SetFloat("MoveFront", key);
 
@@ -128,10 +126,8 @@ public abstract class LivingCreature : MovingThing
     {
         if (state.IsAttacking) return;
 
-        if ((Mathf.Abs(key) > 0.1f))
-            isTurning = true;
-        else
-            isTurning = false;
+        if ((Mathf.Abs(key) > 0.1f)) isTurning = true;
+        else isTurning = false;
 
         ani.SetFloat("TurnRight", key);
 
@@ -197,7 +193,6 @@ public abstract class LivingCreature : MovingThing
             if (attackedForward.x * lookTargetDir.x + attackedForward.y * lookTargetDir.y < 0) return;
         }
 
-
         // give dash power
         Vector3 dir = (CenterPosition - centerPosOfAttacker).normalized;
         float damagedPower = options.DashPowerToDamaged;
@@ -240,45 +235,43 @@ public abstract class LivingCreature : MovingThing
 
     protected void AffectedBySpin()
     {
-        if (isOnJumpableObject && !GameCenter.Instance.IsMachineStopped && isInStageBoundary)
-        {
-            Vector3 dir = GetDirectionFromStageToCreature();
+        if (!isOnJumpableObject || !isInStageBoundary) return;
 
-            rb.velocity += (dir * stageVal.Radius * (55.5f + _spinSpeedUp) * Mathf.Deg2Rad * Time.deltaTime);
-        }
+        Vector3 dir = GetDirectionFromStageToCreature();
+
+        rb.velocity += (dir * stageVal.Radius * (55.5f + _spinSpeedUp) * Mathf.Deg2Rad * Time.deltaTime);
     }
 
     public void MoveAlongWithStage()
     {
-        if (!IsPaused() && !GameCenter.Instance.IsMachineStopped && isInStageBoundary)
+        if (IsPaused || !isInStageBoundary) return;
+
+
+        Vector3 centerForSpin = (options.IsSpiningCW) ? stage.transform.up : -stage.transform.up;
+        Vector3 resPos = rb.position;
+
+        // swing
+        if (options.IsMachineSwinging)
+            resPos += stageVal.SwingPosCur;
+
+        // spin
+        if (options.IsMachineSpining && isOnJumpableObject && !isJumping)
         {
-            Vector3 centerForSpin = (options.IsSpiningCW) ? stage.transform.up : -stage.transform.up;
-            Vector3 resPos = rb.position;
-
-            // swing
-            if (options.IsMachineSwinging)
-                resPos += stageVal.SwingPosCur;
-
-            // spin
-            if (options.IsMachineSpining && isOnJumpableObject && !isJumping)
-            {
-                Quaternion spinQuat = Quaternion.AngleAxis(stageVal.SpinAngleCur, centerForSpin);
-                resPos = (spinQuat * (resPos - stage.transform.position) + stage.transform.position);
-                rb.rotation = spinQuat * rb.rotation;
-            }
-
-            // apply
-            rb.position = resPos;
+            Quaternion spinQuat = Quaternion.AngleAxis(stageVal.SpinAngleCur, centerForSpin);
+            resPos = (spinQuat * (resPos - stage.transform.position) + stage.transform.position);
+            rb.rotation = spinQuat * rb.rotation;
         }
+
+        // apply
+        rb.position = resPos;
     }
 
     protected void FreezeLocalXZRotation()
     {
-        if (isInStageBoundary)
-        {
-            Quaternion turnQuat = Quaternion.FromToRotation(centerOfCreature.transform.up, stage.transform.up);
-            rb.rotation = turnQuat * rb.rotation;
-        }
+        if (!isInStageBoundary) return;
+
+        Quaternion turnQuat = Quaternion.FromToRotation(centerOfCreature.transform.up, stage.transform.up);
+        rb.rotation = turnQuat * rb.rotation;
     }
 
     protected Vector3 GetDirectionFromStageToCreature()
@@ -299,27 +292,22 @@ public abstract class LivingCreature : MovingThing
     // -------------------------------------------------- move along with stage
     void OnTriggerEnter(Collider other)
     {
-        if (IsPaused()) return;
+        if (IsPaused) return;
             
         int layer = (1 << other.gameObject.layer);
+        if (layer != options.StageBoundaryLayer.value)
 
-        if (layer == options.StageBoundaryLayer.value)
-        {
-            isInStageBoundary = true;
-        }
-
+        isInStageBoundary = true;
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (IsPaused()) return;
+        if (IsPaused) return;
 
         int layer = (1 << other.gameObject.layer);
+        if (layer != options.StageBoundaryLayer.value) return;
 
-        if (layer == options.StageBoundaryLayer.value)
-        {
-            isInStageBoundary = false;
-        }
+        isInStageBoundary = false;
     }
 
     // -------------------------------------------------- layer collision
@@ -352,13 +340,10 @@ public abstract class LivingCreature : MovingThing
         p.GetComponent<Projectile>().SetStart(options);
     }
 
-
     public abstract void OnEnemyLayer();
 
     public void OnNothingLayer()
     {
         isOnJumpableObject = false;
     }
-    
-
 }

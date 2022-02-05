@@ -37,6 +37,7 @@ public class SceneController : MonoBehaviour
         }
     }
     
+    
     void Awake()
     {
         if (instance == null)
@@ -55,13 +56,9 @@ public class SceneController : MonoBehaviour
     public void ChangeSceneToMainGame()
     {
         if (!isDataLoaded)
-        {
             StartCoroutine(WaitUntilDataSet());
-        }
         else
-        {
             ChangeScene(SceneState.InGame);
-        }
     }
 
 
@@ -84,7 +81,7 @@ public class SceneController : MonoBehaviour
         playLobbySceneMusic = (CurScene == SceneState.InGame);
 
         curSceneState = toChange;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName[(int)toChange]);
+        SceneManager.LoadScene(sceneName[(int)toChange]);
     }
 
     public void SaveFileAndQuitGame()

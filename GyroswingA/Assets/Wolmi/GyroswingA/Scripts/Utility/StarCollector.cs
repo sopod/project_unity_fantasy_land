@@ -1,8 +1,8 @@
 public class StarCollector
 {
-    int _starCur = 0;
+    int starCur = 0;
 
-    public int GetStarCur { get { return _starCur; } }
+    public int GetStarCur { get => starCur; }
 
     public int GetStarForCurStage(GameMode mode, int remainingMonsterCur)
     {
@@ -12,32 +12,24 @@ public class StarCollector
         {
             case GameMode.Easy:
             {
-                if (remainingMonsterCur <= 1)
-                    got = 3;
-                else if (remainingMonsterCur <= 3)
-                    got = 2;
-                else if (remainingMonsterCur <= 4)
-                    got = 1;
-                else
-                    got = 0;
+                if (remainingMonsterCur <= 1) got = 3;
+                else if (remainingMonsterCur <= 3) got = 2;
+                else if (remainingMonsterCur <= 4) got = 1;
+                else got = 0;
             }
                 break;
 
             case GameMode.Hard:
             {
-                if (remainingMonsterCur <= 1)
-                    got = 3;
-                else if (remainingMonsterCur <= 5)
-                    got = 2;
-                else if (remainingMonsterCur <= 7)
-                    got = 1;
-                else
-                    got = 0;
+                if (remainingMonsterCur <= 1) got = 3;
+                else if (remainingMonsterCur <= 5) got = 2;
+                else if (remainingMonsterCur <= 7) got = 1;
+                else got = 0;
             }
                 break;
         }
 
-        _starCur = got;
+        starCur = got;
 
         return got;
     }
