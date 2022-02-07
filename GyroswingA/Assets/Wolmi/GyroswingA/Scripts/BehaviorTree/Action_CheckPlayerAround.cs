@@ -10,7 +10,7 @@ public class Action_CheckPlayerAround : Node
 
         for (int i = 0; i < hitColliders.Length; i++)
         { 
-            if ((1 << hitColliders[i].gameObject.layer) == bb.options.PlayerLayer)
+            if ((1 << hitColliders[i].gameObject.layer) == bb.layerStruct.PlayerLayer)
             {
                 state = BT_State.Success;
                 return state;

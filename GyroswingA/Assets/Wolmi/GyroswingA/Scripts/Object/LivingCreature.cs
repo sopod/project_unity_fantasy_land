@@ -9,35 +9,37 @@ public enum CreatureType
 
 public abstract class LivingCreature : MovingThing
 {
-    protected Options options;
-    protected StageMovementValue stageVal;
+    const float gravity = 9.8f;
 
-    protected GameObject stage;
+    protected ObjectValues values;
+
+    protected LevelChanger levelControl;
+    protected Layers layerStruct;
+    protected ProjectileSpawner pjSpanwer;
+    StageMovementValue stageVal;
+
+    GameObject stage;
     protected CreatureSoundPlayer soundPlayer;
-    [SerializeField] protected GameObject centerOfCreature;
-    [SerializeField] protected GameObject shootMouth;
+    [SerializeField] GameObject centerOfCreature;
+    [SerializeField] GameObject shootMouth;
 
-    protected Rigidbody rb;
-    protected Animator ani;
+    Rigidbody rb;
+    Animator ani;
 
     protected CreatureType creatureType;
     public bool IsPlayer { get { return creatureType == CreatureType.Player; } }
 
-    protected State state;
+    State state;
 
     protected bool isJumping;
-    protected bool isOnJumpableObject;
+    bool isOnJumpableObject;
 
     protected bool isMoving;
     protected bool isTurning;
     protected bool isDamaged;
-    protected bool isInStageBoundary;
+    bool isInStageBoundary;
 
-
-    protected float moveSpeed;
-    protected float rotSpeed;
-    protected float jumpPower;
-    
+    protected float curMoveSpeed;
     protected float _spinSpeedUp;
 
     public Vector3 CenterForward { get => centerOfCreature.transform.forward; }
@@ -45,10 +47,12 @@ public abstract class LivingCreature : MovingThing
     public bool IsAttacking { get => state.IsAttacking; }
 
 
-    protected void SetCreature(GameObject stage, StageMovementValue stageVal, Options options)
+    protected void SetCreature(GameObject stage, StageMovementValue stageVal, LevelChanger options, Layers layer, ProjectileSpawner pjSpanwer)
     {
-        this.options = options;
+        this.levelControl = options;
         this.stageVal = stageVal;
+        this.layerStruct = layer;
+        this.pjSpanwer = pjSpanwer;
 
         this.stage = stage;
         ani = GetComponent<Animator>();
@@ -67,7 +71,7 @@ public abstract class LivingCreature : MovingThing
         ResetCreature();
     }
 
-    public void ResetCreature()
+    public virtual void ResetCreature()
     {
         InitAnimation();
 
@@ -115,7 +119,7 @@ public abstract class LivingCreature : MovingThing
 
         ani.SetFloat("MoveFront", key);
 
-        rb.position += transform.forward * key * moveSpeed * Time.deltaTime;
+        rb.position += transform.forward * key * curMoveSpeed * Time.deltaTime;
     }
 
     public void Turn(float key)
@@ -127,7 +131,7 @@ public abstract class LivingCreature : MovingThing
 
         ani.SetFloat("TurnRight", key);
 
-        float angle = key * rotSpeed * Time.deltaTime;
+        float angle = key * values.RotateSpeed * Time.deltaTime;
         rb.rotation *= Quaternion.AngleAxis(angle, Vector3.up);
     }
 
@@ -141,7 +145,7 @@ public abstract class LivingCreature : MovingThing
         soundPlayer.PlaySound(CreatureEffectSoundType.Jump, IsPlayer);
         ani.SetBool("IsJumping", true);
 
-        rb.AddForce(stage.transform.up * jumpPower, ForceMode.Impulse);
+        rb.AddForce(stage.transform.up * values.JumpPower, ForceMode.Impulse);
     }
 
     public void Dash()
@@ -151,11 +155,11 @@ public abstract class LivingCreature : MovingThing
         soundPlayer.PlaySound(CreatureEffectSoundType.Dash, IsPlayer);
 
         ani.SetTrigger("JustDashed");
-        rb.AddForce(transform.forward * options.DashPowerToHit, ForceMode.Impulse);
+        rb.AddForce(transform.forward * values.DashPowerToHit, ForceMode.Impulse);
         
         state.SetAttacking();
         
-        Invoke("SetIdle", options.SkillCoolTime);
+        Invoke("SetIdle", values.SkillCoolTime);
     }
 
     public void Fire()
@@ -166,12 +170,12 @@ public abstract class LivingCreature : MovingThing
         ani.SetTrigger("JustFired");
 
 
-        GameObject p = options.ProjectilesSpawner.SpawnFireProjectile(shootMouth.transform.position, shootMouth.transform.forward);
-        p.GetComponent<Projectile>().SetStart(options);
+        GameObject p = pjSpanwer.SpawnFireProjectile(shootMouth.transform.position, shootMouth.transform.forward);
+        p.GetComponent<Projectile>().SetStart(pjSpanwer);
 
         state.SetAttacking();
         
-        Invoke("SetIdle", options.SkillCoolTime);
+        Invoke("SetIdle", values.SkillCoolTime);
     }
 
     protected void OnDamagedAndMoveBack(bool isProjectile, Vector3 centerPosOfAttacker, Vector3 forwardPosOfAttacker, EnemyType type)
@@ -191,15 +195,15 @@ public abstract class LivingCreature : MovingThing
 
         // give dash power
         Vector3 dir = (CenterPosition - centerPosOfAttacker).normalized;
-        float damagedPower = options.DashPowerToDamaged;
+        float damagedPower = values.DashPowerToDamaged;
 
         if (IsPlayer && type != EnemyType.Max) // this is player script and player damaged
         {
-            damagedPower = options.GetDashPowerToDamaged(type);
+            damagedPower = levelControl.GetDashPowerToDamaged(type, values.DashPowerToDamaged);
         }
         else if (isProjectile) // this is enemy script and enemy damaged by projectile
         {
-            damagedPower = options.FireBallPowerToDamaged;
+            damagedPower = values.FireBallPowerToDamaged;
         }
 
         if (!IsPlayer) // this is enemy script and enemy damaged
@@ -209,7 +213,7 @@ public abstract class LivingCreature : MovingThing
 
         rb.AddForce(dir * damagedPower, ForceMode.Impulse);
 
-        Invoke("AcceptDamaged", options.SkillCoolTime);
+        Invoke("AcceptDamaged", values.SkillCoolTime);
     }
 
     public void SetIdle()
@@ -226,7 +230,7 @@ public abstract class LivingCreature : MovingThing
 
     protected void AffectedByGravity()
     {
-        rb.velocity -= stage.transform.up * options.Gravity * Time.deltaTime;
+        rb.velocity -= stage.transform.up * gravity * Time.deltaTime;
     }
 
     protected void AffectedBySpin()
@@ -238,20 +242,20 @@ public abstract class LivingCreature : MovingThing
         rb.velocity += (dir * stageVal.Radius * (55.5f + _spinSpeedUp) * Mathf.Deg2Rad * Time.deltaTime);
     }
 
-    public void MoveAlongWithStage()
+    public void MoveAlongWithStage(bool isMachineSwinging, bool isMachineSpining, bool isSpiningCW)
     {
         if (IsPaused || !isInStageBoundary) return;
 
 
-        Vector3 centerForSpin = (options.IsSpiningCW) ? stage.transform.up : -stage.transform.up;
+        Vector3 centerForSpin = (isSpiningCW) ? stage.transform.up : -stage.transform.up;
         Vector3 resPos = rb.position;
 
         // swing
-        if (options.IsMachineSwinging)
+        if (isMachineSwinging)
             resPos += stageVal.SwingPosCur;
 
         // spin
-        if (options.IsMachineSpining && isOnJumpableObject && !isJumping)
+        if (isMachineSpining && isOnJumpableObject && !isJumping)
         {
             Quaternion spinQuat = Quaternion.AngleAxis(stageVal.SpinAngleCur, centerForSpin);
             resPos = (spinQuat * (resPos - stage.transform.position) + stage.transform.position);
@@ -291,7 +295,7 @@ public abstract class LivingCreature : MovingThing
         if (IsPaused) return;
             
         int layer = (1 << other.gameObject.layer);
-        if (layer != options.StageBoundaryLayer.value)
+        if (layer != layerStruct.StageBoundaryLayer.value)
 
         isInStageBoundary = true;
     }
@@ -301,7 +305,7 @@ public abstract class LivingCreature : MovingThing
         if (IsPaused) return;
 
         int layer = (1 << other.gameObject.layer);
-        if (layer != options.StageBoundaryLayer.value) return;
+        if (layer != layerStruct.StageBoundaryLayer.value) return;
 
         isInStageBoundary = false;
     }
@@ -332,8 +336,8 @@ public abstract class LivingCreature : MovingThing
         ani.SetBool("IsDead", true);
         ani.SetBool("IsJumping", false);
 
-        GameObject p = options.ProjectilesSpawner.SpawnDeadProjectile(this.gameObject);
-        p.GetComponent<Projectile>().SetStart(options);
+        GameObject p = pjSpanwer.SpawnDeadProjectile(this.gameObject);
+        p.GetComponent<Projectile>().SetStart(pjSpanwer);
     }
 
     public abstract void OnEnemyLayer();

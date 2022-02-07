@@ -14,11 +14,21 @@ public class StageMovementValue
 public class Machine : MovingThing
 {
     StageMovementValue stageVal;
-    Options options;
+    LevelChanger options;
 
     [SerializeField] GameObject swingBar;
     [SerializeField] GameObject stage;
-    
+
+    Vector3 stageStartPos;
+    Quaternion stageStartRot;
+    Vector3 barStartPos;
+    Quaternion barStartRot;
+
+    bool isMachineSwinging = true;
+    bool isMachineTurning = true;
+    bool isMachineSpining = true;
+    bool isSpiningCW = true;
+
     float swingRadius;
     //float swingPowerMinPercent;
 
@@ -37,33 +47,32 @@ public class Machine : MovingThing
 
         SetSwingAngleCur();
 
-        if (options.IsMachineSwinging)
+        if (isMachineSwinging)
         {
             SwingBar();
             SwingStage();
         }
 
-        if (options.IsMachineTurning)
+        if (isMachineTurning)
             TurnStage();
 
-        if (options.IsMachineSpining)
+        if (isMachineSpining)
             SpinStage();
 
-        if (options.IsMachineSwinging)
+        if (isMachineSwinging)
             ChangeDirection();
 
         SetStageValues();
-        GameCenter.Instance.MoveCreaturesAlongStage();
+        GameCenter.Instance.MoveCreaturesAlongStage(isMachineSwinging, isMachineSpining, isSpiningCW);
     }
 
-    public void SetMachine(Options options, StageMovementValue stageVal)
+    public void SetMachine(LevelChanger options, StageMovementValue stageVal)
     {
-        options.StageStartPos = stage.transform.position;
-        options.StageStartRot = stage.transform.rotation;
-        options.BarStartPos = swingBar.transform.position;
-        options.BarStartRot = swingBar.transform.rotation;
-        
-        
+        stageStartPos = stage.transform.position;
+        stageStartRot = stage.transform.rotation;
+        barStartPos = swingBar.transform.position;
+        barStartRot = swingBar.transform.rotation;
+                
         swingRadius = (swingBar.transform.position.y - stage.transform.position.y);
 
         this.stageVal = stageVal;
@@ -82,10 +91,10 @@ public class Machine : MovingThing
 
     public void ResetMachine()
     {
-        stage.transform.position = options.StageStartPos;
-        stage.transform.rotation = options.StageStartRot;
-        swingBar.transform.position = options.BarStartPos;
-        swingBar.transform.rotation = options.BarStartRot;
+        stage.transform.position = stageStartPos;
+        stage.transform.rotation = stageStartRot;
+        swingBar.transform.position = barStartPos;
+        swingBar.transform.rotation = barStartRot;
 
         _spinAngleCur = 0.0f;
         _changeDir = false;
@@ -155,10 +164,10 @@ public class Machine : MovingThing
         float radian = Mathf.Deg2Rad * _swingAngleTotal;
 
         // left dir
-        _swingPosCur.z = (Mathf.Sin(radian) * swingRadius) + options.StageStartPos.z - stage.transform.position.z;
+        _swingPosCur.z = (Mathf.Sin(radian) * swingRadius) + stageStartPos.z - stage.transform.position.z;
 
         // up dir
-        _swingPosCur.y = (swingRadius - Mathf.Cos(radian) * swingRadius) + options.StageStartPos.y - stage.transform.position.y;
+        _swingPosCur.y = (swingRadius - Mathf.Cos(radian) * swingRadius) + stageStartPos.y - stage.transform.position.y;
 
         stage.transform.position += _swingPosCur;
     }
@@ -179,7 +188,7 @@ public class Machine : MovingThing
         _spinAngleCur = options.GetCurLevelValues().SpinSpeed * Time.fixedDeltaTime;
 
         // up - local 
-        if (options.IsSpiningCW)
+        if (isSpiningCW)
             stage.transform.Rotate(Vector3.up, _spinAngleCur, Space.Self);
         else
             stage.transform.Rotate(-Vector3.up, _spinAngleCur, Space.Self);

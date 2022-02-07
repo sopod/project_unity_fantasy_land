@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4046827400444098130}
   - component: {fileID: 4046827400444098131}
-  - component: {fileID: 8338981509674863664}
   m_Layer: 0
   m_Name: GameCenter
   m_TagString: Untagged
@@ -49,75 +48,28 @@ MonoBehaviour:
   inGameUi: {fileID: 0}
   enemySpawner: {fileID: 0}
   itemSpawner: {fileID: 0}
+  pjSpawner: {fileID: 0}
   stage: {fileID: 0}
   uiSoundPlayer: {fileID: 0}
-  _gameModeCur: 0
-  _levelCur: 0
-  loaderStarData: {fileID: 0}
-  options: {fileID: 8338981509674863664}
---- !u!114 &8338981509674863664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4046827400444098220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7e682191b9c41a4d883c2387028206c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WaitingTimeForCinemachine: 0
-  LimitSecondsPerStage: 0
-  ResultSoundWaitingTime: 0
-  ResultUIWaitingTime: 0
-  ResultUIRemainingTime: 0
-  GameStartWaitingTime: 0
-  EnemyStartWaitingTime: 0
-  SpawnerPrepareAmount: 0
-  StageAmountPerMode: 0
-  IsMachineSwinging: 0
-  IsMachineTurning: 0
-  IsMachineSpining: 0
-  StageStartPos: {x: 0, y: 0, z: 0}
-  StageStartRot: {x: 0, y: 0, z: 0, w: 0}
-  BarStartPos: {x: 0, y: 0, z: 0}
-  BarStartRot: {x: 0, y: 0, z: 0, w: 0}
-  IsSpiningCW: 0
-  Gravity: 0
-  PlayerMoveSpeed: 2
-  PlayerRotateSpeed: 150
-  PlayerJumpPower: 5
-  PlayerStartPos: {x: 0, y: 0, z: 0}
-  PlayerStartRot: {x: 0, y: 0, z: 0, w: 0}
-  EnemyRotateSpeed: 150
-  EnemyJumpPower: 5
-  EnemyKnockDownTime: 2
-  ProjectilesSpawner: {fileID: 0}
-  SkillCoolTime: 0
-  DashPowerToDamaged: 10
-  DashPowerToHit: 0
-  FireBallPowerToDamaged: 20
-  ProjectileMoveSpeed: 7
-  ProjectileRemaingTime: 1.6
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  ItemLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  StageLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  FailZoneLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  StageBoundaryLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  ShootProjectileLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  layerStruct:
+    PlayerLayer:
+      serializedVersion: 2
+      m_Bits: 8
+    EnemyLayer:
+      serializedVersion: 2
+      m_Bits: 512
+    ItemLayer:
+      serializedVersion: 2
+      m_Bits: 4096
+    StageLayer:
+      serializedVersion: 2
+      m_Bits: 64
+    FailZoneLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    StageBoundaryLayer:
+      serializedVersion: 2
+      m_Bits: 2048
+    ShootProjectileLayer:
+      serializedVersion: 2
+      m_Bits: 8192

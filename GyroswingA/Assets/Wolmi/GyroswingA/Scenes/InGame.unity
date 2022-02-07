@@ -320,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 4581218772041449809, guid: 6dd4e112f6c84d34c9c12811622cb923, type: 3}
       propertyPath: options
       value: 
-      objectReference: {fileID: 4046827399231631573}
+      objectReference: {fileID: 0}
     - target: {fileID: 4581218772041449814, guid: 6dd4e112f6c84d34c9c12811622cb923, type: 3}
       propertyPath: m_Name
       value: ProjectileSpawner
@@ -4925,6 +4925,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1014647453}
     - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: pjSpawner
+      value: 
+      objectReference: {fileID: 260981697}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
       propertyPath: itemSpawner
       value: 
       objectReference: {fileID: 8921724546597039880}
@@ -4940,10 +4944,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameCenter
       objectReference: {fileID: 0}
-    - target: {fileID: 8338981509674863664, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
-      propertyPath: ProjectilesSpawner
-      value: 
-      objectReference: {fileID: 260981697}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
 --- !u!114 &4046827399231631572 stripped
@@ -4955,17 +4955,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 957c6f20153d997419299b242d8cddd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4046827399231631573 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8338981509674863664, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
-  m_PrefabInstance: {fileID: 4046827399231631571}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7e682191b9c41a4d883c2387028206c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4761959376273781871

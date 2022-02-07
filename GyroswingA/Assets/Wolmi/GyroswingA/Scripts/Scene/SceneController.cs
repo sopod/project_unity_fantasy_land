@@ -23,7 +23,7 @@ public class SceneController : MonoBehaviour
     
     bool isDataLoaded = false;
 
-    public GoogleSheetDataLoader loaderLevelValues;
+    public GoogleSheetDataLoader loaderGoogleSheet;
     public StarDataLoader loaderStarData;
 
     static SceneController instance;
@@ -66,7 +66,7 @@ public class SceneController : MonoBehaviour
     {
         while (true)
         {
-            if (loaderLevelValues.IsDataSet) break;
+            if (loaderGoogleSheet.hasGotDatas) break;
 
             yield return null;
         }
@@ -86,7 +86,7 @@ public class SceneController : MonoBehaviour
 
     public void SaveFileAndQuitGame()
     {
-        loaderStarData.SaveStarDataFile();
+        loaderStarData.SaveStarData();
         Application.Quit();
     }
 }

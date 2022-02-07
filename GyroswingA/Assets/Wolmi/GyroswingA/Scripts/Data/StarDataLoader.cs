@@ -2,14 +2,10 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class StarDataLoader : MonoBehaviour
+public class StarDataLoader : FileDataLoader
 {
     [HideInInspector] public StarDataPerLevel data;
-
-    string savePath;
-    string saveName;
-
-
+    
     void Awake()
     {
         savePath = Application.persistentDataPath + "/star_data";
@@ -20,41 +16,17 @@ public class StarDataLoader : MonoBehaviour
     {
         data = new StarDataPerLevel();
         data.Clear();
-        LoadStarDataFile();
+        LoadStarData();
     }
 
-    bool IsFilePathThere()
+    public void LoadStarData()
     {
-        return Directory.Exists(savePath);
+        Load(data);
     }
 
-    public void SaveStarDataFile()
+    public void SaveStarData()
     {
-        if (!IsFilePathThere())
-            Directory.CreateDirectory(savePath);
-
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(saveName);
-
-        var json = JsonUtility.ToJson(data);
-        bf.Serialize(file, json);
-        file.Close();
+        Save(data);
     }
-
-    public void LoadStarDataFile()
-    {
-        if (!Directory.Exists(savePath))
-            Directory.CreateDirectory(savePath);
-
-        BinaryFormatter bf = new BinaryFormatter();
-
-        if (File.Exists(saveName))
-        {
-            FileStream file = File.Open(saveName, FileMode.Open);
-            JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file), data);
-            file.Close();
-        }
-    }
-
-
+    
 }

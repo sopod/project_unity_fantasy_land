@@ -9,11 +9,15 @@ using UnityEngine.Networking;
 public class GoogleSheetDataLoader : MonoBehaviour
 {
     LevelValues[] levelDatas;
+    [SerializeField] ObjectValues objectDatas;
+    public ObjectValues ObjectDatas { get => objectDatas; }
 
-    bool levelValuesGetDone = false;
-    public bool IsDataSet { get { return levelValuesGetDone; } }
+    bool hasGotLevelValues = false;
+    bool hasGotObjectValues = false;
+    public bool hasGotDatas { get { return hasGotLevelValues && hasGotObjectValues; } }
 
-    [SerializeField] string LevelValuesURL = "https://script.google.com/macros/s/AKfycbx0BbUOI8G5JZFt3ZihJf_HF1018MlMZqWgGJj0kbnoJ8Ml1joeqsUlJjq2znLtANkUHQ/exec";
+    [SerializeField] string levelValuesURL = "https://script.google.com/macros/s/AKfycbx0BbUOI8G5JZFt3ZihJf_HF1018MlMZqWgGJj0kbnoJ8Ml1joeqsUlJjq2znLtANkUHQ/exec";
+    [SerializeField] string objectValuesURL = "https://script.google.com/macros/s/AKfycby4TJT8GxeJufPAsCyr2u9s73GiBAsJhA9Oei8sYfqBllctTL4gme1uWYNCm-w23YuB_A/exec";
 
     void Awake()
     {
@@ -22,12 +26,13 @@ public class GoogleSheetDataLoader : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(GetGoogleSheetLevelValueData());
+        StartCoroutine(GetLevelValuesData());
+        StartCoroutine(GetObjectValuesData());
     }
 
-    IEnumerator GetGoogleSheetLevelValueData()
+    IEnumerator GetLevelValuesData()
     {
-        UnityWebRequest www = UnityWebRequest.Get(LevelValuesURL);
+        UnityWebRequest www = UnityWebRequest.Get(levelValuesURL);
 
         yield return www.SendWebRequest();
 
@@ -41,14 +46,37 @@ public class GoogleSheetDataLoader : MonoBehaviour
             string json = www.downloadHandler.text;
             json = AddWrapperJson(json);
 
-            RawLevelValues[] output = FromJson<RawLevelValues>(json);
+            RawLevelValues[] output = FromJsonAsList<RawLevelValues>(json);
             SaveLevelData(output);
 
-            levelValuesGetDone = true;
+            hasGotObjectValues = true;
         }
     }
-    
-    IEnumerator PostGoogleSheetStarData(string url, string result)
+
+    IEnumerator GetObjectValuesData()
+    {
+        UnityWebRequest www = UnityWebRequest.Get(objectValuesURL);
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError ||
+            www.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.Log("ERROR: " + www.error);
+        }
+        else
+        {
+            string json = www.downloadHandler.text;
+            json = AddWrapperJson(json);
+
+            objectDatas = new ObjectValues();
+            objectDatas = FromJson<ObjectValues>(json);
+
+            hasGotLevelValues = true;
+        }
+    }
+
+    IEnumerator PostData(string url, string result)
     {
         var request = new UnityWebRequest(url, "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(result);
@@ -77,7 +105,13 @@ public class GoogleSheetDataLoader : MonoBehaviour
         return JsonUtility.ToJson(wrapper, false);
     }
 
-    T[] FromJson<T>(string json)
+    T FromJson<T>(string json)
+    {
+        Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
+        return wrapper.Values[0];
+    }
+
+    T[] FromJsonAsList<T>(string json)
     {
         Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
         return wrapper.Values;
@@ -119,7 +153,6 @@ public class GoogleSheetDataLoader : MonoBehaviour
     public LevelValues GetLevelValueCur(GameMode mode, int level)
     {
         int lev = (level - 1) + (int)mode * 10;
-
         return levelDatas[lev];
     }
 }
@@ -151,3 +184,42 @@ public class LevelValues
     public EnemyType[] EnemyTypes;
     public ItemType[] ItemTypes;
 }
+
+
+[System.Serializable]
+public class ObjectValues
+{
+    public float MoveSpeed;
+    public float RotateSpeed;
+    public float JumpPower;
+
+    public float SkillCoolTime;
+    public float DashPowerToDamaged;
+    public float DashPowerToHit;
+    public float FireBallPowerToDamaged;
+    public float KnockDownTime;
+
+    public float EnemyWaitTime; 
+    public float EnemyTurnTime; 
+    public float EnemyMoveTime; 
+    public float EnemyLongTurnTime; 
+}
+
+
+
+//public float Gravity = 9.8f;
+
+//public float MoveSpeed = 2.0f;
+//public float RotateSpeed = 150.0f;
+//public float JumpPower = 5.0f;
+
+//public float SkillCoolTime = 0.5f;
+//public float DashPowerToDamaged = 10.0f;
+//public float DashPowerToHit = 20.0f;
+//public float FireBallPowerToDamaged = 20.0f;
+//public float KnockDownTime = 2.0f;
+
+//public float EnemyWaitTime = 1.0f;
+//public float EnemyTurnTime = 0.3f;
+//public float EnemyMoveTime = 0.5f;
+//public float EnemyLongTurnTime = 0.5f;

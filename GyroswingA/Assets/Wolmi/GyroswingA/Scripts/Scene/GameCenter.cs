@@ -13,35 +13,48 @@ public enum GameMode
     Hard
 }
 
+[System.Serializable]
+public struct Layers
+{
+    public LayerMask PlayerLayer;
+    public LayerMask EnemyLayer;
+    public LayerMask ItemLayer;
+    public LayerMask StageLayer;
+    public LayerMask FailZoneLayer;
+    public LayerMask StageBoundaryLayer;
+    public LayerMask ShootProjectileLayer;
+}
 
 public class GameCenter : MonoBehaviour
 {
-    [Header("------- Attached components")]
+    [Header("------- Obejcts")]
     [SerializeField] Machine machine;
     [SerializeField] Player player;
-    [SerializeField] InGameUIDisplay inGameUi;
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] ItemSpawner itemSpawner;
+    [SerializeField] ProjectileSpawner pjSpawner;
     [SerializeField] GameObject stage;
+    [SerializeField] InGameUIDisplay inGameUi;
     [SerializeField] UISoundPlayer uiSoundPlayer;
+    
+    [Header("---- layers")]
+    [SerializeField] Layers layerStruct;
 
+    LevelChanger levelControl = new LevelChanger();
+    StarCollector starCollector = new StarCollector();
+    StageMovementValue stageVal = new StageMovementValue();
+    StopWatch gameTimer = new StopWatch();
 
-    [Header("------- Game Status")]
-    [SerializeField] GameMode _gameModeCur;
-    [SerializeField] int _levelCur = 0;
+    const float waitingTimeForCinemachine = 8.0f;
+    const int limitSecondsPerStage = 180;
+    const float resultSoundWaitingTime = 0.3f;
+    const float resultUIWaitingTime = 0.4f;
+    const float resultUIRemainingTime = 5.0f;
+    const float gameStartWaitingTime = 5.5f;
+    const float enemyStartWaitingTime = 1.0f;
+
     GameState _gameStateCur;
-
-
-    [Header("------- Game Data")]
-    public StarDataLoader loaderStarData;
-    [SerializeField] Options options;
-    StageMovementValue stageVal;
-
-    StarCollector starCollector;
-    StopWatch gameTimer;
-
     bool _isSceneSet;
-
     int _monsterMaxCur = 0;
     int _remainingMonsterCur = 0;
 
@@ -66,9 +79,6 @@ public class GameCenter : MonoBehaviour
             instance = this;
 
         _isSceneSet = false;
-
-        uiSoundPlayer = UISoundPlayer.Instance;
-        loaderStarData = SceneController.Instance.loaderStarData;
     }
     
 
@@ -76,15 +86,13 @@ public class GameCenter : MonoBehaviour
     {
         if (_isSceneSet) return;
 
+        _isSceneSet = true;
+        
+        uiSoundPlayer = UISoundPlayer.Instance;
+
         inGameUi.gameObject.SetActive(false);
 
-        _isSceneSet = true;
-
-        _levelCur = loaderStarData.data.levelNumberCur;
-        _gameModeCur = loaderStarData.data.stageModeCur;
-        options.ChangeLevel(_gameModeCur, _levelCur);
-
-        options.ResetOptionValuesByCode();
+        levelControl.Init(SceneController.Instance.loaderGoogleSheet, SceneController.Instance.loaderStarData);
 
         SetInGame();
 
@@ -93,17 +101,13 @@ public class GameCenter : MonoBehaviour
         SetStopMoving();
         machine.StartMoving();
 
-        Invoke("StartInGame", options.WaitingTimeForCinemachine);
+        Invoke("StartInGame", waitingTimeForCinemachine);
     }
 
     void SetInGame()
     {
-        gameTimer = new StopWatch();
-        starCollector = new StarCollector();
-        stageVal = new StageMovementValue();
-
-        machine.SetMachine(options, stageVal);
-        player.SetPlayer(stage, stageVal, options);
+        machine.SetMachine(levelControl, stageVal);
+        player.SetPlayer(stage, stageVal, levelControl, layerStruct, pjSpawner);
     }
 
     void Update()
@@ -116,13 +120,9 @@ public class GameCenter : MonoBehaviour
 
     void PrepareInGame() // use this after upgrade level
     {
-        options.ResetOptions();
-
         machine.ResetMachine();
 
         player.ResetCreature();
-        player.transform.position = options.PlayerStartPos;
-        player.transform.rotation = options.PlayerStartRot;
         
         SpawnEnemies();
         SpawnItems();
@@ -138,11 +138,11 @@ public class GameCenter : MonoBehaviour
         
         inGameUi.gameObject.SetActive(true);
 
-        _monsterMaxCur = options.GetMonsterAmountForCurState();
-        inGameUi.SetUI(options.LimitSecondsPerStage, _monsterMaxCur);
+        _monsterMaxCur = levelControl.GetMonsterAmountForCurState();
+        inGameUi.SetUI(limitSecondsPerStage, _monsterMaxCur);
         _remainingMonsterCur = _monsterMaxCur;
 
-        gameTimer.StartTimer(options.LimitSecondsPerStage);
+        gameTimer.StartTimer(limitSecondsPerStage);
 
         SetStartMoving(true);
     }
@@ -156,74 +156,44 @@ public class GameCenter : MonoBehaviour
         if (gameTimer.IsFinished)
             EndCurLevel();
     }
+
     void SpawnEnemies()
     {
-        EnemyType[] typesToGen = options.GetCurLevelValues().EnemyTypes;
-        int amount = options.GetMonsterAmountForCurState();
+        EnemyType[] typesToGen = levelControl.GetCurLevelValues().EnemyTypes;
+        int amount = levelControl.GetMonsterAmountForCurState();
 
         for (int i = 0; i < amount; i++)
         {
             GameObject e = enemySpawner.SpawnEnemyObject(typesToGen, amount);
-            e.GetComponent<Enemy>().SetEnemy(stage, stageVal, options);
+            e.GetComponent<Enemy>().SetEnemy(stage, stageVal, levelControl, layerStruct, pjSpawner);
         }
     }
 
     void SpawnItems()
     {
-        ItemType[] typesToGen = options.GetCurLevelValues().ItemTypes;
+        ItemType[] typesToGen = levelControl.GetCurLevelValues().ItemTypes;
 
         for (int i = 0; i < typesToGen.Length; i++)
         {
             GameObject e = itemSpawner.SpawnItemObject(typesToGen[i]);
-            e.GetComponent<Item>().SetItem(options);
         }
     }
-
-    public bool UpgradeLevel() // after get star
-    {
-        // calculate next level and mode
-        _levelCur++;
-
-        if (_levelCur > loaderStarData.data.LevelCountPerMode && _gameModeCur == GameMode.Easy)
-        {
-            if (!loaderStarData.data.IsHardModeOpen)
-            {
-                return false;
-            }
-
-            _levelCur = 1;
-            _gameModeCur = GameMode.Hard;
-        }
-        else if (_levelCur > loaderStarData.data.LevelCountPerMode && _gameModeCur == GameMode.Hard)
-        {
-            return false;
-        }
-        
-
-        // save data
-        options.ChangeLevel(_gameModeCur, _levelCur);
-        loaderStarData.data.SetUnlocked(_gameModeCur, _levelCur);
-
-        loaderStarData.SaveStarDataFile();
-
-        return true;
-    }
-
+    
     void EndCurLevel()
     {
         ChangeGameState(GameState.Result);
 
-        int star = starCollector.GetStarForCurStage(_gameModeCur, _remainingMonsterCur);
-
-        loaderStarData.data.SetStar(_gameModeCur, _levelCur, star);
-
         enemySpawner.ReturnAllObjects();
         itemSpawner.ReturnAllObjects();
-        
-        if (star == 0)
-            SetFail();
-        else
+
+        bool isWin = starCollector.SetStar(SceneController.Instance.loaderStarData, levelControl.ModeCur, levelControl.LevelCur, _remainingMonsterCur);
+        //int star = starCollector.GetStarForCurStage(levelControl.ModeCur, _remainingMonsterCur);
+        //loaderStarData.data.SetStar(levelControl.ModeCur, levelControl.LevelCur, star);
+
+        if (isWin)
             SetWin();
+        else
+            SetFail();
     }
 
     public void SetWin()
@@ -233,19 +203,19 @@ public class GameCenter : MonoBehaviour
 
 
         uiSoundPlayer.StopPlayingBGM();
-        Invoke("SetWinBGM", options.ResultSoundWaitingTime);
-        Invoke("SetWinUI", options.ResultUIWaitingTime);
+        Invoke("SetWinBGM", resultSoundWaitingTime);
+        Invoke("SetWinUI", resultUIWaitingTime);
 
         // call restart level
-        if (!UpgradeLevel())
+        if (!levelControl.UpgradeLevel())
         {
-            Invoke("BackToStageSelectionScene", options.ResultUIRemainingTime);
+            Invoke("BackToStageSelectionScene", resultUIRemainingTime);
         }
         else
         {
-            Invoke("PrepareInGame", options.ResultUIRemainingTime);
-            Invoke("TurnResultUIOff", options.ResultUIRemainingTime);
-            Invoke("StartInGame", options.GameStartWaitingTime);
+            Invoke("PrepareInGame", resultUIRemainingTime);
+            Invoke("TurnResultUIOff", resultUIRemainingTime);
+            Invoke("StartInGame", gameStartWaitingTime);
         }
     }
 
@@ -255,12 +225,12 @@ public class GameCenter : MonoBehaviour
         ChangeGameState(GameState.Result);
         
         uiSoundPlayer.StopPlayingBGM();
-        Invoke("SetFailBGM", options.ResultSoundWaitingTime);
-        Invoke("SetFailUI", options.ResultUIWaitingTime);
+        Invoke("SetFailBGM", resultSoundWaitingTime);
+        Invoke("SetFailUI", resultUIWaitingTime);
 
 
         // call return to stage selection scene function
-        Invoke("BackToStageSelectionScene", options.ResultUIRemainingTime);
+        Invoke("BackToStageSelectionScene", resultUIRemainingTime);
     }
 
     void SetWinBGM()
@@ -298,7 +268,7 @@ public class GameCenter : MonoBehaviour
             {
                 enemySpawner.spawnedEnemies[i].StopMoving();
             }
-            Invoke("StartEnemyMove", options.EnemyStartWaitingTime);
+            Invoke("StartEnemyMove", enemyStartWaitingTime);
         }
         else
         {
@@ -370,13 +340,13 @@ public class GameCenter : MonoBehaviour
             EndCurLevel();
     }
 
-    public void MoveCreaturesAlongStage()
+    public void MoveCreaturesAlongStage(bool isMachineSwinging, bool isMachineSpining, bool isSpiningCW)
     {
-        player.MoveAlongWithStage();
+        player.MoveAlongWithStage(isMachineSwinging, isMachineSpining, isSpiningCW);
 
         for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
         {
-            enemySpawner.spawnedEnemies[i].MoveAlongWithStage();
+            enemySpawner.spawnedEnemies[i].MoveAlongWithStage(isMachineSwinging, isMachineSpining, isSpiningCW);
         }
     }
     

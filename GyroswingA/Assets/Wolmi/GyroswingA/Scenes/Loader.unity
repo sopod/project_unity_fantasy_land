@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463773b7d3584e147b8808d0765be2ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loaderLevelValues: {fileID: 1765071608}
+  loaderGoogleSheet: {fileID: 1765071608}
   loaderStarData: {fileID: 1765071609}
 --- !u!1 &1765071605
 GameObject:
@@ -589,6 +589,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0bb1ddba3204048893c83e0deeb13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectDatas:
+    MoveSpeed: 2
+    RotateSpeed: 150
+    JumpPower: 5
+    SkillCoolTime: 0.5
+    DashPowerToDamaged: 10
+    DashPowerToHit: 20
+    FireBallPowerToDamaged: 20
+    KnockDownTime: 2
+    EnemyWaitTime: 1
+    EnemyTurnTime: 0.3
+    EnemyMoveTime: 0.5
+    EnemyLongTurnTime: 0.5
+  levelValuesURL: https://script.google.com/macros/s/AKfycbx0BbUOI8G5JZFt3ZihJf_HF1018MlMZqWgGJj0kbnoJ8Ml1joeqsUlJjq2znLtANkUHQ/exec
+  objectValuesURL: https://script.google.com/macros/s/AKfycby4TJT8GxeJufPAsCyr2u9s73GiBAsJhA9Oei8sYfqBllctTL4gme1uWYNCm-w23YuB_A/exec
 --- !u!114 &1765071609
 MonoBehaviour:
   m_ObjectHideFlags: 0

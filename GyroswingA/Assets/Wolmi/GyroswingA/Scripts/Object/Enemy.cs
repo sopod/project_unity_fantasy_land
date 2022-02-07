@@ -30,7 +30,8 @@ public class Enemy : LivingCreature, ISpawnableObject
 {
     BT_Dragon bt;
     Queue<MovementData> movementDatas;
-
+    public bool movementsAllDone { get { return movementDatas.Count == 0; } }
+    StopWatch movementTimer;
 
     [SerializeField] EnemyType enemyType;
     public int Type 
@@ -39,11 +40,6 @@ public class Enemy : LivingCreature, ISpawnableObject
         set { enemyType = (EnemyType) value; }
     }
 
-
-    StopWatch movementTimer;
-
-    public bool movementsAllDone { get { return movementDatas.Count == 0; } }
-    float knockDownTime;
     bool checkEnemyToMove;
     bool isKnockDown;
     public bool IsEnemySet = false;
@@ -70,30 +66,29 @@ public class Enemy : LivingCreature, ISpawnableObject
         AffectedByPhysics();
     }
 
-    public void SetEnemy(GameObject stage, StageMovementValue stageVal, Options options)
+    public void SetEnemy(GameObject stage, StageMovementValue stageVal, LevelChanger options, Layers layer, ProjectileSpawner pjSpanwer)
     {
+        values = SceneController.Instance.loaderGoogleSheet.ObjectDatas;
+
         bt = GetComponent<BT_Dragon>();
 
         creatureType = CreatureType.Enemy;
         movementDatas = new Queue<MovementData>();
         movementTimer = new StopWatch();
 
-        this.moveSpeed = options.GetEnemyMoveSpeed(enemyType);
-        this.rotSpeed = options.EnemyRotateSpeed;
-        this.jumpPower = options.EnemyJumpPower;
-        this.knockDownTime = options.EnemyKnockDownTime;
+        curMoveSpeed = options.GetEnemyMoveSpeed(enemyType, values.MoveSpeed);
 
         checkEnemyToMove = false;
         isKnockDown = false;
 
-        SetCreature(stage, stageVal, options);
+        SetCreature(stage, stageVal, options, layer, pjSpanwer);
     }
 
     public override void StartMoving()
     {
         base.StartMoving();
         
-        bt.SetBT(options);
+        bt.SetBT(layerStruct);
     }
     
     public void AddEnemyMovement(MovementData input)
@@ -191,10 +186,10 @@ public class Enemy : LivingCreature, ISpawnableObject
 
         int layer = (1 << other.gameObject.layer);
 
-        if (layer != options.ShootProjectileLayer.value) return;
+        if (layer != layerStruct.ShootProjectileLayer.value) return;
 
-        GameObject p = options.ProjectilesSpawner.SpawnFireHitProjectile(this.gameObject);
-        p.GetComponent<Projectile>().SetStart(options);
+        GameObject p = pjSpanwer.SpawnFireHitProjectile(this.gameObject);
+        p.GetComponent<Projectile>().SetStart(pjSpanwer);
         OnDamagedAndMoveBack(true, other.transform.position, other.transform.forward, EnemyType.Max);
     }
 
@@ -204,13 +199,13 @@ public class Enemy : LivingCreature, ISpawnableObject
         if (IsPaused) return;
 
         int layer = (1 << collision.gameObject.layer);
-        if (layer != options.PlayerLayer.value) return;
+        if (layer != layerStruct.PlayerLayer.value) return;
 
         LivingCreature l = collision.gameObject.GetComponent<LivingCreature>();
         if (!l.IsAttacking || isDamaged) return;
 
-        GameObject p = options.ProjectilesSpawner.SpawnDashHitProjectile(collision);
-        p.GetComponent<Projectile>().SetStart(options);
+        GameObject p = pjSpanwer.SpawnDashHitProjectile(collision);
+        p.GetComponent<Projectile>().SetStart(pjSpanwer);
         OnDamagedAndMoveBack(false, l.CenterPosition, l.CenterForward, EnemyType.Max);
     }
 
@@ -221,21 +216,21 @@ public class Enemy : LivingCreature, ISpawnableObject
 
         int layer = (1 << collision.gameObject.layer);
 
-        if (layer == options.StageLayer.value)
+        if (layer == layerStruct.StageLayer.value)
         {
             OnStageLayer();
         }
-        else if (layer == options.FailZoneLayer.value)
+        else if (layer == layerStruct.FailZoneLayer.value)
         {
             OnFailZoneLayer();
         }
-        else if (layer == options.EnemyLayer.value)
+        else if (layer == layerStruct.EnemyLayer.value)
         {
             OnEnemyLayer();
         }
-        else if (layer == options.PlayerLayer.value)
+        else if (layer == layerStruct.PlayerLayer.value)
         {
-            OnPlayerLayer(collision.gameObject.GetComponent<Player>());
+            OnPlayerLayer();
         }
         else
         {
@@ -248,16 +243,15 @@ public class Enemy : LivingCreature, ISpawnableObject
         if (IsPaused) return;
 
         int layer = (1 << collision.gameObject.layer);
-        if (layer != options.PlayerLayer.value) return;
+        if (layer != layerStruct.PlayerLayer.value) return;
 
         isDamaged = false;
     }
     
-    public void OnPlayerLayer(Player player)
+    public void OnPlayerLayer()
     {
         OnStageLayer();
     }
-
 
     public override void OnEnemyLayer()
     {

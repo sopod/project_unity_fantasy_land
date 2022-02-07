@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public class BT_Dragon : BehaviorTree
 {
-    public override Node SetBT(Options options)
+    public override Node SetBT(Layers layer)
     {
-        this.options = options;
-        bb = new BlackBoard(this.gameObject.GetComponent<Enemy>(), options);
+        bb = new BlackBoard(this.gameObject.GetComponent<Enemy>(), layer);
 
         root = 
             new Selector(bb, new List<Node>

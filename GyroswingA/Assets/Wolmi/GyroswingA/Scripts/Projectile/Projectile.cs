@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour, ISpawnableObject
 {
-    Options options;
+    float projectileMoveSpeed = 7.0f;
+    float projectileRemaingTime = 1.6f;
+    ProjectileSpawner spawner;
 
     bool isDisabled = false;
     bool isAlive = false;
@@ -27,17 +29,17 @@ public class Projectile : MonoBehaviour, ISpawnableObject
 
     void MoveForward()
     {
-        transform.Translate(transform.forward * options.ProjectileMoveSpeed * Time.deltaTime, Space.World);
+        transform.Translate(transform.forward * projectileMoveSpeed * Time.deltaTime, Space.World);
     }
 
-    public void SetStart(Options options)
+    public void SetStart(ProjectileSpawner spawner)
     {
-        this.options = options;
+        this.spawner = spawner;
 
         isDisabled = false;
         isAlive = true;
         
-        Invoke("BackToSpawner", options.ProjectileRemaingTime);
+        Invoke("BackToSpawner", projectileRemaingTime);
     }
 
     public void BackToSpawner()
@@ -47,7 +49,7 @@ public class Projectile : MonoBehaviour, ISpawnableObject
         isDisabled = true;
         isAlive = false;
 
-        options.ProjectilesSpawner.ReturnObject(this.gameObject, Type);
+        spawner.ReturnObject(this.gameObject, Type);
     }
     
 

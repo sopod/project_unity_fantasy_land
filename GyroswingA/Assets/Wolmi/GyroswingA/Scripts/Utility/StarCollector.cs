@@ -1,10 +1,9 @@
 public class StarCollector
 {
     int starCur = 0;
-
     public int GetStarCur { get => starCur; }
 
-    public int GetStarForCurStage(GameMode mode, int remainingMonsterCur)
+    int GetStarForCurStage(GameMode mode, int remainingMonsterCur)
     {
         int got = 0;
 
@@ -29,7 +28,14 @@ public class StarCollector
             break;
         }
 
-        starCur = got;
         return got;
+    }
+
+    public bool SetStar(StarDataLoader starData, GameMode mode, int levelNum, int remainingMonster)
+    {
+        starCur = GetStarForCurStage(mode, remainingMonster);
+        starData.data.SetStar(mode, levelNum, starCur);
+
+        return (starCur != 0);
     }
 }
