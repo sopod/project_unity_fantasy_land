@@ -8,52 +8,43 @@ public enum BT_State
     Failure
 }
 
-public class Node
+// 행동 트리의 노드입니다. 노드는 크게 Selector, Sequence, Action들이 있습니다. 
+public abstract class Node
 {
     protected BlackBoard bb;
     protected BT_State state;
-    protected Node parent;
-    protected List<Node> children;
+    protected Node parent = null;
+    protected List<Node> children = new List<Node>();
 
-    protected bool finishFlag;
-    protected bool addedToMovementQueue;
+    protected bool finishFlag = false;
+    protected bool addedToMovementQueue = false;
 
     public Node(BlackBoard bb)
     {
-        Init(bb);
+        this.bb = bb;
     }
 
     public Node(BlackBoard bb, List<Node> nodes)
     {
-        Init(bb);
+        this.bb = bb;
 
         for (int i = 0; i < nodes.Count; i++)
-        {
             AttachChildNode(nodes[i]);
-        }
     }
-
-    void Init(BlackBoard bb)
-    {
-        finishFlag = false;
-        addedToMovementQueue = false;
-        parent = null;
-        children = new List<Node>();
-        this.bb = bb;
-    }
-
+    
     protected void AttachChildNode(Node node)
     {
-        // attach parent, when the node is added
         node.parent = this;
         children.Add(node);
     }
 
+    // 노드를 실행합니다. 
     public virtual BT_State Execute()
     {
-        return BT_State.Failure;
+        state = BT_State.Failure;
+        return state;
     }
-
+    
     public void SetFinishedFlag(bool isFinished)
     {
         finishFlag = isFinished;
@@ -66,16 +57,16 @@ public class Node
 
     protected void CheckFinishFlag()
     {
+        // 이 노드에 해당하는 움직임이 끝나서 종료 플래그가 입력되면, Success로 state가 바뀝니다. 
         if (finishFlag)
         {
-            state = BT_State.Success;
             finishFlag = false;
             addedToMovementQueue = false;
+            state = BT_State.Success;
+            return;
         }
-        else
-        {
-            state = BT_State.Running;
-        }
-    }
 
+        // 종료 되지 않고, 진행중이면 state가 Running이 됩니다. 
+        state = BT_State.Running;
+    }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public enum EnemyMovement
 {
     Wait,
@@ -42,8 +43,7 @@ public class Enemy : LivingCreature, ISpawnableObject
 
     bool checkEnemyToMove;
     bool isKnockDown;
-    public bool IsEnemySet = false;
-
+    const float knockDownTime = 1.0f;
 
     void Update()
     {
@@ -56,7 +56,9 @@ public class Enemy : LivingCreature, ISpawnableObject
         SetIsMovingAnimation();
 
         if (movementsAllDone && !isKnockDown)
+        {
             bt.UpdateBT();
+        }
     }
 
     void FixedUpdate()
@@ -66,7 +68,7 @@ public class Enemy : LivingCreature, ISpawnableObject
         AffectedByPhysics();
     }
 
-    public void SetEnemy(GameObject stage, StageMovementValue stageVal, LevelChanger options, Layers layer, ProjectileSpawner pjSpanwer)
+    public void InitEnemy(GameObject stage, StageMovementValue stageVal, StageChanger stageChanger, Layers layer, ProjectileSpawner pjSpanwer)
     {
         values = SceneController.Instance.loaderGoogleSheet.ObjectDatas;
 
@@ -76,19 +78,19 @@ public class Enemy : LivingCreature, ISpawnableObject
         movementDatas = new Queue<MovementData>();
         movementTimer = new StopWatch();
 
-        curMoveSpeed = options.GetEnemyMoveSpeed(enemyType, values.MoveSpeed);
+        curMoveSpeed = values.GetEnemyMoveSpeed(enemyType, values.MoveSpeed);
 
         checkEnemyToMove = false;
         isKnockDown = false;
 
-        SetCreature(stage, stageVal, options, layer, pjSpanwer);
+        Init(stage, stageVal, layer, pjSpanwer);
     }
 
     public override void StartMoving()
     {
         base.StartMoving();
         
-        bt.SetBT(layerStruct);
+        bt.SetBT(layers, values);
     }
     
     public void AddEnemyMovement(MovementData input)
@@ -144,15 +146,24 @@ public class Enemy : LivingCreature, ISpawnableObject
     {
         movementTimer.FinishTimer();
 
-        for (int i = 0; i < movementDatas.Count; i++)
-        {
-            if (movementDatas.Peek().btNode != null)
-                movementDatas.Peek().btNode.SetFailureState();
-            movementDatas.Dequeue();
-        }
-        
+        //bt.ResetBT();
+
+        //if (movementDatas.Peek().btNode != null)
+        //    movementDatas.Peek().btNode.SetFinishedFlag(true);
+
+        movementDatas.Clear();
+
         checkEnemyToMove = false;
+
         InitAnimation();
+        MakeEnemyDoIdleAnimation();
+    }
+
+    void KnockDown()
+    {
+        isKnockDown = true;
+        DeleteAllMovementsAndStop();
+        movementTimer.StartTimer(knockDownTime);
     }
 
     void CheckKnockDownIsFinished()
@@ -187,11 +198,13 @@ public class Enemy : LivingCreature, ISpawnableObject
 
         int layer = (1 << other.gameObject.layer);
 
-        if (layer != layerStruct.ShootProjectileLayer.value) return;
+        if (layer != layers.ShootProjectileLayer.value) return;
 
         GameObject p = pjSpanwer.SpawnFireHitProjectile(this.gameObject);
         p.GetComponent<Projectile>().SetStart(pjSpanwer);
         OnDamagedAndMoveBack(true, other.transform.position, other.transform.forward, EnemyType.Max);
+
+        //KnockDown();
     }
 
     // -------------------------------------------------- damaged by player dash
@@ -200,7 +213,7 @@ public class Enemy : LivingCreature, ISpawnableObject
         if (IsPaused) return;
 
         int layer = (1 << collision.gameObject.layer);
-        if (layer != layerStruct.PlayerLayer.value) return;
+        if (layer != layers.PlayerLayer.value) return;
 
         LivingCreature l = collision.gameObject.GetComponent<LivingCreature>();
         if (!l.IsAttacking || isDamaged) return;
@@ -208,6 +221,8 @@ public class Enemy : LivingCreature, ISpawnableObject
         GameObject p = pjSpanwer.SpawnDashHitProjectile(collision);
         p.GetComponent<Projectile>().SetStart(pjSpanwer);
         OnDamagedAndMoveBack(false, l.CenterPosition, l.CenterForward, EnemyType.Max);
+
+        //KnockDown();
     }
 
     // -------------------------------------------------- layer collision
@@ -217,19 +232,19 @@ public class Enemy : LivingCreature, ISpawnableObject
 
         int layer = (1 << collision.gameObject.layer);
 
-        if (layer == layerStruct.StageLayer.value)
+        if (layer == layers.StageLayer.value)
         {
             OnStageLayer();
         }
-        else if (layer == layerStruct.FailZoneLayer.value)
+        else if (layer == layers.FailZoneLayer.value)
         {
             OnFailZoneLayer();
         }
-        else if (layer == layerStruct.EnemyLayer.value)
+        else if (layer == layers.EnemyLayer.value)
         {
             OnEnemyLayer();
         }
-        else if (layer == layerStruct.PlayerLayer.value)
+        else if (layer == layers.PlayerLayer.value)
         {
             OnPlayerLayer();
         }
@@ -244,7 +259,7 @@ public class Enemy : LivingCreature, ISpawnableObject
         if (IsPaused) return;
 
         int layer = (1 << collision.gameObject.layer);
-        if (layer != layerStruct.PlayerLayer.value) return;
+        if (layer != layers.PlayerLayer.value) return;
 
         isDamaged = false;
     }

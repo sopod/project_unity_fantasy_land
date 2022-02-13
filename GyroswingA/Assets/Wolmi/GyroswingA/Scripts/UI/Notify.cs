@@ -11,12 +11,11 @@ public class Notify : MonoBehaviour
     public void On(string text, float time)
     {
         notify.text = text;
-
         isNotifying = true;
         Invoke("Off", time);
     }
 
-    public void Off()
+    void Off()
     {
         notify.gameObject.SetActive(false);
         isNotifying = false;

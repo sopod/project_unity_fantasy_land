@@ -6,6 +6,7 @@ public class Selector : Node
     public Selector(BlackBoard bb) : base(bb) { }
     public Selector(BlackBoard bb, List<Node> nodes) : base(bb, nodes) { }
 
+
     public override BT_State Execute()
     {
         bool anyChildIsRunning = false;
@@ -14,31 +15,27 @@ public class Selector : Node
         {
             switch (children[i].Execute())
             {
+                // 자식 노드가 실행중이라면, anyChildIsRunning을 true로 바꿉니다. 
                 case BT_State.Running:
                 {
                     anyChildIsRunning = true;
                     continue;
                 }
-
+                // 자식 노드가 성공상태라면, 성공상태를 반환합니다.
                 case BT_State.Success:
                 {
                     state = BT_State.Success;
                     return state;
                 }
-
+                // 자식 노드가 실패상태라면, 다음 자식을 봅니다. 
                 case BT_State.Failure:
                 {
                     continue;
                 }
-
-                default:
-                {
-                    state = BT_State.Success;
-                    return state;
-                }
             }
         }
 
+        // 자식 노드가 실행중이라면 실행중 상태를 반환하고, 아니면 모두 실패했으므로, 실패 상태를 반환합니다. 
         state = (anyChildIsRunning) ? BT_State.Running : BT_State.Failure;
         return state;
     }

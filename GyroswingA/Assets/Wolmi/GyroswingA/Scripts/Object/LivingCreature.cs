@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public enum CreatureType
 {
     Enemy, 
@@ -7,83 +8,81 @@ public enum CreatureType
     Max
 }
 
+
+// 적 몬스터와 플레이어 오브젝트가 상속하는 LivingCreature 클래스입니다. 
+
+
 public abstract class LivingCreature : MovingThing
 {
     const float gravity = 9.8f;
 
-    protected ObjectValues values;
+    Rigidbody rb;
+    Animator ani;
+    State state = new State();
 
-    protected LevelChanger levelControl;
-    protected Layers layerStruct;
-    protected ProjectileSpawner pjSpanwer;
-    StageMovementValue stageVal;
+    protected CreatureType creatureType;
+    public bool IsPlayer { get { return creatureType == CreatureType.Player; } }
+        
+    bool isOnJumpableObject = true;
+    bool isInStageBoundary = true;
+    [SerializeField] protected bool isJumping = false;
+    [SerializeField] protected bool isMoving = false;
+    [SerializeField] protected bool isTurning = false;
+    [SerializeField] protected bool isDamaged = false;
 
-    GameObject stage;
+    protected float curMoveSpeed;
+    //protected float spinSpeedUp;
+
     protected CreatureSoundPlayer soundPlayer;
     [SerializeField] GameObject centerOfCreature;
     [SerializeField] GameObject shootMouth;
 
-    Rigidbody rb;
-    Animator ani;
-
-    protected CreatureType creatureType;
-    public bool IsPlayer { get { return creatureType == CreatureType.Player; } }
-
-    State state;
-
-    protected bool isJumping;
-    bool isOnJumpableObject;
-
-    protected bool isMoving;
-    protected bool isTurning;
-    protected bool isDamaged;
-    bool isInStageBoundary;
-
-    protected float curMoveSpeed;
-    protected float _spinSpeedUp;
+    protected ObjectValues values;
+    protected ProjectileSpawner pjSpanwer;
+    protected Layers layers;
+    StageMovementValue stageVal;
+    GameObject stageOfMachine;
 
     public Vector3 CenterForward { get => centerOfCreature.transform.forward; }
     public Vector3 CenterPosition { get => centerOfCreature.transform.position; }
     public bool IsAttacking { get => state.IsAttacking; }
 
 
-    protected void SetCreature(GameObject stage, StageMovementValue stageVal, LevelChanger options, Layers layer, ProjectileSpawner pjSpanwer)
+    protected virtual void Init(GameObject stageOfMachine, StageMovementValue stageVal, Layers layers, ProjectileSpawner pjSpanwer)
     {
-        this.levelControl = options;
         this.stageVal = stageVal;
-        this.layerStruct = layer;
+        this.layers = layers;
         this.pjSpanwer = pjSpanwer;
 
-        this.stage = stage;
+        this.stageOfMachine = stageOfMachine;
         ani = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         soundPlayer = GetComponentInChildren<CreatureSoundPlayer>();
 
-        state = new State();
+        state.SetIdle();
 
         rb.useGravity = false;
         rb.mass = 1;
         rb.drag = 5;
         rb.angularDrag = 20;
         
-        _spinSpeedUp = 0.0f;
+        //spinSpeedUp = 0.0f;
 
-        ResetCreature();
+        ResetValues();
     }
 
-    public virtual void ResetCreature()
+    public virtual void ResetValues()
     {
         InitAnimation();
 
-        isMoving = false;
-        isTurning = false;
+        isOnJumpableObject = true;
+        isInStageBoundary = true;
 
         isJumping = false;
-        isOnJumpableObject = true;
-
-        isInStageBoundary = true;
+        isMoving = false;
+        isTurning = false;
         isDamaged = false;
-
+        
         PauseMoving();
     }
     
@@ -92,22 +91,6 @@ public abstract class LivingCreature : MovingThing
         AffectedByGravity();
         //AffectedBySpin();
         FreezeLocalXZRotation();
-    }
-
-    public void InitAnimation()
-    {
-        state.SetIdle();
-
-        ani.SetFloat("MoveFront", 0.0f);
-        ani.SetFloat("TurnRight", 0.0f);
-        ani.SetBool("IsMoving", false);
-        ani.SetBool("IsJumping", false);
-        ani.SetBool("IsDead", false);
-    }
-
-    protected void SetIsMovingAnimation()
-    {
-        ani.SetBool("IsMoving", isMoving || isTurning);
     }
 
     public void Move(float key)
@@ -145,7 +128,7 @@ public abstract class LivingCreature : MovingThing
         soundPlayer.PlaySound(CreatureEffectSoundType.Jump, IsPlayer);
         ani.SetBool("IsJumping", true);
 
-        rb.AddForce(stage.transform.up * values.JumpPower, ForceMode.Impulse);
+        rb.AddForce(stageOfMachine.transform.up * values.JumpPower, ForceMode.Impulse);
     }
 
     public void JumpByAttack()
@@ -155,7 +138,7 @@ public abstract class LivingCreature : MovingThing
 
         ani.SetBool("IsJumping", true);
 
-        rb.AddForce(stage.transform.up * values.JumpPower, ForceMode.Impulse);
+        rb.AddForce(stageOfMachine.transform.up * values.JumpPower, ForceMode.Impulse);
     }
 
     public void Dash()
@@ -208,7 +191,7 @@ public abstract class LivingCreature : MovingThing
 
         if (IsPlayer && type != EnemyType.Max) // this is player script and player damaged
         {
-            damagedPower = levelControl.GetDashPowerToDamaged(type, values.DashPowerToDamaged);
+            damagedPower = values.GetDashPowerToDamagedByEnemy(type, values.DashPowerToDamaged);
         }
         else if (isProjectile) // this is enemy script and enemy damaged by projectile
         {
@@ -218,10 +201,10 @@ public abstract class LivingCreature : MovingThing
         if (!IsPlayer) // this is enemy script and enemy damaged
         {
             soundPlayer.PlaySound(CreatureEffectSoundType.Dash, IsPlayer);
+            JumpByAttack();
         }
 
         // add force by dash power
-        JumpByAttack();
         rb.AddForce(dir * damagedPower, ForceMode.Impulse);
 
         Invoke("AcceptDamaged", values.SkillCoolTime);
@@ -241,23 +224,23 @@ public abstract class LivingCreature : MovingThing
 
     protected void AffectedByGravity()
     {
-        rb.velocity -= stage.transform.up * gravity * Time.deltaTime;
+        rb.velocity -= stageOfMachine.transform.up * gravity * Time.deltaTime;
     }
 
-    protected void AffectedBySpin()
-    {
-        if (!isOnJumpableObject || !isInStageBoundary) return;
+    //protected void AffectedBySpin()
+    //{
+    //    if (!isOnJumpableObject || !isInStageBoundary) return;
 
-        Vector3 dir = GetDirectionFromStageToCreature();
+    //    Vector3 dir = GetDirectionFromStageToCreature();
 
-        rb.velocity += (dir * stageVal.Radius * (55.5f + _spinSpeedUp) * Mathf.Deg2Rad * Time.deltaTime);
-    }
+    //    rb.velocity += (dir * stageVal.Radius * (55.5f + spinSpeedUp) * Mathf.Deg2Rad * Time.deltaTime);
+    //}
 
     public void MoveAlongWithStage(bool isMachineSwinging, bool isMachineSpining, bool isSpiningCW)
     {
         if (IsPaused || !isInStageBoundary) return;
 
-        Vector3 centerForSpin = (isSpiningCW) ? stage.transform.up : -stage.transform.up;
+        Vector3 centerForSpin = (isSpiningCW) ? stageOfMachine.transform.up : -stageOfMachine.transform.up;
         Vector3 resPos = rb.position;
 
         // swing
@@ -268,7 +251,7 @@ public abstract class LivingCreature : MovingThing
         if (isMachineSpining && isOnJumpableObject)
         {
             Quaternion spinQuat = Quaternion.AngleAxis(stageVal.SpinAngleCur, centerForSpin);
-            resPos = (spinQuat * (resPos - stage.transform.position) + stage.transform.position);
+            resPos = (spinQuat * (resPos - stageOfMachine.transform.position) + stageOfMachine.transform.position);
             rb.rotation = spinQuat * rb.rotation;
         }
 
@@ -280,17 +263,17 @@ public abstract class LivingCreature : MovingThing
     {
         if (!isInStageBoundary && !isJumping) return;
 
-        Quaternion turnQuat = Quaternion.FromToRotation(centerOfCreature.transform.up, stage.transform.up);
+        Quaternion turnQuat = Quaternion.FromToRotation(centerOfCreature.transform.up, stageOfMachine.transform.up);
         rb.rotation = turnQuat * rb.rotation;
     }
 
     protected Vector3 GetDirectionFromStageToCreature()
     {
         Vector3 centerPosOfCreature = centerOfCreature.GetComponent<Renderer>().bounds.center;
-        Vector3 fromStageToCreature = centerPosOfCreature - stage.transform.position;
-        float height = Vector3.Dot(fromStageToCreature, stage.transform.up.normalized);
+        Vector3 fromStageToCreature = centerPosOfCreature - stageOfMachine.transform.position;
+        float height = Vector3.Dot(fromStageToCreature, stageOfMachine.transform.up.normalized);
 
-        Vector3 parallelPos = stage.transform.position + new Vector3(0, height, 0);
+        Vector3 parallelPos = stageOfMachine.transform.position + new Vector3(0, height, 0);
         Vector3 res = (centerPosOfCreature - parallelPos).normalized;
 
         //Debug.DrawRay(centerPosOfCreature, res, Color.red);
@@ -298,6 +281,21 @@ public abstract class LivingCreature : MovingThing
         return res;
     }
 
+    public void InitAnimation()
+    {
+        state.SetIdle();
+
+        ani.SetFloat("MoveFront", 0.0f);
+        ani.SetFloat("TurnRight", 0.0f);
+        ani.SetBool("IsMoving", false);
+        ani.SetBool("IsJumping", false);
+        ani.SetBool("IsDead", false);
+    }
+
+    protected void SetIsMovingAnimation()
+    {
+        ani.SetBool("IsMoving", isMoving || isTurning);
+    }
 
     // -------------------------------------------------- move along with stage
     void OnTriggerEnter(Collider other)
@@ -305,7 +303,7 @@ public abstract class LivingCreature : MovingThing
         if (IsPaused) return;
             
         int layer = (1 << other.gameObject.layer);
-        if (layer != layerStruct.StageBoundaryLayer.value)
+        if (layer != layers.StageBoundaryLayer.value)
 
         isInStageBoundary = true;
     }
@@ -315,7 +313,7 @@ public abstract class LivingCreature : MovingThing
         if (IsPaused) return;
 
         int layer = (1 << other.gameObject.layer);
-        if (layer != layerStruct.StageBoundaryLayer.value) return;
+        if (layer != layers.StageBoundaryLayer.value) return;
 
         isInStageBoundary = false;
     }

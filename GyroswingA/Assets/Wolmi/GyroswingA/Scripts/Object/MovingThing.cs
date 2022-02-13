@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public abstract class MovingThing : MonoBehaviour
 {
     bool _isPaused = true;

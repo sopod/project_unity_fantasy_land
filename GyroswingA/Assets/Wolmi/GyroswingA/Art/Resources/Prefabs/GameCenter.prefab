@@ -45,31 +45,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   machine: {fileID: 0}
   player: {fileID: 0}
-  inGameUi: {fileID: 0}
   enemySpawner: {fileID: 0}
   itemSpawner: {fileID: 0}
-  pjSpawner: {fileID: 0}
-  stage: {fileID: 0}
+  projectileSpawner: {fileID: 0}
+  stageOfMachine: {fileID: 0}
+  inGameUI: {fileID: 0}
   uiSoundPlayer: {fileID: 0}
-  layerStruct:
+  layers:
     PlayerLayer:
       serializedVersion: 2
-      m_Bits: 8
+      m_Bits: 0
     EnemyLayer:
       serializedVersion: 2
-      m_Bits: 512
+      m_Bits: 0
     ItemLayer:
       serializedVersion: 2
-      m_Bits: 4096
+      m_Bits: 0
     StageLayer:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 0
     FailZoneLayer:
       serializedVersion: 2
-      m_Bits: 128
+      m_Bits: 0
     StageBoundaryLayer:
       serializedVersion: 2
-      m_Bits: 2048
+      m_Bits: 0
     ShootProjectileLayer:
       serializedVersion: 2
-      m_Bits: 8192
+      m_Bits: 0

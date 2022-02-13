@@ -5367,10 +5367,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 324601820}
-    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 164162790551815698}
@@ -5379,13 +5375,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 97552720}
     - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
-      propertyPath: inGameUi
+      propertyPath: inGameUI
       value: 
       objectReference: {fileID: 1014647453}
-    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
-      propertyPath: pjSpawner
-      value: 
-      objectReference: {fileID: 260981697}
     - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
       propertyPath: itemSpawner
       value: 
@@ -5395,8 +5387,40 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 74643259558973524}
     - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
-      propertyPath: uiSoundPlayer
+      propertyPath: stageOfMachine
       value: 
+      objectReference: {fileID: 324601820}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: projectileSpawner
+      value: 
+      objectReference: {fileID: 260981697}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: layers.ItemLayer.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: layers.EnemyLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: layers.StageLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: layers.PlayerLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: layers.FailZoneLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: layers.StageBoundaryLayer.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046827400444098131, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
+      propertyPath: layers.ShootProjectileLayer.m_Bits
+      value: 8192
       objectReference: {fileID: 0}
     - target: {fileID: 4046827400444098220, guid: 0c27c44de00592048b26f980c7404f0f, type: 3}
       propertyPath: m_Name
@@ -5745,6 +5769,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 238773076297940240, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 238773076297940240, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 238773076297940240, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
@@ -5763,6 +5795,14 @@ PrefabInstance:
     - target: {fileID: 1159717645341857469, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692327354571743910, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692327354571743910, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 2692327354571743910, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
       propertyPath: m_RaycastTarget
@@ -5796,6 +5836,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4267197803468745975, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -250
+      objectReference: {fileID: 0}
     - target: {fileID: 4272572239855704152, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5812,6 +5856,10 @@ PrefabInstance:
       propertyPath: _center
       value: 
       objectReference: {fileID: 4046827399231631572}
+    - target: {fileID: 4896403952340446160, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -350
+      objectReference: {fileID: 0}
     - target: {fileID: 5049059031777024954, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -365
@@ -5824,6 +5872,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 164162790551815698}
+    - target: {fileID: 5969398938290931328, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969398938290931328, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 6946019163346147342, guid: a15334d76bcb4164a9380736f0996a47, type: 3}
       propertyPath: m_Pivot.x
       value: 0

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class StageButtonDisplay : MonoBehaviour
 {
     StarDataPerLevel data;

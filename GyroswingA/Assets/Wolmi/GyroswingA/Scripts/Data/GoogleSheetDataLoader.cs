@@ -5,19 +5,21 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
+// 손쉬운 레벨 디자인을 위해 Google Spread Sheet를 사용하여 데이터를 로드하였습니다. 
+
 
 public class GoogleSheetDataLoader : MonoBehaviour
 {
-    LevelValues[] levelDatas;
+    [SerializeField] LevelValues[] levelValues;
     [SerializeField] ObjectValues objectDatas;
     public ObjectValues ObjectDatas { get => objectDatas; }
 
-    bool hasGotLevelValues = false;
-    bool hasGotObjectValues = false;
-    public bool hasGotDatas { get { return hasGotLevelValues && hasGotObjectValues; } }
+    bool hasLevelValuesLoaded = false;
+    bool hasObjectValuesLoaded = false;
+    public bool HasDataLoaded { get { return hasLevelValuesLoaded && hasObjectValuesLoaded; } }
 
-    [SerializeField] string levelValuesURL = "https://script.google.com/macros/s/AKfycbx0BbUOI8G5JZFt3ZihJf_HF1018MlMZqWgGJj0kbnoJ8Ml1joeqsUlJjq2znLtANkUHQ/exec";
-    [SerializeField] string objectValuesURL = "https://script.google.com/macros/s/AKfycby4TJT8GxeJufPAsCyr2u9s73GiBAsJhA9Oei8sYfqBllctTL4gme1uWYNCm-w23YuB_A/exec";
+    [SerializeField] string levelValuesURL;
+    [SerializeField] string objectValuesURL;
 
     void Awake()
     {
@@ -26,13 +28,13 @@ public class GoogleSheetDataLoader : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(GetLevelValuesData());
-        StartCoroutine(GetObjectValuesData());
+        StartCoroutine(GetData(true));
+        StartCoroutine(GetData(false));
     }
 
-    IEnumerator GetLevelValuesData()
+    IEnumerator GetData(bool isLevelData)
     {
-        UnityWebRequest www = UnityWebRequest.Get(levelValuesURL);
+        UnityWebRequest www = (isLevelData) ? UnityWebRequest.Get(levelValuesURL) : UnityWebRequest.Get(objectValuesURL);
 
         yield return www.SendWebRequest();
 
@@ -46,33 +48,20 @@ public class GoogleSheetDataLoader : MonoBehaviour
             string json = www.downloadHandler.text;
             json = AddWrapperJson(json);
 
-            RawLevelValues[] output = FromJsonAsList<RawLevelValues>(json);
-            SaveLevelData(output);
+            if (isLevelData)
+            {
+                RawLevelValues[] output = FromJsonAsList<RawLevelValues>(json);
+                SaveLevelData(output);
 
-            hasGotObjectValues = true;
-        }
-    }
+                hasObjectValuesLoaded = true;
+            }
+            else
+            {
+                objectDatas = new ObjectValues();
+                objectDatas = FromJson<ObjectValues>(json);
 
-    IEnumerator GetObjectValuesData()
-    {
-        UnityWebRequest www = UnityWebRequest.Get(objectValuesURL);
-
-        yield return www.SendWebRequest();
-
-        if (www.result == UnityWebRequest.Result.ConnectionError ||
-            www.result == UnityWebRequest.Result.ProtocolError)
-        {
-            Debug.LogWarning("ERROR: " + www.error);
-        }
-        else
-        {
-            string json = www.downloadHandler.text;
-            json = AddWrapperJson(json);
-
-            objectDatas = new ObjectValues();
-            objectDatas = FromJson<ObjectValues>(json);
-
-            hasGotLevelValues = true;
+                hasLevelValuesLoaded = true;
+            }
         }
     }
 
@@ -92,6 +81,7 @@ public class GoogleSheetDataLoader : MonoBehaviour
         }
     }
     
+    // 얻어온 string값을 json으로 파싱하기 전에, 형식을 맞춰주기 위해 문자를 덧붙입니다. 
     string AddWrapperJson(string value)
     {
         string result = "{\"Values\":" + value + "}";
@@ -117,43 +107,44 @@ public class GoogleSheetDataLoader : MonoBehaviour
         return wrapper.Values;
     }
 
+    // string 데이터를 아이템이나 적 타입의 enum으로 파싱합니다.  
     T[] GetTypes<T>(string input)
     {
         if (input == "") return new T[] { };
 
         string[] result = input.Split(',');
 
-        T[] es = new T[result.Length];
-
+        T[] types = new T[result.Length];
         for (int i = 0; i < result.Length; i++)
         {
-            es[i] = (T)Enum.Parse(typeof(T), result[i]);
+            types[i] = (T)Enum.Parse(typeof(T), result[i]);
         }
 
-        return es;
+        return types;
     }
 
+    // 파싱한 타입으로 데이터에 저장합니다. 
     void SaveLevelData(RawLevelValues[] output)
     {
-        levelDatas = new LevelValues[output.Length];
+        levelValues = new LevelValues[output.Length];
 
         for (int i = 0; i < output.Length; i++)
         {
-            levelDatas[i] = new LevelValues();
+            levelValues[i] = new LevelValues();
 
-            levelDatas[i].Level = output[i].SwingSpeed;
-            levelDatas[i].SwingSpeed = output[i].SwingSpeed;
-            levelDatas[i].SwingAngleMax = output[i].SwingAngleMax;
-            levelDatas[i].SpinSpeed = output[i].SpinSpeed;
-            levelDatas[i].EnemyTypes = GetTypes<EnemyType>(output[i].EnemyTypes);
-            levelDatas[i].ItemTypes = GetTypes<ItemType>(output[i].ItemTypes);
+            levelValues[i].Level = output[i].SwingSpeed;
+            levelValues[i].SwingSpeed = output[i].SwingSpeed;
+            levelValues[i].SwingAngleMax = output[i].SwingAngleMax;
+            levelValues[i].SpinSpeed = output[i].SpinSpeed;
+            levelValues[i].EnemyTypes = GetTypes<EnemyType>(output[i].EnemyTypes);
+            levelValues[i].ItemTypes = GetTypes<ItemType>(output[i].ItemTypes);
         }
     }
 
-    public LevelValues GetLevelValueCur(GameMode mode, int level)
+    public LevelValues GetCurrentStageValue(GameMode mode, int level)
     {
         int lev = (level - 1) + (int)mode * 10;
-        return levelDatas[lev];
+        return levelValues[lev];
     }
 }
 
@@ -185,7 +176,6 @@ public class LevelValues
     public ItemType[] ItemTypes;
 }
 
-
 [System.Serializable]
 public class ObjectValues
 {
@@ -202,24 +192,62 @@ public class ObjectValues
     public float EnemyWaitTime; 
     public float EnemyTurnTime; 
     public float EnemyMoveTime; 
-    public float EnemyLongTurnTime; 
+    public float EnemyLongTurnTime;
+
+    public int EasyModeMonsterMax;
+    public int HardModeMonsterMax;
+    public float SwookSpeedUp;
+    public float GumSpeedUp;
+    public float SwookDashUp;
+    public float HarippoBlueTime;
+    public float HarippoGreenTime;
+    public float HarippoYellowTime;
+    public float HarippoRedTime;
+    public float CokeSpeed;
+    public float ChocoTarteSpeed;
+
+
+    public float GetEnemyMoveSpeed(EnemyType type, float playerMoveSpeed)
+    {
+        switch (type)
+        {
+            case EnemyType.Juck:
+            case EnemyType.Swook: return playerMoveSpeed * SwookSpeedUp;
+            case EnemyType.Gum: return playerMoveSpeed * GumSpeedUp;
+        }
+        return playerMoveSpeed;
+    }
+
+    public float GetDashPowerToDamagedByEnemy(EnemyType type, float dashPowerToDamaged)
+    {
+        switch (type)
+        {
+            case EnemyType.Juck:
+            case EnemyType.Swook: return dashPowerToDamaged * SwookDashUp;
+        }
+        return dashPowerToDamaged;
+    }
+
+    public float GetTimeToUpgradeByItem(ItemType type)
+    {
+        switch (type)
+        {
+            case ItemType.HarippoBlue: return HarippoBlueTime;
+            case ItemType.HarippoGreen: return HarippoGreenTime;
+            case ItemType.HarippoYellow: return HarippoYellowTime;
+            case ItemType.HarippoRed: return HarippoRedTime;
+        }
+        return 0.0f;
+    }
+
+    public float GetSpeedToUpgradeByItem(ItemType type, float playerMoveSpeed)
+    {
+        switch (type)
+        {
+            case ItemType.Coke: return playerMoveSpeed * CokeSpeed;
+            case ItemType.ChocoTarte: return playerMoveSpeed * ChocoTarteSpeed;
+        }
+
+        return playerMoveSpeed;
+    }
 }
-
-
-
-//public float Gravity = 9.8f;
-
-//public float MoveSpeed = 2.0f;
-//public float RotateSpeed = 150.0f;
-//public float JumpPower = 5.0f;
-
-//public float SkillCoolTime = 0.5f;
-//public float DashPowerToDamaged = 10.0f;
-//public float DashPowerToHit = 20.0f;
-//public float FireBallPowerToDamaged = 20.0f;
-//public float KnockDownTime = 2.0f;
-
-//public float EnemyWaitTime = 1.0f;
-//public float EnemyTurnTime = 0.3f;
-//public float EnemyMoveTime = 0.5f;
-//public float EnemyLongTurnTime = 0.5f;

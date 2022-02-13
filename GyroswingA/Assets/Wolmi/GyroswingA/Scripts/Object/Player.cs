@@ -8,8 +8,6 @@ public enum MoblieActionType
     Max
 }
 
-
-
 public class Player : LivingCreature
 {
     [SerializeField] JoystickController joystick;
@@ -41,7 +39,7 @@ public class Player : LivingCreature
         AffectedByPhysics();
     }
 
-    public void SetPlayer(GameObject stage, StageMovementValue stageVal, LevelChanger options, Layers layer, ProjectileSpawner pjSpanwer)
+    public void InitPlayer(GameObject stage, StageMovementValue stageVal, StageChanger options, Layers layer, ProjectileSpawner pjSpanwer)
     {
         values = SceneController.Instance.loaderGoogleSheet.ObjectDatas;
 
@@ -52,12 +50,12 @@ public class Player : LivingCreature
         creatureType = CreatureType.Player;
         curMoveSpeed = values.MoveSpeed;
 
-        SetCreature(stage, stageVal, options, layer, pjSpanwer);
+        Init(stage, stageVal, layer, pjSpanwer);
     }
 
-    public override void ResetCreature()
+    public override void ResetValues()
     {
-        base.ResetCreature();
+        base.ResetValues();
         transform.position = playerStartPos;
         transform.rotation = playerStartRot;
         curMoveSpeed = values.MoveSpeed;
@@ -97,7 +95,7 @@ public class Player : LivingCreature
 
     protected override void NotifyDead()
     {
-        GameCenter.Instance.SetFail();
+        GameCenter.Instance.OnFail();
     }
 
     // -------------------------------------------------- item trigger enter
@@ -106,15 +104,15 @@ public class Player : LivingCreature
         if (IsPaused) return;
 
         int layer = (1 << other.gameObject.layer);
-        if (layer != layerStruct.ItemLayer.value) return;
+        if (layer != layers.ItemLayer.value) return;
 
         Item i = other.gameObject.GetComponent<Item>();
         ItemType type = (ItemType)i.Type;
 
-        levelControl.OnPlayerSpeedItemUsed(type, values.MoveSpeed);
+        curMoveSpeed = values.GetSpeedToUpgradeByItem(type, values.MoveSpeed);
 
-        float plusTime = levelControl.GetItemSecondsToAdd(type);
-        GameCenter.Instance.OnItemUsed(plusTime);
+        float plusTime = values.GetTimeToUpgradeByItem(type);
+        GameCenter.Instance.OnItemGot(plusTime);
 
         other.gameObject.SetActive(false);
 
@@ -130,7 +128,7 @@ public class Player : LivingCreature
         if (IsPaused) return;
 
         int layer = (1 << collision.gameObject.layer);
-        if (layer != layerStruct.EnemyLayer.value) return;
+        if (layer != layers.EnemyLayer.value) return;
 
         Enemy e = collision.gameObject.GetComponent<Enemy>();
         if (e == null || !e.IsAttacking || isDamaged) return;
@@ -147,15 +145,15 @@ public class Player : LivingCreature
 
         int layer = (1 << collision.gameObject.layer);
 
-        if (layer == layerStruct.StageLayer.value)
+        if (layer == layers.StageLayer.value)
         {
             OnStageLayer();
         }
-        else if (layer == layerStruct.FailZoneLayer.value)
+        else if (layer == layers.FailZoneLayer.value)
         {
             OnFailZoneLayer();
         }
-        else if (layer == layerStruct.EnemyLayer.value)
+        else if (layer == layers.EnemyLayer.value)
         {
             OnEnemyLayer();
         }
@@ -170,7 +168,7 @@ public class Player : LivingCreature
         if (IsPaused) return;
 
         int layer = (1 << collision.gameObject.layer);
-        if (layer != layerStruct.EnemyLayer.value) return;
+        if (layer != layers.EnemyLayer.value) return;
 
         isDamaged = false;
     }

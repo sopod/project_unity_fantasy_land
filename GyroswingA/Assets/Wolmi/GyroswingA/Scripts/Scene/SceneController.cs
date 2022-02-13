@@ -16,6 +16,7 @@ public enum SceneState
 public class SceneController : MonoBehaviour
 {
     string[] sceneName = {"Loader", "Lobby", "StageSelection", "InGame", "Loading"};
+
     SceneState curSceneState = SceneState.Loader;
     public SceneState CurScene { get { return curSceneState; } }
     SceneState nextSceneState;
@@ -81,7 +82,7 @@ public class SceneController : MonoBehaviour
                 loadingSceneSilder.value = Mathf.Lerp(0f, 1f, timer);
             }
 
-            if (loadingSceneSilder.value > 0.9f && loaderGoogleSheet.hasGotDatas)
+            if (loadingSceneSilder.value > 0.9f && loaderGoogleSheet.HasDataLoaded)
             {
                 playLobbySceneMusic = (CurScene == SceneState.InGame);
                 curSceneState = nextSceneState;

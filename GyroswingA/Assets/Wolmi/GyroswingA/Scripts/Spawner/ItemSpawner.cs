@@ -6,7 +6,7 @@ public class ItemSpawner : ObjectSpawner
     [SerializeField] protected GameObject stage;
     [HideInInspector] public List<Item> spawnedItems = new List<Item>();
 
-    void Start()
+    void Awake()
     {
         InitSpawner();
     }
@@ -17,7 +17,7 @@ public class ItemSpawner : ObjectSpawner
         spawnedObjectCount = new int[(int)ItemType.Max];
         pools = new Queue<GameObject>[(int)ItemType.Max];
 
-        PrepareObjects((int)ItemType.Max, PREPARE_MAX);
+        PrepareObjects((int)ItemType.Max, OBJECT_PREPARE_AMOUNT);
 
         for (int i = 0; i < spawnPositions.Length; i++)
             isPositionTaken[i] = false;

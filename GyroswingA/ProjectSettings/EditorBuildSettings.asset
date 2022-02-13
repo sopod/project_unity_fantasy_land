@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Wolmi/GyroswingA/Scenes/Loader.unity
+    guid: 1901e6d71fa9eeb4880c1ca7f7248b85
+  - enabled: 1
     path: Assets/Wolmi/GyroswingA/Scenes/Lobby.unity
     guid: 80cad5fd48d7edb4eb99025a1d0b081c
   - enabled: 1

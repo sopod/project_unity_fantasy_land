@@ -7,22 +7,15 @@ public class Action_Patrol : Node
 
     public override BT_State Execute()
     {
+        // 절반의 확률로 좌 혹은 후를 바라본 후 앞으로 전진합니다. 
         if (!addedToMovementQueue)
         {
             addedToMovementQueue = true;
-
             int ranNum = Random.Range(0, 2);
+            EnemyMovement move = (ranNum == 0) ? EnemyMovement.TurnLeft : EnemyMovement.TurnRight;
 
-            if (ranNum == 0)
-            {
-                bb.character.AddEnemyMovement(new MovementData(EnemyMovement.TurnLeft, null, bb.enemyTurnTime));
-            }
-            else if (ranNum == 1)
-            {
-                bb.character.AddEnemyMovement(new MovementData(EnemyMovement.TurnLeft, null, bb.enemyTurnTime));
-            }
-
-            bb.character.AddEnemyMovement(new MovementData(EnemyMovement.MoveForward, this, bb.enemyMoveTime));
+            bb.OwnerCharacter.AddEnemyMovement(new MovementData(move, null, bb.EnemyTurnTime));
+            bb.OwnerCharacter.AddEnemyMovement(new MovementData(EnemyMovement.MoveForward, this, bb.EnemyMoveTime));
         }
 
         CheckFinishFlag();

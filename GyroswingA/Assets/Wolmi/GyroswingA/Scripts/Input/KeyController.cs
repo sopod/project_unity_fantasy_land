@@ -1,5 +1,9 @@
 using UnityEngine;
 
+
+// 키보드 조작 및 터치 조작에 대한 입력값을 얻을 수 있는 KeyController 클래스를 따로 만들어 사용하였습니다. 
+
+
 public class KeyController
 {
     JoystickController joystick;
@@ -14,6 +18,7 @@ public class KeyController
 
     string mouseX = "Mouse X";
     string mouseY = "Mouse Y";
+
 
     public KeyController(JoystickController joystick)
     {

@@ -14,7 +14,7 @@ public class UIButton_Pause : UIButton
     {
         UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
 
-        _center.SetPauseMoving();
+        _center.MakeObjectPaused();
         display.SetOptionUI();
     }
 }

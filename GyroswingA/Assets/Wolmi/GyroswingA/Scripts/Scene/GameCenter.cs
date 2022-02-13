@@ -3,8 +3,8 @@ using UnityEngine;
 public enum GameState
 {
     Playing,
-    Pause,
-    Result
+    Paused,
+    ShowingResult
 }
 
 public enum GameMode
@@ -13,17 +13,10 @@ public enum GameMode
     Hard
 }
 
-[System.Serializable]
-public struct Layers
-{
-    public LayerMask PlayerLayer;
-    public LayerMask EnemyLayer;
-    public LayerMask ItemLayer;
-    public LayerMask StageLayer;
-    public LayerMask FailZoneLayer;
-    public LayerMask StageBoundaryLayer;
-    public LayerMask ShootProjectileLayer;
-}
+
+// 인게임씬에서 게임의 흐름을 관리하는 GameCenter 클래스입니다. 
+// 오브젝트들 사이를 중재하며, 게임 상태에 따라 각종 작업을 수행합니다. 
+
 
 public class GameCenter : MonoBehaviour
 {
@@ -32,31 +25,30 @@ public class GameCenter : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] ItemSpawner itemSpawner;
-    [SerializeField] ProjectileSpawner pjSpawner;
-    [SerializeField] GameObject stage;
-    [SerializeField] InGameUIDisplay inGameUi;
-    [SerializeField] UISoundPlayer uiSoundPlayer;
+    [SerializeField] ProjectileSpawner projectileSpawner;
+    [SerializeField] GameObject stageOfMachine;
+    [SerializeField] InGameUIDisplay inGameUI;
+    UISoundPlayer uiSoundPlayer;
     
     [Header("---- layers")]
-    [SerializeField] Layers layerStruct;
+    [SerializeField] Layers layers;
 
-    LevelChanger levelControl = new LevelChanger();
+    StageChanger stageChanger;
     StarCollector starCollector = new StarCollector();
     StageMovementValue stageVal = new StageMovementValue();
     StopWatch gameTimer = new StopWatch();
 
-    const float waitingTimeForCinemachine = 8.0f;
     const int limitSecondsPerStage = 180;
+    const float cinemachineWaitingTime = 8.0f;
     const float resultSoundWaitingTime = 0.3f;
     const float resultUIWaitingTime = 0.4f;
     const float resultUIRemainingTime = 5.0f;
     const float gameStartWaitingTime = 5.5f;
     const float enemyStartWaitingTime = 1.0f;
 
-    GameState _gameStateCur;
-    bool _isSceneSet;
-    int _monsterMaxCur = 0;
-    int _remainingMonsterCur = 0;
+    GameState gameStateCur;
+    int monsterMaxCur = 0;
+    int remainingMonstersCur = 0;
 
     public Vector3 PlayerPosition { get => player.CenterPosition; }
 
@@ -77,160 +69,243 @@ public class GameCenter : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-
-        _isSceneSet = false;
-    }
-    
-
-    void WaitForTheFirstUpdate()
-    {
-        if (_isSceneSet) return;
-
-        _isSceneSet = true;
-        
-        uiSoundPlayer = UISoundPlayer.Instance;
-
-        inGameUi.gameObject.SetActive(false);
-
-        levelControl.Init(SceneController.Instance.loaderGoogleSheet, SceneController.Instance.loaderStarData);
-
-        SetInGame();
-
-        PrepareInGame();
-
-        SetStopMoving();
-        machine.StartMoving();
-
-        Invoke("StartInGame", waitingTimeForCinemachine);
     }
 
-    void SetInGame()
+    void Start()
     {
-        machine.SetMachine(levelControl, stageVal);
-        player.SetPlayer(stage, stageVal, levelControl, layerStruct, pjSpawner);
+        Init();
     }
 
     void Update()
     {
-        WaitForTheFirstUpdate();
-
-        if (_isSceneSet)
-            UpdateInGame();
+        UpdateInGame();
     }
 
-    void PrepareInGame() // use this after upgrade level
+    // 처음 인게임 씬으로 전환 되면 초기화하고 게임을 준비합니다. 
+    void Init()
+    {
+        uiSoundPlayer = UISoundPlayer.Instance;
+
+        inGameUI.gameObject.SetActive(false);
+
+        stageChanger = new StageChanger(SceneController.Instance.loaderGoogleSheet, SceneController.Instance.loaderStarData);
+
+        machine.Init(stageChanger, stageVal);
+        player.InitPlayer(stageOfMachine, stageVal, stageChanger, layers, projectileSpawner);
+
+        PrepareGame();
+
+        MakeObjectsStopMoving();
+        machine.StartMoving();
+
+        Invoke("StartGame", cinemachineWaitingTime);
+    }
+
+    void PrepareGame()
     {
         machine.ResetMachine();
-
-        player.ResetCreature();
+        player.ResetValues();
         
         SpawnEnemies();
         SpawnItems();
 
-        SetPauseMoving();
+        MakeObjectPaused();
 
         uiSoundPlayer.PlayBGM(SceneState.InGame);
     }
 
-    void StartInGame()
+    // 게임을 시작합니다. GameState, UI, Timer를 설정하고 오브젝트들을 움직이도록합니다.  
+    void StartGame()
     {
         ChangeGameState(GameState.Playing);
         
-        inGameUi.gameObject.SetActive(true);
+        inGameUI.gameObject.SetActive(true);
 
-        _monsterMaxCur = levelControl.GetMonsterAmountForCurState();
-        inGameUi.SetGameStartUI(limitSecondsPerStage, _monsterMaxCur, levelControl.LevelCur);
-        _remainingMonsterCur = _monsterMaxCur;
+        monsterMaxCur = stageChanger.GetMonsterMaxForCurrentStage();
+        inGameUI.SetGameStartUI(limitSecondsPerStage, monsterMaxCur, stageChanger.StageCur);
+        remainingMonstersCur = monsterMaxCur;
 
         gameTimer.StartTimer(limitSecondsPerStage);
 
-        SetStartMoving(true);
+        MakeObjectsStartMoving(true);
     }
 
+    // 게임을 업데이트합니다. 
     void UpdateInGame()
     {
-        if (_gameStateCur != GameState.Playing) return;
+        if (gameStateCur != GameState.Playing) return;
 
-        inGameUi.UpdateTime(gameTimer.GetRemainingTime());
+        inGameUI.UpdateTime(gameTimer.GetRemainingTime());
 
         if (gameTimer.IsFinished)
-            EndCurLevel();
+            EndCurrentStage();
     }
 
     void SpawnEnemies()
     {
-        EnemyType[] typesToGen = levelControl.GetCurLevelValues().EnemyTypes;
-        int amount = levelControl.GetMonsterAmountForCurState();
+        EnemyType[] typesToGen = stageChanger.GetCurrentStageValue().EnemyTypes;
+        int amount = stageChanger.GetMonsterMaxForCurrentStage();
 
         for (int i = 0; i < amount; i++)
         {
             GameObject e = enemySpawner.SpawnEnemyObject(typesToGen, amount);
-            e.GetComponent<Enemy>().SetEnemy(stage, stageVal, levelControl, layerStruct, pjSpawner);
+            e.GetComponent<Enemy>().InitEnemy(stageOfMachine, stageVal, stageChanger, layers, projectileSpawner);
         }
     }
 
     void SpawnItems()
     {
-        ItemType[] typesToGen = levelControl.GetCurLevelValues().ItemTypes;
+        ItemType[] typesToGen = stageChanger.GetCurrentStageValue().ItemTypes;
 
-        for (int i = 0; i < typesToGen.Length; i++)
+        for (int i = typesToGen.Length - 1; i >= 0; i--)
         {
-            GameObject e = itemSpawner.SpawnItemObject(typesToGen[i]);
+            GameObject item = itemSpawner.SpawnItemObject(typesToGen[i]);
         }
     }
     
-    void EndCurLevel()
+    // 현재 스테이지를 종료합니다. 
+    void EndCurrentStage()
     {
-        ChangeGameState(GameState.Result);
+        ChangeGameState(GameState.ShowingResult);
 
         enemySpawner.ReturnAllObjects();
         itemSpawner.ReturnAllObjects();
 
-        bool isWin = starCollector.SetStar(SceneController.Instance.loaderStarData, levelControl.ModeCur, levelControl.LevelCur, _remainingMonsterCur);
-        //int star = starCollector.GetStarForCurStage(levelControl.ModeCur, _remainingMonsterCur);
-        //loaderStarData.data.SetStar(levelControl.ModeCur, levelControl.LevelCur, star);
+        bool isWin = starCollector.SetStar(SceneController.Instance.loaderStarData, stageChanger.ModeCur, stageChanger.StageCur, remainingMonstersCur);
 
-        if (isWin)
-            SetWin();
-        else
-            SetFail();
+        if (isWin) OnWin();
+        else OnFail();
     }
 
-    public void SetWin()
+    public void OnWin()
     {
-        SetPauseMoving();
-        ChangeGameState(GameState.Result);
-
+        MakeObjectPaused();
+        ChangeGameState(GameState.ShowingResult);
 
         uiSoundPlayer.StopPlayingBGM();
         Invoke("SetWinBGM", resultSoundWaitingTime);
         Invoke("SetWinUI", resultUIWaitingTime);
 
-        // call restart level
-        if (!levelControl.UpgradeLevel())
+        if (!stageChanger.UpgradeStage())
         {
             Invoke("BackToStageSelectionScene", resultUIRemainingTime);
+            return;
         }
-        else
-        {
-            Invoke("PrepareInGame", resultUIRemainingTime);
-            Invoke("TurnResultUIOff", resultUIRemainingTime);
-            Invoke("StartInGame", gameStartWaitingTime);
-        }
+
+        Invoke("PrepareGame", resultUIRemainingTime);
+        Invoke("TurnResultUIOff", resultUIRemainingTime);
+        Invoke("StartGame", gameStartWaitingTime);
     }
 
-    public void SetFail()
+    public void OnFail()
     {
-        SetPauseMoving();
-        ChangeGameState(GameState.Result);
+        MakeObjectPaused();
+        ChangeGameState(GameState.ShowingResult);
         
         uiSoundPlayer.StopPlayingBGM();
         Invoke("SetFailBGM", resultSoundWaitingTime);
         Invoke("SetFailUI", resultUIWaitingTime);
 
-
-        // call return to stage selection scene function
         Invoke("BackToStageSelectionScene", resultUIRemainingTime);
+    }
+
+    // 모든 오브젝트들을 움직이게 합니다. makeEnemyWait가 true라면 잠시 몬스터의 움직임을 멈춘 후 움직이게 합니다. 
+    public void MakeObjectsStartMoving(bool makeEnemyWait = false)
+    {
+        ChangeGameState(GameState.Playing);
+
+        gameTimer.RestartTimer();
+
+        machine.StartMoving();
+        player.StartMoving();
+
+        for (int i = itemSpawner.spawnedItems.Count - 1; i >= 0; i--)
+            itemSpawner.spawnedItems[i].StartMoving();
+
+        if (makeEnemyWait)
+        {
+            for (int i = enemySpawner.spawnedEnemies.Count - 1; i >= 0; i--)
+                enemySpawner.spawnedEnemies[i].StopMoving();
+
+            Invoke("MakeEnemyStarMoving", enemyStartWaitingTime);
+            return;
+        }
+
+        MakeEnemyStarMoving();
+    }
+
+    void MakeEnemyStarMoving()
+    {
+        for (int i = enemySpawner.spawnedEnemies.Count - 1; i >= 0; i--)
+            enemySpawner.spawnedEnemies[i].StartMoving();
+    }
+
+    // 모든 오브젝트들을 Stop 시킵니다. 
+    public void MakeObjectsStopMoving()
+    {
+        gameTimer.PauseTimer();
+
+        player.StopMoving();
+        machine.StopMoving();
+
+        for (int i = enemySpawner.spawnedEnemies.Count - 1; i >= 0; i--)
+            enemySpawner.spawnedEnemies[i].StopMoving();
+
+        for (int i = itemSpawner.spawnedItems.Count - 1; i >= 0; i--)
+            itemSpawner.spawnedItems[i].StopMoving();
+    }
+
+    // 모든 오브젝트들을 Pause 시킵니다. 
+    public void MakeObjectPaused()
+    {
+        ChangeGameState(GameState.Paused);
+
+        gameTimer.PauseTimer();
+
+        player.PauseMoving();
+        machine.PauseMoving();
+
+        for (int i = enemySpawner.spawnedEnemies.Count - 1; i >= 0; i--)
+            enemySpawner.spawnedEnemies[i].PauseMoving();
+
+        for (int i = itemSpawner.spawnedItems.Count - 1; i >= 0; i--)
+            itemSpawner.spawnedItems[i].PauseMoving();
+    }
+
+    // 아이템을 먹으면 시간을 늘리고, UI에 표시합니다. 
+    public void OnItemGot(float plusTime)
+    {
+        gameTimer.ExtendTimer(plusTime);
+        inGameUI.NotifyItemText((plusTime > 0));
+    }
+
+    // 몬스터를 죽이면 UI에 표시하고 다 죽였다면 스테이지를 종료합니다. 
+    public void OnMonsterKilled()
+    {
+        remainingMonstersCur--;
+        inGameUI.UpdateMonsterCount(remainingMonstersCur);
+        
+        if (remainingMonstersCur == 0)
+            EndCurrentStage();
+    }
+
+    // 머신 위의 몬스터와 플레이어가 머신과 함께 움직일 수 있도록 합니다. 
+    public void MoveCreaturesAlongMachine(bool isMachineSwinging, bool isMachineSpining, bool isSpiningCW)
+    {
+        player.MoveAlongWithStage(isMachineSwinging, isMachineSpining, isSpiningCW);
+
+        for (int i = enemySpawner.spawnedEnemies.Count - 1; i >= 0; i--)
+            enemySpawner.spawnedEnemies[i].MoveAlongWithStage(isMachineSwinging, isMachineSpining, isSpiningCW);
+    }
+    
+    void ChangeGameState(GameState gameState)
+    {
+        gameStateCur = gameState;
+    }
+
+    void BackToStageSelectionScene()
+    {
+        SceneController.Instance.ChangeScene(SceneState.StageSelection);
     }
 
     void SetWinBGM()
@@ -245,125 +320,30 @@ public class GameCenter : MonoBehaviour
 
     void SetWinUI()
     {
-        inGameUi.SetWinUI(starCollector.GetStarCur);
+        inGameUI.SetWinUI(starCollector.GetStarCur);
     }
 
     void SetFailUI()
     {
-        inGameUi.SetLoseUI();
-    }
-
-    public void SetStartMoving(bool waitEnemy = false)
-    {
-        ChangeGameState(GameState.Playing);
-
-        gameTimer.RestartTimer();
-
-        machine.StartMoving();
-        player.StartMoving();
-
-        if (waitEnemy)
-        {
-            for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
-            {
-                enemySpawner.spawnedEnemies[i].StopMoving();
-            }
-            Invoke("StartEnemyMove", enemyStartWaitingTime);
-        }
-        else
-        {
-            StartEnemyMove();
-        }
-
-        for (int i = 0; i < itemSpawner.spawnedItems.Count; i++)
-        {
-            itemSpawner.spawnedItems[i].StartMoving();
-        }
-    }
-
-    void StartEnemyMove()
-    {
-        for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
-        {
-            enemySpawner.spawnedEnemies[i].StartMoving();
-        }
-    }
-    public void SetStopMoving()
-    {
-        gameTimer.PauseTimer();
-
-        player.StopMoving();
-        machine.StopMoving();
-
-        for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
-        {
-            enemySpawner.spawnedEnemies[i].StopMoving();
-        }
-
-        for (int i = 0; i < itemSpawner.spawnedItems.Count; i++)
-        {
-            itemSpawner.spawnedItems[i].StopMoving();
-        }
-    }
-
-    public void SetPauseMoving()
-    {
-        ChangeGameState(GameState.Pause);
-
-        gameTimer.PauseTimer();
-
-        player.PauseMoving();
-        machine.PauseMoving();
-
-        for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
-        {
-            enemySpawner.spawnedEnemies[i].PauseMoving();
-        }
-
-        for (int i = 0; i < itemSpawner.spawnedItems.Count; i++)
-        {
-            itemSpawner.spawnedItems[i].PauseMoving();
-        }
-    }
-
-    public void OnItemUsed(float plusTime)
-    {
-        gameTimer.ExtendTimer(plusTime);
-        inGameUi.NotifyItemText((plusTime > 0));
-    }
-
-    public void OnMonsterKilled()
-    {
-        _remainingMonsterCur--;
-        inGameUi.UpdateMonsterCount(_remainingMonsterCur);
-        
-        if (_remainingMonsterCur == 0)
-            EndCurLevel();
-    }
-
-    public void MoveCreaturesAlongStage(bool isMachineSwinging, bool isMachineSpining, bool isSpiningCW)
-    {
-        player.MoveAlongWithStage(isMachineSwinging, isMachineSpining, isSpiningCW);
-
-        for (int i = 0; i < enemySpawner.spawnedEnemies.Count; i++)
-        {
-            enemySpawner.spawnedEnemies[i].MoveAlongWithStage(isMachineSwinging, isMachineSpining, isSpiningCW);
-        }
-    }
-    
-    void ChangeGameState(GameState gameState)
-    {
-        _gameStateCur = gameState;
-    }
-
-    void BackToStageSelectionScene()
-    {
-        SceneController.Instance.ChangeScene(SceneState.StageSelection);
+        inGameUI.SetLoseUI();
     }
 
     void TurnResultUIOff()
     {
-        inGameUi.SetGameUI();
+        inGameUI.SetGameUI();
     }
     
+}
+
+
+[System.Serializable]
+public struct Layers
+{
+    public LayerMask PlayerLayer;
+    public LayerMask EnemyLayer;
+    public LayerMask ItemLayer;
+    public LayerMask StageLayer;
+    public LayerMask FailZoneLayer;
+    public LayerMask StageBoundaryLayer;
+    public LayerMask ShootProjectileLayer;
 }

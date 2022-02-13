@@ -6,7 +6,7 @@ public class ProjectileSpawner : ObjectSpawner
 {
     [HideInInspector] public List<Projectile> spawnedProjectiles = new List<Projectile>();
 
-    void Start()
+    void Awake()
     {
         InitSpawner();
     }
@@ -16,7 +16,7 @@ public class ProjectileSpawner : ObjectSpawner
         spawnedObjectCount = new int[(int)ProjectileType.Max];
         pools = new Queue<GameObject>[(int)ProjectileType.Max];
         
-        PrepareObjects((int)ProjectileType.Max, PREPARE_MAX);
+        PrepareObjects((int)ProjectileType.Max, OBJECT_PREPARE_AMOUNT);
 
         ReturnAllObjects();
     }

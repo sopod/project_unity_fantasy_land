@@ -14,7 +14,7 @@ public class StageMovementValue
 public class Machine : MovingThing
 {
     StageMovementValue stageVal;
-    LevelChanger options;
+    StageChanger options;
 
     [SerializeField] GameObject swingBar;
     [SerializeField] GameObject stage;
@@ -63,10 +63,10 @@ public class Machine : MovingThing
             ChangeDirection();
 
         SetStageValues();
-        GameCenter.Instance.MoveCreaturesAlongStage(isMachineSwinging, isMachineSpining, isSpiningCW);
+        GameCenter.Instance.MoveCreaturesAlongMachine(isMachineSwinging, isMachineSpining, isSpiningCW);
     }
 
-    public void SetMachine(LevelChanger options, StageMovementValue stageVal)
+    public void Init(StageChanger stageChanger, StageMovementValue stageVal)
     {
         stageStartPos = stage.transform.position;
         stageStartRot = stage.transform.rotation;
@@ -76,7 +76,7 @@ public class Machine : MovingThing
         swingRadius = (swingBar.transform.position.y - stage.transform.position.y);
 
         this.stageVal = stageVal;
-        this.options = options;
+        this.options = stageChanger;
 
         //swingPowerMinPercent = 0.3f; // min 30% will be same power 
 
@@ -119,7 +119,7 @@ public class Machine : MovingThing
     {
         //SetSwingPower();
 
-        _swingAngleCur = options.GetCurLevelValues().SwingSpeed * Time.fixedDeltaTime * _swingPowerCur;
+        _swingAngleCur = options.GetCurrentStageValue().SwingSpeed * Time.fixedDeltaTime * _swingPowerCur;
 
         if (_isSwingingRight)
             _swingAngleTotal += _swingAngleCur;
@@ -133,19 +133,19 @@ public class Machine : MovingThing
             _swingAngleTotal += 360.0f;
 
         // swingAngleMax <= _swingAngleTotal <= 360.0f - swingAngleMax
-        if (options.GetCurLevelValues().SwingAngleMax < _swingAngleTotal && _swingAngleTotal < (360.0f - options.GetCurLevelValues().SwingAngleMax))
+        if (options.GetCurrentStageValue().SwingAngleMax < _swingAngleTotal && _swingAngleTotal < (360.0f - options.GetCurrentStageValue().SwingAngleMax))
         {
             _changeDir = true;
 
             if (_swingAngleTotal <= 180.0f)
             {
-                _swingAngleCur -= _swingAngleTotal - options.GetCurLevelValues().SwingAngleMax;
-                _swingAngleTotal = options.GetCurLevelValues().SwingAngleMax;
+                _swingAngleCur -= _swingAngleTotal - options.GetCurrentStageValue().SwingAngleMax;
+                _swingAngleTotal = options.GetCurrentStageValue().SwingAngleMax;
             }
             else
             {
-                _swingAngleCur -= (360.0f - options.GetCurLevelValues().SwingAngleMax) - _swingAngleTotal;
-                _swingAngleTotal = 360.0f - options.GetCurLevelValues().SwingAngleMax;
+                _swingAngleCur -= (360.0f - options.GetCurrentStageValue().SwingAngleMax) - _swingAngleTotal;
+                _swingAngleTotal = 360.0f - options.GetCurrentStageValue().SwingAngleMax;
             }
         }        
     }
@@ -185,7 +185,7 @@ public class Machine : MovingThing
     {
         //_upDirBeforeSpin = stage.transform.up;
 
-        _spinAngleCur = options.GetCurLevelValues().SpinSpeed * Time.fixedDeltaTime;
+        _spinAngleCur = options.GetCurrentStageValue().SpinSpeed * Time.fixedDeltaTime;
 
         // up - local 
         if (isSpiningCW)

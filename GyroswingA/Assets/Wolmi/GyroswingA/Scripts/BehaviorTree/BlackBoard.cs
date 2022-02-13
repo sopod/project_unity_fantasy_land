@@ -1,23 +1,29 @@
 
 
+
 public class BlackBoard
 {
-    public Enemy character;
-    public Layers layerStruct;
+    public Enemy OwnerCharacter;
+    public Layers Layers;
+    ObjectValues values;
 
     // detection range
-    public float playerDetectionRadius { get => 2.0f; }
-    public float playerAttackRadius { get => 0.5f; }
+    const float playerDetectionRadius = 2.0f;
+    const float playerAttackRadius = 0.5f;
+
+    public float PlayerDetectionRadius { get => playerDetectionRadius; }
+    public float PlayerAttackRadius { get => playerAttackRadius; }
 
     // time duration
-    public float enemyWaitTime { get => 1.0f; }
-    public float enemyTurnTime { get => 0.3f; }
-    public float enemyMoveTime { get => 0.5f; }
-    public float enemyLongTurnTime { get => 0.5f; }
+    public float EnemyWaitTime { get => values.EnemyWaitTime; }
+    public float EnemyTurnTime { get => values.EnemyTurnTime; }
+    public float EnemyMoveTime { get => values.EnemyMoveTime; }
+    public float EnemyLongTurnTime { get => values.EnemyLongTurnTime; }
 
-    public BlackBoard(Enemy e, Layers layer)
+    public BlackBoard(Enemy ownerCharacter, Layers layers, ObjectValues values)
     {
-        character = e;
-        layerStruct = layer;
+        this.OwnerCharacter = ownerCharacter;
+        this.Layers = layers;
+        this.values = values;
     }
 }
