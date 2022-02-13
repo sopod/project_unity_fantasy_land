@@ -740,7 +740,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b61c43bc27e6e43a4a7cc8461f32d2ea, type: 3}
   bgms:
   - {fileID: 8300000, guid: c3e5e2bbb6d6db24e9fa54514bbb2805, type: 3}
-  - {fileID: 8300000, guid: 2d37a591a3c620c4780f699156b05b21, type: 3}
+  - {fileID: 8300000, guid: 303f53684258b8f40a090bc237036a8d, type: 3}
   - {fileID: 8300000, guid: 526911e2dd49a474ab06feb61b927423, type: 3}
   - {fileID: 8300000, guid: 789621bde6281bf46ae47a5e125d7d7e, type: 3}
   effectSoundAudios:

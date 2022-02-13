@@ -114,7 +114,7 @@ public class Player : LivingCreature
         levelControl.OnPlayerSpeedItemUsed(type, values.MoveSpeed);
 
         float plusTime = levelControl.GetItemSecondsToAdd(type);
-        GameCenter.Instance.OnTimeItemUsed(plusTime);
+        GameCenter.Instance.OnItemUsed(plusTime);
 
         other.gameObject.SetActive(false);
 

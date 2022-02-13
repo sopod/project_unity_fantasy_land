@@ -139,7 +139,7 @@ public class GameCenter : MonoBehaviour
         inGameUi.gameObject.SetActive(true);
 
         _monsterMaxCur = levelControl.GetMonsterAmountForCurState();
-        inGameUi.SetUI(limitSecondsPerStage, _monsterMaxCur);
+        inGameUi.SetGameStartUI(limitSecondsPerStage, _monsterMaxCur, levelControl.LevelCur);
         _remainingMonsterCur = _monsterMaxCur;
 
         gameTimer.StartTimer(limitSecondsPerStage);
@@ -326,16 +326,17 @@ public class GameCenter : MonoBehaviour
         }
     }
 
-    public void OnTimeItemUsed(float plusTime)
+    public void OnItemUsed(float plusTime)
     {
         gameTimer.ExtendTimer(plusTime);
+        inGameUi.NotifyItemText((plusTime > 0));
     }
 
     public void OnMonsterKilled()
     {
         _remainingMonsterCur--;
         inGameUi.UpdateMonsterCount(_remainingMonsterCur);
-
+        
         if (_remainingMonsterCur == 0)
             EndCurLevel();
     }

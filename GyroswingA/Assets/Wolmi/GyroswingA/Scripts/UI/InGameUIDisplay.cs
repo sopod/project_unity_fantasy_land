@@ -3,10 +3,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class InGameUIDisplay : MonoBehaviour
 {
+    readonly string[] monsterKilledText = { "몬스터를 성공적으로 밀어냈어요!", "잘하셨어요!", "역시 최고에요!", "이대로만 가면 성공이에요!", "당신은 숨은 실력자!"};
+    const string speedItemText = "스피드 업!";
+    const string timeItemText = "제한 시간이 늘어났어요!";
+
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI enemyCountText;
+    [SerializeField] TextMeshProUGUI stageNotify;
+    [SerializeField] Notify[] notifies;
+
+    const float stageNotifyRemaingTime = 2.0f;
+    const float notifyRemaingTime = 1.5f;
 
     int monsterMax;
 
@@ -22,8 +32,7 @@ public class InGameUIDisplay : MonoBehaviour
     [SerializeField] VolumeSlider effectSoundSlider;
 
 
-
-    public void SetUI(int limitTime, int enemyMax)
+    public void SetGameStartUI(int limitTime, int enemyMax, int level)
     {
         resultScreen.SetActive(false);
         optionScreen.SetActive(false);
@@ -37,6 +46,10 @@ public class InGameUIDisplay : MonoBehaviour
 
         BgmSlider.InitSlider();
         effectSoundSlider.InitSlider();
+
+        stageNotify.gameObject.SetActive(true);
+        stageNotify.text = new StringBuilder("Stage " + level).ToString();
+        Invoke("OffStageNotify", stageNotifyRemaingTime);
     }
 
     public void UpdateTime(float remainingTime)
@@ -47,6 +60,36 @@ public class InGameUIDisplay : MonoBehaviour
     public void UpdateMonsterCount(int monsterCur)
     {
         enemyCountText.text = new StringBuilder("남은 적 " + monsterCur + " / " + monsterMax).ToString();
+
+        if (monsterCur != 0)
+        {
+            int idx = Random.Range(0, monsterKilledText.Length);
+            NotifyText(monsterKilledText[idx]);
+        }
+    }
+
+    public void NotifyItemText(bool isTime)
+    {
+        NotifyText((isTime) ? timeItemText: speedItemText);
+    }
+
+    void NotifyText(string content)
+    {
+        for (int i = 0; i < notifies.Length; i++)
+        {
+            if (!notifies[i].IsNotifying)
+            {
+                notifies[i].gameObject.SetActive(true);
+                notifies[i].On(content, notifyRemaingTime);
+                return;
+            }
+        }
+    }
+
+    void OffStageNotify()
+    {
+        stageNotify.gameObject.SetActive(false);
+        stageNotify.text = "";
     }
 
     string GetRemainingTimeString(float seconds)
@@ -66,7 +109,7 @@ public class InGameUIDisplay : MonoBehaviour
 
         return res;
     }
-
+    
     public void SetWinUI(int starsGot)
     {
         moblieController.SetActive(false);

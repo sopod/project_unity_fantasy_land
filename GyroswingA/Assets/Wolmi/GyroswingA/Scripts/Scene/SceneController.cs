@@ -77,7 +77,7 @@ public class SceneController : MonoBehaviour
         {
             if (loadingSceneSilder.value < 0.9f)
             {
-                timer += (Time.unscaledDeltaTime * 0.1f);
+                timer += (Time.unscaledDeltaTime * 0.3f);
                 loadingSceneSilder.value = Mathf.Lerp(0f, 1f, timer);
             }
 

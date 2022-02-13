@@ -176,6 +176,7 @@ public class Enemy : LivingCreature, ISpawnableObject
 
     protected override void NotifyDead()
     {
+        soundPlayer.PlaySound(CreatureEffectSoundType.Dead, true);
         GameCenter.Instance.OnMonsterKilled();
     }
 

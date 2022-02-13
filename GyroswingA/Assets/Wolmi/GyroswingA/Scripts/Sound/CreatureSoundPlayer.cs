@@ -4,9 +4,9 @@ using UnityEngine.Audio;
 public enum CreatureEffectSoundType
 {
     Dash,
+    Dead,
     Fire,
     Jump,
-    Dead,
     ItemGet,
     Max
 }
