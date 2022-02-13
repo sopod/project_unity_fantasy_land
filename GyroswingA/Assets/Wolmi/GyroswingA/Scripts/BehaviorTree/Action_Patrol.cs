@@ -16,12 +16,10 @@ public class Action_Patrol : Node
             if (ranNum == 0)
             {
                 bb.character.AddEnemyMovement(new MovementData(EnemyMovement.TurnLeft, null, bb.enemyTurnTime));
-                bb.character.AddEnemyMovement(new MovementData(EnemyMovement.Wait, null, bb.enemyWaitTime));
             }
             else if (ranNum == 1)
             {
                 bb.character.AddEnemyMovement(new MovementData(EnemyMovement.TurnLeft, null, bb.enemyTurnTime));
-                bb.character.AddEnemyMovement(new MovementData(EnemyMovement.Wait, null, bb.enemyWaitTime));
             }
 
             bb.character.AddEnemyMovement(new MovementData(EnemyMovement.MoveForward, this, bb.enemyMoveTime));

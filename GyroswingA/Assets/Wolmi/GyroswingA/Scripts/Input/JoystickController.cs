@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
+
 public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     const float leverRange = 120.0f;
@@ -62,6 +64,4 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         return (isInput) ? inputDir.y : 0.0f;
     }
-    
-
 }

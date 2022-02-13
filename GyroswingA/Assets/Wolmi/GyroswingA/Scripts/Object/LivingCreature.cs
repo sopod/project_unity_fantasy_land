@@ -64,7 +64,7 @@ public abstract class LivingCreature : MovingThing
         rb.useGravity = false;
         rb.mass = 1;
         rb.drag = 5;
-        rb.angularDrag = 10;
+        rb.angularDrag = 20;
         
         _spinSpeedUp = 0.0f;
 
@@ -148,6 +148,16 @@ public abstract class LivingCreature : MovingThing
         rb.AddForce(stage.transform.up * values.JumpPower, ForceMode.Impulse);
     }
 
+    public void JumpByAttack()
+    {
+        isJumping = true;
+        isOnJumpableObject = false;
+
+        ani.SetBool("IsJumping", true);
+
+        rb.AddForce(stage.transform.up * values.JumpPower, ForceMode.Impulse);
+    }
+
     public void Dash()
     {
         if (isJumping || state.IsAttacking) return;
@@ -193,7 +203,6 @@ public abstract class LivingCreature : MovingThing
             if (attackedForward.x * lookTargetDir.x + attackedForward.y * lookTargetDir.y < 0) return;
         }
 
-        // give dash power
         Vector3 dir = (CenterPosition - centerPosOfAttacker).normalized;
         float damagedPower = values.DashPowerToDamaged;
 
@@ -211,6 +220,8 @@ public abstract class LivingCreature : MovingThing
             soundPlayer.PlaySound(CreatureEffectSoundType.Dash, IsPlayer);
         }
 
+        // add force by dash power
+        JumpByAttack();
         rb.AddForce(dir * damagedPower, ForceMode.Impulse);
 
         Invoke("AcceptDamaged", values.SkillCoolTime);
@@ -246,7 +257,6 @@ public abstract class LivingCreature : MovingThing
     {
         if (IsPaused || !isInStageBoundary) return;
 
-
         Vector3 centerForSpin = (isSpiningCW) ? stage.transform.up : -stage.transform.up;
         Vector3 resPos = rb.position;
 
@@ -255,7 +265,7 @@ public abstract class LivingCreature : MovingThing
             resPos += stageVal.SwingPosCur;
 
         // spin
-        if (isMachineSpining && isOnJumpableObject && !isJumping)
+        if (isMachineSpining && isOnJumpableObject)
         {
             Quaternion spinQuat = Quaternion.AngleAxis(stageVal.SpinAngleCur, centerForSpin);
             resPos = (spinQuat * (resPos - stage.transform.position) + stage.transform.position);
@@ -268,7 +278,7 @@ public abstract class LivingCreature : MovingThing
 
     protected void FreezeLocalXZRotation()
     {
-        if (!isInStageBoundary) return;
+        if (!isInStageBoundary && !isJumping) return;
 
         Quaternion turnQuat = Quaternion.FromToRotation(centerOfCreature.transform.up, stage.transform.up);
         rb.rotation = turnQuat * rb.rotation;
@@ -283,7 +293,7 @@ public abstract class LivingCreature : MovingThing
         Vector3 parallelPos = stage.transform.position + new Vector3(0, height, 0);
         Vector3 res = (centerPosOfCreature - parallelPos).normalized;
 
-        Debug.DrawRay(centerPosOfCreature, res, Color.red);
+        //Debug.DrawRay(centerPosOfCreature, res, Color.red);
 
         return res;
     }

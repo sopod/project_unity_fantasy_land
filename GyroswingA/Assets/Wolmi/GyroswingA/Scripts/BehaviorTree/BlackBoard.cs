@@ -18,9 +18,6 @@ public class BlackBoard
     public BlackBoard(Enemy e, Layers layer)
     {
         character = e;
-        this.layerStruct = layer;
+        layerStruct = layer;
     }
-    
-
-
 }

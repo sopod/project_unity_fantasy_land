@@ -39,7 +39,7 @@ public class GoogleSheetDataLoader : MonoBehaviour
         if (www.result == UnityWebRequest.Result.ConnectionError ||
             www.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.Log("ERROR: " + www.error);
+            Debug.LogWarning("ERROR: " + www.error);
         }
         else
         {
@@ -62,7 +62,7 @@ public class GoogleSheetDataLoader : MonoBehaviour
         if (www.result == UnityWebRequest.Result.ConnectionError ||
             www.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.Log("ERROR: " + www.error);
+            Debug.LogWarning("ERROR: " + www.error);
         }
         else
         {
@@ -88,7 +88,7 @@ public class GoogleSheetDataLoader : MonoBehaviour
         if (request.result == UnityWebRequest.Result.ConnectionError ||
             request.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.Log("ERROR: " + request.error);
+            Debug.LogWarning("ERROR: " + request.error);
         }
     }
     

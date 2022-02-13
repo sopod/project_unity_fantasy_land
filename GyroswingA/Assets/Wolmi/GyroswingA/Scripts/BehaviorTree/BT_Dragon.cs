@@ -17,8 +17,6 @@ public class BT_Dragon : BehaviorTree
                         new Action_CheckPlayerToAttack(bb),
                         new Action_Attack(bb),
                         new Action_Wait(bb),
-                        new Action_Wait(bb),
-                        new Action_Wait(bb)
                     }),
 
                     // check if player is near. If so, chase
@@ -26,7 +24,6 @@ public class BT_Dragon : BehaviorTree
                     {
                         new Action_CheckPlayerAround(bb),
                         new Action_MoveToPlayer(bb),
-                        new Action_Wait(bb),
                         new Action_Wait(bb)
                     }),
 
@@ -34,7 +31,7 @@ public class BT_Dragon : BehaviorTree
                     new Sequence(bb, new List<Node>
                     {
                         new Action_Patrol(bb),
-                        new Action_Wait(bb),
+                        //new Action_Wait(bb),
                         new Action_TurnBack(bb),
                         new Action_Wait(bb)
                     })

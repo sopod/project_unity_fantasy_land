@@ -1,28 +1,29 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public enum SceneState
 {
-    Loading,
+    Loader,
     Lobby,
     StageSelection,
     InGame,
+    Loading,
     Max
 }
 
 public class SceneController : MonoBehaviour
 {
-    string[] sceneName = {"Loader", "Lobby", "StageSelection", "InGame"};
-    SceneState curSceneState = SceneState.Loading;
+    string[] sceneName = {"Loader", "Lobby", "StageSelection", "InGame", "Loading"};
+    SceneState curSceneState = SceneState.Loader;
     public SceneState CurScene { get { return curSceneState; } }
+    SceneState nextSceneState;
+    Slider loadingSceneSilder;
 
     bool playLobbySceneMusic = true;
     public bool PlayLobbySceneMusic { get { return playLobbySceneMusic; } }
     
-    bool isDataLoaded = false;
-
     public GoogleSheetDataLoader loaderGoogleSheet;
     public StarDataLoader loaderStarData;
 
@@ -55,24 +56,42 @@ public class SceneController : MonoBehaviour
 
     public void ChangeSceneToMainGame()
     {
-        if (!isDataLoaded)
-            StartCoroutine(WaitUntilDataSet());
-        else
-            ChangeScene(SceneState.InGame);
+        ChangeScene(SceneState.Loading);
+
+        nextSceneState = SceneState.InGame;
     }
 
-
-    IEnumerator WaitUntilDataSet()
+    public void DoLoadingSceneProcess(Slider slider)
     {
-        while (true)
+        loadingSceneSilder = slider;
+        StartCoroutine(ToInGameProcess());
+    }
+
+    IEnumerator ToInGameProcess()
+    {
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName[(int)nextSceneState]);
+        op.allowSceneActivation = false;
+        float timer = 0.0f;
+
+        while(!op.isDone)
         {
-            if (loaderGoogleSheet.hasGotDatas) break;
+            if (loadingSceneSilder.value < 0.9f)
+            {
+                timer += (Time.unscaledDeltaTime * 0.1f);
+                loadingSceneSilder.value = Mathf.Lerp(0f, 1f, timer);
+            }
+
+            if (loadingSceneSilder.value > 0.9f && loaderGoogleSheet.hasGotDatas)
+            {
+                playLobbySceneMusic = (CurScene == SceneState.InGame);
+                curSceneState = nextSceneState;
+                loadingSceneSilder.value = 1f;
+                op.allowSceneActivation = true;
+                yield break;
+            }
 
             yield return null;
-        }
-
-        isDataLoaded = true;
-        ChangeScene(SceneState.InGame);
+        };
     }
 
 
