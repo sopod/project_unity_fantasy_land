@@ -47,12 +47,14 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
         float x = (Screen.width * joystick.sizeDelta.x / 2 + joystick.anchoredPosition.x) / screenResolusionX;
         float y = (Screen.height * joystick.sizeDelta.y / 2 + joystick.anchoredPosition.y) / screenResolusionY;
         
-        var leverPos = eventData.position - new Vector2(x, y);
+        Vector2 leverPos = eventData.position - new Vector2(x, y);
 
         // leverRange 이상으로 조이스틱이 화면에서 넘어가지 않게 만들기 위한 코드입니다. 
-        var inRangePos = (leverPos.magnitude < leverRange) ? leverPos : leverPos.normalized * leverRange;
+        // 넘어가면, 그 방향으로 가도록. 
+        Vector2 inRangePos = (leverPos.magnitude < leverRange) ? leverPos : leverPos.normalized * leverRange;
         lever.anchoredPosition = inRangePos;
 
+        // 얼마나 더 멀리 드래그 했는지에 따라 값이 다름. 
         inputDir = inRangePos / leverRange;
     }
 

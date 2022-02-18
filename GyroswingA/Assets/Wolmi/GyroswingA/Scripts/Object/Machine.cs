@@ -205,10 +205,10 @@ public class Machine : MovingThing
 
     void SetStageValues()
     {
-        stageVal.Radius = swingRadius;
+        //stageVal.Radius = swingRadius;
         stageVal.SwingPosCur = _swingPosCur;
-        stageVal.IsSwingRight = _isSwingingRight;
-        stageVal.SwingAngleCur = _swingAngleCur;
+        //stageVal.IsSwingRight = _isSwingingRight;
+        //stageVal.SwingAngleCur = _swingAngleCur;
         stageVal.SpinAngleCur = _spinAngleCur;
     }
     

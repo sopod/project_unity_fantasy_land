@@ -267,19 +267,19 @@ public abstract class LivingCreature : MovingThing
         rb.rotation = turnQuat * rb.rotation;
     }
 
-    protected Vector3 GetDirectionFromStageToCreature()
-    {
-        Vector3 centerPosOfCreature = centerOfCreature.GetComponent<Renderer>().bounds.center;
-        Vector3 fromStageToCreature = centerPosOfCreature - stageOfMachine.transform.position;
-        float height = Vector3.Dot(fromStageToCreature, stageOfMachine.transform.up.normalized);
+    //protected Vector3 GetDirectionFromStageToCreature()
+    //{
+    //    Vector3 centerPosOfCreature = centerOfCreature.GetComponent<Renderer>().bounds.center;
+    //    Vector3 fromStageToCreature = centerPosOfCreature - stageOfMachine.transform.position;
+    //    float height = Vector3.Dot(fromStageToCreature, stageOfMachine.transform.up.normalized);
 
-        Vector3 parallelPos = stageOfMachine.transform.position + new Vector3(0, height, 0);
-        Vector3 res = (centerPosOfCreature - parallelPos).normalized;
+    //    Vector3 parallelPos = stageOfMachine.transform.position + new Vector3(0, height, 0);
+    //    Vector3 res = (centerPosOfCreature - parallelPos).normalized;
 
-        //Debug.DrawRay(centerPosOfCreature, res, Color.red);
+    //    //Debug.DrawRay(centerPosOfCreature, res, Color.red);
 
-        return res;
-    }
+    //    return res;
+    //}
 
     public void InitAnimation()
     {

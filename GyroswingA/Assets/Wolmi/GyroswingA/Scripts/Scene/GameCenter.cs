@@ -30,7 +30,7 @@ public class GameCenter : MonoBehaviour
     [SerializeField] InGameUIDisplay inGameUI;
     UISoundPlayer uiSoundPlayer;
     
-    [Header("---- layers")]
+    [Header("------- layers")]
     [SerializeField] Layers layers;
 
     StageChanger stageChanger;
@@ -57,18 +57,14 @@ public class GameCenter : MonoBehaviour
     {
         get
         {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<GameCenter>();
-            }
+            if (instance == null) instance = FindObjectOfType<GameCenter>();
             return instance;
         }
     }
 
     void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (instance == null) instance = this;
     }
 
     void Start()
@@ -78,7 +74,7 @@ public class GameCenter : MonoBehaviour
 
     void Update()
     {
-        UpdateInGame();
+        UpdateGame();
     }
 
     // 처음 인게임 씬으로 전환 되면 초기화하고 게임을 준비합니다. 
@@ -131,7 +127,7 @@ public class GameCenter : MonoBehaviour
     }
 
     // 게임을 업데이트합니다. 
-    void UpdateInGame()
+    void UpdateGame()
     {
         if (gameStateCur != GameState.Playing) return;
 
@@ -227,14 +223,14 @@ public class GameCenter : MonoBehaviour
             for (int i = enemySpawner.spawnedEnemies.Count - 1; i >= 0; i--)
                 enemySpawner.spawnedEnemies[i].StopMoving();
 
-            Invoke("MakeEnemyStarMoving", enemyStartWaitingTime);
+            Invoke("MakeEnemyStartMoving", enemyStartWaitingTime);
             return;
         }
 
-        MakeEnemyStarMoving();
+        MakeEnemyStartMoving();
     }
 
-    void MakeEnemyStarMoving()
+    void MakeEnemyStartMoving()
     {
         for (int i = enemySpawner.spawnedEnemies.Count - 1; i >= 0; i--)
             enemySpawner.spawnedEnemies[i].StartMoving();

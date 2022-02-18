@@ -21,9 +21,7 @@ public class SoundLoader : MonoBehaviour
         var temp = Resources.LoadAll<AudioClip>(soundFolderName);
 
         for (int i = 0; i < temp.Length; i++)
-        {
             clips.Add(temp[i].name, temp[i]);
-        }
     }
 
     public AudioClip GetClip(string name)

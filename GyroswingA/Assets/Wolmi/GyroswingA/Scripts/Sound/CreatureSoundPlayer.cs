@@ -20,7 +20,7 @@ public class CreatureSoundPlayer : MonoBehaviour
     [SerializeField] AudioMixerGroup effectSoundMixerGroup;
 
     [SerializeField] AudioClip[] effectSounds;
-    [SerializeField] AudioSource[] effectSoundAudios;
+    [SerializeField] AudioSource effectSoundAudio;
 
     void Awake()
     {
@@ -30,10 +30,7 @@ public class CreatureSoundPlayer : MonoBehaviour
 
     void SetGroup()
     {
-        for (int i = 0; i < effectSoundAudios.Length; i++)
-        {
-            effectSoundAudios[i].outputAudioMixerGroup = effectSoundMixerGroup;
-        }
+        effectSoundAudio.outputAudioMixerGroup = effectSoundMixerGroup;
     }
 
     public void PlaySound(CreatureEffectSoundType soundType, bool trim)
@@ -44,17 +41,7 @@ public class CreatureSoundPlayer : MonoBehaviour
 
         if (clip == null) return;
 
-
-        for (int i = 0; i < effectSoundAudios.Length; i++)
-        {
-            if (!effectSoundAudios[i].isPlaying)
-            {
-                if (trim) effectSoundAudios[i].time = trimRatio;
-
-                effectSoundAudios[i].PlayOneShot(clip);
-                return;
-            }
-        }
-
+        if (trim) effectSoundAudio.time = trimRatio;
+        effectSoundAudio.PlayOneShot(clip);
     }
 }

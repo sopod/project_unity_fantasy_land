@@ -18,7 +18,7 @@ public class UISoundPlayer : MonoBehaviour
     [SerializeField] AudioClip[] effectSounds;
     [SerializeField] AudioClip[] bgms;
 
-    [SerializeField] AudioSource[] effectSoundAudios;
+    [SerializeField] AudioSource effectSoundAudio;
     [SerializeField] AudioSource bgmAudio;
 
     
@@ -30,9 +30,7 @@ public class UISoundPlayer : MonoBehaviour
         get
         {
             if (instance == null)
-            {
                 instance = FindObjectOfType<UISoundPlayer>();
-            }
 
             return instance;
         }
@@ -47,10 +45,7 @@ public class UISoundPlayer : MonoBehaviour
 
     void SetGroup()
     {
-        for (int i = 0; i < effectSoundAudios.Length; i++)
-        {
-            effectSoundAudios[i].outputAudioMixerGroup = effectSoundMixerGroup;
-        }
+        effectSoundAudio.outputAudioMixerGroup = effectSoundMixerGroup;
 
         bgmAudio.outputAudioMixerGroup = bgmMixerGroup;
     }
@@ -63,15 +58,8 @@ public class UISoundPlayer : MonoBehaviour
         AudioClip clip = soundFiles.GetClip(effectSounds[(int) soundType].name);
 
         if (clip == null) return;
-        
-        for (int i = 0; i < effectSoundAudios.Length; i++)
-        {
-            if (!effectSoundAudios[i].isPlaying)
-            {
-                effectSoundAudios[i].PlayOneShot(clip);
-                break;
-            }
-        }
+
+        effectSoundAudio.PlayOneShot(clip);
 
     }
 

@@ -33,8 +33,7 @@ public class SceneController : MonoBehaviour
     {
         get
         {
-            if (instance == null)
-                instance = FindObjectOfType<SceneController>();
+            if (instance == null) instance = FindObjectOfType<SceneController>();
             return instance;
         }
     }
@@ -42,8 +41,7 @@ public class SceneController : MonoBehaviour
     
     void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (instance == null) instance = this;
 
         DontDestroyOnLoad(this.gameObject);
     }

@@ -36,7 +36,7 @@ public class GoogleSheetDataLoader : MonoBehaviour
     {
         UnityWebRequest www = (isLevelData) ? UnityWebRequest.Get(levelValuesURL) : UnityWebRequest.Get(objectValuesURL);
 
-        yield return www.SendWebRequest();
+        yield return www.SendWebRequest(); 
 
         if (www.result == UnityWebRequest.Result.ConnectionError ||
             www.result == UnityWebRequest.Result.ProtocolError)
@@ -67,17 +67,19 @@ public class GoogleSheetDataLoader : MonoBehaviour
 
     IEnumerator PostData(string url, string result)
     {
-        var request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(result);
-        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-        yield return request.SendWebRequest();
+        UnityWebRequest www = new UnityWebRequest(url, "POST");
 
-        if (request.result == UnityWebRequest.Result.ConnectionError ||
-            request.result == UnityWebRequest.Result.ProtocolError)
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(result);
+        www.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        www.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        www.SetRequestHeader("Content-Type", "application/json");
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError ||
+            www.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.LogWarning("ERROR: " + request.error);
+            Debug.LogWarning("ERROR: " + www.error);
         }
     }
     

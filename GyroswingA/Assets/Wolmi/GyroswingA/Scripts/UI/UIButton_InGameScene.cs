@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class UIButton_InGameScene : UIButton
+public class UIButton_InGameScene : UIButton, IPointerClickHandler
 {
     StarDataPerLevel starData;
 
@@ -16,6 +17,12 @@ public class UIButton_InGameScene : UIButton
     void Start()
     {
         UIEventMaker.MakeButtonEvent(this);
+    }
+
+    public void OnPointerClick(PointerEventData data)
+    {
+        if (data.button == PointerEventData.InputButton.Left)
+            OnClicked();
     }
 
     public void SetInGameButton(GameMode mode, int stageNumber)

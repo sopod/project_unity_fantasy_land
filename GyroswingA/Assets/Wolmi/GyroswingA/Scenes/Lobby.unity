@@ -955,7 +955,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BgmSlider: {fileID: 5239519}
   effectSoundSlider: {fileID: 738594633}
-  starData: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
 --- !u!4 &1980942152052021964
 Transform:
   m_ObjectHideFlags: 0
