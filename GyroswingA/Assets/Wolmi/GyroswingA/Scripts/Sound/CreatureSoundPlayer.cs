@@ -3,8 +3,9 @@ using UnityEngine.Audio;
 
 public enum CreatureEffectSoundType
 {
-    Dash,
+    Hit,
     Dead,
+    Dash,
     Fire,
     Jump,
     ItemGet,

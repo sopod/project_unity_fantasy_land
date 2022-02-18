@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -13,6 +14,8 @@ public class StageMovementValue
 
 public class Machine : MovingThing
 {
+    public Action OnMachineMoved;
+
     StageMovementValue stageVal;
     StageChanger options;
 

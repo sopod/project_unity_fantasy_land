@@ -9,18 +9,26 @@ public abstract class ObjectSpawner : MonoBehaviour
 {
     protected const int OBJECT_PREPARE_AMOUNT = 10;
 
+    [SerializeField] ObjectDatabase database;
+    protected Queue<GameObject>[] pools;
+    [SerializeField] protected GameObject[] spawnPositions;
+
     protected bool[] isPositionTaken;
     protected int[] spawnedObjectCount;
 
-    [SerializeField] ObjectDatabase database;
-    [SerializeField] protected GameObject[] spawnPositions;
+    protected void InitSpawner(int max)
+    {
+        isPositionTaken = new bool[spawnPositions.Length];
+        spawnedObjectCount = new int[max];
+        pools = new Queue<GameObject>[max];
 
-    protected Queue<GameObject>[] pools;
-    
+        PrepareObjects(max, OBJECT_PREPARE_AMOUNT);
 
-    protected abstract void InitSpawner();
+        for (int i = 0; i < spawnPositions.Length; i++)
+            isPositionTaken[i] = false;
+    }
 
-    protected void PrepareObjects(int typeMax, int amount)
+    void PrepareObjects(int typeMax, int amount)
     {
         for (int i = 0; i < typeMax; i++)
         {
@@ -34,13 +42,20 @@ public abstract class ObjectSpawner : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             GameObject o = Instantiate(database.GetPrefab(idx), Vector3.zero, database.GetPrefab(idx).transform.rotation, transform);
-            o.GetComponent<ISpawnableObject>().Type = idx;
+            ISpawnableObject obj = o.GetComponent<ISpawnableObject>();
+
+            obj.BackToPool += () =>
+            {
+                ReturnObject(o, idx);
+            };
+
+            obj.Type = idx;
+            
             o.SetActive(false);
             pools[idx].Enqueue(o);
         }
     }
 
-    // Object Pool에서 index에 해당하는 오브젝트를 꺼냅니다. 
     protected GameObject TakeObject(int idx)
     {
         if (pools[idx].Count == 0)
@@ -48,15 +63,13 @@ public abstract class ObjectSpawner : MonoBehaviour
 
         GameObject o = pools[idx].Dequeue();
         SetObjectBeforeSpawned(o, idx);
-        o.SetActive(true);
 
         return o;
     }
 
     protected abstract void SetObjectBeforeSpawned(GameObject e, int idx);
 
-    // 다쓴 오브젝트를 다시 Object Pool로 되돌려 보냅니다. 
-    public void ReturnObject(GameObject o, int idx)
+    void ReturnObject(GameObject o, int idx)
     {
         o.SetActive(false);
         o.transform.SetParent(this.transform);
@@ -64,7 +77,20 @@ public abstract class ObjectSpawner : MonoBehaviour
         spawnedObjectCount[idx]--;
     }
 
-    public abstract void ReturnAllObjects();
+    protected void ReturnAllObjects<T>(List<T> obj) where T : ISpawnableObject
+    {
+        for (int i = obj.Count - 1; i >= 0; i--)
+        {
+            obj[i].InvokeBackToPool();
+        }
+
+        obj.Clear();
+
+        for (int i = 0; i < isPositionTaken.Length; i++)
+            isPositionTaken[i] = false;
+    }
+
+    public abstract void ReturnAll();
 
     protected void SetObjectRandomPosition(GameObject o, int idx)
     {

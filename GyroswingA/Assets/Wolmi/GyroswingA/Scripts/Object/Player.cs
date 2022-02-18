@@ -19,7 +19,6 @@ public class Player : LivingCreature
     private void Update()
     {
         if (IsPaused) return;
-
         if (IsStopped) return;
 
         MovePlayer();
@@ -29,7 +28,7 @@ public class Player : LivingCreature
         DashPlayer();
         FirePlayer();
 
-        SetIsMovingAnimation();
+        aniPlay.DoMovingAnimation();
     }
 
     void FixedUpdate()
@@ -98,6 +97,21 @@ public class Player : LivingCreature
         GameCenter.Instance.OnFail();
     }
 
+    protected override void OnDamagedByDash(Collision collision)
+    {
+        Enemy e = collision.gameObject.GetComponent<Enemy>();
+        if (e == null || !e.IsAttacking || isDamaged) return;
+
+        if (IsHitBack(e.CenterPosition, e.CenterForward)) return;
+
+        Vector3 dir = (transform.position - collision.transform.position).normalized;
+        float damage = values.GetDashPowerToDamagedByEnemy((EnemyType)e.Type, values.DashPowerToDamaged);
+        TakeDamage(dir, damage);
+
+        pjSpanwer.SpawnDashHitProjectile(collision);
+    }
+
+    
     // -------------------------------------------------- item trigger enter
     void OnTriggerEnter(Collider other)
     {
@@ -110,16 +124,12 @@ public class Player : LivingCreature
         ItemType type = (ItemType)i.Type;
 
         curMoveSpeed = values.GetSpeedToUpgradeByItem(type, values.MoveSpeed);
-
         float plusTime = values.GetTimeToUpgradeByItem(type);
         GameCenter.Instance.OnItemGot(plusTime);
 
-        other.gameObject.SetActive(false);
-
-        soundPlayer.PlaySound(CreatureEffectSoundType.ItemGet, IsPlayer);
-
-        GameObject p = pjSpanwer.SpawnItemPickUpProjectile(this.gameObject);
-        p.GetComponent<Projectile>().SetStart(pjSpanwer);
+        soundPlay.DoItemGetSound(IsPlayer);
+        pjSpanwer.SpawnItemPickUpProjectile(this.gameObject);
+        i.InvokeBackToPool();
     }
 
     // -------------------------------------------------- damaged by enemy dash
@@ -130,22 +140,16 @@ public class Player : LivingCreature
         int layer = (1 << collision.gameObject.layer);
         if (layer != layers.EnemyLayer.value) return;
 
-        Enemy e = collision.gameObject.GetComponent<Enemy>();
-        if (e == null || !e.IsAttacking || isDamaged) return;
-
-        GameObject p = pjSpanwer.SpawnDashHitProjectile(collision);
-        p.GetComponent<Projectile>().SetStart(pjSpanwer);
-        OnDamagedAndMoveBack(false, e.CenterPosition, e.CenterForward, (EnemyType)e.Type);
+        OnDamagedByDash(collision);
     }
 
     // -------------------------------------------------- layer collision
     void OnCollisionEnter(Collision collision)
     {
         if (IsPaused) return;
-
         int layer = (1 << collision.gameObject.layer);
 
-        if (layer == layers.StageLayer.value)
+        if (layer == layers.StageLayer.value || layer == layers.EnemyLayer.value)
         {
             OnStageLayer();
         }
@@ -153,13 +157,9 @@ public class Player : LivingCreature
         {
             OnFailZoneLayer();
         }
-        else if (layer == layers.EnemyLayer.value)
-        {
-            OnEnemyLayer();
-        }
         else
         {
-            OnNothingLayer();
+            //OnNothingLayer();
         }
     }
 
@@ -173,8 +173,4 @@ public class Player : LivingCreature
         isDamaged = false;
     }
 
-    public override void OnEnemyLayer()
-    {
-        OnStageLayer();
-    }
 }

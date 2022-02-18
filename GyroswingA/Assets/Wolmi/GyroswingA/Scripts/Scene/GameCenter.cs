@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum GameState
@@ -89,10 +90,14 @@ public class GameCenter : MonoBehaviour
         machine.Init(stageChanger, stageVal);
         player.InitPlayer(stageOfMachine, stageVal, stageChanger, layers, projectileSpawner);
 
+        //machine.OnMachineMoved += player
+
+
         PrepareGame();
 
         MakeObjectsStopMoving();
         machine.StartMoving();
+
 
         Invoke("StartGame", cinemachineWaitingTime);
     }
@@ -164,8 +169,8 @@ public class GameCenter : MonoBehaviour
     {
         ChangeGameState(GameState.ShowingResult);
 
-        enemySpawner.ReturnAllObjects();
-        itemSpawner.ReturnAllObjects();
+        enemySpawner.ReturnAll();
+        itemSpawner.ReturnAll();
 
         bool isWin = starCollector.SetStar(SceneController.Instance.loaderStarData, stageChanger.ModeCur, stageChanger.StageCur, remainingMonstersCur);
 
@@ -293,7 +298,7 @@ public class GameCenter : MonoBehaviour
         for (int i = enemySpawner.spawnedEnemies.Count - 1; i >= 0; i--)
             enemySpawner.spawnedEnemies[i].MoveAlongWithStage(isMachineSwinging, isMachineSpining, isSpiningCW);
     }
-    
+
     void ChangeGameState(GameState gameState)
     {
         gameStateCur = gameState;

@@ -1,12 +1,20 @@
-
+using UnityEngine;
 
 
 public class Item : MovingThing, ISpawnableObject
 {
-    ItemType itemType;
+    public event BackToPoolDelegate BackToPool;
+    public void InvokeBackToPool() { BackToPool?.Invoke(); }
+
+    [SerializeField] ItemType itemType = ItemType.Max;
     public int Type
     {
         get => (int)itemType;
-        set { itemType = (ItemType)value; }
+        set
+        {
+            if (value >= (int)ItemType.Max) return;
+            itemType = (ItemType)value;
+        }
     }
+
 }

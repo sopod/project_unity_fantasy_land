@@ -29,17 +29,25 @@ public class MovementData
 
 public class Enemy : LivingCreature, ISpawnableObject
 {
+    public event BackToPoolDelegate BackToPool;
+    public void InvokeBackToPool() { BackToPool?.Invoke(); }
+    [SerializeField] EnemyType enemyType = EnemyType.Max;
+    public int Type
+    {
+        get => (int)enemyType;
+        set
+        {
+            if (value >= (int)EnemyType.Max) return;
+            enemyType = (EnemyType)value;
+        }
+    }
+
     BT_Dragon bt;
     Queue<MovementData> movementDatas;
     public bool movementsAllDone { get { return movementDatas.Count == 0; } }
     StopWatch movementTimer;
 
-    [SerializeField] EnemyType enemyType;
-    public int Type 
-    { 
-        get => (int) enemyType;
-        set { enemyType = (EnemyType) value; }
-    }
+
 
     bool checkEnemyToMove;
     bool isKnockDown;
@@ -53,7 +61,8 @@ public class Enemy : LivingCreature, ISpawnableObject
         DoMovement();
         CheckMovementIsFinished();
         CheckKnockDownIsFinished();
-        SetIsMovingAnimation();
+
+        aniPlay.DoMovingAnimation();
 
         if (movementsAllDone && !isKnockDown)
         {
@@ -107,24 +116,29 @@ public class Enemy : LivingCreature, ISpawnableObject
         checkEnemyToMove = true;
         movementTimer.StartTimer(movementDatas.Peek().time);
 
-        if (movementDatas.Peek().movement == EnemyMovement.JumpForward)
-            Jump();
+        if (movementDatas.Peek().movement == EnemyMovement.JumpForward) Jump();
     }
 
     void DoMovement()
     {
-        if (!checkEnemyToMove || movementsAllDone) return;
+        if (!checkEnemyToMove || movementsAllDone || state.IsDead || state.IsAttacking) return;
 
         switch (movementDatas.Peek().movement)
         {
-            case EnemyMovement.Wait: MakeEnemyDoIdleAnimation(); break;
+            case EnemyMovement.Wait: DoIdle(); break;
             case EnemyMovement.MoveForward: Move(1.0f); break;
             case EnemyMovement.MoveBackward: Move(-1.0f); break;
             case EnemyMovement.TurnRight: Turn(1.0f); break;
             case EnemyMovement.TurnLeft: Turn(-1.0f); break;
-            case EnemyMovement.JumpForward: if (isJumping) Move(1.0f); break;
+            case EnemyMovement.JumpForward: if (state.IsJumping) Move(1.0f); break;
             default: break;
         }
+    }
+
+    void DoIdle()
+    {
+        state.SetIdle();
+        aniPlay.DoIdleAnimation();
     }
 
     void CheckMovementIsFinished()
@@ -155,8 +169,8 @@ public class Enemy : LivingCreature, ISpawnableObject
 
         checkEnemyToMove = false;
 
-        InitAnimation();
-        MakeEnemyDoIdleAnimation();
+        //InitAnimation();
+        //MakeEnemyDoIdleAnimation();
     }
 
     void KnockDown()
@@ -178,17 +192,30 @@ public class Enemy : LivingCreature, ISpawnableObject
     {
         Dash();
     }
-
-    void MakeEnemyDoIdleAnimation()
-    {
-        isMoving = false; 
-        isTurning = false;
-    }
-
+    
     protected override void NotifyDead()
     {
-        soundPlayer.PlaySound(CreatureEffectSoundType.Dead, true);
+        //soundPlayer.PlaySound(CreatureEffectSoundType.Dead, true);
         GameCenter.Instance.OnMonsterKilled();
+    }
+
+    protected override void OnDamagedByDash(Collision collision)
+    {
+        Player p = collision.gameObject.GetComponent<Player>();
+        if (!p.IsAttacking || isDamaged) return;
+
+        if (IsHitBack(p.CenterPosition, p.CenterForward)) return;
+
+        Vector3 dir = (transform.position - collision.transform.position).normalized;
+        TakeDamage(dir, values.DashPowerToDamaged);
+        pjSpanwer.SpawnDashHitProjectile(collision);
+    }
+
+    void OnDamagedByFire(Vector3 attackedPos)
+    {
+        Vector3 dir = (transform.position - attackedPos).normalized;
+        TakeDamage(dir, values.FireBallPowerToDamaged);
+        pjSpanwer.SpawnFireHitProjectile(this.gameObject);
     }
 
     // -------------------------------------------------- damaged by player fire
@@ -197,13 +224,9 @@ public class Enemy : LivingCreature, ISpawnableObject
         if (IsPaused) return;
 
         int layer = (1 << other.gameObject.layer);
-
         if (layer != layers.ShootProjectileLayer.value) return;
 
-        GameObject p = pjSpanwer.SpawnFireHitProjectile(this.gameObject);
-        p.GetComponent<Projectile>().SetStart(pjSpanwer);
-        OnDamagedAndMoveBack(true, other.transform.position, other.transform.forward, EnemyType.Max);
-
+        OnDamagedByFire(other.transform.position);
         //KnockDown();
     }
 
@@ -215,13 +238,7 @@ public class Enemy : LivingCreature, ISpawnableObject
         int layer = (1 << collision.gameObject.layer);
         if (layer != layers.PlayerLayer.value) return;
 
-        LivingCreature l = collision.gameObject.GetComponent<LivingCreature>();
-        if (!l.IsAttacking || isDamaged) return;
-
-        GameObject p = pjSpanwer.SpawnDashHitProjectile(collision);
-        p.GetComponent<Projectile>().SetStart(pjSpanwer);
-        OnDamagedAndMoveBack(false, l.CenterPosition, l.CenterForward, EnemyType.Max);
-
+        OnDamagedByDash(collision);
         //KnockDown();
     }
 
@@ -229,28 +246,20 @@ public class Enemy : LivingCreature, ISpawnableObject
     void OnCollisionEnter(Collision collision)
     {
         if (IsPaused) return;
-
         int layer = (1 << collision.gameObject.layer);
 
-        if (layer == layers.StageLayer.value)
+        if (layer == layers.StageLayer.value || layer == layers.PlayerLayer.value || layer == layers.EnemyLayer.value)
         {
             OnStageLayer();
         }
         else if (layer == layers.FailZoneLayer.value)
         {
+            Debug.Log("failZoneLayer");
             OnFailZoneLayer();
-        }
-        else if (layer == layers.EnemyLayer.value)
-        {
-            OnEnemyLayer();
-        }
-        else if (layer == layers.PlayerLayer.value)
-        {
-            OnPlayerLayer();
         }
         else
         {
-            OnNothingLayer();
+            //OnNothingLayer();
         }
     }
 
@@ -263,15 +272,5 @@ public class Enemy : LivingCreature, ISpawnableObject
 
         isDamaged = false;
     }
-    
-    public void OnPlayerLayer()
-    {
-        OnStageLayer();
-    }
-
-    public override void OnEnemyLayer()
-    {
-        OnStageLayer();
-    }
-    
+        
 }

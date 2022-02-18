@@ -142,10 +142,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectSoundMixerGroup: {fileID: 7867377859811683651, guid: a1d325928b7fa284e9b3b9e3c488c97c, type: 2}
   effectSounds:
+  - {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+  - {fileID: 8300000, guid: b61c43bc27e6e43a4a7cc8461f32d2ea, type: 3}
   - {fileID: 8300000, guid: b15bd29013541446099ecc4d0c305e35, type: 3}
   - {fileID: 8300000, guid: 79be484af854e49c380529aff67b20d2, type: 3}
   - {fileID: 8300000, guid: ecae4bc301c8a4f57addb1765c488ce4, type: 3}
-  - {fileID: 8300000, guid: b61c43bc27e6e43a4a7cc8461f32d2ea, type: 3}
   - {fileID: 8300000, guid: 9adca66e024ca2c4788dba28a27b7c5d, type: 3}
-  - {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   effectSoundAudio: {fileID: 8673602691880674471}

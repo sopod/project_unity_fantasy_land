@@ -487,6 +487,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0df2781fbbdfe4cb76f3c363d0b2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnJumpableObject: 1
+  isDamaged: 0
   centerOfCreature: {fileID: 2706288346238717738}
   shootMouth: {fileID: 1279070824601189192}
   joystick: {fileID: 0}
@@ -2046,18 +2048,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2706288346238358280}
     m_Modifications:
-    - target: {fileID: 189653122292374319, guid: 8c893b87f0d61434ca4355bde41ce585, type: 3}
-      propertyPath: effectSounds.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: b61c43bc27e6e43a4a7cc8461f32d2ea, type: 3}
-    - target: {fileID: 189653122292374319, guid: 8c893b87f0d61434ca4355bde41ce585, type: 3}
-      propertyPath: effectSounds.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 79be484af854e49c380529aff67b20d2, type: 3}
-    - target: {fileID: 189653122292374319, guid: 8c893b87f0d61434ca4355bde41ce585, type: 3}
-      propertyPath: effectSounds.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: ecae4bc301c8a4f57addb1765c488ce4, type: 3}
     - target: {fileID: 3835113462159138781, guid: 8c893b87f0d61434ca4355bde41ce585, type: 3}
       propertyPath: m_Name
       value: AudioSourcesForPlayer

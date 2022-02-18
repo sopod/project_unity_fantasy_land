@@ -8,21 +8,12 @@ public class ItemSpawner : ObjectSpawner
 
     void Awake()
     {
-        InitSpawner();
+        InitSpawner((int)ItemType.Max);
     }
 
-    protected override void InitSpawner()
+    public override void ReturnAll()
     {
-        isPositionTaken = new bool[spawnPositions.Length];
-        spawnedObjectCount = new int[(int)ItemType.Max];
-        pools = new Queue<GameObject>[(int)ItemType.Max];
-
-        PrepareObjects((int)ItemType.Max, OBJECT_PREPARE_AMOUNT);
-
-        for (int i = 0; i < spawnPositions.Length; i++)
-            isPositionTaken[i] = false;
-
-        ReturnAllObjects();
+        ReturnAllObjects<Item>(spawnedItems);
     }
 
     protected override void SetObjectBeforeSpawned(GameObject o, int idx)
@@ -35,21 +26,11 @@ public class ItemSpawner : ObjectSpawner
         spawnedObjectCount[idx]++;
 
     }
-
-    public override void ReturnAllObjects()
-    {
-        for (int i = spawnedItems.Count - 1; i >= 0; i--)
-        {
-            ReturnObject(spawnedItems[i].gameObject, spawnedItems[i].Type);
-            spawnedItems.RemoveAt(i);
-        }
-
-        for (int i = 0; i < isPositionTaken.Length; i++)
-            isPositionTaken[i] = false;
-    }
-
+    
     public GameObject SpawnItemObject(ItemType type)
     {
-        return TakeObject((int)type);
+        GameObject o = TakeObject((int)type);
+        o.SetActive(true);
+        return o;
     }
 }

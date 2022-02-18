@@ -8,46 +8,32 @@ public class ProjectileSpawner : ObjectSpawner
 
     void Awake()
     {
-        InitSpawner();
+        InitSpawner((int)ProjectileType.Max);
     }
 
-    protected override void InitSpawner()
+    public override void ReturnAll()
     {
-        spawnedObjectCount = new int[(int)ProjectileType.Max];
-        pools = new Queue<GameObject>[(int)ProjectileType.Max];
-        
-        PrepareObjects((int)ProjectileType.Max, OBJECT_PREPARE_AMOUNT);
-
-        ReturnAllObjects();
+        ReturnAllObjects<Projectile>(spawnedProjectiles);
     }
-        
+
     protected override void SetObjectBeforeSpawned(GameObject e, int idx)
     {
         e.transform.SetParent(null);
         spawnedProjectiles.Add(e.GetComponent<Projectile>());
         spawnedObjectCount[idx]++;
     }
-        
-    public override void ReturnAllObjects()
-    {
-        for (int i = spawnedProjectiles.Count - 1; i >= 0; i--)
-        {
-            ReturnObject(spawnedProjectiles[i].gameObject, spawnedProjectiles[i].Type);
-            spawnedProjectiles.RemoveAt(i);
-        }
-    }
     
-    public GameObject SpawnFireProjectile(Vector3 pos, Vector3 forward)
+    public void SpawnFireProjectile(Vector3 pos, Vector3 forward)
     {
         GameObject p = TakeObject((int)ProjectileType.FireShoot);
 
         p.transform.position = pos;
         p.transform.forward = forward;
 
-        return p;
+        p.SetActive(true);
     }
 
-    public GameObject SpawnDashHitProjectile(Collision collision)
+    public void SpawnDashHitProjectile(Collision collision)
     {
         GameObject p = TakeObject((int)ProjectileType.DashHit);
         
@@ -56,30 +42,30 @@ public class ProjectileSpawner : ObjectSpawner
 
         p.transform.SetParent(collision.gameObject.transform);
 
-        return p;
+        p.SetActive(true);
     }
 
-    public GameObject SpawnFireHitProjectile(GameObject character)
+    public void SpawnFireHitProjectile(GameObject character)
     {
         GameObject p = TakeObject((int)ProjectileType.FireHit);
 
         p.transform.position = character.transform.position;
         p.transform.forward = character.transform.forward;
 
-        return p;
+        p.SetActive(true);
     }
 
-    public GameObject SpawnDeadProjectile(GameObject character)
+    public void SpawnDeadProjectile(GameObject character)
     {
         GameObject p = TakeObject((int)ProjectileType.Dead);
 
         p.transform.position = character.transform.position + character.transform.right * 0.1f + character.transform.up * 0.3f;
         p.transform.forward = character.transform.forward;
 
-        return p;
+        p.SetActive(true);
     }
 
-    public GameObject SpawnItemPickUpProjectile(GameObject character)
+    public void SpawnItemPickUpProjectile(GameObject character)
     {
         GameObject p = TakeObject((int)ProjectileType.ItemPickUp);
 
@@ -87,8 +73,8 @@ public class ProjectileSpawner : ObjectSpawner
         p.transform.forward = -character.transform.up;
 
         p.transform.SetParent(character.transform);
-
-        return p;
+        
+        p.SetActive(true);
     }
 
 }

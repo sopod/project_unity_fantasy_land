@@ -1,24 +1,33 @@
+using System;
 using UnityEngine;
-
 
 public class Projectile : MonoBehaviour, ISpawnableObject
 {
+    public event BackToPoolDelegate BackToPool;
+    public void InvokeBackToPool() { BackToPool?.Invoke(); }
+
+    [SerializeField] ProjectileType pjType = ProjectileType.Max;
+    public int Type
+    {
+        get => (int)pjType;
+        set
+        {
+            if (value >= (int)ProjectileType.Max) return;
+            pjType = (ProjectileType)value;
+        }
+    }
+
     float projectileMoveSpeed = 7.0f;
     float projectileRemaingTime = 1.6f;
-    ProjectileSpawner spawner;
 
     bool isDisabled = false;
     bool isAlive = false;
     public bool isMoving = false;
-
-    ProjectileType projectileType;
-
-    public int Type
+    
+    void OnEnable()
     {
-        get => (int)projectileType;
-        set { projectileType = (ProjectileType)value; }
+        SetStart();
     }
-
 
     void Update()
     {
@@ -27,19 +36,17 @@ public class Projectile : MonoBehaviour, ISpawnableObject
         MoveForward();
     }
 
-    void MoveForward()
+    public void SetStart()
     {
-        transform.Translate(transform.forward * projectileMoveSpeed * Time.deltaTime, Space.World);
-    }
-
-    public void SetStart(ProjectileSpawner spawner)
-    {
-        this.spawner = spawner;
-
         isDisabled = false;
         isAlive = true;
         
         Invoke("BackToSpawner", projectileRemaingTime);
+    }
+
+    void MoveForward()
+    {
+        transform.Translate(transform.forward * projectileMoveSpeed * Time.deltaTime, Space.World);
     }
 
     public void BackToSpawner()
@@ -49,7 +56,7 @@ public class Projectile : MonoBehaviour, ISpawnableObject
         isDisabled = true;
         isAlive = false;
 
-        spawner.ReturnObject(this.gameObject, Type);
+        BackToPool?.Invoke();
     }
     
 
