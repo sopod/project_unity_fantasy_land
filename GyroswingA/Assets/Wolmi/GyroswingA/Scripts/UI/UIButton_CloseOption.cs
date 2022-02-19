@@ -18,7 +18,7 @@ public class UIButton_CloseOption : UIButton
 
         if (SceneController.Instance.CurScene == SceneState.InGame)
         {
-            display.SetGameUI();
+            display.SetInGameUI();
             gameCenter.MakeObjectsStartMoving();
         }
         else

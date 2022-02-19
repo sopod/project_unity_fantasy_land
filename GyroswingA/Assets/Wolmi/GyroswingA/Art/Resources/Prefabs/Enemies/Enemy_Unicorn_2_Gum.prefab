@@ -130,7 +130,7 @@ BoxCollider:
   m_GameObject: {fileID: 2349709601302349939}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.1, y: 1.1232967, z: 2}
   m_Center: {x: 0, y: 0.58835167, z: 0}
@@ -159,11 +159,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 2349709601302349939}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.75
-  m_Height: 1.7
+  m_Enabled: 1
+  m_Radius: 1.194151
+  m_Height: 2.388302
   m_Direction: 1
-  m_Center: {x: 0, y: 0.76, z: 0}
+  m_Center: {x: 0, y: 1.12, z: -0.09000003}
 --- !u!114 &-1099724344561742829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,10 +176,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bbd5c69e34ad7439c551ea2858440f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state:
+    state: 0
+  isOnJumpableObject: 1
+  isDamaged: 0
   centerOfCreature: {fileID: 2350299013429365887}
   shootMouth: {fileID: 0}
   enemyType: 0
-  IsEnemySet: 0
 --- !u!114 &686201588218998612
 MonoBehaviour:
   m_ObjectHideFlags: 0

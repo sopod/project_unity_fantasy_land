@@ -13,7 +13,7 @@ public class Player : LivingCreature
     [SerializeField] JoystickController joystick;
     KeyController key;
 
-    Vector3 playerStartPos = new Vector3(-30.57f, 2.21f, -50.2f);
+    Vector3 playerStartPos = new Vector3(-30.5f, 2.21f, -52.3f);
     Quaternion playerStartRot;
 
     private void Update()
@@ -40,7 +40,7 @@ public class Player : LivingCreature
 
     public void InitPlayer(GameObject stage, StageMovementValue stageVal, StageChanger options, Layers layer, ProjectileSpawner pjSpanwer)
     {
-        values = SceneController.Instance.loaderGoogleSheet.ObjectDatas;
+        Init(stage, stageVal, layer, pjSpanwer);
 
         playerStartRot = transform.rotation;
 
@@ -49,7 +49,6 @@ public class Player : LivingCreature
         creatureType = CreatureType.Player;
         curMoveSpeed = values.MoveSpeed;
 
-        Init(stage, stageVal, layer, pjSpanwer);
     }
 
     public override void ResetValues()
@@ -100,7 +99,7 @@ public class Player : LivingCreature
     protected override void OnDamagedByDash(Collision collision)
     {
         Enemy e = collision.gameObject.GetComponent<Enemy>();
-        if (e == null || !e.IsAttacking || isDamaged) return;
+        if (e == null || !e.IsAttacking || state.IsDamaged) return;
 
         if (IsHitBack(e.CenterPosition, e.CenterForward)) return;
 
@@ -110,9 +109,8 @@ public class Player : LivingCreature
 
         pjSpanwer.SpawnDashHitProjectile(collision);
     }
-
     
-    // -------------------------------------------------- item trigger enter
+    // -------------------------------------------------- item
     void OnTriggerEnter(Collider other)
     {
         if (IsPaused) return;
@@ -143,7 +141,6 @@ public class Player : LivingCreature
         OnDamagedByDash(collision);
     }
 
-    // -------------------------------------------------- layer collision
     void OnCollisionEnter(Collision collision)
     {
         if (IsPaused) return;
@@ -166,11 +163,12 @@ public class Player : LivingCreature
     void OnCollisionExit(Collision collision)
     {
         if (IsPaused) return;
-
         int layer = (1 << collision.gameObject.layer);
-        if (layer != layers.EnemyLayer.value) return;
 
-        isDamaged = false;
+        if (layer == layers.EnemyLayer.value)
+        {
+            //isDamaged = false;
+        }
     }
 
 }

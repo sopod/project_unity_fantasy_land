@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -15,7 +16,7 @@ public abstract class LivingCreature : MovingThing
 {
     const float gravity = 9.8f;
 
-    Rigidbody rb;
+    protected Rigidbody rb;
     [SerializeField] protected State state = new State();
     protected CreatureAnimation aniPlay;
     protected CreatureSound soundPlay;
@@ -23,12 +24,10 @@ public abstract class LivingCreature : MovingThing
     protected CreatureType creatureType;
     public bool IsPlayer { get { return creatureType == CreatureType.Player; } }
 
-    bool isInStageBoundary = true;
-    [SerializeField] bool isOnJumpableObject = true;
-    [SerializeField] protected bool isDamaged = false;
+    //[SerializeField] bool isOnJumpableObject = true;
+    //[SerializeField] protected bool isDamaged = false;
 
     protected float curMoveSpeed;
-    //protected float spinSpeedUp;
 
     [SerializeField] GameObject centerOfCreature;
     [SerializeField] GameObject shootMouth;
@@ -46,6 +45,7 @@ public abstract class LivingCreature : MovingThing
 
     protected virtual void Init(GameObject stageOfMachine, StageMovementValue stageVal, Layers layers, ProjectileSpawner pjSpanwer)
     {
+        values = SceneController.Instance.loaderGoogleSheet.ObjectDatas;
         this.stageVal = stageVal;
         this.layers = layers;
         this.pjSpanwer = pjSpanwer;
@@ -61,23 +61,16 @@ public abstract class LivingCreature : MovingThing
         rb.mass = 1;
         rb.drag = 5;
         rb.angularDrag = 20;
-        
-        //spinSpeedUp = 0.0f;
+        rb.constraints = RigidbodyConstraints.FreezeRotationY;
 
         ResetValues();
     }
 
     public virtual void ResetValues()
     {
-        state.SetIdle();
+        state.InitState();
         aniPlay.InitAnimation();
 
-        isOnJumpableObject = true;
-        //isInStageBoundary = true;
-
-        //isJumping = false;
-        isDamaged = false;
-        
         PauseMoving();
     }
     
@@ -86,6 +79,19 @@ public abstract class LivingCreature : MovingThing
         AffectedByGravity();
         //AffectedBySpin();
         FreezeLocalXZRotation();
+    }
+
+    protected void AffectedByGravity()
+    {
+        rb.velocity -= stageOfMachine.transform.up * gravity * Time.deltaTime;
+    }
+
+    protected void FreezeLocalXZRotation()
+    {
+        if (!state.CanMoveAlongWithMachine) return;
+
+        Quaternion turnQuat = Quaternion.FromToRotation(centerOfCreature.transform.up, stageOfMachine.transform.up);
+        rb.rotation = turnQuat * rb.rotation;
     }
 
     public void Move(float key)
@@ -109,10 +115,9 @@ public abstract class LivingCreature : MovingThing
 
     public void Jump()
     {
-        if (!state.CanJump && !isOnJumpableObject) return;
+        if (!state.CanJump) return;
 
         state.SetJumping();
-        isOnJumpableObject = false;
 
         soundPlay.DoJumpSound(IsPlayer);
         aniPlay.DoJumpAnimation();
@@ -122,11 +127,7 @@ public abstract class LivingCreature : MovingThing
 
     public void JumpByAttack()
     {
-        isOnJumpableObject = false;
-
-        state.SetJumping();
         aniPlay.DoJumpAnimation();
-
         rb.AddForce(stageOfMachine.transform.up * values.JumpPower, ForceMode.Impulse);
     }
 
@@ -139,7 +140,8 @@ public abstract class LivingCreature : MovingThing
         aniPlay.DoDashAnimation();
 
         rb.AddForce(transform.forward * values.DashPowerToHit, ForceMode.Impulse);
-        
+
+        CancelInvoke("SetIdle");
         Invoke("SetIdle", values.SkillCoolTime);
     }
 
@@ -152,7 +154,8 @@ public abstract class LivingCreature : MovingThing
         aniPlay.DoFireAnimation();
 
         pjSpanwer.SpawnFireProjectile(shootMouth.transform.position, shootMouth.transform.forward);
-        
+
+        CancelInvoke("SetIdle");
         Invoke("SetIdle", values.SkillCoolTime);
     }
 
@@ -174,87 +177,27 @@ public abstract class LivingCreature : MovingThing
 
     protected void TakeDamage(Vector3 dir, float damagedPower)
     {
-        if (!IsPlayer) JumpByAttack();
+        state.SetDamaged();
+        CancelInvoke("SetIdle");
+        Invoke("SetIdle", values.SkillCoolTime);
 
-        isDamaged = true;
+        JumpByAttack();
 
         rb.AddForce(dir * damagedPower, ForceMode.Impulse);
         soundPlay.DoHitSound(IsPlayer);
-
-        Invoke("AcceptDamaged", values.SkillCoolTime);
     }
 
     protected abstract void OnDamagedByDash(Collision collision);
 
-    //protected void OnDamagedAndMoveBack(Vector3 dir, EnemyType type, bool isProjectile)
-    //{
-    //    isDamaged = true;
-
-    //    float damagedPower = values.DashPowerToDamaged;
-
-    //    if (IsPlayer && !isProjectile) // this is player script and player damaged
-    //    {
-    //        damagedPower = values.GetDashPowerToDamagedByEnemy(type, values.DashPowerToDamaged);
-    //    }
-    //    else if (isProjectile) // this is enemy script and enemy damaged by projectile
-    //    {
-    //        damagedPower = values.FireBallPowerToDamaged;
-    //    }
-
-    //    TakeDamage(dir, damagedPower);
-    //}
-
-    public void AcceptDamaged()
-    {
-        isDamaged = false;
-    }
-
     protected abstract void NotifyDead();
 
-    protected void AffectedByGravity()
-    {
-        rb.velocity -= stageOfMachine.transform.up * gravity * Time.deltaTime;
-    }
 
     //protected void AffectedBySpin()
     //{
     //    if (!isOnJumpableObject || !isInStageBoundary) return;
-
     //    Vector3 dir = GetDirectionFromStageToCreature();
-
     //    rb.velocity += (dir * stageVal.Radius * (55.5f + spinSpeedUp) * Mathf.Deg2Rad * Time.deltaTime);
     //}
-
-    public void MoveAlongWithStage(bool isMachineSwinging, bool isMachineSpining, bool isSpiningCW)
-    {
-        if (IsPaused || !state.CanMoveAlongWithMachine) return;
-
-        Vector3 centerForSpin = (isSpiningCW) ? stageOfMachine.transform.up : -stageOfMachine.transform.up;
-        Vector3 resPos = rb.position;
-
-        // swing
-        if (isMachineSwinging)
-            resPos += stageVal.SwingPosCur;
-
-        // spin
-        if (isMachineSpining && isOnJumpableObject)
-        {
-            Quaternion spinQuat = Quaternion.AngleAxis(stageVal.SpinAngleCur, centerForSpin);
-            resPos = (spinQuat * (resPos - stageOfMachine.transform.position) + stageOfMachine.transform.position);
-            rb.rotation = spinQuat * rb.rotation;
-        }
-
-        // apply
-        rb.position = resPos;
-    }
-
-    protected void FreezeLocalXZRotation()
-    {
-        if (!state.CanMoveAlongWithMachine) return;
-
-        Quaternion turnQuat = Quaternion.FromToRotation(centerOfCreature.transform.up, stageOfMachine.transform.up);
-        rb.rotation = turnQuat * rb.rotation;
-    }
 
     //protected Vector3 GetDirectionFromStageToCreature()
     //{
@@ -270,33 +213,32 @@ public abstract class LivingCreature : MovingThing
     //    return res;
     //}
 
-    // -------------------------------------------------- move along with stage
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    if (IsPaused) return;
-            
-    //    int layer = (1 << other.gameObject.layer);
-    //    if (layer != layers.StageBoundaryLayer.value)
-
-    //    isInStageBoundary = true;
-    //}
-
-    //void OnTriggerExit(Collider other)
-    //{
-    //    if (IsPaused) return;
-
-    //    int layer = (1 << other.gameObject.layer);
-    //    if (layer != layers.StageBoundaryLayer.value) return;
-
-    //    isInStageBoundary = false;
-    //}
-
-    // -------------------------------------------------- layer collision
-    public void OnStageLayer()
+    public void MoveAlongWithStage(bool isMachineSwinging, bool isMachineSpining, bool isSpiningCW)
     {
-        //isInStageBoundary = true;
+        if (IsPaused || !state.CanMoveAlongWithMachine) return;
 
-        isOnJumpableObject = true;
+        Vector3 centerForSpin = (isSpiningCW) ? stageOfMachine.transform.up : -stageOfMachine.transform.up;
+        Vector3 resPos = rb.position;
+
+        // swing
+        if (isMachineSwinging)
+            resPos += stageVal.SwingPosCur;
+
+        // spin
+        if (isMachineSpining && state.IsOnJumpableObject)
+        {
+            Quaternion spinQuat = Quaternion.AngleAxis(stageVal.SpinAngleCur, centerForSpin);
+            resPos = (spinQuat * (resPos - stageOfMachine.transform.position) + stageOfMachine.transform.position);
+            rb.rotation = spinQuat * rb.rotation;
+        }
+
+        // apply
+        rb.position = resPos;
+    }
+
+    protected void OnStageLayer()
+    {
+        state.IsOnJumpableObject = true;
 
         if (state.IsJumping)
         {
@@ -305,15 +247,18 @@ public abstract class LivingCreature : MovingThing
         }
     }
 
+    protected void OffStageLayer()
+    {
+        Debug.Log("Off Stage");
+        state.IsOnJumpableObject = false;
+    }
+
     public void OnFailZoneLayer()
     {
         if (state.IsDead) return;
 
-        Debug.Log("SetDead");
         state.SetDead();
 
-        isOnJumpableObject = false;
-        
         soundPlay.DoDeadSound(true);
         aniPlay.DoDeadAnimation();
 
@@ -322,8 +267,8 @@ public abstract class LivingCreature : MovingThing
         NotifyDead();
     }
     
-    public void OnNothingLayer()
-    {
-        isOnJumpableObject = false;
-    }
+    //public void OnNothingLayer()
+    //{
+    //    state.IsOnJumpableObject = false;
+    //}
 }

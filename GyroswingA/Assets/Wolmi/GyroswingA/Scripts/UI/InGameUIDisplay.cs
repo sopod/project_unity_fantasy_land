@@ -10,34 +10,37 @@ public class InGameUIDisplay : MonoBehaviour
     const string speedItemText = "스피드 업!";
     const string timeItemText = "제한 시간이 늘어났어요!";
 
+    [Header("------- Intro")]
+    [SerializeField] GameObject introScreen;
+
+    [Header("------- InGame")]
+    [SerializeField] GameObject inGameScreen;
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI enemyCountText;
+    [SerializeField] GameObject moblieController;
     [SerializeField] TextMeshProUGUI stageNotify;
     [SerializeField] Notify[] notifies;
 
+    int monsterMax;
     const float stageNotifyRemaingTime = 2.0f;
     const float notifyRemaingTime = 1.5f;
 
-    int monsterMax;
+    [Header("------- Option")]
+    [SerializeField] GameObject optionScreen;
+    [SerializeField] VolumeSlider BgmSlider;
+    [SerializeField] VolumeSlider effectSoundSlider;
 
+    [Header("------- Result")]
     [SerializeField] GameObject resultScreen;
     [SerializeField] Image resultImage;
     [SerializeField] Sprite[] resultSprite;
     [SerializeField] StarDisplay starDisplay;
 
-    [SerializeField] GameObject optionScreen;
-    [SerializeField] GameObject moblieController;
-
-    [SerializeField] VolumeSlider BgmSlider;
-    [SerializeField] VolumeSlider effectSoundSlider;
-
-
+    
     public void SetGameStartUI(int limitTime, int enemyMax, int level)
     {
-        resultScreen.SetActive(false);
-        optionScreen.SetActive(false);
-        moblieController.SetActive(true);
-        
+        SetInGameUI();
+
         this.monsterMax = enemyMax;
 
         timeText.text = GetRemainingTimeString(limitTime);
@@ -126,10 +129,12 @@ public class InGameUIDisplay : MonoBehaviour
         starDisplay.TurnOff();
     }
 
-    public void SetGameUI()
+    public void SetInGameUI()
     {
+        introScreen.SetActive(false);
         resultScreen.SetActive(false);
         optionScreen.SetActive(false);
+        inGameScreen.SetActive(true);
         moblieController.SetActive(true);
     }
 

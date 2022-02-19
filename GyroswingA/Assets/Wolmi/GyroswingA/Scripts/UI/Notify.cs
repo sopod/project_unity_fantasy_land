@@ -7,7 +7,12 @@ public class Notify : MonoBehaviour
     [SerializeField] TextMeshProUGUI notify;
     bool isNotifying = false;
     public bool IsNotifying { get => isNotifying; }
-    
+
+    void Start()
+    {
+        this.gameObject.SetActive(false);   
+    }
+
     public void On(string text, float time)
     {
         notify.text = text;

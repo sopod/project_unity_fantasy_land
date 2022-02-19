@@ -79,7 +79,7 @@ public class Enemy : LivingCreature, ISpawnableObject
 
     public void InitEnemy(GameObject stage, StageMovementValue stageVal, StageChanger stageChanger, Layers layer, ProjectileSpawner pjSpanwer)
     {
-        values = SceneController.Instance.loaderGoogleSheet.ObjectDatas;
+        Init(stage, stageVal, layer, pjSpanwer);
 
         bt = GetComponent<BT_Dragon>();
 
@@ -91,8 +91,6 @@ public class Enemy : LivingCreature, ISpawnableObject
 
         checkEnemyToMove = false;
         isKnockDown = false;
-
-        Init(stage, stageVal, layer, pjSpanwer);
     }
 
     public override void StartMoving()
@@ -121,7 +119,7 @@ public class Enemy : LivingCreature, ISpawnableObject
 
     void DoMovement()
     {
-        if (!checkEnemyToMove || movementsAllDone || state.IsDead || state.IsAttacking) return;
+        if (!checkEnemyToMove || movementsAllDone || state.IsDead || state.IsAttacking || state.IsDamaged) return;
 
         switch (movementDatas.Peek().movement)
         {
@@ -202,8 +200,9 @@ public class Enemy : LivingCreature, ISpawnableObject
     protected override void OnDamagedByDash(Collision collision)
     {
         Player p = collision.gameObject.GetComponent<Player>();
-        if (!p.IsAttacking || isDamaged) return;
 
+
+        if (!p.IsAttacking || state.IsDamaged) return;
         if (IsHitBack(p.CenterPosition, p.CenterForward)) return;
 
         Vector3 dir = (transform.position - collision.transform.position).normalized;
@@ -254,7 +253,6 @@ public class Enemy : LivingCreature, ISpawnableObject
         }
         else if (layer == layers.FailZoneLayer.value)
         {
-            Debug.Log("failZoneLayer");
             OnFailZoneLayer();
         }
         else
@@ -268,9 +266,11 @@ public class Enemy : LivingCreature, ISpawnableObject
         if (IsPaused) return;
 
         int layer = (1 << collision.gameObject.layer);
-        if (layer != layers.PlayerLayer.value) return;
 
-        isDamaged = false;
+        if (layer == layers.PlayerLayer.value)
+        {
+            //isDamaged = false;
+        }
     }
         
 }

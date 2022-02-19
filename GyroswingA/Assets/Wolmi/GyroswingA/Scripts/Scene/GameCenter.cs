@@ -24,6 +24,7 @@ public class GameCenter : MonoBehaviour
     [Header("------- Obejcts")]
     [SerializeField] Machine machine;
     [SerializeField] Player player;
+    [SerializeField] GameObject cmCamera;
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] ItemSpawner itemSpawner;
     [SerializeField] ProjectileSpawner projectileSpawner;
@@ -83,8 +84,6 @@ public class GameCenter : MonoBehaviour
     {
         uiSoundPlayer = UISoundPlayer.Instance;
 
-        inGameUI.gameObject.SetActive(false);
-
         stageChanger = new StageChanger(SceneController.Instance.loaderGoogleSheet, SceneController.Instance.loaderStarData);
 
         machine.Init(stageChanger, stageVal);
@@ -120,14 +119,13 @@ public class GameCenter : MonoBehaviour
     {
         ChangeGameState(GameState.Playing);
         
-        inGameUI.gameObject.SetActive(true);
-
         monsterMaxCur = stageChanger.GetMonsterMaxForCurrentStage();
         inGameUI.SetGameStartUI(limitSecondsPerStage, monsterMaxCur, stageChanger.StageCur);
         remainingMonstersCur = monsterMaxCur;
 
         gameTimer.StartTimer(limitSecondsPerStage);
 
+        cmCamera.SetActive(false);
         MakeObjectsStartMoving(true);
     }
 
@@ -331,7 +329,7 @@ public class GameCenter : MonoBehaviour
 
     void TurnResultUIOff()
     {
-        inGameUI.SetGameUI();
+        inGameUI.SetInGameUI();
     }
     
 }
