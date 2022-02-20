@@ -9,7 +9,7 @@ public class StageButton : MonoBehaviour
     int stageNumber;
 
     [SerializeField] TextMeshProUGUI stageNumberText;
-    [SerializeField] UIButton_InGameScene inGameButton;
+    [SerializeField] UIButtons.InGameScene inGameButton;
     [SerializeField] StarDisplay starDisplay;
     [SerializeField] GameObject darkCover;
 
@@ -35,6 +35,4 @@ public class StageButton : MonoBehaviour
             starDisplay.TurnOn(starsGot);
         }
     }
-    
-
 }

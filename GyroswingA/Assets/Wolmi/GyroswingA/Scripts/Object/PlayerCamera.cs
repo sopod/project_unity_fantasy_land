@@ -11,7 +11,7 @@ public class PlayerCamera : MonoBehaviour
     private Ray camRay;
     public RaycastHit CamRayHit;
     [SerializeField] LayerMask layer;
-    float distance = 5f;
+    float distance = 2.5f;
     float radius = 0.1f;
 
     void LateUpdate()

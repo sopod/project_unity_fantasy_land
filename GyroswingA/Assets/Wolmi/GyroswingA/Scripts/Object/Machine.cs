@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class StageMovementValue
 {
-    public float Radius;
+    public bool IsMachineSwinging;
+    public bool IsMachineSpining;
+    public bool IsSpiningCW;
     public Vector3 SwingPosCur;
-    public bool IsSwingRight;
-    public float SwingAngleCur;
     public float SpinAngleCur;
 }
 
@@ -66,7 +66,7 @@ public class Machine : MovingThing
             ChangeDirection();
 
         SetStageValues();
-        GameCenter.Instance.MoveCreaturesAlongMachine(isMachineSwinging, isMachineSpining, isSpiningCW);
+        OnMachineMoved?.Invoke();
     }
 
     public void Init(StageChanger stageChanger, StageMovementValue stageVal)
@@ -208,10 +208,11 @@ public class Machine : MovingThing
 
     void SetStageValues()
     {
-        //stageVal.Radius = swingRadius;
+        stageVal.IsMachineSwinging = isMachineSwinging;
+        stageVal.IsMachineSpining = isMachineSpining;
+        stageVal.IsSpiningCW = isSpiningCW;
+
         stageVal.SwingPosCur = _swingPosCur;
-        //stageVal.IsSwingRight = _isSwingingRight;
-        //stageVal.SwingAngleCur = _swingAngleCur;
         stageVal.SpinAngleCur = _spinAngleCur;
     }
     

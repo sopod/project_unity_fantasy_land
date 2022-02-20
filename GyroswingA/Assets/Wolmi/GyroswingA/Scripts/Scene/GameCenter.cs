@@ -22,16 +22,18 @@ public enum GameMode
 public class GameCenter : MonoBehaviour
 {
     [Header("------- Obejcts")]
-    [SerializeField] Machine machine;
     [SerializeField] Player player;
-    [SerializeField] GameObject cmCamera;
+    [SerializeField] Machine machine;
+    [SerializeField] GameObject stageOfMachine;
+
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] ItemSpawner itemSpawner;
     [SerializeField] ProjectileSpawner projectileSpawner;
-    [SerializeField] GameObject stageOfMachine;
+
     [SerializeField] InGameUIDisplay inGameUI;
-    UISoundPlayer uiSoundPlayer;
-    
+    UISoundPlayer uiSoundPlayer { get => UISoundPlayer.Instance; }
+    SceneController sceneController { get => SceneController.Instance; }
+
     [Header("------- layers")]
     [SerializeField] Layers layers;
 
@@ -39,9 +41,15 @@ public class GameCenter : MonoBehaviour
     StarCollector starCollector = new StarCollector();
     StageMovementValue stageVal = new StageMovementValue();
     StopWatch gameTimer = new StopWatch();
+    Schedule schedule = new Schedule();
 
     const int limitSecondsPerStage = 180;
+
     const float cinemachineWaitingTime = 8.0f;
+
+
+
+
     const float resultSoundWaitingTime = 0.3f;
     const float resultUIWaitingTime = 0.4f;
     const float resultUIRemainingTime = 5.0f;
@@ -52,22 +60,6 @@ public class GameCenter : MonoBehaviour
     int monsterMaxCur = 0;
     int remainingMonstersCur = 0;
 
-    public Vector3 PlayerPosition { get => player.CenterPosition; }
-
-    static GameCenter instance;
-    public static GameCenter Instance
-    {
-        get
-        {
-            if (instance == null) instance = FindObjectOfType<GameCenter>();
-            return instance;
-        }
-    }
-
-    void Awake()
-    {
-        if (instance == null) instance = this;
-    }
 
     void Start()
     {
@@ -79,28 +71,44 @@ public class GameCenter : MonoBehaviour
         UpdateGame();
     }
 
-    // 처음 인게임 씬으로 전환 되면 초기화하고 게임을 준비합니다. 
     void Init()
     {
-        uiSoundPlayer = UISoundPlayer.Instance;
-
-        stageChanger = new StageChanger(SceneController.Instance.loaderGoogleSheet, SceneController.Instance.loaderStarData);
+        stageChanger = new StageChanger(sceneController.loaderGoogleSheet, sceneController.loaderStarData);
 
         machine.Init(stageChanger, stageVal);
         player.InitPlayer(stageOfMachine, stageVal, stageChanger, layers, projectileSpawner);
 
-        //machine.OnMachineMoved += player
+        machine.OnMachineMoved = MoveCreaturesAlongMachine;
+        player.OnDead = OnFail;
+        player.OnItemGot = (time) => { OnItemGot(time); };
 
+        MakeSchedule();
 
         PrepareGame();
 
         MakeObjectsStopMoving();
         machine.StartMoving();
 
-
         Invoke("StartGame", cinemachineWaitingTime);
     }
 
+    void MakeSchedule()
+    {
+        schedule.onWinTotally += () => { Invoke("SetWinBGM", resultSoundWaitingTime); };
+        schedule.onWinTotally += () => { Invoke("SetWinUI", resultUIWaitingTime); };
+        schedule.onWinTotally += () => { Invoke("BackToStageSelectionScene", resultUIRemainingTime); };
+
+        schedule.onWinTotally += () => { Invoke("SetWinBGM", resultSoundWaitingTime); };
+        schedule.onWinTotally += () => { Invoke("SetWinUI", resultUIWaitingTime); };
+        schedule.onWinTotally += () => { Invoke("PrepareGame", resultUIRemainingTime); };
+        schedule.onWinTotally += () => { Invoke("TurnResultUIOff", resultUIRemainingTime); };
+        schedule.onWinTotally += () => { Invoke("StartGame", gameStartWaitingTime); };
+
+        schedule.onFail += () => { Invoke("SetFailBGM", resultSoundWaitingTime); };
+        schedule.onFail += () => { Invoke("SetFailUI", resultUIWaitingTime); };
+        schedule.onFail += () => { Invoke("BackToStageSelectionScene", resultUIRemainingTime); };
+    }
+    
     void PrepareGame()
     {
         machine.ResetMachine();
@@ -114,7 +122,6 @@ public class GameCenter : MonoBehaviour
         uiSoundPlayer.PlayBGM(SceneState.InGame);
     }
 
-    // 게임을 시작합니다. GameState, UI, Timer를 설정하고 오브젝트들을 움직이도록합니다.  
     void StartGame()
     {
         ChangeGameState(GameState.Playing);
@@ -125,11 +132,9 @@ public class GameCenter : MonoBehaviour
 
         gameTimer.StartTimer(limitSecondsPerStage);
 
-        cmCamera.SetActive(false);
         MakeObjectsStartMoving(true);
     }
 
-    // 게임을 업데이트합니다. 
     void UpdateGame()
     {
         if (gameStateCur != GameState.Playing) return;
@@ -147,8 +152,10 @@ public class GameCenter : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            GameObject e = enemySpawner.SpawnEnemyObject(typesToGen, amount);
-            e.GetComponent<Enemy>().InitEnemy(stageOfMachine, stageVal, stageChanger, layers, projectileSpawner);
+            GameObject obj = enemySpawner.SpawnEnemyObject(typesToGen, amount);
+            Enemy e = obj.GetComponent<Enemy>();
+            e.InitEnemy(stageOfMachine, stageVal, stageChanger, layers, projectileSpawner, player.transform);
+            e.OnDead = OnEnemyKilled;
         }
     }
 
@@ -162,7 +169,6 @@ public class GameCenter : MonoBehaviour
         }
     }
     
-    // 현재 스테이지를 종료합니다. 
     void EndCurrentStage()
     {
         ChangeGameState(GameState.ShowingResult);
@@ -170,7 +176,7 @@ public class GameCenter : MonoBehaviour
         enemySpawner.ReturnAll();
         itemSpawner.ReturnAll();
 
-        bool isWin = starCollector.SetStar(SceneController.Instance.loaderStarData, stageChanger.ModeCur, stageChanger.StageCur, remainingMonstersCur);
+        bool isWin = starCollector.SetStar(sceneController.loaderStarData, stageChanger.ModeCur, stageChanger.StageCur, remainingMonstersCur);
 
         if (isWin) OnWin();
         else OnFail();
@@ -182,18 +188,24 @@ public class GameCenter : MonoBehaviour
         ChangeGameState(GameState.ShowingResult);
 
         uiSoundPlayer.StopPlayingBGM();
-        Invoke("SetWinBGM", resultSoundWaitingTime);
-        Invoke("SetWinUI", resultUIWaitingTime);
+
+
+
+        //Invoke("SetWinBGM", resultSoundWaitingTime);
+        //Invoke("SetWinUI", resultUIWaitingTime);
 
         if (!stageChanger.UpgradeStage())
         {
-            Invoke("BackToStageSelectionScene", resultUIRemainingTime);
+            schedule.onWinTotally?.Invoke();
+            //Invoke("BackToStageSelectionScene", resultUIRemainingTime);
             return;
         }
 
-        Invoke("PrepareGame", resultUIRemainingTime);
-        Invoke("TurnResultUIOff", resultUIRemainingTime);
-        Invoke("StartGame", gameStartWaitingTime);
+        schedule.onWin?.Invoke();
+
+        //Invoke("PrepareGame", resultUIRemainingTime);
+        //Invoke("TurnResultUIOff", resultUIRemainingTime);
+        //Invoke("StartGame", gameStartWaitingTime);
     }
 
     public void OnFail()
@@ -202,13 +214,15 @@ public class GameCenter : MonoBehaviour
         ChangeGameState(GameState.ShowingResult);
         
         uiSoundPlayer.StopPlayingBGM();
-        Invoke("SetFailBGM", resultSoundWaitingTime);
-        Invoke("SetFailUI", resultUIWaitingTime);
 
-        Invoke("BackToStageSelectionScene", resultUIRemainingTime);
+
+        schedule.onFail?.Invoke();
+        //Invoke("SetFailBGM", resultSoundWaitingTime);
+        //Invoke("SetFailUI", resultUIWaitingTime);
+
+        //Invoke("BackToStageSelectionScene", resultUIRemainingTime);
     }
 
-    // 모든 오브젝트들을 움직이게 합니다. makeEnemyWait가 true라면 잠시 몬스터의 움직임을 멈춘 후 움직이게 합니다. 
     public void MakeObjectsStartMoving(bool makeEnemyWait = false)
     {
         ChangeGameState(GameState.Playing);
@@ -239,7 +253,6 @@ public class GameCenter : MonoBehaviour
             enemySpawner.spawnedEnemies[i].StartMoving();
     }
 
-    // 모든 오브젝트들을 Stop 시킵니다. 
     public void MakeObjectsStopMoving()
     {
         gameTimer.PauseTimer();
@@ -254,7 +267,6 @@ public class GameCenter : MonoBehaviour
             itemSpawner.spawnedItems[i].StopMoving();
     }
 
-    // 모든 오브젝트들을 Pause 시킵니다. 
     public void MakeObjectPaused()
     {
         ChangeGameState(GameState.Paused);
@@ -271,30 +283,27 @@ public class GameCenter : MonoBehaviour
             itemSpawner.spawnedItems[i].PauseMoving();
     }
 
-    // 아이템을 먹으면 시간을 늘리고, UI에 표시합니다. 
     public void OnItemGot(float plusTime)
     {
         gameTimer.ExtendTimer(plusTime);
-        inGameUI.NotifyItemText((plusTime > 0));
+        inGameUI.NotifyItemText(plusTime > 0);
     }
 
-    // 몬스터를 죽이면 UI에 표시하고 다 죽였다면 스테이지를 종료합니다. 
-    public void OnMonsterKilled()
+    public void OnEnemyKilled()
     {
         remainingMonstersCur--;
         inGameUI.UpdateMonsterCount(remainingMonstersCur);
-        
+
         if (remainingMonstersCur == 0)
             EndCurrentStage();
     }
 
-    // 머신 위의 몬스터와 플레이어가 머신과 함께 움직일 수 있도록 합니다. 
-    public void MoveCreaturesAlongMachine(bool isMachineSwinging, bool isMachineSpining, bool isSpiningCW)
+    public void MoveCreaturesAlongMachine()
     {
-        player.MoveAlongWithStage(isMachineSwinging, isMachineSpining, isSpiningCW);
+        player.MoveAlongWithStage();
 
         for (int i = enemySpawner.spawnedEnemies.Count - 1; i >= 0; i--)
-            enemySpawner.spawnedEnemies[i].MoveAlongWithStage(isMachineSwinging, isMachineSpining, isSpiningCW);
+            enemySpawner.spawnedEnemies[i].MoveAlongWithStage();
     }
 
     void ChangeGameState(GameState gameState)
@@ -304,7 +313,7 @@ public class GameCenter : MonoBehaviour
 
     void BackToStageSelectionScene()
     {
-        SceneController.Instance.ChangeScene(SceneState.StageSelection);
+        sceneController.ChangeScene(SceneState.StageSelection);
     }
 
     void SetWinBGM()
@@ -331,7 +340,6 @@ public class GameCenter : MonoBehaviour
     {
         inGameUI.SetInGameUI();
     }
-    
 }
 
 

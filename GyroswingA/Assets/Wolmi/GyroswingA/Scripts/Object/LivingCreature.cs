@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using UnityEngine;
 
 
@@ -15,6 +15,9 @@ public enum CreatureType
 public abstract class LivingCreature : MovingThing
 {
     const float gravity = 9.8f;
+    const float failGravity = gravity * 2f;
+
+    public Action OnDead;
 
     protected Rigidbody rb;
     [SerializeField] protected State state = new State();
@@ -23,9 +26,6 @@ public abstract class LivingCreature : MovingThing
 
     protected CreatureType creatureType;
     public bool IsPlayer { get { return creatureType == CreatureType.Player; } }
-
-    //[SerializeField] bool isOnJumpableObject = true;
-    //[SerializeField] protected bool isDamaged = false;
 
     protected float curMoveSpeed;
 
@@ -70,7 +70,6 @@ public abstract class LivingCreature : MovingThing
     {
         state.InitState();
         aniPlay.InitAnimation();
-
         PauseMoving();
     }
     
@@ -83,7 +82,8 @@ public abstract class LivingCreature : MovingThing
 
     protected void AffectedByGravity()
     {
-        rb.velocity -= stageOfMachine.transform.up * gravity * Time.deltaTime;
+        if (state.IsInStageBoundary) rb.velocity -= stageOfMachine.transform.up * gravity * Time.deltaTime;
+        else rb.velocity -= Vector3.up * failGravity * Time.deltaTime;
     }
 
     protected void FreezeLocalXZRotation()
@@ -188,9 +188,7 @@ public abstract class LivingCreature : MovingThing
     }
 
     protected abstract void OnDamagedByDash(Collision collision);
-
-    protected abstract void NotifyDead();
-
+    
 
     //protected void AffectedBySpin()
     //{
@@ -213,19 +211,19 @@ public abstract class LivingCreature : MovingThing
     //    return res;
     //}
 
-    public void MoveAlongWithStage(bool isMachineSwinging, bool isMachineSpining, bool isSpiningCW)
+    public void MoveAlongWithStage()
     {
         if (IsPaused || !state.CanMoveAlongWithMachine) return;
 
-        Vector3 centerForSpin = (isSpiningCW) ? stageOfMachine.transform.up : -stageOfMachine.transform.up;
+        Vector3 centerForSpin = (stageVal.IsSpiningCW) ? stageOfMachine.transform.up : -stageOfMachine.transform.up;
         Vector3 resPos = rb.position;
 
         // swing
-        if (isMachineSwinging)
+        if (stageVal.IsMachineSwinging)
             resPos += stageVal.SwingPosCur;
 
         // spin
-        if (isMachineSpining && state.IsOnJumpableObject)
+        if (stageVal.IsMachineSpining && state.IsOnJumpableObject)
         {
             Quaternion spinQuat = Quaternion.AngleAxis(stageVal.SpinAngleCur, centerForSpin);
             resPos = (spinQuat * (resPos - stageOfMachine.transform.position) + stageOfMachine.transform.position);
@@ -239,6 +237,7 @@ public abstract class LivingCreature : MovingThing
     protected void OnStageLayer()
     {
         state.IsOnJumpableObject = true;
+        state.IsInStageBoundary = true;
 
         if (state.IsJumping)
         {
@@ -249,7 +248,6 @@ public abstract class LivingCreature : MovingThing
 
     protected void OffStageLayer()
     {
-        Debug.Log("Off Stage");
         state.IsOnJumpableObject = false;
     }
 
@@ -264,7 +262,7 @@ public abstract class LivingCreature : MovingThing
 
         pjSpanwer.SpawnDeadProjectile(this.gameObject);
 
-        NotifyDead();
+        OnDead?.Invoke();
     }
     
     //public void OnNothingLayer()

@@ -28,5 +28,4 @@ public class StarDisplay : MonoBehaviour
             stars[i].SetActive(true);
         }
     }
-
 }

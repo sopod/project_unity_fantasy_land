@@ -10,7 +10,7 @@ public class Notify : MonoBehaviour
 
     void Start()
     {
-        this.gameObject.SetActive(false);   
+        gameObject.SetActive(false);   
     }
 
     public void On(string text, float time)

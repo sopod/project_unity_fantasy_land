@@ -33,5 +33,4 @@ public class StageButtonDisplay : MonoBehaviour
             buttons[i].SetStageButton(i + 1, modeForButtons, curStars, forceToOn);
         }
     }
-    
 }

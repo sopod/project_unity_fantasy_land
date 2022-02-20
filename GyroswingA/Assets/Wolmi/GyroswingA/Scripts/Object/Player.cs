@@ -10,11 +10,14 @@ public enum MoblieActionType
 
 public class Player : LivingCreature
 {
+    readonly Vector3 playerStartPos = new Vector3(-30.5f, 2.21f, -52.3f);
+    Quaternion playerStartRot;
+
+    public delegate void ItemGot(float time);
+    public ItemGot OnItemGot;
+
     [SerializeField] JoystickController joystick;
     KeyController key;
-
-    Vector3 playerStartPos = new Vector3(-30.5f, 2.21f, -52.3f);
-    Quaternion playerStartRot;
 
     private void Update()
     {
@@ -48,7 +51,6 @@ public class Player : LivingCreature
 
         creatureType = CreatureType.Player;
         curMoveSpeed = values.MoveSpeed;
-
     }
 
     public override void ResetValues()
@@ -86,14 +88,9 @@ public class Player : LivingCreature
 
     public void MobileButtonAction(MoblieActionType type)
     {
-        if (type == MoblieActionType.Jump) Jump();
+        if (type == MoblieActionType.Jump)      Jump();
         else if (type == MoblieActionType.Dash) Dash();
         else if (type == MoblieActionType.Fire) Fire();
-    }
-
-    protected override void NotifyDead()
-    {
-        GameCenter.Instance.OnFail();
     }
 
     protected override void OnDamagedByDash(Collision collision)
@@ -110,27 +107,43 @@ public class Player : LivingCreature
         pjSpanwer.SpawnDashHitProjectile(collision);
     }
     
-    // -------------------------------------------------- item
     void OnTriggerEnter(Collider other)
     {
         if (IsPaused) return;
 
         int layer = (1 << other.gameObject.layer);
-        if (layer != layers.ItemLayer.value) return;
 
-        Item i = other.gameObject.GetComponent<Item>();
-        ItemType type = (ItemType)i.Type;
+        if (layer == layers.ItemLayer.value)
+        { 
+            Item i = other.gameObject.GetComponent<Item>();
+            ItemType type = (ItemType)i.Type;
 
-        curMoveSpeed = values.GetSpeedToUpgradeByItem(type, values.MoveSpeed);
-        float plusTime = values.GetTimeToUpgradeByItem(type);
-        GameCenter.Instance.OnItemGot(plusTime);
+            curMoveSpeed = values.GetSpeedToUpgradeByItem(type, values.MoveSpeed);
+            float plusTime = values.GetTimeToUpgradeByItem(type);
+            OnItemGot(plusTime);
 
-        soundPlay.DoItemGetSound(IsPlayer);
-        pjSpanwer.SpawnItemPickUpProjectile(this.gameObject);
-        i.InvokeBackToPool();
+            soundPlay.DoItemGetSound(IsPlayer);
+            pjSpanwer.SpawnItemPickUpProjectile(this.gameObject);
+            i.InvokeBackToPool();
+        }
+        else if (layer == layers.StageBoundaryLayer.value)
+        {
+            state.IsInStageBoundary = true;
+        }
     }
 
-    // -------------------------------------------------- damaged by enemy dash
+    void OnTriggerExit(Collider other)
+    {
+        if (IsPaused) return;
+
+        int layer = (1 << other.gameObject.layer);
+
+        if (layer == layers.StageBoundaryLayer.value)
+        {
+            state.IsInStageBoundary = false;
+        }
+    }
+
     void OnCollisionStay(Collision collision) 
     {
         if (IsPaused) return;
@@ -150,25 +163,25 @@ public class Player : LivingCreature
         {
             OnStageLayer();
         }
+        else if (layer == layers.StageBoundaryLayer.value)
+        {
+            state.IsInStageBoundary = true;
+        }
         else if (layer == layers.FailZoneLayer.value)
         {
             OnFailZoneLayer();
         }
-        else
-        {
-            //OnNothingLayer();
-        }
     }
 
-    void OnCollisionExit(Collision collision)
-    {
-        if (IsPaused) return;
-        int layer = (1 << collision.gameObject.layer);
+    //void OnCollisionExit(Collision collision)
+    //{
+    //    if (IsPaused) return;
+    //    int layer = (1 << collision.gameObject.layer);
 
-        if (layer == layers.EnemyLayer.value)
-        {
-            //isDamaged = false;
-        }
-    }
+    //    if (layer == layers.EnemyLayer.value)
+    //    {
+    //        //isDamaged = false;
+    //    }
+    //}
 
 }

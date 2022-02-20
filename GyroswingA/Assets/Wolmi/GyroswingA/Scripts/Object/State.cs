@@ -17,11 +17,13 @@ public class State
 
     bool isOnJumpableObject = true;
     public bool IsOnJumpableObject { get => isOnJumpableObject; set => isOnJumpableObject = value; }
+    [SerializeField] bool isInStageBoundary = true;
+    public bool IsInStageBoundary { get => isInStageBoundary; set => isInStageBoundary = value; }
 
     public bool CanMove { get => !IsAttacking; }
     public bool CanJump { get => (!IsJumping && !IsAttacking && IsOnJumpableObject && !IsDamaged); }
     public bool CanAttack { get => (!IsJumping && !IsAttacking && !IsDamaged); }
-    public bool CanMoveAlongWithMachine { get => !IsDead; }
+    public bool CanMoveAlongWithMachine { get => (!IsDead && IsInStageBoundary); }
 
     public bool IsIdle { get => (state == CreatureState.Idle); }
     public bool IsJumping { get => (state == CreatureState.Jumping); }
@@ -33,6 +35,7 @@ public class State
     {
         SetIdle();
         isOnJumpableObject = true;
+        isInStageBoundary = true;
     }
 
     public CreatureState GetCurrentState()
