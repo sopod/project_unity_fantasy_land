@@ -29,6 +29,9 @@ public struct MovementData
 
 public class Enemy : LivingCreature, ISpawnableObject
 {
+    const float ReturnEnemyWaitingTime = 1.0f;
+    const int damageUp = 2;
+
     public event BackToPoolDelegate BackToPool;
     public void InvokeBackToPool() { BackToPool?.Invoke(); }
 
@@ -69,9 +72,10 @@ public class Enemy : LivingCreature, ISpawnableObject
         AffectedByPhysics();
     }
 
-    public void InitEnemy(GameObject stage, StageMovementValue stageVal, StageChanger stageChanger, Layers layer, ProjectileSpawner pjSpanwer, Transform player)
+    public void InitEnemy(GameObject stage, StageMovementValue stageVal, StageChanger stageChanger, 
+        Layers layer, ProjectileSpawner pjSpanwer, Transform player, Transform playerCamera)
     {
-        Init(stage, stageVal, layer, pjSpanwer);
+        Init(stage, stageVal, layer, pjSpanwer, playerCamera);
 
         bt = GetComponent<MonsterBT>();
         bt.SetBT(layers, values, player);
@@ -79,7 +83,7 @@ public class Enemy : LivingCreature, ISpawnableObject
         creatureType = CreatureType.Enemy;
         movementDatas = new Queue<MovementData>();
         movementTimer = new StopWatch();
-
+        
         curMoveSpeed = values.GetEnemyMoveSpeed(enemyType, values.MoveSpeed);
 
         //checkEnemyToMove = false;
@@ -131,8 +135,6 @@ public class Enemy : LivingCreature, ISpawnableObject
 
     void DoIdle()
     {
-        if (state.IsIdle) return;
-
         state.SetIdle();
         aniPlay.DoIdleAnimation();
     }
@@ -155,19 +157,28 @@ public class Enemy : LivingCreature, ISpawnableObject
     {
         Player p = collision.gameObject.GetComponent<Player>();
 
-        if (p == null || !p.IsAttacking || state.IsDamaged) return;
+        if (p == null || !p.IsAttacking || state.IsDamaged || state.IsDead) return;
         if (IsHitBack(p.CenterPosition, p.CenterForward)) return;
 
         Vector3 dir = (transform.position - collision.transform.position).normalized;
-        TakeDamage(dir, values.DashPowerToDamaged);
+        TakeDamage(dir, values.DashPowerToDamaged * damageUp);
         pjSpanwer.SpawnDashHitProjectile(collision);
     }
 
     void OnDamagedByFire(Vector3 attackedPos)
     {
+        if (state.IsDamaged || state.IsDead) return;
+
         Vector3 dir = (transform.position - attackedPos).normalized;
-        TakeDamage(dir, values.FireBallPowerToDamaged);
+        TakeDamage(dir, values.FireBallPowerToDamaged * damageUp);
         pjSpanwer.SpawnFireHitProjectile(this.gameObject);
+    }
+
+    protected override void OnDeadProcess()
+    {
+        Invoke("InvokeBackToPool", ReturnEnemyWaitingTime);
+
+        base.OnDeadProcess();
     }
 
     void OnTriggerEnter(Collider other)

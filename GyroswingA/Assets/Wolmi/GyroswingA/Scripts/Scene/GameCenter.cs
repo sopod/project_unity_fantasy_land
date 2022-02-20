@@ -23,6 +23,7 @@ public class GameCenter : MonoBehaviour
 {
     [Header("------- Obejcts")]
     [SerializeField] Player player;
+    [SerializeField] Transform playerCamera;
     [SerializeField] Machine machine;
     [SerializeField] GameObject stageOfMachine;
 
@@ -37,24 +38,20 @@ public class GameCenter : MonoBehaviour
     [Header("------- layers")]
     [SerializeField] Layers layers;
 
+    Schedule schedule = new Schedule();
     StageChanger stageChanger;
     StarCollector starCollector = new StarCollector();
     StageMovementValue stageVal = new StageMovementValue();
     StopWatch gameTimer = new StopWatch();
-    Schedule schedule = new Schedule();
 
     const int limitSecondsPerStage = 180;
-
     const float cinemachineWaitingTime = 8.0f;
-
-
-
+    const float enemyStartWaitingTime = 1.0f;
 
     const float resultSoundWaitingTime = 0.3f;
     const float resultUIWaitingTime = 0.4f;
     const float resultUIRemainingTime = 5.0f;
     const float gameStartWaitingTime = 5.5f;
-    const float enemyStartWaitingTime = 1.0f;
 
     GameState gameStateCur;
     int monsterMaxCur = 0;
@@ -76,7 +73,7 @@ public class GameCenter : MonoBehaviour
         stageChanger = new StageChanger(sceneController.loaderGoogleSheet, sceneController.loaderStarData);
 
         machine.Init(stageChanger, stageVal);
-        player.InitPlayer(stageOfMachine, stageVal, stageChanger, layers, projectileSpawner);
+        player.InitPlayer(stageOfMachine, stageVal, stageChanger, layers, projectileSpawner, playerCamera);
 
         machine.OnMachineMoved = MoveCreaturesAlongMachine;
         player.OnDead = OnFail;
@@ -92,22 +89,6 @@ public class GameCenter : MonoBehaviour
         Invoke("StartGame", cinemachineWaitingTime);
     }
 
-    void MakeSchedule()
-    {
-        schedule.onWinTotally += () => { Invoke("SetWinBGM", resultSoundWaitingTime); };
-        schedule.onWinTotally += () => { Invoke("SetWinUI", resultUIWaitingTime); };
-        schedule.onWinTotally += () => { Invoke("BackToStageSelectionScene", resultUIRemainingTime); };
-
-        schedule.onWinTotally += () => { Invoke("SetWinBGM", resultSoundWaitingTime); };
-        schedule.onWinTotally += () => { Invoke("SetWinUI", resultUIWaitingTime); };
-        schedule.onWinTotally += () => { Invoke("PrepareGame", resultUIRemainingTime); };
-        schedule.onWinTotally += () => { Invoke("TurnResultUIOff", resultUIRemainingTime); };
-        schedule.onWinTotally += () => { Invoke("StartGame", gameStartWaitingTime); };
-
-        schedule.onFail += () => { Invoke("SetFailBGM", resultSoundWaitingTime); };
-        schedule.onFail += () => { Invoke("SetFailUI", resultUIWaitingTime); };
-        schedule.onFail += () => { Invoke("BackToStageSelectionScene", resultUIRemainingTime); };
-    }
     
     void PrepareGame()
     {
@@ -154,7 +135,7 @@ public class GameCenter : MonoBehaviour
         {
             GameObject obj = enemySpawner.SpawnEnemyObject(typesToGen, amount);
             Enemy e = obj.GetComponent<Enemy>();
-            e.InitEnemy(stageOfMachine, stageVal, stageChanger, layers, projectileSpawner, player.transform);
+            e.InitEnemy(stageOfMachine, stageVal, stageChanger, layers, projectileSpawner, player.transform, playerCamera);
             e.OnDead = OnEnemyKilled;
         }
     }
@@ -173,8 +154,6 @@ public class GameCenter : MonoBehaviour
     {
         ChangeGameState(GameState.ShowingResult);
 
-        enemySpawner.ReturnAll();
-        itemSpawner.ReturnAll();
 
         bool isWin = starCollector.SetStar(sceneController.loaderStarData, stageChanger.ModeCur, stageChanger.StageCur, remainingMonstersCur);
 
@@ -188,24 +167,14 @@ public class GameCenter : MonoBehaviour
         ChangeGameState(GameState.ShowingResult);
 
         uiSoundPlayer.StopPlayingBGM();
-
-
-
-        //Invoke("SetWinBGM", resultSoundWaitingTime);
-        //Invoke("SetWinUI", resultUIWaitingTime);
-
+        
         if (!stageChanger.UpgradeStage())
         {
             schedule.onWinTotally?.Invoke();
-            //Invoke("BackToStageSelectionScene", resultUIRemainingTime);
             return;
         }
 
         schedule.onWin?.Invoke();
-
-        //Invoke("PrepareGame", resultUIRemainingTime);
-        //Invoke("TurnResultUIOff", resultUIRemainingTime);
-        //Invoke("StartGame", gameStartWaitingTime);
     }
 
     public void OnFail()
@@ -213,14 +182,8 @@ public class GameCenter : MonoBehaviour
         MakeObjectPaused();
         ChangeGameState(GameState.ShowingResult);
         
-        uiSoundPlayer.StopPlayingBGM();
-
-
+        uiSoundPlayer.StopPlayingBGM();        
         schedule.onFail?.Invoke();
-        //Invoke("SetFailBGM", resultSoundWaitingTime);
-        //Invoke("SetFailUI", resultUIWaitingTime);
-
-        //Invoke("BackToStageSelectionScene", resultUIRemainingTime);
     }
 
     public void MakeObjectsStartMoving(bool makeEnemyWait = false)
@@ -295,7 +258,12 @@ public class GameCenter : MonoBehaviour
         inGameUI.UpdateMonsterCount(remainingMonstersCur);
 
         if (remainingMonstersCur == 0)
+        {
             EndCurrentStage();
+            return;
+        }
+
+        uiSoundPlayer.PlayUISound(UIEffectSoundType.KilledEnemy);
     }
 
     public void MoveCreaturesAlongMachine()
@@ -309,6 +277,32 @@ public class GameCenter : MonoBehaviour
     void ChangeGameState(GameState gameState)
     {
         gameStateCur = gameState;
+    }
+
+    void MakeSchedule()
+    {
+        schedule.onWinTotally = () => { Invoke("SetWinBGM", resultSoundWaitingTime); };
+        schedule.onWinTotally += () => { Invoke("ReturnAll", resultUIWaitingTime); };
+        schedule.onWinTotally += () => { Invoke("SetWinUI", resultUIWaitingTime); };
+        schedule.onWinTotally += () => { Invoke("BackToStageSelectionScene", resultUIRemainingTime); };
+
+        schedule.onWin = () => { Invoke("SetWinBGM", resultSoundWaitingTime); };
+        schedule.onWin += () => { Invoke("ReturnAll", resultUIWaitingTime); };
+        schedule.onWin += () => { Invoke("SetWinUI", resultUIWaitingTime); };
+        schedule.onWin += () => { Invoke("PrepareGame", resultUIRemainingTime); };
+        schedule.onWin += () => { Invoke("TurnResultUIOff", resultUIRemainingTime); };
+        schedule.onWin += () => { Invoke("StartGame", gameStartWaitingTime); };
+
+        schedule.onFail = () => { Invoke("SetFailBGM", resultSoundWaitingTime); };
+        schedule.onFail += () => { Invoke("ReturnAll", resultUIWaitingTime); };
+        schedule.onFail += () => { Invoke("SetFailUI", resultUIWaitingTime); };
+        schedule.onFail += () => { Invoke("BackToStageSelectionScene", resultUIRemainingTime); };
+    }
+
+    void ReturnAll()
+    {
+        enemySpawner.ReturnAll();
+        itemSpawner.ReturnAll();
     }
 
     void BackToStageSelectionScene()
@@ -353,4 +347,11 @@ public struct Layers
     public LayerMask FailZoneLayer;
     public LayerMask StageBoundaryLayer;
     public LayerMask ShootProjectileLayer;
+}
+
+public class Schedule
+{
+    public Action onWin;
+    public Action onWinTotally;
+    public Action onFail;
 }

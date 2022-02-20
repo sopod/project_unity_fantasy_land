@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public enum CreatureType
 {
@@ -20,7 +20,8 @@ public abstract class LivingCreature : MovingThing
     public Action OnDead;
 
     protected Rigidbody rb;
-    [SerializeField] protected State state = new State();
+    protected State state = new State();
+    protected Status status = new Status();
     protected CreatureAnimation aniPlay;
     protected CreatureSound soundPlay;
 
@@ -31,6 +32,8 @@ public abstract class LivingCreature : MovingThing
 
     [SerializeField] GameObject centerOfCreature;
     [SerializeField] GameObject shootMouth;
+    [SerializeField] Billboard hpBar;
+    [SerializeField] Slider hpSlider;
 
     protected ObjectValues values;
     protected ProjectileSpawner pjSpanwer;
@@ -43,12 +46,15 @@ public abstract class LivingCreature : MovingThing
     public bool IsAttacking { get => state.IsAttacking; }
 
 
-    protected virtual void Init(GameObject stageOfMachine, StageMovementValue stageVal, Layers layers, ProjectileSpawner pjSpanwer)
+    protected virtual void Init(GameObject stageOfMachine, StageMovementValue stageVal,
+        Layers layers, ProjectileSpawner pjSpanwer, Transform playerCamera)
     {
         values = SceneController.Instance.loaderGoogleSheet.ObjectDatas;
         this.stageVal = stageVal;
         this.layers = layers;
         this.pjSpanwer = pjSpanwer;
+
+        hpBar.camera = playerCamera;
 
         this.stageOfMachine = stageOfMachine;
         aniPlay = new CreatureAnimation(GetComponent<Animator>());
@@ -69,6 +75,8 @@ public abstract class LivingCreature : MovingThing
     public virtual void ResetValues()
     {
         state.InitState();
+        status.InitStatus();
+        hpSlider.value = status.HealthSilderValue;
         aniPlay.InitAnimation();
         PauseMoving();
     }
@@ -127,7 +135,6 @@ public abstract class LivingCreature : MovingThing
 
     public void JumpByAttack()
     {
-        aniPlay.DoJumpAnimation();
         rb.AddForce(stageOfMachine.transform.up * values.JumpPower, ForceMode.Impulse);
     }
 
@@ -178,13 +185,22 @@ public abstract class LivingCreature : MovingThing
     protected void TakeDamage(Vector3 dir, float damagedPower)
     {
         state.SetDamaged();
-        CancelInvoke("SetIdle");
-        Invoke("SetIdle", values.SkillCoolTime);
-
+        
         JumpByAttack();
 
         rb.AddForce(dir * damagedPower, ForceMode.Impulse);
         soundPlay.DoHitSound(IsPlayer);
+
+        status.ReduceHealth(damagedPower);
+        hpSlider.value = status.HealthSilderValue;
+        if (status.HealthSilderValue == 0.0f)
+        {
+            OnDeadProcess();
+            return;
+        }
+
+        CancelInvoke("SetIdle");
+        Invoke("SetIdle", values.SkillCoolTime);
     }
 
     protected abstract void OnDamagedByDash(Collision collision);
@@ -255,6 +271,11 @@ public abstract class LivingCreature : MovingThing
     {
         if (state.IsDead) return;
 
+        OnDeadProcess();
+    }
+
+    protected virtual void OnDeadProcess()
+    {
         state.SetDead();
 
         soundPlay.DoDeadSound(true);
@@ -265,6 +286,7 @@ public abstract class LivingCreature : MovingThing
         OnDead?.Invoke();
     }
     
+
     //public void OnNothingLayer()
     //{
     //    state.IsOnJumpableObject = false;

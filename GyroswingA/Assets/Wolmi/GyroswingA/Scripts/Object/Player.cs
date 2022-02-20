@@ -41,14 +41,15 @@ public class Player : LivingCreature
         AffectedByPhysics();
     }
 
-    public void InitPlayer(GameObject stage, StageMovementValue stageVal, StageChanger options, Layers layer, ProjectileSpawner pjSpanwer)
+    public void InitPlayer(GameObject stage, StageMovementValue stageVal, StageChanger options, 
+        Layers layer, ProjectileSpawner pjSpanwer, Transform playerCamera)
     {
-        Init(stage, stageVal, layer, pjSpanwer);
+        Init(stage, stageVal, layer, pjSpanwer, playerCamera);
 
         playerStartRot = transform.rotation;
 
         key = new KeyController(joystick);
-
+        
         creatureType = CreatureType.Player;
         curMoveSpeed = values.MoveSpeed;
     }
@@ -96,7 +97,7 @@ public class Player : LivingCreature
     protected override void OnDamagedByDash(Collision collision)
     {
         Enemy e = collision.gameObject.GetComponent<Enemy>();
-        if (e == null || !e.IsAttacking || state.IsDamaged) return;
+        if (e == null || !e.IsAttacking || state.IsDamaged || state.IsDead) return;
 
         if (IsHitBack(e.CenterPosition, e.CenterForward)) return;
 

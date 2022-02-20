@@ -147,10 +147,7 @@ MonoBehaviour:
   effectSounds:
   - {fileID: 8300000, guid: 3f67ccb6076f81944b103e66bee4e58f, type: 3}
   - {fileID: 8300000, guid: f8612dd98b33c0749b53ead73bc8e672, type: 3}
-  - {fileID: 8300000, guid: b15bd29013541446099ecc4d0c305e35, type: 3}
-  - {fileID: 8300000, guid: 79be484af854e49c380529aff67b20d2, type: 3}
-  - {fileID: 8300000, guid: ecae4bc301c8a4f57addb1765c488ce4, type: 3}
-  - {fileID: 8300000, guid: b61c43bc27e6e43a4a7cc8461f32d2ea, type: 3}
+  - {fileID: 8300000, guid: 36092142f837d494fae89ace162d2345, type: 3}
   bgms:
   - {fileID: 8300000, guid: c3e5e2bbb6d6db24e9fa54514bbb2805, type: 3}
   - {fileID: 8300000, guid: 303f53684258b8f40a090bc237036a8d, type: 3}

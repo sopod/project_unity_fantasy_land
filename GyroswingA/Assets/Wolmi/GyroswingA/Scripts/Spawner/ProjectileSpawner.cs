@@ -62,6 +62,7 @@ public class ProjectileSpawner : ObjectSpawner
         p.transform.position = character.transform.position + character.transform.right * 0.1f + character.transform.up * 0.3f;
         p.transform.forward = character.transform.forward;
 
+        p.transform.SetParent(character.transform);
         p.SetActive(true);
     }
 

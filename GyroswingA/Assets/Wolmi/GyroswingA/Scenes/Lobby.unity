@@ -996,10 +996,6 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1108921302, guid: 717625203260603478bb6c36a3850600, type: 3}
-      propertyPath: starData
-      value: 
-      objectReference: {fileID: 11400000, guid: 502bef90327024d439bed1d50ca295a7, type: 2}
     - target: {fileID: 5526755106137345881, guid: 717625203260603478bb6c36a3850600, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1107,10 +1103,6 @@ PrefabInstance:
     - target: {fileID: 7932870196559299679, guid: 717625203260603478bb6c36a3850600, type: 3}
       propertyPath: m_Name
       value: Option Screen
-      objectReference: {fileID: 0}
-    - target: {fileID: 7932870196559299679, guid: 717625203260603478bb6c36a3850600, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 717625203260603478bb6c36a3850600, type: 3}

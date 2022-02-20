@@ -143,5 +143,4 @@ MonoBehaviour:
   effectSoundMixerGroup: {fileID: 7867377859811683651, guid: a1d325928b7fa284e9b3b9e3c488c97c, type: 2}
   effectSounds:
   - {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
-  - {fileID: 8300000, guid: 36092142f837d494fae89ace162d2345, type: 3}
   effectSoundAudio: {fileID: 8673602691880674471}

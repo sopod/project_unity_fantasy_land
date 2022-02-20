@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class InGameUIDisplay : MonoBehaviour
 {
-    readonly string[] monsterKilledText = { "몬스터를 성공적으로 밀어냈어요!", "잘하셨어요!", "역시 최고에요!", "이대로만 가면 성공이에요!", "당신은 숨은 실력자!"};
+    readonly string[] monsterKilledText = { "몬스터를 성공적으로 처치했어요!", "잘하셨어요!", "역시 최고에요!", "이대로만 가면 성공이에요!", "당신은 숨은 실력자!", "잘하고 있어요!", "아주 훌륭해요!"};
     const string speedItemText = "스피드 업!";
     const string timeItemText = "제한 시간이 늘어났어요!";
 

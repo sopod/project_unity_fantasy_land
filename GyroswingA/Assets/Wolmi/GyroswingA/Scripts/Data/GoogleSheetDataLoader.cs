@@ -31,7 +31,7 @@ public class GoogleSheetDataLoader : MonoBehaviour
         StartCoroutine(GetData(true));
         StartCoroutine(GetData(false));
     }
-
+    
     IEnumerator GetData(bool isLevelData)
     {
         UnityWebRequest www = (isLevelData) ? UnityWebRequest.Get(levelValuesURL) : UnityWebRequest.Get(objectValuesURL);

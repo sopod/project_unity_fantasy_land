@@ -6,13 +6,13 @@ public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] Transform camDir;
-    float camDistance = 2.5f;
+    const float CAMERA_DISTANCE = 2.2f;
 
     private Ray camRay;
     public RaycastHit CamRayHit;
     [SerializeField] LayerMask layer;
-    float distance = 2.5f;
-    float radius = 0.1f;
+    float rayDistance = CAMERA_DISTANCE;
+    float rayRadius = 0.1f;
 
     void LateUpdate()
     {
@@ -25,10 +25,10 @@ public class PlayerCamera : MonoBehaviour
         camRay.origin = camDir.position;
         camRay.direction = GetVectorFromPlayerToCamera();
 
-        if (Physics.SphereCast(camRay, radius, out CamRayHit, distance))
+        if (Physics.SphereCast(camRay, rayRadius, out CamRayHit, rayDistance, layer))
             transform.position = CamRayHit.point + CamRayHit.normal * 0.1f;
         else
-            transform.position = target.position + GetVectorFromPlayerToCamera() * camDistance;
+            transform.position = target.position + GetVectorFromPlayerToCamera() * CAMERA_DISTANCE;
     }
 
     void RotateCamera()

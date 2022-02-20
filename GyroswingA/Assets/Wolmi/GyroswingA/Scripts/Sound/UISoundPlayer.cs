@@ -5,6 +5,7 @@ public enum UIEffectSoundType
 {
     BtnClick,
     BtnBack,
+    KilledEnemy,
     Max
 }
 

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public enum CreatureState
 {
     Idle,
@@ -10,20 +8,19 @@ public enum CreatureState
     Max
 }
 
-[System.Serializable]
 public class State
 {
-    [SerializeField] CreatureState state = CreatureState.Idle;
+    CreatureState state = CreatureState.Idle;
 
     bool isOnJumpableObject = true;
     public bool IsOnJumpableObject { get => isOnJumpableObject; set => isOnJumpableObject = value; }
-    [SerializeField] bool isInStageBoundary = true;
+    bool isInStageBoundary = true;
     public bool IsInStageBoundary { get => isInStageBoundary; set => isInStageBoundary = value; }
 
     public bool CanMove { get => !IsAttacking; }
     public bool CanJump { get => (!IsJumping && !IsAttacking && IsOnJumpableObject && !IsDamaged); }
     public bool CanAttack { get => (!IsJumping && !IsAttacking && !IsDamaged); }
-    public bool CanMoveAlongWithMachine { get => (!IsDead && IsInStageBoundary); }
+    public bool CanMoveAlongWithMachine { get => (IsInStageBoundary); }
 
     public bool IsIdle { get => (state == CreatureState.Idle); }
     public bool IsJumping { get => (state == CreatureState.Jumping); }
