@@ -15,13 +15,10 @@ public class StageButton : MonoBehaviour
 
     public void SetStageButton(int stageNum, GameMode mode, int starsGot, bool setOn)
     {
-        // set text
         modeForThisButton = mode;
         stageNumber = stageNum;
         stageNumberText.text = new StringBuilder("STAGE " + stageNum).ToString();
 
-
-        // set stars and dark cover
         if (starsGot == 0 && !setOn)
         {
             darkCover.SetActive(true);

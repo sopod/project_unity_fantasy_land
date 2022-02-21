@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class InGameUIDisplay : MonoBehaviour
 {
-    readonly string[] monsterKilledText = { "몬스터를 성공적으로 처치했어요!", "잘하셨어요!", "역시 최고에요!", "이대로만 가면 성공이에요!", "당신은 숨은 실력자!", "잘하고 있어요!", "아주 훌륭해요!"};
-    const string speedItemText = "스피드 업!";
-    const string timeItemText = "제한 시간이 늘어났어요!";
+    readonly string[] MONSTER_KILL_TEXTS = { "몬스터를 성공적으로 처치했어요!", "잘하셨어요!", "역시 최고에요!", "이대로만 가면 성공이에요!", "당신은 숨은 실력자!", "잘하고 있어요!", "아주 훌륭해요!"};
+    const string SPEED_ITEM_TEXT = "스피드 업!";
+    const string TIME_TIME_TEXT = "제한 시간이 늘어났어요!";
 
     [Header("------- Intro")]
     [SerializeField] GameObject introScreen;
@@ -66,14 +66,14 @@ public class InGameUIDisplay : MonoBehaviour
 
         if (monsterCur != 0)
         {
-            int idx = Random.Range(0, monsterKilledText.Length);
-            NotifyText(monsterKilledText[idx]);
+            int idx = Random.Range(0, MONSTER_KILL_TEXTS.Length);
+            NotifyText(MONSTER_KILL_TEXTS[idx]);
         }
     }
 
     public void NotifyItemText(bool isTime)
     {
-        NotifyText((isTime) ? timeItemText: speedItemText);
+        NotifyText((isTime) ? TIME_TIME_TEXT: SPEED_ITEM_TEXT);
     }
 
     void NotifyText(string content)

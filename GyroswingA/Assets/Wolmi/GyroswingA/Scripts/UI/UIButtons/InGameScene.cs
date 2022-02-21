@@ -1,7 +1,7 @@
 
 namespace UIButtons
 {
-    public class InGameScene : UIButton //, IPointerClickHandler
+    public class InGameScene : UIButton
     {
         StarDataPerLevel starData;
 
@@ -17,13 +17,7 @@ namespace UIButtons
         {
             UIEventMaker.MakeButtonEvent(this);
         }
-
-        //public void OnPointerClick(PointerEventData data)
-        //{
-        //    if (data.button == PointerEventData.InputButton.Left)
-        //        OnClicked();
-        //}
-
+        
         public void SetInGameButton(GameMode mode, int stageNumber)
         {
             modeForThisButton = mode;

@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class PlayerCamera : MonoBehaviour
 {
+    const float CAMERA_DISTANCE = 2.2f;
+
     [SerializeField] Transform target;
     [SerializeField] Transform camDir;
-    const float CAMERA_DISTANCE = 2.2f;
 
     private Ray camRay;
     public RaycastHit CamRayHit;

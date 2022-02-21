@@ -3,9 +3,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-// Button의 UI 이벤트를 코드로 작성하여 연결하였습니다.
-// 유니티 에디터 상에서 연결하지 않은 이유는, 코드로 작성함으로써 반복적인 연결 작업을 간소화할 수 있기 때문입니다. 
-
 
 public static class UIEventMaker
 {

@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace UIButtons
 {
-    public class EasyModeScreen : UIButton
+    public class DashButton : UIButton
     {
-        [SerializeField] StageSelectionUIDisplay ui;
+        [SerializeField] Player player;
 
         void Start()
         {
@@ -13,8 +13,7 @@ namespace UIButtons
 
         public override void OnClicked()
         {
-            UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
-            ui.SetEasyModeUI();
+            player.MobileButtonAction(MoblieActionType.Dash);
         }
     }
 }

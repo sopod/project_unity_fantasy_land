@@ -5,13 +5,11 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-// 손쉬운 레벨 디자인을 위해 Google Spread Sheet를 사용하여 데이터를 로드하였습니다. 
-
 
 public class GoogleSheetDataLoader : MonoBehaviour
 {
-    [SerializeField] LevelValues[] levelValues;
-    [SerializeField] ObjectValues objectDatas;
+    LevelValues[] levelValues;
+    ObjectValues objectDatas;
     public ObjectValues ObjectDatas { get => objectDatas; }
 
     bool hasLevelValuesLoaded = false;
@@ -83,7 +81,6 @@ public class GoogleSheetDataLoader : MonoBehaviour
         }
     }
     
-    // 얻어온 string값을 json으로 파싱하기 전에, 형식을 맞춰주기 위해 문자를 덧붙입니다. 
     string AddWrapperJson(string value)
     {
         string result = "{\"Values\":" + value + "}";
@@ -109,7 +106,6 @@ public class GoogleSheetDataLoader : MonoBehaviour
         return wrapper.Values;
     }
 
-    // string 데이터를 아이템이나 적 타입의 enum으로 파싱합니다.  
     T[] GetTypes<T>(string input)
     {
         if (input == "") return new T[] { };
@@ -125,7 +121,6 @@ public class GoogleSheetDataLoader : MonoBehaviour
         return types;
     }
 
-    // 파싱한 타입으로 데이터에 저장합니다. 
     void SaveLevelData(RawLevelValues[] output)
     {
         levelValues = new LevelValues[output.Length];
@@ -167,7 +162,6 @@ public class RawLevelValues
     public string ItemTypes;
 }
 
-[System.Serializable]
 public class LevelValues
 {
     public int Level;

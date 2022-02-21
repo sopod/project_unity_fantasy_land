@@ -8,7 +8,6 @@ public enum BT_State
     Failure
 }
 
-// 행동 트리의 노드입니다. 노드는 크게 Selector, Sequence, Action들이 있습니다. 
 public abstract class Node
 {
     protected BlackBoard bb;
@@ -38,7 +37,6 @@ public abstract class Node
         children.Add(node);
     }
 
-    // 노드를 실행합니다. 
     public virtual BT_State Execute()
     {
         state = BT_State.Failure;
@@ -57,7 +55,6 @@ public abstract class Node
 
     protected void CheckFinishFlag()
     {
-        // 이 노드에 해당하는 움직임이 끝나서 종료 플래그가 입력되면, Success로 state가 바뀝니다. 
         if (finishFlag)
         {
             finishFlag = false;
@@ -66,7 +63,6 @@ public abstract class Node
             return;
         }
 
-        // 종료 되지 않고, 진행중이면 state가 Running이 됩니다. 
         state = BT_State.Running;
     }
 }

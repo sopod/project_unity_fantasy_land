@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   database: {fileID: 11400000, guid: 77576023f7d04cd41abe91d0f2f75d76, type: 2}
+  spawnPositions: []
+  spawnedProjectiles: []

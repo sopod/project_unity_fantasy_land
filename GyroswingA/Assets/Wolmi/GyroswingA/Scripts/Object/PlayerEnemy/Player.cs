@@ -173,16 +173,4 @@ public class Player : LivingCreature
             OnFailZoneLayer();
         }
     }
-
-    //void OnCollisionExit(Collision collision)
-    //{
-    //    if (IsPaused) return;
-    //    int layer = (1 << collision.gameObject.layer);
-
-    //    if (layer == layers.EnemyLayer.value)
-    //    {
-    //        //isDamaged = false;
-    //    }
-    //}
-
 }

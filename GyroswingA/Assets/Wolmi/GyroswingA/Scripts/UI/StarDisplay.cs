@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class StarDisplay : MonoBehaviour
 {
-    const int starMax = 3;
+    const int STAR_MAX = 3;
 
     [SerializeField] GameObject[] stars;
 
     public void TurnOff()
     {
-        for (int i = 0; i < starMax; i++)
+        for (int i = 0; i < STAR_MAX; i++)
         {
             stars[i].SetActive(false);
         }
@@ -17,9 +17,9 @@ public class StarDisplay : MonoBehaviour
     public void TurnOn(int starsGot)
     {
         int cnt = 0;
-        for (int i = 0; i < starMax; i++)
+        for (int i = 0; i < STAR_MAX; i++)
         {
-            if (cnt < starMax - starsGot)
+            if (cnt < STAR_MAX - starsGot)
             {
                 stars[i].SetActive(false);
                 cnt++;

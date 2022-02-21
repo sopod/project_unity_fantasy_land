@@ -15,7 +15,7 @@ public enum SceneState
 
 public class SceneController : MonoBehaviour
 {
-    string[] sceneName = {"Loader", "Lobby", "StageSelection", "InGame", "Loading"};
+    readonly string[] SCENE_NAMES = {"Loader", "Lobby", "StageSelection", "InGame", "Loading"};
 
     SceneState curSceneState = SceneState.Loader;
     public SceneState CurScene { get { return curSceneState; } }
@@ -48,7 +48,7 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        UISoundPlayer.Instance.PlayBGM(SceneState.Lobby);
+        UISoundPlayer.Instance.PlayBGM(BgmSoundType.Lobby, true);
 
         ChangeScene(SceneState.Lobby);
     }
@@ -68,7 +68,7 @@ public class SceneController : MonoBehaviour
 
     IEnumerator ToInGameProcess()
     {
-        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName[(int)nextSceneState]);
+        AsyncOperation op = SceneManager.LoadSceneAsync(SCENE_NAMES[(int)nextSceneState]);
         op.allowSceneActivation = false;
         float timer = 0.0f;
 
@@ -99,7 +99,7 @@ public class SceneController : MonoBehaviour
         playLobbySceneMusic = (CurScene == SceneState.InGame);
 
         curSceneState = toChange;
-        SceneManager.LoadScene(sceneName[(int)toChange]);
+        SceneManager.LoadScene(SCENE_NAMES[(int)toChange]);
     }
 
     public void SaveFileAndQuitGame()

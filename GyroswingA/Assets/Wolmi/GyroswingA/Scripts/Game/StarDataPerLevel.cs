@@ -4,18 +4,18 @@ using UnityEngine;
 [System.Serializable]
 public class StarDataPerLevel
 {
-    const int requiredStarsToHardMode = 25;
-    const int levelCountPerMode = 10;
-    public int LevelCountPerMode { get { return levelCountPerMode; } }
+    const int REQUIRED_STARS_TO_OPEN_HARD_MODE = 25;
+    const int STAGE_MAX_PER_MODE = 10;
+    public int LevelCountPerMode { get { return STAGE_MAX_PER_MODE; } }
 
-    public bool IsHardModeOpen { get { return TotalStar >= requiredStarsToHardMode; } }
+    public bool IsHardModeOpen { get { return TotalStar >= REQUIRED_STARS_TO_OPEN_HARD_MODE; } }
     int TotalStar
     {
         get
         {
             int count = 0;
 
-            for (int i = 0; i < levelCountPerMode; i++)
+            for (int i = 0; i < STAGE_MAX_PER_MODE; i++)
             {
                 count += easyMode[i];
                 count += hardMode[i];
@@ -25,7 +25,6 @@ public class StarDataPerLevel
         }
     }
 
-    // to set In Game Scene at first
     public int levelNumberCur = 1;
     public GameMode stageModeCur = GameMode.Easy;
 
@@ -35,8 +34,8 @@ public class StarDataPerLevel
     [SerializeField] int unlockedLevelMax_Hard = 0;
     public int UnlockedLevelMax_Hard { get { return unlockedLevelMax_Hard; } }
 
-    [SerializeField] int[] easyMode = new int[levelCountPerMode];
-    [SerializeField] int[] hardMode = new int[levelCountPerMode];
+    [SerializeField] int[] easyMode = new int[STAGE_MAX_PER_MODE];
+    [SerializeField] int[] hardMode = new int[STAGE_MAX_PER_MODE];
     
     public void Clear()
     {
@@ -46,7 +45,7 @@ public class StarDataPerLevel
         unlockedLevelMax_Easy = 1;
         unlockedLevelMax_Hard = 0;
         
-        for (int i = 0; i < levelCountPerMode; i++)
+        for (int i = 0; i < STAGE_MAX_PER_MODE; i++)
         {
             easyMode[i] = 0;
             hardMode[i] = 0;
@@ -61,7 +60,7 @@ public class StarDataPerLevel
         unlockedLevelMax_Easy = 10;
         unlockedLevelMax_Hard = 10;
 
-        for (int i = 0; i < levelCountPerMode; i++)
+        for (int i = 0; i < STAGE_MAX_PER_MODE; i++)
         {
             easyMode[i] = 3;
             hardMode[i] = 3;

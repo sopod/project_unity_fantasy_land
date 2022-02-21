@@ -13,11 +13,10 @@ public class LobbyScene : MonoBehaviour
         effectSoundSlider.InitSlider();
 
         if (SceneController.Instance.PlayLobbySceneMusic)
-            UISoundPlayer.Instance.PlayBGM(SceneState.Lobby);
+            UISoundPlayer.Instance.PlayBGM(BgmSoundType.Lobby, true);
     }
 
-
-    // --------------------- reset data button for test
+    // For Test
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))

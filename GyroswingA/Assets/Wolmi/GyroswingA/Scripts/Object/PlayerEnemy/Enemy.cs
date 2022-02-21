@@ -29,8 +29,8 @@ public struct MovementData
 
 public class Enemy : LivingCreature, ISpawnableObject
 {
-    const float ReturnEnemyWaitingTime = 1.0f;
-    const int damageUp = 2;
+    const float WAITING_TIME_TO_RETURN_ENEMY = 1.0f;
+    const int DAMAGE_UP = 2;
 
     public event BackToPoolDelegate BackToPool;
     public void InvokeBackToPool() { BackToPool?.Invoke(); }
@@ -50,8 +50,6 @@ public class Enemy : LivingCreature, ISpawnableObject
     StopWatch movementTimer;
     Queue<MovementData> movementDatas;
     public bool movementsAllDone { get { return movementDatas.Count == 0; } }
-
-    //bool checkEnemyToMove;
 
     void Update()
     {
@@ -73,7 +71,7 @@ public class Enemy : LivingCreature, ISpawnableObject
     }
 
     public void InitEnemy(GameObject stage, StageMovementValue stageVal, StageChanger stageChanger, 
-        Layers layer, ProjectileSpawner pjSpanwer, Transform player, Transform playerCamera)
+                            Layers layer, ProjectileSpawner pjSpanwer, Transform player, Transform playerCamera)
     {
         Init(stage, stageVal, layer, pjSpanwer, playerCamera);
 
@@ -86,7 +84,6 @@ public class Enemy : LivingCreature, ISpawnableObject
         
         curMoveSpeed = values.GetEnemyMoveSpeed(enemyType, values.MoveSpeed);
 
-        //checkEnemyToMove = false;
     }
 
     public override void StartMoving()
@@ -111,7 +108,6 @@ public class Enemy : LivingCreature, ISpawnableObject
 
     void StartMovement()
     {
-        //checkEnemyToMove = true;
         movementTimer.StartTimer(movementDatas.Peek().time);
 
         if (movementDatas.Peek().movement == EnemyMovement.JumpForward) Jump();
@@ -119,7 +115,7 @@ public class Enemy : LivingCreature, ISpawnableObject
 
     void DoMovement()
     {
-        if (state.IsDamaged || state.IsDead || state.IsAttacking || movementsAllDone) return; //!checkEnemyToMove ||
+        if (state.IsDamaged || state.IsDead || state.IsAttacking || movementsAllDone) return;
 
         switch (movementDatas.Peek().movement)
         {
@@ -141,14 +137,13 @@ public class Enemy : LivingCreature, ISpawnableObject
 
     void CheckMovementIsFinished()
     {
-        if (!movementTimer.IsFinished) return; //!checkEnemyToMove ||
+        if (!movementTimer.IsFinished) return;
 
         if (movementDatas.Peek().btNode != null)
             movementDatas.Peek().btNode.SetFinishedFlag(true);
 
         movementDatas.Dequeue();
         movementTimer.FinishTimer();
-        //checkEnemyToMove = false
 
         if (!movementsAllDone) StartMovement();
     }
@@ -161,7 +156,7 @@ public class Enemy : LivingCreature, ISpawnableObject
         if (IsHitBack(p.CenterPosition, p.CenterForward)) return;
 
         Vector3 dir = (transform.position - collision.transform.position).normalized;
-        TakeDamage(dir, values.DashPowerToDamaged * damageUp);
+        TakeDamage(dir, values.DashPowerToDamaged * DAMAGE_UP);
         pjSpanwer.SpawnDashHitProjectile(collision);
     }
 
@@ -170,13 +165,13 @@ public class Enemy : LivingCreature, ISpawnableObject
         if (state.IsDamaged || state.IsDead) return;
 
         Vector3 dir = (transform.position - attackedPos).normalized;
-        TakeDamage(dir, values.FireBallPowerToDamaged * damageUp);
+        TakeDamage(dir, values.FireBallPowerToDamaged * DAMAGE_UP);
         pjSpanwer.SpawnFireHitProjectile(this.gameObject);
     }
 
     protected override void OnDeadProcess()
     {
-        Invoke("InvokeBackToPool", ReturnEnemyWaitingTime);
+        Invoke("InvokeBackToPool", WAITING_TIME_TO_RETURN_ENEMY);
 
         base.OnDeadProcess();
     }
@@ -237,17 +232,4 @@ public class Enemy : LivingCreature, ISpawnableObject
             OnFailZoneLayer();
         }
     }
-
-    //void OnCollisionExit(Collision collision)
-    //{
-    //    if (IsPaused) return;
-
-    //    int layer = (1 << collision.gameObject.layer);
-
-    //    if (layer == layers.PlayerLayer.value)
-    //    {
-    //        //isDamaged = false;
-    //    }
-    //}
-        
 }

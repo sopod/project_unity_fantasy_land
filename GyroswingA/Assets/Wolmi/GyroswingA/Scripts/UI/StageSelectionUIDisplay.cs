@@ -6,12 +6,12 @@ public class StageSelectionUIDisplay : MonoBehaviour
     [SerializeField] Image modeIndicator;
     [SerializeField] Sprite[] modeImages;
 
-    // easy mode screen
+    [Header("------- EasyMode")]
     [SerializeField] StageButtonDisplay _easyModeButtonDisplay;
     [SerializeField] UIButton leftButtonToLobby;
     [SerializeField] UIButton rightButtonToHardMode;
 
-    // hard mode screen
+    [Header("------- HardMode")]
     [SerializeField] StageButtonDisplay _hardModeButtonDisplay;
     [SerializeField] UIButton leftButtonToEasyMode;
 

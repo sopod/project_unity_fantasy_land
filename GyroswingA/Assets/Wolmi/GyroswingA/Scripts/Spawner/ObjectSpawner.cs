@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// Object Pool을 사용하였습니다. 
 
 
 public abstract class ObjectSpawner : MonoBehaviour
@@ -44,11 +43,7 @@ public abstract class ObjectSpawner : MonoBehaviour
             GameObject o = Instantiate(database.GetPrefab(idx), Vector3.zero, database.GetPrefab(idx).transform.rotation, transform);
             ISpawnableObject obj = o.GetComponent<ISpawnableObject>();
 
-            obj.BackToPool += () =>
-            {
-                ReturnObject(o, idx);
-            };
-
+            obj.BackToPool += () => { ReturnObject(o, idx); };
             obj.Type = idx;
             
             o.SetActive(false);

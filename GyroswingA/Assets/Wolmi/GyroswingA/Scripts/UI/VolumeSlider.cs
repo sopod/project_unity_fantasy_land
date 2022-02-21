@@ -11,7 +11,7 @@ public enum SoundGroupType
 
 public class VolumeSlider : MonoBehaviour
 {
-    const float minVal = 0.1f;
+    const float MIN_VOLUME = 0.1f;
 
     [SerializeField] SoundGroupType type;
     [SerializeField] AudioMixerGroup mixerGroup;
@@ -23,9 +23,9 @@ public class VolumeSlider : MonoBehaviour
    
     public void InitSlider()
     {
-        slider.minValue = minVal;
+        slider.minValue = MIN_VOLUME;
 
-        if (type == SoundGroupType.BGM && !PlayerPrefs.HasKey(bgmVolumeName)) // if not exists, save and load
+        if (type == SoundGroupType.BGM && !PlayerPrefs.HasKey(bgmVolumeName))
         {
             PlayerPrefs.SetFloat(bgmVolumeName, 1);
             Load();
@@ -35,7 +35,7 @@ public class VolumeSlider : MonoBehaviour
             PlayerPrefs.SetFloat(effectSoundVolume, 1);
             Load();
         }
-        else // if exists, load
+        else
         {
             Load();
         }

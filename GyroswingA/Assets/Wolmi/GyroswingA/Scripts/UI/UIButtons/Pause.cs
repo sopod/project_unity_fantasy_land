@@ -4,7 +4,7 @@ namespace UIButtons
 {
     public class Pause : UIButton
     {
-        [SerializeField] GameCenter _center;
+        [SerializeField] GameCenter gameCenter;
         [SerializeField] InGameUIDisplay display;
 
         void Start()
@@ -16,7 +16,7 @@ namespace UIButtons
         {
             UISoundPlayer.Instance.PlayUISound(UIEffectSoundType.BtnClick);
 
-            _center.MakeObjectPaused();
+            gameCenter.MakeObjectPaused();
             display.SetOptionUI();
         }
     }

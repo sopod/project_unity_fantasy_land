@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class BlackBoard
 {
-    const float playerDetectionRadius = 2.0f;
-    const float playerAttackRadius = 0.5f;
-    public float PlayerDetectionRadius { get => playerDetectionRadius; }
-    public float PlayerAttackRadius { get => playerAttackRadius; }
+    public readonly float PlayerDetectionRadius = 2.0f;
+    public readonly float PlayerAttackRadius = 0.5f;
 
     public Enemy OwnerCharacter;
     public Layers Layers;

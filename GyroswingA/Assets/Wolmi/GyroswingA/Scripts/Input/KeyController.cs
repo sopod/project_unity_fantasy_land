@@ -1,23 +1,21 @@
 using UnityEngine;
 
 
-// 키보드 조작 및 터치 조작에 대한 입력값을 얻을 수 있는 KeyController 클래스를 따로 만들어 사용하였습니다. 
-
 
 public class KeyController
 {
     JoystickController joystick;
 
-    KeyCode moveFrontKey = KeyCode.W;
-    KeyCode moveBackKey = KeyCode.S;
-    KeyCode moveRightKey = KeyCode.D;
-    KeyCode moveLeftKey = KeyCode.A;
-    KeyCode jumpKey = KeyCode.Space;
-    KeyCode dashKey = KeyCode.Q;
-    KeyCode fireKey = KeyCode.E;
+    const KeyCode moveFrontKey = KeyCode.W;
+    const KeyCode moveBackKey = KeyCode.S;
+    const KeyCode moveRightKey = KeyCode.D;
+    const KeyCode moveLeftKey = KeyCode.A;
+    const KeyCode jumpKey = KeyCode.Space;
+    const KeyCode dashKey = KeyCode.Q;
+    const KeyCode fireKey = KeyCode.E;
 
-    string mouseX = "Mouse X";
-    string mouseY = "Mouse Y";
+    const string mouseX = "Mouse X";
+    const string mouseY = "Mouse Y";
 
 
     public KeyController(JoystickController joystick)

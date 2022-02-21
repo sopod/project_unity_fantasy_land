@@ -33,17 +33,15 @@ public class Machine : MovingThing
     bool isSpiningCW = true;
 
     float swingRadius;
-    //float swingPowerMinPercent;
 
-    Vector3 _swingPosCur;
-    bool _changeDir;
-    bool _isSwingingRight;
-    float _swingAngleCur;
-    float _swingAngleTotal;
-    float _swingPowerCur;
-    float _spinAngleCur;
-    
-    
+    Vector3 swingPosCur;
+    bool changeDir = false;
+    bool isSwingingRight = true;
+    float swingAngleCur = 0.0f;
+    float swingAngleTotal = 0.0f;
+    float spinAngleCur = 0.0f;
+
+
     void FixedUpdate()
     {
         if (IsPaused) return;
@@ -81,14 +79,6 @@ public class Machine : MovingThing
         this.stageVal = stageVal;
         this.options = stageChanger;
 
-        //swingPowerMinPercent = 0.3f; // min 30% will be same power 
-
-        _changeDir = false;
-        _isSwingingRight = true;
-        _swingAngleCur = 0.0f;
-        _swingAngleTotal = 0.0f;
-        _swingPowerCur = 1.0f;
-
         PauseMoving();
     }
 
@@ -99,110 +89,78 @@ public class Machine : MovingThing
         swingBar.transform.position = barStartPos;
         swingBar.transform.rotation = barStartRot;
 
-        _spinAngleCur = 0.0f;
-        _changeDir = false;
-        _isSwingingRight = true;
-        _swingAngleCur = 0.0f;
-        _swingAngleTotal = 0.0f;
-        _swingPowerCur = 1.0f;
+        spinAngleCur = 0.0f;
+        changeDir = false;
+        isSwingingRight = true;
+        swingAngleCur = 0.0f;
+        swingAngleTotal = 0.0f;
     }
-
-    //void SetSwingPower()
-    //{
-    //    if (_swingAngleTotal <= swingAngleMax)
-    //        _swingPowerCur = 1.0f - (_swingAngleTotal / swingAngleMax);
-    //    else if (_swingAngleTotal >= swingAngleMax)
-    //        _swingPowerCur = 1.0f - ((360.0f - _swingAngleTotal) / swingAngleMax);
-
-    //    if (_swingPowerCur <= swingPowerMinPercent)
-    //        _swingPowerCur = swingPowerMinPercent;
-    //}
+    
 
     void SetSwingAngleCur()
     {
-        //SetSwingPower();
+        swingAngleCur = options.GetCurrentStageValue().SwingSpeed * Time.fixedDeltaTime;
 
-        _swingAngleCur = options.GetCurrentStageValue().SwingSpeed * Time.fixedDeltaTime * _swingPowerCur;
+        if (isSwingingRight) swingAngleTotal += swingAngleCur;
+        else                 swingAngleTotal -= swingAngleCur;
 
-        if (_isSwingingRight)
-            _swingAngleTotal += _swingAngleCur;
-        else
-            _swingAngleTotal -= _swingAngleCur;
+        if (swingAngleTotal >= 360.0f)     swingAngleTotal -= 360.0f;
+        else if (swingAngleTotal <= 0.0f)  swingAngleTotal += 360.0f;
 
-        // _swingAngleTotal : 0 ~ max, 360 ~ 360-max
-        if (_swingAngleTotal >= 360.0f)
-            _swingAngleTotal -= 360.0f;
-        else if (_swingAngleTotal <= 0.0f)
-            _swingAngleTotal += 360.0f;
-
-        // swingAngleMax <= _swingAngleTotal <= 360.0f - swingAngleMax
-        if (options.GetCurrentStageValue().SwingAngleMax < _swingAngleTotal && _swingAngleTotal < (360.0f - options.GetCurrentStageValue().SwingAngleMax))
+        // swingAngleMax <= swingAngleTotal <= 360.0f - swingAngleMax
+        if ((options.GetCurrentStageValue().SwingAngleMax < swingAngleTotal) && (swingAngleTotal < (360.0f - options.GetCurrentStageValue().SwingAngleMax)))
         {
-            _changeDir = true;
+            changeDir = true;
 
-            if (_swingAngleTotal <= 180.0f)
+            if (swingAngleTotal <= 180.0f)
             {
-                _swingAngleCur -= _swingAngleTotal - options.GetCurrentStageValue().SwingAngleMax;
-                _swingAngleTotal = options.GetCurrentStageValue().SwingAngleMax;
+                swingAngleCur -= swingAngleTotal - options.GetCurrentStageValue().SwingAngleMax;
+                swingAngleTotal = options.GetCurrentStageValue().SwingAngleMax;
             }
             else
             {
-                _swingAngleCur -= (360.0f - options.GetCurrentStageValue().SwingAngleMax) - _swingAngleTotal;
-                _swingAngleTotal = 360.0f - options.GetCurrentStageValue().SwingAngleMax;
+                swingAngleCur -= (360.0f - options.GetCurrentStageValue().SwingAngleMax) - swingAngleTotal;
+                swingAngleTotal = 360.0f - options.GetCurrentStageValue().SwingAngleMax;
             }
         }        
     }
 
     void SwingBar()
     {
-        // forward - global
-        if (_isSwingingRight)
-            swingBar.transform.Rotate(Vector3.left, _swingAngleCur, Space.World);
-        else
-            swingBar.transform.Rotate(-Vector3.left, _swingAngleCur, Space.World);
+        if (isSwingingRight)  swingBar.transform.Rotate(Vector3.left, swingAngleCur, Space.World);
+        else                  swingBar.transform.Rotate(-Vector3.left, swingAngleCur, Space.World);
     }
 
     void SwingStage()
     {
-        float radian = Mathf.Deg2Rad * _swingAngleTotal;
+        float radian = Mathf.Deg2Rad * swingAngleTotal;
 
-        // left dir
-        _swingPosCur.z = (Mathf.Sin(radian) * swingRadius) + stageStartPos.z - stage.transform.position.z;
+        swingPosCur.z = (Mathf.Sin(radian) * swingRadius) + stageStartPos.z - stage.transform.position.z;
+        swingPosCur.y = (swingRadius - Mathf.Cos(radian) * swingRadius) + stageStartPos.y - stage.transform.position.y;
 
-        // up dir
-        _swingPosCur.y = (swingRadius - Mathf.Cos(radian) * swingRadius) + stageStartPos.y - stage.transform.position.y;
-
-        stage.transform.position += _swingPosCur;
+        stage.transform.position += swingPosCur;
     }
 
     void TurnStage()
     {
-        // forward - global
-        if (_isSwingingRight)
-            stage.transform.Rotate(Vector3.left, _swingAngleCur, Space.World);
-        else
-            stage.transform.Rotate(-Vector3.left, _swingAngleCur, Space.World);
+        if (isSwingingRight)  stage.transform.Rotate(Vector3.left, swingAngleCur, Space.World);
+        else                  stage.transform.Rotate(-Vector3.left, swingAngleCur, Space.World);
     }
 
     void SpinStage()
     {
-        //_upDirBeforeSpin = stage.transform.up;
+        spinAngleCur = options.GetCurrentStageValue().SpinSpeed * Time.fixedDeltaTime;
 
-        _spinAngleCur = options.GetCurrentStageValue().SpinSpeed * Time.fixedDeltaTime;
-
-        // up - local 
-        if (isSpiningCW)
-            stage.transform.Rotate(Vector3.up, _spinAngleCur, Space.Self);
-        else
-            stage.transform.Rotate(-Vector3.up, _spinAngleCur, Space.Self);
+        if (isSpiningCW)  stage.transform.Rotate(Vector3.up, spinAngleCur, Space.Self);
+        else              stage.transform.Rotate(-Vector3.up, spinAngleCur, Space.Self);
     }
 
     void ChangeDirection()
     {
-        if (_changeDir)
+        if (changeDir)
         {
-            _isSwingingRight = !_isSwingingRight;
-            _changeDir = false;
+            isSwingingRight = !isSwingingRight;
+            changeDir = false;
         }
     }
 
@@ -212,8 +170,8 @@ public class Machine : MovingThing
         stageVal.IsMachineSpining = isMachineSpining;
         stageVal.IsSpiningCW = isSpiningCW;
 
-        stageVal.SwingPosCur = _swingPosCur;
-        stageVal.SpinAngleCur = _spinAngleCur;
+        stageVal.SwingPosCur = swingPosCur;
+        stageVal.SpinAngleCur = spinAngleCur;
     }
     
 }

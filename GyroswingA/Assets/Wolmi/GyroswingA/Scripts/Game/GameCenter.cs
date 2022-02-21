@@ -15,23 +15,21 @@ public enum GameMode
 }
 
 
-// 인게임씬에서 게임의 흐름을 관리하는 GameCenter 클래스입니다. 
-// 오브젝트들 사이를 중재하며, 게임 상태에 따라 각종 작업을 수행합니다. 
-
-
 public class GameCenter : MonoBehaviour
 {
     [Header("------- Obejcts")]
     [SerializeField] Player player;
-    [SerializeField] Transform playerCamera;
     [SerializeField] Machine machine;
-    [SerializeField] GameObject stageOfMachine;
-
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] ItemSpawner itemSpawner;
     [SerializeField] ProjectileSpawner projectileSpawner;
 
+    [SerializeField] Transform playerCamera;
+    [SerializeField] GameObject stageOfMachine;
+
+    [Header("------- UI")]
     [SerializeField] InGameUIDisplay inGameUI;
+
     UISoundPlayer uiSoundPlayer { get => UISoundPlayer.Instance; }
     SceneController sceneController { get => SceneController.Instance; }
 
@@ -44,19 +42,18 @@ public class GameCenter : MonoBehaviour
     StageMovementValue stageVal = new StageMovementValue();
     StopWatch gameTimer = new StopWatch();
 
-    const int limitSecondsPerStage = 180;
-    const float cinemachineWaitingTime = 8.0f;
-    const float enemyStartWaitingTime = 1.0f;
+    const int LIMIT_TIME_PER_STAGE = 180;
+    const float WAITING_TIME_TO_FINISH_TIMELINE = 8.0f;
+    const float WAITING_TIME_TO_MAKE_ENEMY_START_MOVING = 1.0f;
 
-    const float resultSoundWaitingTime = 0.3f;
-    const float resultUIWaitingTime = 0.4f;
-    const float resultUIRemainingTime = 5.0f;
-    const float gameStartWaitingTime = 5.5f;
+    const float WAITING_TIME_TO_PLAY_RESULT_SOUND = 0.3f;
+    const float WAITING_TIME_TO_PLAY_RESULT_UI = 0.4f;
+    const float REMAINING_TIME_TO_SHOW_RESULT_UI = 5.0f;
+    const float WAITING_TIME_TO_START_GAME = 5.5f;
 
     GameState gameStateCur;
     int monsterMaxCur = 0;
     int remainingMonstersCur = 0;
-
 
     void Start()
     {
@@ -86,7 +83,7 @@ public class GameCenter : MonoBehaviour
         MakeObjectsStopMoving();
         machine.StartMoving();
 
-        Invoke("StartGame", cinemachineWaitingTime);
+        Invoke("StartGame", WAITING_TIME_TO_FINISH_TIMELINE);
     }
 
     
@@ -100,7 +97,7 @@ public class GameCenter : MonoBehaviour
 
         MakeObjectPaused();
 
-        uiSoundPlayer.PlayBGM(SceneState.InGame);
+        uiSoundPlayer.PlayBGM(BgmSoundType.InGame, true);
     }
 
     void StartGame()
@@ -108,10 +105,10 @@ public class GameCenter : MonoBehaviour
         ChangeGameState(GameState.Playing);
         
         monsterMaxCur = stageChanger.GetMonsterMaxForCurrentStage();
-        inGameUI.SetGameStartUI(limitSecondsPerStage, monsterMaxCur, stageChanger.StageCur);
+        inGameUI.SetGameStartUI(LIMIT_TIME_PER_STAGE, monsterMaxCur, stageChanger.StageCur);
         remainingMonstersCur = monsterMaxCur;
 
-        gameTimer.StartTimer(limitSecondsPerStage);
+        gameTimer.StartTimer(LIMIT_TIME_PER_STAGE);
 
         MakeObjectsStartMoving(true);
     }
@@ -203,7 +200,7 @@ public class GameCenter : MonoBehaviour
             for (int i = enemySpawner.spawnedEnemies.Count - 1; i >= 0; i--)
                 enemySpawner.spawnedEnemies[i].StopMoving();
 
-            Invoke("MakeEnemyStartMoving", enemyStartWaitingTime);
+            Invoke("MakeEnemyStartMoving", WAITING_TIME_TO_MAKE_ENEMY_START_MOVING);
             return;
         }
 
@@ -281,22 +278,22 @@ public class GameCenter : MonoBehaviour
 
     void MakeSchedule()
     {
-        schedule.onWinTotally = () => { Invoke("SetWinBGM", resultSoundWaitingTime); };
-        schedule.onWinTotally += () => { Invoke("ReturnAll", resultUIWaitingTime); };
-        schedule.onWinTotally += () => { Invoke("SetWinUI", resultUIWaitingTime); };
-        schedule.onWinTotally += () => { Invoke("BackToStageSelectionScene", resultUIRemainingTime); };
+        schedule.onWinTotally = () => { Invoke("SetWinBGM", WAITING_TIME_TO_PLAY_RESULT_SOUND); };
+        schedule.onWinTotally += () => { Invoke("ReturnAll", WAITING_TIME_TO_PLAY_RESULT_UI); };
+        schedule.onWinTotally += () => { Invoke("SetWinUI", WAITING_TIME_TO_PLAY_RESULT_UI); };
+        schedule.onWinTotally += () => { Invoke("BackToStageSelectionScene", REMAINING_TIME_TO_SHOW_RESULT_UI); };
 
-        schedule.onWin = () => { Invoke("SetWinBGM", resultSoundWaitingTime); };
-        schedule.onWin += () => { Invoke("ReturnAll", resultUIWaitingTime); };
-        schedule.onWin += () => { Invoke("SetWinUI", resultUIWaitingTime); };
-        schedule.onWin += () => { Invoke("PrepareGame", resultUIRemainingTime); };
-        schedule.onWin += () => { Invoke("TurnResultUIOff", resultUIRemainingTime); };
-        schedule.onWin += () => { Invoke("StartGame", gameStartWaitingTime); };
+        schedule.onWin = () => { Invoke("SetWinBGM", WAITING_TIME_TO_PLAY_RESULT_SOUND); };
+        schedule.onWin += () => { Invoke("ReturnAll", WAITING_TIME_TO_PLAY_RESULT_UI); };
+        schedule.onWin += () => { Invoke("SetWinUI", WAITING_TIME_TO_PLAY_RESULT_UI); };
+        schedule.onWin += () => { Invoke("PrepareGame", REMAINING_TIME_TO_SHOW_RESULT_UI); };
+        schedule.onWin += () => { Invoke("TurnResultUIOff", REMAINING_TIME_TO_SHOW_RESULT_UI); };
+        schedule.onWin += () => { Invoke("StartGame", WAITING_TIME_TO_START_GAME); };
 
-        schedule.onFail = () => { Invoke("SetFailBGM", resultSoundWaitingTime); };
-        schedule.onFail += () => { Invoke("ReturnAll", resultUIWaitingTime); };
-        schedule.onFail += () => { Invoke("SetFailUI", resultUIWaitingTime); };
-        schedule.onFail += () => { Invoke("BackToStageSelectionScene", resultUIRemainingTime); };
+        schedule.onFail = () => { Invoke("SetFailBGM", WAITING_TIME_TO_PLAY_RESULT_SOUND); };
+        schedule.onFail += () => { Invoke("ReturnAll", WAITING_TIME_TO_PLAY_RESULT_UI); };
+        schedule.onFail += () => { Invoke("SetFailUI", WAITING_TIME_TO_PLAY_RESULT_UI); };
+        schedule.onFail += () => { Invoke("BackToStageSelectionScene", REMAINING_TIME_TO_SHOW_RESULT_UI); };
     }
 
     void ReturnAll()
@@ -312,12 +309,12 @@ public class GameCenter : MonoBehaviour
 
     void SetWinBGM()
     {
-        uiSoundPlayer.PlayResultBGM(true);
+        uiSoundPlayer.PlayBGM(BgmSoundType.Win, false);
     }
 
     void SetFailBGM()
     {
-        uiSoundPlayer.PlayResultBGM(false);
+        uiSoundPlayer.PlayBGM(BgmSoundType.GameOver, false);
     }
 
     void SetWinUI()

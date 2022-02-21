@@ -14,7 +14,7 @@ public enum CreatureEffectSoundType
 
 public class CreatureSoundPlayer : MonoBehaviour
 {
-    const float trimRatio = 0.3f;
+    const float TRIM_RATIO = 0.3f;
 
     SoundLoader soundFiles;
 
@@ -42,7 +42,8 @@ public class CreatureSoundPlayer : MonoBehaviour
 
         if (clip == null) return;
 
-        if (trim) effectSoundAudio.time = trimRatio;
+        if (trim) effectSoundAudio.time = TRIM_RATIO;
+
         effectSoundAudio.PlayOneShot(clip);
     }
 }

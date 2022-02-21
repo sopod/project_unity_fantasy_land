@@ -2,14 +2,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-// 조이스틱 조작을 위한 JoystickController 클래스입니다. 
-
 
 public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    const float leverRange = 120.0f;
-    const float screenResolusionX = 1920f;
-    const float screenResolusionY = 1080f;
+    const float LEVER_RANGE = 120.0f;
+    const float SCREEN_RESOLUSION_X = 1920f;
+    const float SCREEN_RESOLUSION_Y = 1080f;
 
     RectTransform joystick;
     [SerializeField] RectTransform lever;
@@ -43,19 +41,15 @@ public class JoystickController : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     void SetLeverPosition(PointerEventData eventData)
     {
-        // 화면 크기 별로 달라지는 터치 위치를 보정하기 위한 코드입니다. 
-        float x = (Screen.width * joystick.sizeDelta.x / 2 + joystick.anchoredPosition.x) / screenResolusionX;
-        float y = (Screen.height * joystick.sizeDelta.y / 2 + joystick.anchoredPosition.y) / screenResolusionY;
+        float x = (Screen.width * joystick.sizeDelta.x / 2 + joystick.anchoredPosition.x) / SCREEN_RESOLUSION_X;
+        float y = (Screen.height * joystick.sizeDelta.y / 2 + joystick.anchoredPosition.y) / SCREEN_RESOLUSION_Y;
         
         Vector2 leverPos = eventData.position - new Vector2(x, y);
 
-        // leverRange 이상으로 조이스틱이 화면에서 넘어가지 않게 만들기 위한 코드입니다. 
-        // 넘어가면, 그 방향으로 가도록. 
-        Vector2 inRangePos = (leverPos.magnitude < leverRange) ? leverPos : leverPos.normalized * leverRange;
+        Vector2 inRangePos = (leverPos.magnitude < LEVER_RANGE) ? leverPos : leverPos.normalized * LEVER_RANGE;
         lever.anchoredPosition = inRangePos;
 
-        // 얼마나 더 멀리 드래그 했는지에 따라 값이 다름. 
-        inputDir = inRangePos / leverRange;
+        inputDir = inRangePos / LEVER_RANGE;
     }
 
     void ResetLeverPosition()

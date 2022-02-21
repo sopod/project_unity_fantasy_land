@@ -27,5 +27,4 @@ public class StarDataLoader : FileDataLoader
     {
         Save(data);
     }
-    
 }

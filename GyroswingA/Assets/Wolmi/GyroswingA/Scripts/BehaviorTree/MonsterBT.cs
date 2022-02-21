@@ -9,7 +9,6 @@ public class MonsterBT : BehaviorTree
 
         root = new Selector(bb, new List<Node>
                 {
-                    // 플레이어가 무척 가까이에 있다면, 공격하고 대기합니다. 
                     new Sequence(bb, new List<Node>
                     {
                         new ActionNodes.CheckPlayerToAttack(bb),
@@ -17,7 +16,6 @@ public class MonsterBT : BehaviorTree
                         new ActionNodes.Wait(bb)
                     }),
 
-                    // 플레이어가 가까이에 있다면, 추격하고 대기합니다. 
                     new Sequence(bb, new List<Node>
                     {
                         new ActionNodes.CheckPlayerAround(bb),
@@ -25,7 +23,6 @@ public class MonsterBT : BehaviorTree
                         new ActionNodes.Wait(bb),
                     }),
 
-                    // 플레이어를 찾지 못하였다면, 정찰하고 대기합니다. 
                     new Sequence(bb, new List<Node>
                     {
                         new ActionNodes.Patrol(bb),
@@ -35,7 +32,6 @@ public class MonsterBT : BehaviorTree
                 }
             );     
         
-        //StartMoving();
         return root;
     }    
 }

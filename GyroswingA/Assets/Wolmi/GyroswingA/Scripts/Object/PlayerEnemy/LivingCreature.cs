@@ -9,13 +9,11 @@ public enum CreatureType
     Max
 }
 
-// 적 몬스터와 플레이어 오브젝트가 상속하는 LivingCreature 클래스입니다. 
-
 
 public abstract class LivingCreature : MovingThing
 {
-    const float gravity = 9.8f;
-    const float failGravity = gravity * 2f;
+    const float GRAVITY = 9.8f;
+    const float FALL_GRAVITY = GRAVITY * 2f;
 
     public Action OnDead;
 
@@ -84,14 +82,13 @@ public abstract class LivingCreature : MovingThing
     protected void AffectedByPhysics()
     {
         AffectedByGravity();
-        //AffectedBySpin();
         FreezeLocalXZRotation();
     }
 
     protected void AffectedByGravity()
     {
-        if (state.IsInStageBoundary) rb.velocity -= stageOfMachine.transform.up * gravity * Time.deltaTime;
-        else rb.velocity -= Vector3.up * failGravity * Time.deltaTime;
+        if (state.IsInStageBoundary) rb.velocity -= stageOfMachine.transform.up * GRAVITY * Time.deltaTime;
+        else rb.velocity -= Vector3.up * FALL_GRAVITY * Time.deltaTime;
     }
 
     protected void FreezeLocalXZRotation()
@@ -204,28 +201,6 @@ public abstract class LivingCreature : MovingThing
     }
 
     protected abstract void OnDamagedByDash(Collision collision);
-    
-
-    //protected void AffectedBySpin()
-    //{
-    //    if (!isOnJumpableObject || !isInStageBoundary) return;
-    //    Vector3 dir = GetDirectionFromStageToCreature();
-    //    rb.velocity += (dir * stageVal.Radius * (55.5f + spinSpeedUp) * Mathf.Deg2Rad * Time.deltaTime);
-    //}
-
-    //protected Vector3 GetDirectionFromStageToCreature()
-    //{
-    //    Vector3 centerPosOfCreature = centerOfCreature.GetComponent<Renderer>().bounds.center;
-    //    Vector3 fromStageToCreature = centerPosOfCreature - stageOfMachine.transform.position;
-    //    float height = Vector3.Dot(fromStageToCreature, stageOfMachine.transform.up.normalized);
-
-    //    Vector3 parallelPos = stageOfMachine.transform.position + new Vector3(0, height, 0);
-    //    Vector3 res = (centerPosOfCreature - parallelPos).normalized;
-
-    //    //Debug.DrawRay(centerPosOfCreature, res, Color.red);
-
-    //    return res;
-    //}
 
     public void MoveAlongWithStage()
     {
@@ -234,11 +209,9 @@ public abstract class LivingCreature : MovingThing
         Vector3 centerForSpin = (stageVal.IsSpiningCW) ? stageOfMachine.transform.up : -stageOfMachine.transform.up;
         Vector3 resPos = rb.position;
 
-        // swing
         if (stageVal.IsMachineSwinging)
             resPos += stageVal.SwingPosCur;
 
-        // spin
         if (stageVal.IsMachineSpining && state.IsOnJumpableObject)
         {
             Quaternion spinQuat = Quaternion.AngleAxis(stageVal.SpinAngleCur, centerForSpin);
@@ -246,7 +219,6 @@ public abstract class LivingCreature : MovingThing
             rb.rotation = spinQuat * rb.rotation;
         }
 
-        // apply
         rb.position = resPos;
     }
 
@@ -281,14 +253,8 @@ public abstract class LivingCreature : MovingThing
         soundPlay.DoDeadSound(true);
         aniPlay.DoDeadAnimation();
 
-        pjSpanwer.SpawnDeadProjectile(this.gameObject);
+        pjSpanwer.SpawnDeadProjectile(gameObject);
 
         OnDead?.Invoke();
     }
-    
-
-    //public void OnNothingLayer()
-    //{
-    //    state.IsOnJumpableObject = false;
-    //}
 }

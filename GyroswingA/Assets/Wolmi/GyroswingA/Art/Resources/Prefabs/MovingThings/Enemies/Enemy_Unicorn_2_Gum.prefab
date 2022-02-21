@@ -1300,6 +1300,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HPBarForEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2941262079841704189, guid: bb6ae370e0f88be4799466be3b2b0ffb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6170402600721472145, guid: bb6ae370e0f88be4799466be3b2b0ffb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1335,6 +1339,18 @@ PrefabInstance:
     - target: {fileID: 6170402600721472145, guid: bb6ae370e0f88be4799466be3b2b0ffb, type: 3}
       propertyPath: m_SizeDelta.y
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170402600721472145, guid: bb6ae370e0f88be4799466be3b2b0ffb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.065
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170402600721472145, guid: bb6ae370e0f88be4799466be3b2b0ffb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.065
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170402600721472145, guid: bb6ae370e0f88be4799466be3b2b0ffb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.065
       objectReference: {fileID: 0}
     - target: {fileID: 6170402600721472145, guid: bb6ae370e0f88be4799466be3b2b0ffb, type: 3}
       propertyPath: m_LocalPosition.x
