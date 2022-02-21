@@ -160,17 +160,8 @@ public class Player : LivingCreature
         if (IsPaused) return;
         int layer = (1 << collision.gameObject.layer);
 
-        if (layer == layers.StageLayer.value || layer == layers.EnemyLayer.value)
-        {
-            OnStageLayer();
-        }
-        else if (layer == layers.StageBoundaryLayer.value)
-        {
-            state.IsInStageBoundary = true;
-        }
-        else if (layer == layers.FailZoneLayer.value)
-        {
-            OnFailZoneLayer();
-        }
+        if (layer == layers.StageLayer.value || layer == layers.EnemyLayer.value)  OnStageLayer();
+        else if (layer == layers.StageBoundaryLayer.value)                         state.IsInStageBoundary = true; 
+        else if (layer == layers.FailZoneLayer.value)                              OnFailZoneLayer(); 
     }
 }

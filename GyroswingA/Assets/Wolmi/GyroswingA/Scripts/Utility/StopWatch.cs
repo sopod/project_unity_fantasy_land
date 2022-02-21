@@ -2,20 +2,21 @@ using UnityEngine;
 
 public class StopWatch
 {
-    bool timerStarted = false;
+    bool hasTimerStarted = false;
     float startTime = 0.0f;
     float limitTime = 0.0f;
     float stopTime = 0.0f;
 
-    public bool IsFinished { get => (timerStarted && GetRemainingTime() <= 0.1f); }
-    public bool IsRunning { get => timerStarted; }
+    public bool HasStarted { get => hasTimerStarted; }
+    public bool IsFinished { get => (hasTimerStarted && GetRemainingTime() <= 0.1f); }
+    public bool IsRunning { get => hasTimerStarted; }
     
     public void StartTimer(float limitTime)
     {
         startTime = Time.time;
         this.limitTime = limitTime;
         stopTime = 0.0f;
-        timerStarted = true;
+        hasTimerStarted = true;
     }
 
     public void PauseTimer()
@@ -42,7 +43,7 @@ public class StopWatch
     {
         startTime = 0.0f;
         limitTime = 0.0f;
-        timerStarted = false;
+        hasTimerStarted = false;
     }
 
     public float GetCurrentTime()

@@ -18,7 +18,7 @@ public class State
     public bool IsInStageBoundary = true;
 
     public bool CanMove                 { get => !IsAttacking; }
-    public bool CanJump                 { get => (!IsJumping && !IsAttacking && IsOnJumpableObject && !IsDamaged); }
+    public bool CanJump                 { get => (!IsJumping && !IsAttacking && IsOnJumpableObject && !IsDamaged && (!stateTimer.HasStarted || stateTimer.IsFinished)); }
     public bool CanAttack               { get => (!IsJumping && !IsAttacking && !IsDamaged); }
     public bool CanMoveAlongWithMachine { get => (IsInStageBoundary); }
 
@@ -27,6 +27,9 @@ public class State
     public bool IsAttacking             { get => (state == CreatureState.Attacking); }
     public bool IsDamaged               { get => (state == CreatureState.Damaged); }
     public bool IsDead                  { get => (state == CreatureState.Dead); }
+
+    StopWatch stateTimer = new StopWatch();
+    const float JUMP_COOLTIME = 0.5f;
 
     public void InitState()
     {
@@ -54,6 +57,7 @@ public class State
     {
         IsOnJumpableObject = false;
         ChangeState(CreatureState.Jumping);
+        stateTimer.StartTimer(JUMP_COOLTIME);
     }
 
     public void SetAttacking()
