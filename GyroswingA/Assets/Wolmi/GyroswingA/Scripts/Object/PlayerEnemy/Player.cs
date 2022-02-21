@@ -42,7 +42,7 @@ public class Player : LivingCreature
     }
 
     public void InitPlayer(GameObject stage, StageMovementValue stageVal, StageChanger options, 
-        Layers layer, ProjectileSpawner pjSpanwer, Transform playerCamera)
+                           Layers layer, ProjectileSpawner pjSpanwer, Transform playerCamera)
     {
         Init(stage, stageVal, layer, pjSpanwer, playerCamera);
 
@@ -138,11 +138,9 @@ public class Player : LivingCreature
         if (IsPaused) return;
 
         int layer = (1 << other.gameObject.layer);
+        if (layer != layers.StageBoundaryLayer.value) return;
 
-        if (layer == layers.StageBoundaryLayer.value)
-        {
-            state.IsInStageBoundary = false;
-        }
+        state.IsInStageBoundary = false; 
     }
 
     void OnCollisionStay(Collision collision) 
@@ -160,8 +158,11 @@ public class Player : LivingCreature
         if (IsPaused) return;
         int layer = (1 << collision.gameObject.layer);
 
-        if (layer == layers.StageLayer.value || layer == layers.EnemyLayer.value)  OnStageLayer();
-        else if (layer == layers.StageBoundaryLayer.value)                         state.IsInStageBoundary = true; 
-        else if (layer == layers.FailZoneLayer.value)                              OnFailZoneLayer(); 
+        if (layer == layers.StageLayer.value || layer == layers.EnemyLayer.value)
+            OnStageLayer();
+        else if (layer == layers.StageBoundaryLayer.value)
+            state.IsInStageBoundary = true; 
+        else if (layer == layers.FailZoneLayer.value)
+            OnFailZoneLayer(); 
     }
 }

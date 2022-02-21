@@ -181,9 +181,7 @@ public class ObjectValues
 
     public float SkillCoolTime;
     public float DashPowerToDamaged;
-    public float DashPowerToHit;
     public float FireBallPowerToDamaged;
-    public float KnockDownTime;
 
     public float EnemyWaitTime; 
     public float EnemyTurnTime; 
@@ -192,13 +190,16 @@ public class ObjectValues
 
     public int EasyModeMonsterMax;
     public int HardModeMonsterMax;
+
     public float SwookSpeedUp;
     public float GumSpeedUp;
     public float SwookDashUp;
+
     public float HarippoBlueTime;
     public float HarippoGreenTime;
     public float HarippoYellowTime;
     public float HarippoRedTime;
+
     public float CokeSpeed;
     public float ChocoTarteSpeed;
 

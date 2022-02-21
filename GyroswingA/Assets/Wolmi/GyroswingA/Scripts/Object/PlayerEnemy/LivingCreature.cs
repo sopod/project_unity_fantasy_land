@@ -14,6 +14,7 @@ public abstract class LivingCreature : MovingThing
 {
     const float GRAVITY = 9.8f;
     const float FALL_GRAVITY = GRAVITY * 2f;
+    const float MOVE_POWER_OF_DASH = 20.0f;
 
     public Action OnDead;
 
@@ -45,14 +46,14 @@ public abstract class LivingCreature : MovingThing
 
 
     protected virtual void Init(GameObject stageOfMachine, StageMovementValue stageVal,
-        Layers layers, ProjectileSpawner pjSpanwer, Transform playerCamera)
+                                Layers layers, ProjectileSpawner pjSpanwer, Transform playerCamera)
     {
         values = SceneController.Instance.loaderGoogleSheet.ObjectDatas;
         this.stageVal = stageVal;
         this.layers = layers;
         this.pjSpanwer = pjSpanwer;
 
-        hpBar.camera = playerCamera;
+        hpBar.playerCamera = playerCamera;
 
         this.stageOfMachine = stageOfMachine;
         aniPlay = new CreatureAnimation(GetComponent<Animator>());
@@ -132,6 +133,8 @@ public abstract class LivingCreature : MovingThing
 
     public void JumpByAttack()
     {
+        if (state.IsJumping) return;
+
         rb.AddForce(stageOfMachine.transform.up * values.JumpPower, ForceMode.Impulse);
     }
 
@@ -143,7 +146,7 @@ public abstract class LivingCreature : MovingThing
         soundPlay.DoDashSound(IsPlayer);
         aniPlay.DoDashAnimation();
 
-        rb.AddForce(transform.forward * values.DashPowerToHit, ForceMode.Impulse);
+        rb.AddForce(transform.forward * MOVE_POWER_OF_DASH, ForceMode.Impulse);
 
         CancelInvoke("SetIdle");
         Invoke("SetIdle", values.SkillCoolTime);

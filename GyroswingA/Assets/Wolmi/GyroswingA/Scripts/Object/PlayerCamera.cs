@@ -8,9 +8,9 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] Transform camDir;
 
+    [SerializeField] LayerMask layer;
     private Ray camRay;
     public RaycastHit CamRayHit;
-    [SerializeField] LayerMask layer;
     float rayDistance = CAMERA_DISTANCE;
     float rayRadius = 0.1f;
 

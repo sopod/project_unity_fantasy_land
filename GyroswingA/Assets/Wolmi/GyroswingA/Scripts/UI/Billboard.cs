@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    [HideInInspector] public Transform camera;
+    [HideInInspector] public Transform playerCamera;
 
     void LateUpdate()
     {
@@ -13,8 +13,8 @@ public class Billboard : MonoBehaviour
 
     void Rotate()
     {
-        transform.LookAt(transform.position + camera.forward);
-        Quaternion quat = Quaternion.FromToRotation(transform.right, camera.right);
+        transform.LookAt(transform.position + playerCamera.forward);
+        Quaternion quat = Quaternion.FromToRotation(transform.right, playerCamera.right);
         transform.rotation = quat * transform.rotation;
     }
 }

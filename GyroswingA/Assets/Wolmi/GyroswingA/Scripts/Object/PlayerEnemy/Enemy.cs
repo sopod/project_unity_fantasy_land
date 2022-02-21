@@ -182,14 +182,8 @@ public class Enemy : LivingCreature, ISpawnableObject
 
         int layer = (1 << other.gameObject.layer);
 
-        if (layer == layers.ShootProjectileLayer.value)
-        { 
-            OnDamagedByFire(other.transform.position);
-        }
-        else if (layer == layers.StageBoundaryLayer.value)
-        {
-            state.IsInStageBoundary = true;
-        }
+        if (layer == layers.ShootProjectileLayer.value)     OnDamagedByFire(other.transform.position); 
+        else if (layer == layers.StageBoundaryLayer.value)  state.IsInStageBoundary = true; 
     }
 
     void OnTriggerExit(Collider other)
@@ -197,11 +191,9 @@ public class Enemy : LivingCreature, ISpawnableObject
         if (IsPaused) return;
 
         int layer = (1 << other.gameObject.layer);
+        if (layer != layers.StageBoundaryLayer.value) return;
 
-        if (layer == layers.StageBoundaryLayer.value)
-        {
-            state.IsInStageBoundary = false;
-        }
+        state.IsInStageBoundary = false;
     }
 
     void OnCollisionStay(Collision collision)
@@ -220,16 +212,10 @@ public class Enemy : LivingCreature, ISpawnableObject
         int layer = (1 << collision.gameObject.layer);
 
         if (layer == layers.StageLayer.value || layer == layers.PlayerLayer.value || layer == layers.EnemyLayer.value)
-        {
             OnStageLayer();
-        }
         else if (layer == layers.StageBoundaryLayer.value)
-        {
             state.IsInStageBoundary = true;
-        }
         else if (layer == layers.FailZoneLayer.value)
-        {
             OnFailZoneLayer();
-        }
     }
 }

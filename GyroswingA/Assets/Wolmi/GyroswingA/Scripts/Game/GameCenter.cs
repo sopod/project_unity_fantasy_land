@@ -42,7 +42,7 @@ public class GameCenter : MonoBehaviour
     StageMovementValue stageVal = new StageMovementValue();
     StopWatch gameTimer = new StopWatch();
 
-    const int LIMIT_TIME_PER_STAGE = 180;
+    const int LIMIT_TIME_PER_STAGE = 90;
     const float WAITING_TIME_TO_FINISH_TIMELINE = 8.0f;
     const float WAITING_TIME_TO_MAKE_ENEMY_START_MOVING = 1.0f;
 
